@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Introduction to Design Patterns</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-introduction-to-design-patterns">Coding Bootcamp: Introduction to Design Patterns</h1>
+<h2 id="who-am-i">Who Am I?</h2>
+<p><img src="../java/media/Tushar_Slide.png" /></p>
+<h2 id="quick-recap---principles-of-object-orientation">Quick Recap - Principles of Object-orientation</h2>
+<ul>
+<li>Abstraction</li>
+<li>Encapsulation</li>
+<li>Modularization</li>
+<li>Hierarchy</li>
+</ul>
+<h2 id="principles-of-object-orientation">Principles of Object-orientation</h2>
+<ul>
+<li><b>Abstraction</b> - Simplify entities via</li>
+<li>Reduction of unnecessary details</li>
+<li>Generalization of common and important aspects</li>
+</ul>
+<h2 id="principles-of-object-orientation-1">Principles of Object-orientation</h2>
+<ul>
+<li><b>Encapsulation</b> - Separation of concerns and information hiding via</li>
+<li>Hiding implementation details</li>
+<li>Hiding variations</li>
+</ul>
+<h2 id="principles-of-object-orientation-2">Principles of Object-orientation</h2>
+<ul>
+<li><b>Modularization</b> - Cohesive and loosely-coupled abstractions via</li>
+<li>Localization</li>
+<li>Decomposition</li>
+</ul>
+<h2 id="principles-of-object-orientation-3">Principles of Object-orientation</h2>
+<ul>
+<li><b>Hierarchy</b> - Hierarchical organization of abstractions via</li>
+<li>Classification and ordering</li>
+<li>Generalization and factoring</li>
+</ul>
+<h2 id="design-patterns---a-motivating-example">Design Patterns - A Motivating Example</h2>
+<ul class="fragment">
+<li>Bootcamp course and a few stakeholders (Students and Instructors)</li>
+<li>Any change in the course must be notified to all the stakeholders</li>
+<li class="fragment">Now, think about its implementation
+</li></ul>
+<h2 id="design-patterns---a-motivating-example-1">Design Patterns - A Motivating Example</h2>
+<p><img src="../java/media/observerMotivation.png" /></p>
+<h2 id="implementation">Implementation</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course {
+<span class="kw">private</span> Student student;
+<span class="kw">private</span> Instructor instructor;
+    <span class="kw">public</span> <span class="fu">Course</span>() {
+        student = <span class="kw">new</span> <span class="fu">Student</span>();
+        instructor = <span class="kw">new</span> <span class="fu">Instructor</span>();
+    }
+    <span class="kw">private</span> <span class="dt">void</span> <span class="fu">updateAll</span>() {
+        student.<span class="fu">update</span>();
+        instructor.<span class="fu">update</span>();    
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">changeTime</span>() {
+        <span class="co">//change time</span>
+        <span class="fu">updateAll</span>();
+    }
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Program {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        Course course = <span class="kw">new</span> <span class="fu">Course</span>();
+        course.<span class="fu">changeTime</span>();
+    }
+}</code></pre></div>
+<h2 id="implementation---cont.">Implementation - Cont.</h2>
+<ul>
+<li>Is it easy to add a new observer (a new Student or a new Instructor)?
+<ul><li>You need to make multiple changes</li>
+<li class="fragment">What about adding a new category of observers; for example "Organizer"!</li>
+</ul></ul>
+<h2 id="implementation---take-2">Implementation - Take 2</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Program {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        Student student = <span class="kw">new</span> <span class="fu">Student</span>();
+        Instructor instructor = <span class="kw">new</span> <span class="fu">Instructor</span>();
+        Organizer organizer = <span class="kw">new</span> <span class="fu">Organizer</span>();
+        
+        Course course = <span class="kw">new</span> <span class="fu">Course</span>();
+        course.<span class="fu">addObserver</span>(student);
+        course.<span class="fu">addObserver</span>(organizer);
+        course.<span class="fu">addObserver</span>(instructor);
+        
+        course.<span class="fu">changeTime</span>();
+    }
+}</code></pre></div>
+<h2 id="implementation---take-2-1">Implementation - Take 2</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course <span class="kw">extends</span> Observable{
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">changeTime</span>() {
+        <span class="co">//change time</span>
+        <span class="fu">setChanged</span>();
+        <span class="fu">notifyObservers</span>();
+    }
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Student <span class="kw">implements</span> Observer{
+
+    <span class="fu">@Override</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">update</span>(Observable o, Object arg) {
+    
+    }
+}</code></pre></div>
+<h2 id="a-motivating-example">A Motivating Example</h2>
+<ul>
+<li>Now, think again about adding new observers.</li>
+<li>Is it easier?</li>
+</ul>
+<h2 id="a-motivating-example-1">A Motivating Example</h2>
+<ul>
+<li>Yes? WHY?</li>
+<li class="fragment">In the first implementation, `Course` class is "tightly-coupled" to `Student` and `Instructor` classes. While in the second case, `Course` class is "loosely-coupled" to it's observers.</li>
+<br>
+<li class="fragment">Congratulations!! You have just learned the first design pattern :)</li>
+</ul>
+<h2 id="the-implemented-solution">The Implemented Solution</h2>
+<p><img src="../java/media/observerExample.png" /></p>
+<h2 id="observer-design-pattern">Observer Design Pattern</h2>
+<p><img src="../java/media/observer.png" /></p>
+<h2 id="observable-and-observer-in-java">Observable and Observer (in Java)</h2>
+<p><img src="../java/media/ObservableAndObserver.png" /></p>
+<h2 id="what-about-.net">What About .NET</h2>
+<ul>
+<li>IObservable interface</li>
+<li>IObserver interface</li>
+</ul>
+<h2 id="let-us-define-design-patterns">Let Us Define Design Patterns</h2>
+<ul>
+<li><i>Design patterns are descriptions of communicating objects and classes that are customized to solve a general design problem in a particular context. (By Gang of Four)</i><br />
+<br><br />
+<br></li>
+<li><i>Design patterns are solutions to commonly occurring design problems.</i></li>
+</ul>
+<h2 id="essential-elements-of-patterns">Essential Elements of Patterns</h2>
+<ul>
+<li>Name</li>
+<br>
+<li class="fragment">
+Problem
+</li>
+<ul class="fragment">
+<li>
+Problem and context</li></ul>
+<br>
+<li class="fragment">
+Solution</li>
+<ul  class="fragment">
+<li>
+Relationships, roles, and responsibilities</li></ul>
+<br>
+<li class="fragment">
+Consequences</li>
+<ul class="fragment">
+<li>Benefits and liabilities</li>
+<li>Tradeoffs</li>
+</ul>
+</ul>
+<h2 id="why-to-use-patterns">Why to Use Patterns</h2>
+<ul>
+<li class="fragment">
+Higher design quality </li>
+<ul class="fragment">
+<li>Flexibility</li>
+<li>Changeability</li>
+<li>Testability</li>
+<li>...</li>
+</ul>
+<br>
+<li class="fragment">Common vocabulary</li>
+</ul>
+<h2 id="categories-of-patterns">Categories of Patterns</h2>
+<ul>
+<li><b>Creational</b> - patterns answer how to create and when to create</li>
+<ul>
+<li>Examples: Factory, Abstract Factory, Builder</li></ul>
+<br>
+
+<li class="fragment"><b>Structural</b> - patterns answer how to compose/structure</li>
+<ul>
+<li class="fragment">Examples: Adapter, Composite, Decorator</li></ul>
+<br>
+<li class="fragment"><b>Behavioral</b> - patterns describe how a group of objects cooperate to carry out a task</li>
+<ul>
+<li class="fragment">Examples: Observer, Strategy, Visitor</li></ul>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>In the context of bootcamp course, there is a course, students, instructors, and organizers.</li>
+<li>The course has a start time and end time.</li>
+<li>If any of the timing changes, the stakeholders have to be notified.</li>
+</ul>
+<p>Implement a program that notifies the stakeholders whenever the time changes for the course.</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Write a utility class for reading a text file and writing to a text file.</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Write a program to compute following metrics for a C# (or Java) code:</li>
+<li>LOC (Lines of Code)</li>
+<li>Number of classes</li>
+<li>Number of methods.</li>
+</ul>
+<p>Use regular expressions to achieve the same.</p>
+<h2 id="factory-pattern">Factory Pattern</h2>
+<ul>
+<li><b>Motivation</b></li>
+<li>Creating objects without exposing the instantiation logic to the clients</li>
+<li>Providing a common interface to refer all objects (of a kind)</li>
+</ul>
+<h2 id="factory-pattern-1">Factory Pattern</h2>
+<p><img src="../java/media/Factory.png" /></p>
+<h2 id="factory-pattern-example">Factory Pattern Example</h2>
+<p><img src="../java/media/FactoryExample.png" /></p>
+<h2 id="factory-pattern-2">Factory Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Separation of concerns - the logic to instantiate is separated</li>
+<li>Flexibility - to extend Product hierarchy without affecting clients</li>
+</ul>
+  
+<br>
+
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">Don't bypass</li></ul></ul>
+<h2 id="let-us-extend-the-factory-pattern">Let us extend the Factory Pattern</h2>
+<ul>
+<li><b>Motivation</b></li>
+<li>Let us assume you have <u><i>families of objects</i></u> to instantiate</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Widget library providing UI elements such as Button and TextBox</li>
+<li>The library instantiate UI elements based on the platform such as Windows and Linux</li>
+</ul>
+<h2 id="abstract-factory-pattern">Abstract Factory Pattern</h2>
+<p><img src="../java/media/AbstractFactory.png" /></p>
+<h2 id="abstract-factory-pattern-1">Abstract Factory Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Flexibility (Entire product families can be easily exchanged)
+</li>
+<li>Separation of concerns (Object lifetime management is separated from object use)</li></ul>
+
+<br>
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">GoF Abstract Factory only covers object creation, not object disposal</li>
+</ul>
+</ul>
+<h2 id="strategy-pattern">Strategy Pattern</h2>
+<ul>
+<li><b>Motivation</b></li>
+<li>Support for more than one algorithm required in many situations:
+<ul>
+<li>Clients do not want to be dependent on a supplied default algorithm</li>
+<li>Suitability of an algorithm may change based on the context (input, platform, ...)</li>
+<li>Integrating new algorithms should be easy (without modifying existing code, if possible)</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Examples - compression algorithm, sort algorithm</li>
+</ul>
+<h2 id="strategy-pattern-1">Strategy Pattern</h2>
+<p><img src="../java/media/Strategy.png" /></p>
+<h2 id="strategy-pattern-2">Strategy Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Freedom to choose algorithms
+</li>
+<li>Easier extensibility</li></ul>
+
+</ul>
+<h2 id="strategy-pattern-3">Strategy Pattern</h2>
+<ul>
+<li><b>Applicability</b></li>
+<li>Many related classes differ only in their behavior</li>
+<li>You need different variants of an algorithm</li>
+<li>A class defines many behaviors, and these appear as multiple conditional statements in its operations</li>
+</ul>
+<h2 id="composite-pattern">Composite Pattern</h2>
+<p><img src="../java/media/whole-part.png" /></p>
+<h2 id="composite-pattern-1">Composite Pattern</h2>
+<p><b>Motivation</b></p>
+<ul>
+<li>Need to represent &quot;whole-part&quot; hierarchies with following requirements</li>
+<li>Preserve hierarchical structure</li>
+<li>Same interface for both compound or atomic objects for clients</li>
+<li>It should be easy to extend the hierarchy with new element types</li>
+</ul>
+<h2 id="composite-pattern-2">Composite Pattern</h2>
+<p><img src="../java/media/Composite.png" /></p>
+<h2 id="composite-pattern-3">Composite Pattern</h2>
+<p><img src="../java/media/Composite-interaction.png" /></p>
+<h2 id="composite-pattern-4">Composite Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<li>Transparency (Clients are shielded from the object hierarchy)</li>
+<li>Extensibility (New leafs are easy to add)</li>
+</ul>
+<h2 id="facade-pattern">Façade Pattern</h2>
+<ul>
+<li><b>Motivation</b></li>
+<li>Let us assume that we have a component that provide complex multi-steps services</li>
+<li>How to provide a client simplified access to the functionality of such a component</li>
+</ul>
+<h2 id="facade-pattern-1">Façade Pattern</h2>
+<p><img src="../java/media/Facade.png" /></p>
+<h2 id="facade-pattern-2">Façade Pattern</h2>
+<ul>
+<li>Create a façade class that provides a high-level unified interface which contains functions commonly-accessed by the clients</li>
+<li>The client can invoke functions in the façade class which will in turn invoke the specialized functionality in the system</li>
+<li>This makes it very simple for the client to invoke functionality without knowing the innards of the system</li>
+<li>However, the client can always directly access a sub-system for specific services</li>
+</ul>
+<h2 id="facade-pattern-3">Façade Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<li>Provides a simple interface to a complex system</li>
+<li>De-couples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability</li>
+<li>Layers the subsystem
+<ul>
+<li>Use façade to define an entry point to each subsystem level</li>
+<li>If subsystems are dependent, then the dependencies between them can be simplified by making them communicate with each other solely through their facades</li>
+</ul></li>
+</ul>
+<p><img src="../java/media/allPatterns.gif" /></p>
+<h2 id="references">References</h2>
+<p><img src="../java/media/patterns-references.png" /></p>
+<h2 id="exercises">Exercises</h2>
+<ol start="4">
+<li> Complete exercise 1, 2, and 3
+</li>
+<li>Provide another way to implement the same functionality but by using string comparison. Pay attention to your design (hint: implement strategy and factory paterns)</li>
+<li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

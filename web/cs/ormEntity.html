@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ORMs - Entity Framework an orm written in C# from asp.net team</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-orms---entity-framework-an-orm-written-in-c-from-asp.net-team">Coding Bootcamp: ORMs - Entity Framework an orm written in C# from asp.net team</h1>
+<h3 id="orm">ORM</h3>
+<p>Object-relational mapping is a programming technique for converting data between incompatible type systems in object-oriented programming languages.</p>
+<h2 id="orm-in-simple-words">ORM in simple words</h2>
+<p>It's good for abstracting the datastore</p>
+<p>(SQL / XML / Json / flat file / whatever)</p>
+<p>out in order to provide an interface that can be used in your code.</p>
+<p>It tries to abstract the database access, so if you change from <strong>mssql</strong> to <strong>mysql</strong> you don't have to write your code again (<em>rudely speaking</em>).</p>
+<h2 id="orms-pros">ORMs pros</h2>
+<ul>
+<li>Huge reduction in code.</li>
+<li>ORM usually helps you create a developer friendly work flow</li>
+<li>ORM helps you focus on object oriented world and then takes you towards relational world.</li>
+<li>ORM works well when you have simple CRUD cases.</li>
+<li>Facilitates implementing the Domain Model pattern</li>
+</ul>
+<h2 id="orms-cons">ORMs cons</h2>
+<ul>
+<li>Slow: if you compare the performance between writing raw SQL &amp; ORM, raw is much faster as there is no translation layer. (can be beaten)</li>
+<li>Complex Queries: when executing <strong>real complex queries</strong> you will find yourself writing raw SQL.</li>
+<li>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</li>
+</ul>
+<h3 id="in-general">In general</h3>
+<p>ORM are not so well in addressing relational database specific features.</p>
+<h2 id="the-orm-myth">The ORM Myth</h2>
+<blockquote>
+<p>“With ORM, the database becomes an implementation detail, and can be ignored”</p>
+</blockquote>
+<p>-Idiots Ever...</p>
+<h2 id="the-orm-myth-2">The ORM Myth 2</h2>
+<blockquote>
+<p>“The database is a bucket”</p>
+</blockquote>
+<p>-Me being totally wrong...</p>
+<h2 id="net-orms">.net orms</h2>
+<p>Performance of SELECT mapping over 500 iterations - POCO serialization (by StackExchange team)</p>
+<table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th align="center">Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hand coded (using a SqlDataReader)</td>
+<td align="center">47ms</td>
+</tr>
+<tr class="even">
+<td>Dapper ExecuteMapperQuery<Post></td>
+<td align="center">49ms</td>
+</tr>
+<tr class="odd">
+<td>ServiceStack.OrmLite</td>
+<td align="center">50ms</td>
+</tr>
+<tr class="even">
+<td>NHibernate SQL</td>
+<td align="center">104ms</td>
+</tr>
+<tr class="odd">
+<td>Linq 2 SQL</td>
+<td align="center">181ms</td>
+</tr>
+<tr class="even">
+<td>Entity framework 6</td>
+<td align="center">631ms</td>
+</tr>
+<tr class="odd">
+<td>Entity framework Core 1</td>
+<td align="center">? ms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="famous-orms">2 famous orms</h2>
+<p>NHibernate</p>
+<ul>
+<li>Based on Hibernate - Java Project<br />
+</li>
+<li>LGPL Open Source<br />
+</li>
+<li>Been around since 2007 (Hibernate since 2001)</li>
+<li>Large community</li>
+<li>Full featured</li>
+</ul>
+<p>Dapper</p>
+<ul>
+<li>stack overflow's orm</li>
+<li>High Performance (close to SqlDataReader)</li>
+<li>low features</li>
+</ul>
+<h2 id="entity-framework">Entity Framework</h2>
+<p>Entity Framework is an open source orm framework from asp.net team. There are 2 versions actively developing</p>
+<ul>
+<li>Entity Framework 6.x (since 2008)</li>
+</ul>
+<p>EF 6 is a tried and tested data access technology with many years of features and stabilization</p>
+<ul>
+<li>Entity Framework Core 1.x (since June 2016)</li>
+</ul>
+<p>EF Core is a lightweight, extensible, and cross-platform version of Entity Framework.<br />
+EF Core introduces many improvements and new features when compared with EF6.x but some features from EF6 are not yet implemented.</p>
+<h2 id="pros-of-entity-framework">Pros of Entity Framework</h2>
+<ul>
+<li>Highly featured (not EF Core 1)</li>
+<li>Open source</li>
+<li>Allow complex sql queries with Linq (not very complex sql queries)</li>
+<li>Works well with microsoft technologies (e.g. asp.net mvc, asp.net identity)</li>
+</ul>
+<h2 id="cons-of-entity-framework">Cons of Entity Framework</h2>
+<h3 id="cons-of-ef-6">Cons of EF 6</h3>
+<ul>
+<li>Speed issues (solved in EF Core 1)</li>
+<li>Hard to read generated sql queries</li>
+</ul>
+<h3 id="cons-of-ef-core-1">Cons of EF Core 1</h3>
+<ul>
+<li>Not yet Highly featured as EF 6 (we expect to be solved in the next year)</li>
+</ul>
+<h2 id="domain-modeling-approaches">Domain modeling approaches</h2>
+<ul>
+<li>Code First</li>
+<li>Model First</li>
+<li>Database First</li>
+</ul>
+<h2 id="database-first">Database First</h2>
+<p>It enables you to create model from an existing database (like SQL Server, Oracle, DB2 etc.).</p>
+<p>This approach reduces the amount of code that we need to write since it automatically generates code. But it also limits us to work with the structure of the generated code.</p>
+<p>Very popular if you have Database designed by DBAs, developed separately or if you have existing Database.</p>
+<h2 id="model-first">Model First</h2>
+<p>It enables you to create model’s Entities, relationships, and inheritance hierarchies on the design surface of empty model (.edmx file) by using entity designer and then create database from it.</p>
+<p>It is good if you like to visualize the structure of the data in the application or you don't like writing code or SQL since it will generate for you.</p>
+<p>In this approach you have no much control over your entities (auto generated code which is hard to modify) and database. In this way it is rarely used but for small easy projects this approach will be very productive.</p>
+<h2 id="code-first">Code First</h2>
+<p>It enables you to describe a model by using C# classes and then create database from these classes. These classes are called POCO classes.</p>
+<p>It provides full control over the code since there is no auto generated code which is hard to modify.</p>
+<p>In this approach, your code defines only the database mappings and EF will handle creation of database with its relations.</p>
+<h2 id="code-first-approach-step-by-step">Code First Approach step by step</h2>
+<ol>
+<li>Design our Domain Model</li>
+<li>Create our DbContext</li>
+<li>Configure the Connection String</li>
+<li>Do the Migrations</li>
+<li>Have Fun</li>
+</ol>
+<h2 id="design-our-domain-model-12">1. Design our Domain Model 1/2</h2>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Blog
+{
+    <span class="co">//Primary Key</span>
+    <span class="kw">public</span> <span class="dt">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="dt">string</span> Title { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    <span class="co">//Navigation Property</span>
+    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Post&gt; Posts { <span class="kw">get</span>; <span class="kw">set</span>; }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Post
+{
+    <span class="co">//Primary Key</span>
+    <span class="kw">public</span> <span class="dt">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="dt">string</span> Title { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    <span class="co">//Foreing Key</span>
+    <span class="kw">public</span> <span class="dt">int</span> BlogId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="co">//Navigation Property</span>
+    [<span class="fu">ForeignKey</span>(<span class="st">&quot;BlogId&quot;</span>)]
+    <span class="kw">public</span> <span class="kw">virtual</span> Blog Blog { <span class="kw">get</span>; <span class="kw">set</span>; }
+}</code></pre></div>
+<h2 id="design-our-domain-model-22">1. Design our Domain Model 2/2</h2>
+<p>When we are designing our model we have in mind some conventions.<br />
+Conventions are sets of rules that are used to automatically configure a conceptual model based on class definitions when working with Code First.</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Blog
+{
+    <span class="co">//Primary Key</span>
+    <span class="kw">public</span> <span class="dt">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="co">//....</span>
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs">    <span class="co">//Foreing Key</span>
+    <span class="kw">public</span> <span class="dt">int</span> BlogId { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="co">//Navigation Property</span>
+    <span class="kw">public</span> <span class="kw">virtual</span> Blog Blog { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<h2 id="create-our-dbcontext-13">2. Create our DbContext 1/3</h2>
+<p>DbContext is an important part of Entity Framework. It is a bridge between your domain or entity classes and the database. DbContext is responsible for the following activities:</p>
+<ul>
+<li><strong>EntitySet</strong>: DbContext contains entity set (DbSet<TEntity>) for all the entities which is mapped to DB tables.</li>
+<li><strong>Querying</strong>: DbContext converts LINQ-to-Entities queries to SQL query and send it to the database.</li>
+<li><strong>Change Tracking</strong>: It keeps track of changes that occurred in the entities after it has been querying from the database.</li>
+</ul>
+<h2 id="create-our-dbcontext-23">2. Create our DbContext 2/3</h2>
+<ul>
+<li><strong>Persisting Data</strong>: It also performs the Insert, Update and Delete operations to the database, based on what the entity states.</li>
+<li><strong>Caching</strong>: DbContext does first level caching by default. It stores the entities which have been retrieved during the life time of a context class.</li>
+<li><strong>Manage Relationship</strong>: DbContext also manages relationship using CSDL, MSL and SSDL in DB-First or Model-First approach or using fluent API in Code-First approach.</li>
+<li><strong>Object Materialization</strong>: DbContext converts raw table data into entity objects.</li>
+</ul>
+<h2 id="create-our-dbcontext-33">2. Create our DbContext 3/3</h2>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> BlogContext : DbContext
+{
+    <span class="kw">public</span> <span class="fu">BlogContext</span>() : <span class="kw">base</span> (<span class="st">&quot;BlogContextConStringName&quot;</span>)
+    {
+    }
+
+    <span class="kw">public</span> DbSet&lt;Blog&gt; Blogs { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> DbSet&lt;Post&gt; Posts { <span class="kw">get</span>; <span class="kw">set</span>; }
+    
+    <span class="co">//To access the fluent API you override the OnModelCreating method in DbContext</span>
+    <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnModelCreating</span>(DbModelBuilder dbModelBuilder)
+    {
+
+    }
+}</code></pre></div>
+<h2 id="configure-the-connection-string">3. Configure the Connection String</h2>
+<p>Depending on your configuration file</p>
+<p>(app.config || web.config || appsettings.json)</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">  <span class="kw">&lt;connectionStrings&gt;</span>
+    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="ot">  providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/connectionStrings&gt;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json">  <span class="fu">{</span> 
+      <span class="dt">&quot;ConnectionStrings&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;BlogContextConStringName&quot;</span><span class="fu">:</span> <span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span>
+      <span class="fu">}</span>
+  <span class="fu">}</span></code></pre></div>
+<h2 id="do-the-migrations-12">4. Do the Migrations 1/2</h2>
+<p>To begin with Migrations:</p>
+<ol>
+<li>Enable Migrations</li>
+<li>Create initial migration and auto-generate database.</li>
+<li>Update your database for your new migration</li>
+</ol>
+<p>To make changes in your model:</p>
+<ol>
+<li>Make model changes in your code</li>
+<li>Add a new migration for model changes</li>
+<li>Update your database for your new migration</li>
+</ol>
+<h2 id="do-the-migrations-22">4. Do the Migrations 2/2</h2>
+<p>In the package manager console run the following command.</p>
+<pre class="cmd"><code>&gt; Enable-Migrations</code></pre>
+<pre class="cmd"><code>&gt; Add-Migration &quot;MyInitialCreate&quot;</code></pre>
+<pre class="cmd"><code>&gt; Update-Database</code></pre>
+<p>To make changes</p>
+<pre class="cmd"><code>&gt; Add-Migration &quot;ThisIsNewChange&quot;</code></pre>
+<pre class="cmd"><code>&gt; Update-Database</code></pre>
+<h2 id="have-fun-16">5. Have Fun 1/6</h2>
+<p>Pull data from the Database</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">PullDataFromTheDatabase</span>()
+{
+    <span class="dt">var</span> lstPosts = <span class="kw">new</span> List&lt;Post&gt;();
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>()) {
+        lstPosts = db.<span class="fu">Posts</span>.<span class="fu">ToList</span>();
+    }
+
+    <span class="kw">foreach</span> (var p <span class="kw">in</span> lstPosts) {
+        Console.<span class="fu">WriteLine</span>($<span class="st">&quot;Post with id {p.Id} has the title {p.Title}.&quot;</span>);
+    }
+}</code></pre></div>
+<h2 id="have-fun-26">5. Have Fun 2/6</h2>
+<p>Insert in the database a new object</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">InsertDataToTheDatabase</span>()
+{
+    <span class="dt">var</span> blog = <span class="kw">new</span> <span class="fu">Blog</span>()
+    {
+        Title = <span class="st">&quot;My Ef Blog&quot;</span>,
+        Posts = <span class="kw">new</span> List&lt;Post&gt;()
+        {
+            <span class="kw">new</span> <span class="fu">Post</span>() { Title = <span class="st">&quot;Post One&quot;</span> },
+            <span class="kw">new</span> <span class="fu">Post</span>() { Title = <span class="st">&quot;Post Two&quot;</span> },
+        }
+    };
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>())
+    {
+        db.<span class="fu">Blogs</span>.<span class="fu">Add</span>(blog);
+        db.<span class="fu">SaveChanges</span>();
+    }
+}</code></pre></div>
+<h2 id="have-fun-36">5. Have Fun 3/6</h2>
+<p>Find Data And Update</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">FindDataAndUpdate</span>()
+{
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>())
+    {
+        <span class="dt">var</span> blog = db.<span class="fu">Blogs</span>.<span class="fu">Where</span>(b =&gt; b.<span class="fu">Title</span> == <span class="st">&quot;Post Two&quot;</span>).<span class="fu">FirstOrDefault</span>();
+        blog.<span class="fu">Title</span> = <span class="st">&quot;My Awesome Ef Blog&quot;</span>;
+        db.<span class="fu">SaveChanges</span>();
+    }
+}</code></pre></div>
+<h2 id="have-fun-46">5. Have Fun 4/6</h2>
+<p>Find Data And Delete it</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">FindDataAndDelete</span>()
+{
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>()) {
+        <span class="dt">var</span> post = db.<span class="fu">Posts</span>.<span class="fu">FirstOrDefault</span>(p =&gt; p.<span class="fu">Title</span> == <span class="st">&quot;Post Two&quot;</span>);
+        db.<span class="fu">Posts</span>.<span class="fu">Remove</span>(post);
+        db.<span class="fu">SaveChanges</span>();
+    }
+}</code></pre></div>
+<h2 id="have-fun-56">5. Have Fun 5/6</h2>
+<p>Join</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ASimpleJoin</span>()
+{
+    <span class="co">//don&#39;t forget using System.Data.Entity;</span>
+    <span class="dt">var</span> lstBlogs = <span class="kw">new</span> List&lt;Blog&gt;();
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>()) {
+        lstBlogs = db.<span class="fu">Blogs</span>.<span class="fu">Include</span>(b =&gt; b.<span class="fu">Posts</span>).<span class="fu">ToList</span>();
+    }
+
+    <span class="kw">foreach</span> (var b <span class="kw">in</span> lstBlogs) {
+        Console.<span class="fu">WriteLine</span>($<span class="st">&quot;This blog {b.Title} has this posts : &quot;</span>);
+        <span class="kw">foreach</span> (var p <span class="kw">in</span> b.<span class="fu">Posts</span>) {
+            Console.<span class="fu">WriteLine</span>($<span class="st">&quot;This is a post title : {p.Title}&quot;</span>);
+        }
+    }
+}</code></pre></div>
+<h2 id="have-fun-66">5. Have Fun 6/6</h2>
+<p>Other stuff Linq can perform</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">CounAllPosts</span>()
+{
+    <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">BlogContext</span>()) {
+        <span class="dt">var</span> totalPost = db.<span class="fu">Posts</span>.<span class="fu">Count</span>();
+        Console.<span class="fu">WriteLine</span>($<span class="st">&quot;Total posts {totalPost}&quot;</span>);
+
+        <span class="dt">var</span> sumTotalLikesInPosts = db.<span class="fu">Posts</span>.<span class="fu">Sum</span>(x=&gt;x.<span class="fu">Likes</span>);
+        Console.<span class="fu">WriteLine</span>($<span class="st">&quot;Total posts likes {sumTotalLikesInPosts}&quot;</span>);
+
+        <span class="co">//...</span>
+    }
+}</code></pre></div>
+<h2 id="data-annotation----fluent-api-14">Data Annotation -- Fluent API 1/4</h2>
+<ul>
+<li>Code First allows you to use your own domain classes to represent the model but it <strong>is not enough to use conventions</strong>.</li>
+<li>We need configurations to tell EF how to map the object model to the database model.</li>
+<li>Code first gives you two ways to add these configurations to your classes. One is using simple attributes called DataAnnotations and the other is using code first’s Fluent API</li>
+</ul>
+<h2 id="data-annotation----fluent-api-24">Data Annotation -- Fluent API 2/4</h2>
+<p>Note! DataAnnotations only give you subset of configuration options. Fluent API provides full set of configuration options available in Code First.</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs">[<span class="fu">Table</span>(<span class="st">&quot;Product_Order&quot;</span>)]
+<span class="kw">public</span> <span class="kw">class</span> Order
+{
+    [Key]
+    [<span class="fu">Column</span>(<span class="st">&quot;Order_ID&quot;</span>)]
+    <span class="kw">public</span> <span class="dt">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> DateTime? Date { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> OrderState State { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="dt">string</span> Item { <span class="kw">get</span>; <span class="kw">set</span>; }
+    [<span class="fu">Range</span>(<span class="dv">1</span>,<span class="dv">25</span>)]
+    <span class="kw">public</span> <span class="dt">int</span> Quantity { <span class="kw">get</span>; <span class="kw">set</span>; }
+    [<span class="fu">MinLength</span>(<span class="dv">3</span>, ErrorMessage=<span class="st">&quot;What are you thinking??&quot;</span>)]
+    [<span class="fu">MaxLength</span>(<span class="dv">50</span>, ErrorMessage=<span class="st">&quot;ERROR!! FAILZ!!!&quot;</span>)]
+    <span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
+    [NotMapped]
+    <span class="kw">public</span> <span class="dt">string</span> Note { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    [<span class="fu">InverseProperty</span>(<span class="st">&quot;Order&quot;</span>)]
+    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Product&gt; Products { <span class="kw">get</span>; <span class="kw">set</span>; }
+}</code></pre></div>
+<h2 id="data-annotation----fluent-api-34">Data Annotation -- Fluent API 3/4</h2>
+<p>The code first fluent API is most commonly accessed by overriding the OnModelCreating method on your derived DbContext. </p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> BlogContext : DbContext
+{
+    <span class="kw">public</span> <span class="fu">BlogContext</span>() : <span class="kw">base</span> (<span class="st">&quot;BlogContextConStringName&quot;</span>)
+    {
+    }
+    
+    <span class="co">//To access the fluent API you override the OnModelCreating method in DbContext</span>
+    <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnModelCreating</span>(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.<span class="fu">Entity</span>&lt;User&gt;()
+            .<span class="fu">Property</span>(u =&gt; u.<span class="fu">DisplayName</span>)
+            .<span class="fu">HasColumnName</span>(<span class="st">&quot;display_name&quot;</span>);
+        
+        <span class="co">//Configuring a Primary Key</span>
+        modelBuilder.<span class="fu">Entity</span>&lt;OfficeAssignment&gt;()
+            .<span class="fu">HasKey</span>(t =&gt; t.<span class="fu">InstructorID</span>);
+        <span class="co">//Configuring the Property to be Required</span>
+        modelBuilder.<span class="fu">Entity</span>&lt;Department&gt;()
+            .<span class="fu">Property</span>(d =&gt; d.<span class="fu">Name</span>).<span class="fu">IsRequired</span>();
+        <span class="co">//Specifying the Maximum Length on a Property</span>
+        modelBuilder.<span class="fu">Entity</span>&lt;Department&gt;()
+            .<span class="fu">Property</span>(d =&gt; d.<span class="fu">Name</span>).<span class="fu">HasMaxLength</span>(<span class="dv">50</span>);
+    }
+}</code></pre></div>
+<h2 id="data-annotation----fluent-api-44">Data Annotation -- Fluent API 4/4</h2>
+<h3 id="a-comparison">A Comparison</h3>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs">
+<span class="co">//Data Annotation</span>
+[<span class="fu">Column</span>(<span class="st">&quot;Order_ID&quot;</span>)]
+<span class="kw">public</span> <span class="dt">int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="co">//Fluent API</span>
+modelBuilder.<span class="fu">Entity</span>&lt;Order&gt;()
+            .<span class="fu">Property</span>(d =&gt; d.<span class="fu">Id</span>).<span class="fu">HasColumnName</span>(<span class="st">&quot;Order_ID&quot;</span>);</code></pre></div>
+<blockquote>
+<p>yeah, Attributes are very cool...</p>
+</blockquote>
+<h2 id="data-annotation-attributes-14">Data Annotation Attributes 1/4</h2>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Required</td>
+<td align="center">The Required annotation will force EF (and MVC) to ensure that property has data in it.</td>
+</tr>
+<tr class="even">
+<td>MinLength</td>
+<td align="center">MinLength annotation validates property whether it has minimum length of string.</td>
+</tr>
+<tr class="odd">
+<td>MaxLength</td>
+<td align="center">MaxLength annotation maximum length of property which in turn sets the maximum length of column in the database</td>
+</tr>
+<tr class="even">
+<td>StringLength</td>
+<td align="center">Specifies the minimum and maximum length of characters that are allowed in a data field.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-24">Data Annotation Attributes 2/4</h2>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Table</td>
+<td align="center">Specify name of the DB table which will be mapped with the class</td>
+</tr>
+<tr class="even">
+<td>Column</td>
+<td align="center">Specify column name and datatype which will be mapped with the property</td>
+</tr>
+<tr class="odd">
+<td>Index</td>
+<td align="center">Create an Index for specified column. (EF 6.1 onwards only)</td>
+</tr>
+<tr class="even">
+<td>ForeignKey</td>
+<td align="center">Specify Foreign key property for Navigation property</td>
+</tr>
+<tr class="odd">
+<td>NotMapped</td>
+<td align="center">Create an Index for specified column. (EF 6.1 onwards only)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-34">Data Annotation Attributes 3/4</h2>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DatabaseGenerated</td>
+<td align="center">DatabaseGenerated attribute specifies that property will be mapped to Computed column of the database table. So the property will be read-only property. It can also be used to map the property to identity column</td>
+</tr>
+<tr class="even">
+<td>InverseProperty</td>
+<td align="center">InverseProperty is useful when you have multiple relationships between two classes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-44">Data Annotation Attributes 4/4</h2>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key</td>
+<td align="center">Mark property as EntityKey which will be mapped to PK of related table.</td>
+</tr>
+<tr class="even">
+<td>Timestamp</td>
+<td align="center">Mark the property as a non-nullable timestamp column in the database.</td>
+</tr>
+<tr class="odd">
+<td>Concurrency Check</td>
+<td align="center">ConcurrencyCheck annotation allows you to flag one or more properties to be used for concurrency checking in the database when a user edits or deletes an entity.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="seeding-13">Seeding 1/3</h2>
+<ul>
+<li>The Entity Framework can automatically create (or drop and re-create) a database for you when the application runs.</li>
+<li>You can specify that this should be done every time your application runs or only when the model is out of sync with the existing database.</li>
+<li>You can also write a Seed method that the Entity Framework automatically calls after creating the database in order to populate it with test data.</li>
+</ul>
+<h2 id="seeding-23">Seeding 2/3</h2>
+<ul>
+<li>In the Migrations Folder you will find a Configuration.cs with a Seed Method</li>
+<li>This method will be called after migrating to the latest version. (after calling &gt;Update-Database)</li>
+<li>You can use the DbSet<T>.AddOrUpdate() helper extension method to avoid creating duplicate seed data</li>
+</ul>
+<h2 id="seeding-33">Seeding 3/3</h2>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs">
+<span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">Seed</span>(BlogContext context)
+{
+    context.<span class="fu">Blogs</span>.<span class="fu">AddOrUpdate</span>(
+        b =&gt; b.<span class="fu">Title</span>,
+        <span class="kw">new</span> <span class="fu">Blog</span>() { Title = <span class="st">&quot;My Ef Blog&quot;</span> },
+        <span class="kw">new</span> <span class="fu">Blog</span>() { Title = <span class="st">&quot;My .Net Blog&quot;</span> }
+    );
+    
+    context.<span class="fu">SaveChanges</span>();
+}</code></pre></div>
+<h2 id="sql-server-profiler">Sql Server Profiler</h2>
+<p>Microsoft SQL Server Profiler is a graphical user interface to SQL Trace for monitoring an instance of the Database Engine or Analysis Services. You can capture and save data about each event to a file or table to analyze later.</p>
+<h3 id="dont-forget">Dont forget</h3>
+<blockquote>
+<p>Inspecting your Entity Framework SQL</p>
+</blockquote>
+<h2 id="training">Training</h2>
+<ul>
+<li>Pluralsight<br />
+best course -&gt; <a href="https://www.pluralsight.com/courses/entity-framework-enterprise-update">entity framework enterprise</a></li>
+<li>Microsoft Virtual Academy (MVA)</li>
+<li>asp.net website</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

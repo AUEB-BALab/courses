@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tutorial 1B</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-tutorial-1b">Coding Bootcamp: Tutorial 1B</h1>
+<h1 id="-">Προγραμματισμος ΙΙ</h1>
+<h2 id="-1--">Φροντιστήριο 1 (Β' μέρος)</h2>
+<ul>
+<li>Στέφανος Γεωργίου</li>
+<li>Θεόδωρος Στασσινόπουλος</li>
+</ul>
+<h2>Περιεχόμενα</h2>
+<ul>
+<li>Δήλωση μεταβλητών</li>
+<li>Type Casting</li>
+<li>Τελεστές</li>
+<li>Τεκμηρίωση της Java</li>
+</ul>
+<h2 id="-">Δήλωση Μεταβλητών</h2>
+<ul>
+<li>Όλες οι μεταβλητές πρέπει να δηλώνονται <strong>πριν</strong> χρησιμοποιηθούν μέσα στο πρόγραμμά μας</li>
+<li>Η δήλωση μιας μεταβλητής γίνεται με τον ορισμό του <strong>τύπου</strong> της και του <strong>ονόματός</strong> της</li>
+<li>Παράδειγμα: <strong>int number = 1;</strong> Με αυτό τον τρόπο λέμε στο πρόγραμμά μας πως υπάρχει ένα πεδίο με το όνομα <strong>number</strong> που κρατάει <strong>αριθμητικά δεδομένα</strong> και έχει αρχική τιμή <strong>1</strong>.</li>
+<li>Οι τύποι των μεταβλητών είναι προκαθορισμένοι από την Java και τα ονόματά τους είναι δεσμευμένες λέξεις</li>
+</ul>
+<h1 id="primitive-data-types">Primitive Data Types</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τύπος</th>
+<th align="center">Ερμηνεία</th>
+<th align="center">Αρχικοποίηση (by default)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>boolean</td>
+<td align="center">true/false</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td>byte</td>
+<td align="center">8-bit ακέραιος</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td>char</td>
+<td align="center">16-bit χαρακτήρας (unicode)</td>
+<td align="center">'\u000'</td>
+</tr>
+<tr class="even">
+<td>double</td>
+<td align="center">διπλής ακρίβειας κινητή υποδιαστολή</td>
+<td align="center">0.0d</td>
+</tr>
+<tr class="odd">
+<td>float</td>
+<td align="center">μονής ακρίβειας κινητή υποδιαστολή</td>
+<td align="center">0.0f</td>
+</tr>
+<tr class="even">
+<td>int</td>
+<td align="center">ακέραιος</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td>long</td>
+<td align="center">μεγάλος ακέραιος</td>
+<td align="center">0L</td>
+</tr>
+<tr class="even">
+<td>short</td>
+<td align="center">μικρός ακέραιος</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<h1>Ακέραιοι</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τύπος</th>
+<th align="center">bits</th>
+<th align="center">Εύρος</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>byte</td>
+<td align="center">8</td>
+<td align="center">-128 έως 127</td>
+</tr>
+<tr class="even">
+<td>short</td>
+<td align="center">16</td>
+<td align="center">-32,768 έως 32,767</td>
+</tr>
+<tr class="odd">
+<td>int</td>
+<td align="center">32</td>
+<td align="center">-2<sup>31</sup> έως 2<sup>31</sup> -1</td>
+</tr>
+<tr class="even">
+<td>long</td>
+<td align="center">64</td>
+<td align="center">-2<sup>63</sup> έως 2<sup>63</sup> -1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="-1">Εμβέλεια Μεταβλητών(1)</h1>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Scope {
+    
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            <span class="dt">int</span> x = <span class="dv">10</span>;
+            <span class="kw">if</span> (x == <span class="dv">10</span>) {
+                <span class="dt">int</span> y = <span class="dv">20</span>;
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
+                x = y * <span class="dv">2</span>;
+            }
+            y = <span class="dv">100</span>;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
+        }
+
+    }</code></pre></div>
+<h1 id="-2">Εμβέλεια Μεταβλητών(2)</h1>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Scope {
+    
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            <span class="dt">int</span> x = <span class="dv">10</span>;
+            <span class="kw">if</span> (x == <span class="dv">10</span>) {
+                <span class="dt">int</span> y = <span class="dv">20</span>;
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
+                x = y * <span class="dv">2</span>;
+            }
+            y = <span class="dv">100</span>; <span class="co">//ERROR</span>
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
+        }
+
+    }</code></pre></div>
+<h1 id="1">Προσαύξηση(1)</h1>
+<ul>
+<li><strong>Παράδειγμα 1:</strong>
+<ul>
+<li>x = 10;</li>
+<li>y = ++x;</li>
+</ul></li>
+<li><strong>Παράδειγμα 2:</strong>
+<ul>
+<li>x = 10;</li>
+<li>y = x++;</li>
+</ul></li>
+</ul>
+<h1 id="2">Προσαύξηση(2)</h1>
+<ul>
+<li><strong>Παράδειγμα 1:</strong>
+<ul>
+<li>x = 10;</li>
+<li>y = ++x; (αυξάνει το x κατά 1 και μετά επιστρέφει την τιμή του x)</li>
+<li><strong>y = 11, x = 11</strong></li>
+</ul></li>
+<li><strong>Παράδειγμα 2:</strong>
+<ul>
+<li>x = 10;</li>
+<li>y = x++; (επιστρέφει την τιμή του x και μετά αυξάνει κατά 1 )</li>
+<li><strong>y = 10, x = 10</strong></li>
+</ul></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
