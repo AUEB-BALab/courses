@@ -6,5 +6,5 @@ The course materials are available as presentations and handouts on https://code
 You can find more about how we author material from [these instructions](courses/admin/authoring.md).
 From the following links you can browse the available material and make minor changes through GitHub's interface.
 
-* [Programming II Tutorials](courses/tutorial.md)
+* [Programming II Tutorials](courses/tutorials.md)
 * [Trainer and administrator resources](courses/admin.md)
