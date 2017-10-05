@@ -30,11 +30,13 @@
   </head>
   <body>
 <h1 id="coding-bootcamp-tutorial-1b">Coding Bootcamp: Tutorial 1B</h1>
-<h1 id="-">Προγραμματισμος ΙΙ</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="-1--">Φροντιστήριο 1 (Β' μέρος)</h2>
 <ul>
-<li>Στέφανος Γεωργίου</li>
-<li>Θεόδωρος Στασσινόπουλος</li>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασσινόπουλος</a><br />
+<div style="height:10%; texxt-align: center; position: absolute;  bottom:-170px;">Αθήνα 2017<div></li>
 </ul>
 <h2>Περιεχόμενα</h2>
 <ul>
@@ -50,7 +52,7 @@
 <li>Παράδειγμα: <strong>int number = 1;</strong> Με αυτό τον τρόπο λέμε στο πρόγραμμά μας πως υπάρχει ένα πεδίο με το όνομα <strong>number</strong> που κρατάει <strong>αριθμητικά δεδομένα</strong> και έχει αρχική τιμή <strong>1</strong>.</li>
 <li>Οι τύποι των μεταβλητών είναι προκαθορισμένοι από την Java και τα ονόματά τους είναι δεσμευμένες λέξεις</li>
 </ul>
-<h1 id="primitive-data-types">Primitive Data Types</h1>
+<h1 id="primitive-data-types1">Primitive Data Types(1)</h1>
 <table>
 <thead>
 <tr class="header">
@@ -61,19 +63,9 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>boolean</td>
-<td align="center">true/false</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="even">
 <td>byte</td>
 <td align="center">8-bit ακέραιος</td>
 <td align="center">0</td>
-</tr>
-<tr class="odd">
-<td>char</td>
-<td align="center">16-bit χαρακτήρας (unicode)</td>
-<td align="center">'\u000'</td>
 </tr>
 <tr class="even">
 <td>double</td>
@@ -99,6 +91,28 @@
 <td>short</td>
 <td align="center">μικρός ακέραιος</td>
 <td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="primitive-data-types2">Primitive Data Types(2)</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τύπος</th>
+<th align="center">Ερμηνεία</th>
+<th align="center">Αρχικοποίηση (by default)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>boolean</td>
+<td align="center">true/false</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td>char</td>
+<td align="center">16-bit χαρακτήρας (unicode)</td>
+<td align="center">'\u000'</td>
 </tr>
 </tbody>
 </table>
@@ -134,6 +148,39 @@
 </tr>
 </tbody>
 </table>
+<h1 id="--">Τύποι Κινητής Υποδιαστολής</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τύπος</th>
+<th align="center">bits</th>
+<th align="center">Ακρίβεια</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>float</td>
+<td align="center">32</td>
+<td align="center">Μονή</td>
+</tr>
+<tr class="even">
+<td>double</td>
+<td align="center">64</td>
+<td align="center">Διπλη</td>
+</tr>
+</tbody>
+</table>
+<h1 id="type-casting">Type Casting</h1>
+<p><img src="media/widening-type-conversion.jpg" /></p>
+<ul>
+<li>Επιτρέπεται η μετατροπή ενός τύπου δεδομένων σε άλλο αντιστοιχεί στον <strong>ίδιο</strong> ή <strong>μεγαλύτερο</strong> αριθμό bits, π.χ. από <strong>short</strong> σε <strong>int</strong>, <strong>long</strong> και από <strong>int</strong> σε <strong>long</strong></li>
+<li>Εάν μετατρέψουμε έναν τύπο δεδομένων από <strong>double</strong> ή <strong>float</strong> σε <strong>int</strong> (λιγότερα bits) μπορεί να χάσουμε πληροφορία</li>
+<li><strong>Παραδείγματα:</strong>
+<ul>
+<li><strong>double</strong> avg = <strong>(double)</strong> 12/5</li>
+<li><strong>int</strong> rnd = <strong>(int)</strong> (29.4/10.0)</li>
+</ul></li>
+</ul>
 <h1 id="-1">Εμβέλεια Μεταβλητών(1)</h1>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Scope {
     
@@ -164,6 +211,45 @@
         }
 
     }</code></pre></div>
+<h1 id="-">Αριθμητικοί Τελεστές</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τελεστής</th>
+<th align="center">Πράξη</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+</td>
+<td align="center">a + b</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td align="center">a - b</td>
+</tr>
+<tr class="odd">
+<td>*</td>
+<td align="center">a * b</td>
+</tr>
+<tr class="even">
+<td>/</td>
+<td align="center">a / b (πηλίκο)</td>
+</tr>
+<tr class="odd">
+<td>%</td>
+<td align="center">a % b (υπόλοιπο)</td>
+</tr>
+<tr class="even">
+<td>++</td>
+<td align="center">a++ =&gt; a = a + 1</td>
+</tr>
+<tr class="odd">
+<td>--</td>
+<td align="center">a-- =&gt; a = a - 1</td>
+</tr>
+</tbody>
+</table>
 <h1 id="1">Προσαύξηση(1)</h1>
 <ul>
 <li><strong>Παράδειγμα 1:</strong>
@@ -192,6 +278,52 @@
 <li><strong>y = 10, x = 10</strong></li>
 </ul></li>
 </ul>
+<h1 id="-">Σχεσιακοί Τελεστές</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Τελεστής</th>
+<th align="center">Σημασία</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>!=</td>
+<td align="center">Όχι ίσο με</td>
+</tr>
+<tr class="even">
+<td>&lt;</td>
+<td align="center">Μικρότερο από</td>
+</tr>
+<tr class="odd">
+<td>&gt;</td>
+<td align="center">Μεγαλύτερο από</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td align="center">Μικρότερο ή ίσο από</td>
+</tr>
+<tr class="odd">
+<td>&gt;=</td>
+<td align="center">Μεγαλύτερο ή ίσο από</td>
+</tr>
+<tr class="even">
+<td>==</td>
+<td align="center">'Ισο με</td>
+</tr>
+</tbody>
+</table>
+<h1 id="-">Τελεστής Εκχώρησης</h1>
+<ul>
+<li><strong>Παράδειγμα:</strong>
+<ul>
+<li>int x, y, z;</li>
+<li>x = y = z = 100;</li>
+</ul></li>
+</ul>
+<h1 id="java-api">Java API</h1>
+<p><img src="media/JAVA_API.png" /><br />
+<a href="https://docs.oracle.com/javase/8/docs/api/" class="uri">https://docs.oracle.com/javase/8/docs/api/</a></p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
