@@ -7,5 +7,5 @@ You can find more about how we author material from [these instructions](courses
 From the following links you can browse the available material and make minor changes through GitHub's interface.
 
 * [Programming II Presentation Tutorials](web/tutorials-p.html)
-* [Programming II Presentation Tutorials](web/tutorials.html)
+* [Programming II Handouts Tutorials](web/tutorials.html)
 * [Trainer and administrator resources](courses/admin.md)
