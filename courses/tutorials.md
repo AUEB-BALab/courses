@@ -5,3 +5,4 @@
 
 ## Φροντιστήριο 2
 * [Εισαγωγή στο GitHub](tutorials/tutorial_2_A.md)
+* [Κανόνες μορφοποίησης](tutorials/tutorial_2_B.md)

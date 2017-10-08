@@ -1,0 +1,220 @@
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Προγραμματισμός ΙΙ
+## Κανόνες μορφοποιήσης
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+* [Θεόδωρος Στασσινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
+<div style="height:10%; texxt-align: center; position: absolute;  bottom:-170px;">Αθήνα 2017<div>
+
+
+## Περιεχόμενα
+
+* Κανόνες Μορφοποίησης
+* Ασκήσεις
+
+
+## Καλογραμμένος Κώδικας
+
+* Λιγότερα λάθη
+* Ευκολότερος εντοπιζμός σφαλμάτων
+* Ευκολότερη συντήρηση του λογισμικού
+* Ευκολότερη κατανόηση του κώδικά μας από τρίτους
+
+
+## Παράδειγμα(1)
+
+```java
+public class Queller{
+public static int getDispetal(int cobber,int whinnock){
+int result=0;
+if(cobber==whinnock)
+result=cobber-whinnock;
+result++;
+else result = cobber*whinnock;
+return result;}
+public static int getGoverness(int mesodesma,int natrium,int stewardry){
+int res = 0;
+int haulabout=natrium+(1-mesodesma);
+if ((haulabout*haulabout)==stewardry)
+res=haulabout;
+else res=4*haulabout;
+return res;}}
+```
+
+
+## Καλές Πρακτικές
+
+* Γράφουμε σύντομες μεθόδους (<200 γραμμές)
+* Χρησιμοποιούμε τους ιδιοματισμούς της Java
+* Χρησιμοποιούμε απλή λογική και ροές ελέγχου
+* KISS (Keep It Simple Stupid)
+
+
+## Συμβάσεις Ονομάτων (1)
+
+* Χρησιμοποιούμε ονόματα (για μεταβλητές, μεθόδους, και κλάσεις) που υπονοούν το σκοπό χρήσης τους.
+* Αποφεύγουμε συντομογραφίες (π.χ. επιλέγουμε calculatePerYear, όχι cpy).
+* Επιλέγουμε σύντομα ονόματα για δείκτες μέσα σε βρόγχους (π.χ. i) και πιο αναλυτικά ονόματα για μεταβλητές που αφορούν κάποιο σκοπό.
+* Αποφεύγουμε γενικά ονόματα (π.χ. foo) και επιλέγουμε όρους σχετικούς με το αντικείμενο της εφαρμογής μας.
+* Ονομάζουμε σταθερές με βάση το νόημά τους και όχι την τιμή τους (π.χ. MIN_PER_HOUR, όχι SIXTY).
+* Οι boolean μεταβλητές και μέθοδοι θα πρέπει να είναι ξεκάθαρες στο νόημά τους (π.χ. isEmpty(), contains())
+
+
+## Συμβάσεις Ονομάτων (1)
+
+| Σύμβολο    |                                           Κανόνας                                           | Παράδειγμα                   |
+|------------|:-------------------------------------------------------------------------------------------:|------------------------------|
+| Μεταβλητές | σύντομα ονόματα,  μικρό αρχικό γράμμα,  camelCase                                           | wageByYear foundName isEmpty |
+|  Σταθερές  | κεφαλαία γράμματα, underscore στο διαχωρισμό των λέξεων                                     | MIN_PER_HOUR                 |
+|   Κλάσεις  | χρήση ουσιαστικού που δηλώνει τι  αντιπροσωπεύει η κλάση, κεφαλαίο αρχικό γράμμα, CamelCase | class Office class PhoneBook |
+|   Μέθοδοι  | χρήση ρήματος που δηλώνει τι  κάνει η μέθοδος,  μικρό αρχικό γράμμα,  camelCase             | draw() calculateSum()        |
+
+
+## Σχόλια (1)
+
+* Με τη χρήση σχολίων, το πρόγραμμα εξηγεί στον προγραμματιστή γιατί έχει υλοποιηθεί με έναν συγκεκριμένο τρόπο
+* Τα σχόλια θα πρέπει να συμφωνούν με τον κώδικα και να ανανεώνονται αναλόγως. Βάζουμε σχόλια όπου χρειάζεται, όχι απαραίτητα σε κάθε γραμμή του προγράμματός μας (“Good code documents itself!”)
+* Στην αρχή του προγράμματός μας βάζουμε σε σχόλια: 1) τα στοιχεία μας, 2) την ημερομηνία, 3) τον τρόπο εκτέλεσης, 4) την έκδοση του προγράμματός μας
+* Τα σχόλια στην Java δεν εμφωλεύονται
+
+
+## Σχόλια (2)
+
+| Είδη | Κανόνας | Συνήθης Χρήση | Παράδειγμα |
+|------------------|:----------------------------------------------------------------------------------:|-------------------------------------------------|---------------------------------------------------------------------|
+| Σχόλια  γραμμής | ξεκινούν με // | σε μεταβλητές,  σύντομες μέθοδοι (get/set) | //why use this variable |
+| Σχόλια σε  block | ξεκινούν με /* και  τελειώνουν με */ ενώ  στις ενδιάμεσες γραμμές  βάζουμε μόνο *  | σε ροές ελέγχου,  μεθόδους | /* * Here is a block comment * with a special format. */ |
+
+
+## Σχόλια (3)
+
+| Είδη | Κανόνας | Συνήθης Χρήση | Παράδειγμα |
+|------------------|:----------------------------------------------------------------------------------:|-------------------------------------------------|---------------------------------------------------------------------|
+| Σχόλια  Javadoc | ξεκινούν με /** και  τελειώνουν σε */ ενώ  στις ενδιάμεσες γραμμές  βάζουμε μόνο * | στην τεκμηρίωση κλάσεων, μεθόδων,  και διεπαφών | [http://www.oracle.com/ technetwork/articles/java /index-137868.html](http://www.oracle.com/technetwork/articles/java/index-137868.html) |
+
+
+## Doc Comments 
+
+```java
+/**
+ * Returns an Image object that can then be painted on the screen. 
+ * The url argument must specify an absolute {@link URL}. The name
+ * argument is a specifier that is relative to the url argument. 
+ *
+ * @param  url  an absolute URL giving the base location of the image
+ * @param  name the location of the image, relative to the url argument
+ * @return      the image at the specified URL
+ * @see         Image
+ */
+
+ public Image getImage(URL url, String name) {
+        try {
+            return getImage(new URL(url, name));
+        } catch (MalformedURLException e) {
+            return null;
+        }
+ }
+```
+[http://www.oracle.com/technetwork/articles/java/index-137868.html](http://www.oracle.com/technetwork/articles/java/index-137868.html)
+
+
+# Κατανόηση Κώδικα (1)
+
+```java
+	public class Nesting {
+		//main method
+		public static void main(String[] args) {
+			boolean nesting = true;
+			int x = 10; 
+			if (x == 10) {
+				int y = 20; 
+				System.out.println("x and y: " + x +y);
+				x = y * 2;
+			}
+			int y = 100;
+			System.out.println("x is: " + x);
+			/*/ nesting = false; //*/
+			System.out.println(nesting); //?
+		}
+	}
+```
+
+
+## Κενά 
+
+* Βάζουμε κενές γραμμές για να χωρίσουμε το πρόγραμμά μας σε λογικά μέρη, όχι παντού
+* Βάζουμε ένα κενό πριν και μετά από τελεστές (<, >, <=, =, +)
+* Βάζουμε ένα κενό μετά τα while, for, if και την παρένθεση, δηλ. if (…)
+* Βαζουμε ένα κενό μετά από κάθε δήλωση στο for loop
+* δηλ. for(int i=0;i<10;i++) -> for (int i = 0; i < 10; i++)
+* Βάζουμε ένα κενό μετά από κόμμα
+* Βάζουμε ένα κενό πριν την αγκύλη {
+* Δε βάζουμε κενό πριν το ;
+* Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου
+* Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; count—; στην ίδια γραμμή 
+
+
+## Εσοχές (Indentation)
+
+* Αποφεύγουμε γραμμές με περισσότερους από 80 χαρακτήρες
+* Χρησιμοποιούμε 4 spaces ή 1 tab σε κάθε νέο επίπεδο εμφώλευσης (nesting) του προγράμματός μας
+* Χρησιμοποιούμε το στυλ K&R (Kernighan and Ritchie’s indentation style)
+
+
+## Κατανόηση Κώδικα (2)
+
+```java
+	public class Queller {
+		
+		public static int getDispetal(int cobber, int whinnock) {
+			int result = 0;
+			if (cobber == whinnock) {
+				result = cobber - whinnock;
+				result++;
+			} else {
+				result = cobber * whinnock;
+			}
+			return result;
+		}
+
+		public static int getGoverness(int mesodesma, int natrium, int stewardry) {
+			int res = 0;
+			int haulabout = natrium + (1 - mesodesma);
+			if ((haulabout * haulabout) == stewardry) {
+				res = haulabout;
+			} else {
+				res = 4 * haulabout;
+			}
+			return res;
+			}
+	}
+```
+
+
+## Προσομοίωση ρίψης ζαριών 
+
+<div align="justify">
+Γράψτε ένα πρόγραμμα που προσομοιώνει τη ρίψη ενός ζεύγους ζαριών. Εκτελέστε το πείραμα μέχρι και τα 2 ζάρια να φέρουν 1. 
+</div>
+
+
+## Εκτύπωση πίνακα διαγώνια
+
+<div align="justify">
+Υλοποιείστε ένα πίνακα που να έχει 10 θέσεις και να λαμβάνει 10 αριθμούς από του 1 μέχρι και το 10. Στην συνέχεια υλοποιείστε μια συνάρτηση η οποία θα μπορεί αν μεταφέρει όλα τα στοιχεία από αριστερά προς τα δεξιά, δλδ το πρώτο στοιεχέια να το μεταφέρι στην θέση του δεύτερου, το δεύτερο στην θέση του τρίτου κ.τ.λ. Επίσης το παρόν τελευταίο στοιχείο του πίνακα να μεταφέρετε πάντα στην πρώτη θέση του πινακά. Κάθε φορά που θα μετακινήτε τον πίνακα προς τα αριστερά να εκτυπώνετε τα στοιχεία του σε μία γραμμή. 
+Στο τέλος πρέπει να έχετε το ακόλουθο αποτέλεσμα: 
+</div>
+
+<div align="center">
+[10,1,2,3,4,5,6,7,8,9]<br>
+[9,10,1,2,3,4,5,6,7,8]<br>
+    . . . . . . .<br>
+[2,3,4,5,6,7,8,9,10,1]<br>
+[1,2,3,4,5,6,7,8,9,10]<br>
+</div>
+
+
+## Βιβλιογραφία 
+
+* Brian W. Kernighan and Rob Pike. 1999. The Practice of Programming. Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA.
+* [http://introcs.cs.princeton.edu/java/11style/](http://introcs.cs.princeton.edu/java/11style/)
