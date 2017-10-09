@@ -18,6 +18,7 @@
 * Λιγότερα λάθη
 * Ευκολότερος εντοπιζμός σφαλμάτων
 * Ευκολότερη συντήρηση του λογισμικού
+* Ευκολότερη επέκταση του λογισμικού
 * Ευκολότερη κατανόηση του κώδικά μας από τρίτους
 
 
@@ -44,7 +45,10 @@ return res;}}
 
 ## Καλές Πρακτικές
 
-* Γράφουμε σύντομες μεθόδους (<200 γραμμές)
+* Γράφουμε σύντομες μεθόδους (<<200 γραμμές)
+* Αν μια μέθοδος ή κλάση είναι υπεύθυνη για παραπάνω
+από μία λογικές λειτουργίες, προσπαθούμε να τη σπάσουμε
+σε επιμέρους μεθόδους. (Single Responsibility Principle)
 * Χρησιμοποιούμε τους ιδιοματισμούς της Java
 * Χρησιμοποιούμε απλή λογική και ροές ελέγχου
 * KISS (Keep It Simple Stupid)
@@ -66,14 +70,74 @@ return res;}}
 |------------|:-------------------------------------------------------------------------------------------:|------------------------------|
 | Μεταβλητές | σύντομα ονόματα,  μικρό αρχικό γράμμα,  camelCase                                           | wageByYear foundName isEmpty |
 |  Σταθερές  | κεφαλαία γράμματα, underscore στο διαχωρισμό των λέξεων                                     | MIN_PER_HOUR                 |
-|   Κλάσεις  | χρήση ουσιαστικού που δηλώνει τι  αντιπροσωπεύει η κλάση, κεφαλαίο αρχικό γράμμα, CamelCase | class Office class PhoneBook |
 |   Μέθοδοι  | χρήση ρήματος που δηλώνει τι  κάνει η μέθοδος,  μικρό αρχικό γράμμα,  camelCase             | draw() calculateSum()        |
+|   Κλάσεις  | χρήση ουσιαστικού που δηλώνει τι  αντιπροσωπεύει η κλάση, κεφαλαίο αρχικό γράμμα, CamelCase | Office, PhoneBook            |
 
+
+## Παράδειγμα
+
+Να γραφεί πρόγραμμα που να δέχεται σαν όρισμα ένα πίνακα πραγματικών που έχει θερμοκρασίες
+σε Farenheit για κάθε μήνα του έτους, να υπολογιζει το μέσω όρο όλο το χρονο και
+αν η θερμοκρασία σε Celsius ειναι κάτω απο 0 να επιστρέφει "cold", αλλις να
+επιστρέφει "warm". (Δε χρειαζεται έλεγχος για την εγκυρότητα του ορίσματος)
+
+
+```java
+    public static String foo(double[] a) {
+        double t = 0;
+        for (int i = 0; i < 12; i++) {
+        t = t + a[i];}
+        t=t/12;
+        t = ((t-32)*5)/9;
+        if (t < 0) {return "cold"};
+        else {
+        return "warm";
+        }
+    }
+
+```
+
+```java
+    private static final double TEMPERATURE_THRESHOLD = 0.0;
+    private static final int NUMBER_OF_MONTHS = 12;
+    private static final String COLD = "cold";
+    private static final String WARM = "warm";
+
+    public static String findAnnualWeatherCondition(double[] monthlyTemperaturesInFarenheit) {
+        double meanTemperature = getMeanTemperatures(monthlyTemperaturesInFarenheit);
+        double meanInCelsius = convertFarenheitToCelsius(meanTemperature);
+        return weatherLabelRelativeToTemperature(meanInCelsius);
+    }
+
+    private static double getMeanTemperatures(double[] monthlyTemperaturesInFarenheit) {
+        double sumTemperatures = 0;
+        for (int i = 0; i < 12; i++) {
+            sumTemperatures = sumTemperatures + monthlyTemperaturesInFarenheit[i];
+        }
+        return sumTemperatures/NUMBER_OF_MONTHS;
+    }
+
+    private static double convertFarenheitToCelsius(double farenheitTemperature) {
+        return ((farenheitTemperature - 32)*5)/9;
+    }
+
+    private static String weatherLabelRelativeToTemperature(double temperature) {
+        if (temperature < TEMPERATURE_THRESHOLD) {
+            return COLD;
+        } else {
+            return WARM;
+        }
+    }
+```
 
 ## Σχόλια (1)
 
+* Προσπαθούμε να κάνουμε το πρόγραμμα μας με επεξηγηματικό τρόπο χρησιμοποιώντας τις παραπάνω καλές παρακτικές
+ώστε να μη χρειάζεται η χρήση σχολίων. (“Good code documents itself!”). Αν παρ' ολα αυτα χρειάζεται καποια
+επεξήγηση και τα σχόλια ειναι απραίτητα τοτε:
+
 * Με τη χρήση σχολίων, το πρόγραμμα εξηγεί στον προγραμματιστή γιατί έχει υλοποιηθεί με έναν συγκεκριμένο τρόπο
-* Τα σχόλια θα πρέπει να συμφωνούν με τον κώδικα και να ανανεώνονται αναλόγως. Βάζουμε σχόλια όπου χρειάζεται, όχι απαραίτητα σε κάθε γραμμή του προγράμματός μας (“Good code documents itself!”)
+* Τα σχόλια θα πρέπει να συμφωνούν με τον κώδικα και να ανανεώνονται αναλόγως. Βάζουμε σχόλια όπου χρειάζεται, όχι απαραίτητα σε κάθε γραμμή του προγράμματός μας
 * Στην αρχή του προγράμματός μας βάζουμε σε σχόλια: 1) τα στοιχεία μας, 2) την ημερομηνία, 3) τον τρόπο εκτέλεσης, 4) την έκδοση του προγράμματός μας
 * Τα σχόλια στην Java δεν εμφωλεύονται
 
@@ -93,13 +157,13 @@ return res;}}
 | Σχόλια  Javadoc | ξεκινούν με /** και  τελειώνουν σε */ ενώ  στις ενδιάμεσες γραμμές  βάζουμε μόνο * | στην τεκμηρίωση κλάσεων, μεθόδων,  και διεπαφών | [http://www.oracle.com/ technetwork/articles/java /index-137868.html](http://www.oracle.com/technetwork/articles/java/index-137868.html) |
 
 
-## Doc Comments 
+## Doc Comments
 
 ```java
 /**
- * Returns an Image object that can then be painted on the screen. 
+ * Returns an Image object that can then be painted on the screen.
  * The url argument must specify an absolute {@link URL}. The name
- * argument is a specifier that is relative to the url argument. 
+ * argument is a specifier that is relative to the url argument.
  *
  * @param  url  an absolute URL giving the base location of the image
  * @param  name the location of the image, relative to the url argument
@@ -125,9 +189,9 @@ return res;}}
 		//main method
 		public static void main(String[] args) {
 			boolean nesting = true;
-			int x = 10; 
+			int x = 10;
 			if (x == 10) {
-				int y = 20; 
+				int y = 20;
 				System.out.println("x and y: " + x +y);
 				x = y * 2;
 			}
@@ -140,18 +204,26 @@ return res;}}
 ```
 
 
-## Κενά 
+## Κενά
 
+* Ξεκινήστε μια κλάση από την αρχή της γραμμής
 * Βάζουμε κενές γραμμές για να χωρίσουμε το πρόγραμμά μας σε λογικά μέρη, όχι παντού
 * Βάζουμε ένα κενό πριν και μετά από τελεστές (<, >, <=, =, +)
+* Βάλτε κενό πριν και μετά τα σύμβολα των πράξεων (+, -, \, %)
+* Μη βάζετε κενό μετά από την παρένθεση (
 * Βάζουμε ένα κενό μετά τα while, for, if και την παρένθεση, δηλ. if (…)
+* Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου
+* Αφήστε 1 κενή γραμμή πριν ξεκινήσετε μια νέα μέθοδο
 * Βαζουμε ένα κενό μετά από κάθε δήλωση στο for loop
 * δηλ. for(int i=0;i<10;i++) -> for (int i = 0; i < 10; i++)
 * Βάζουμε ένα κενό μετά από κόμμα
+* Βάλτε τις αγκύλες στην ίδια σειρά με τη δήλωση των κλάσεων και των
+μεθόδων
 * Βάζουμε ένα κενό πριν την αγκύλη {
 * Δε βάζουμε κενό πριν το ;
-* Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου
-* Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; count—; στην ίδια γραμμή 
+* Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; int x = 5; στην ίδια γραμμή
+
+
 
 
 ## Εσοχές (Indentation)
@@ -165,7 +237,7 @@ return res;}}
 
 ```java
 	public class Queller {
-		
+
 		public static int getDispetal(int cobber, int whinnock) {
 			int result = 0;
 			if (cobber == whinnock) {
@@ -191,18 +263,21 @@ return res;}}
 ```
 
 
-## Προσομοίωση ρίψης ζαριών 
+## Προσομοίωση ρίψης ζαριών
 
 <div align="justify">
-Γράψτε ένα πρόγραμμα που προσομοιώνει τη ρίψη ενός ζεύγους ζαριών. Εκτελέστε το πείραμα μέχρι και τα 2 ζάρια να φέρουν 1. 
+Γράψτε ένα πρόγραμμα που προσομοιώνει τη ρίψη ενός ζεύγους ζαριών. Εκτελέστε το πείραμα μέχρι και τα 2 ζάρια να φέρουν 1
+και στο τέλος να επιστρέφει πόσες ρηψεις χρειάστηκαν.
+Γράψτε πρόγραμμα που να καλεί και να τρέχει το προηγούμενο πρόγραμμα n φορές και να επιστρέφει το μέσο όρο των φορών
+που χρειάστηκε να γίνουν οι ρίψεις των ζαριών ώστε να έχουν και τα δύο 1.
 </div>
 
 
 ## Εκτύπωση πίνακα διαγώνια
 
 <div align="justify">
-Υλοποιείστε ένα πίνακα που να έχει 10 θέσεις και να λαμβάνει 10 αριθμούς από του 1 μέχρι και το 10. Στην συνέχεια υλοποιείστε μια συνάρτηση η οποία θα μπορεί αν μεταφέρει όλα τα στοιχεία από αριστερά προς τα δεξιά, δλδ το πρώτο στοιεχέια να το μεταφέρι στην θέση του δεύτερου, το δεύτερο στην θέση του τρίτου κ.τ.λ. Επίσης το παρόν τελευταίο στοιχείο του πίνακα να μεταφέρετε πάντα στην πρώτη θέση του πινακά. Κάθε φορά που θα μετακινήτε τον πίνακα προς τα αριστερά να εκτυπώνετε τα στοιχεία του σε μία γραμμή. 
-Στο τέλος πρέπει να έχετε το ακόλουθο αποτέλεσμα: 
+Υλοποιείστε ένα πίνακα που να έχει 10 θέσεις και να λαμβάνει 10 αριθμούς από του 1 μέχρι και το 10. Στην συνέχεια υλοποιείστε μια συνάρτηση η οποία θα μπορεί αν μεταφέρει όλα τα στοιχεία από αριστερά προς τα δεξιά, δλδ το πρώτο στοιεχέια να το μεταφέρι στην θέση του δεύτερου, το δεύτερο στην θέση του τρίτου κ.τ.λ. Επίσης το παρόν τελευταίο στοιχείο του πίνακα να μεταφέρετε πάντα στην πρώτη θέση του πινακά. Κάθε φορά που θα μετακινήτε τον πίνακα προς τα αριστερά να εκτυπώνετε τα στοιχεία του σε μία γραμμή.
+Στο τέλος πρέπει να έχετε το ακόλουθο αποτέλεσμα:
 </div>
 
 <div align="center">
@@ -214,7 +289,7 @@ return res;}}
 </div>
 
 
-## Βιβλιογραφία 
+## Βιβλιογραφία
 
 * Brian W. Kernighan and Rob Pike. 1999. The Practice of Programming. Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA.
 * [http://introcs.cs.princeton.edu/java/11style/](http://introcs.cs.princeton.edu/java/11style/)
