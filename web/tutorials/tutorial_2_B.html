@@ -73,7 +73,6 @@ res=haulabout;
 <li>Αν μια μέθοδος ή κλάση είναι υπεύθυνη για παραπάνω<br />
 από μία λογικές λειτουργίες, προσπαθούμε να τη σπάσουμε<br />
 σε επιμέρους κομμάτια. (Single Responsibility Principle)</li>
-<li>Χρησιμοποιούμε τους ιδιοματισμούς της Java</li>
 <li>Χρησιμοποιούμε απλή λογική και ροές ελέγχου</li>
 <li>KISS (Keep It Simple Stupid)</li>
 </ul>
@@ -86,7 +85,7 @@ res=haulabout;
 <li>Ονομάζουμε σταθερές με βάση το νόημά τους και όχι την τιμή τους (π.χ. MIN_PER_HOUR, όχι SIXTY).</li>
 <li>Οι boolean μεταβλητές και μέθοδοι θα πρέπει να είναι ξεκάθαρες στο νόημά τους (π.χ. isEmpty(), contains())</li>
 </ul>
-<h2 id="--1-1">Συμβάσεις Ονομάτων (1)</h2>
+<h2 id="--2">Συμβάσεις Ονομάτων (2)</h2>
 <table>
 <colgroup>
 <col width="9%" />
@@ -113,7 +112,7 @@ res=haulabout;
 </tr>
 </tbody>
 </table>
-<h2 id="--2">Συμβάσεις Ονομάτων (2)</h2>
+<h2 id="--3">Συμβάσεις Ονομάτων (3)</h2>
 <table>
 <colgroup>
 <col width="9%" />
@@ -141,10 +140,12 @@ res=haulabout;
 </tbody>
 </table>
 <h2>Παράδειγμα</h2>
-<p>Να γραφεί πρόγραμμα που να δέχεται σαν όρισμα ένα πίνακα πραγματικών που έχει θερμοκρασίες<br />
-σε Farenheit για κάθε μήνα του έτους, να υπολογιζει το μέσω όρο όλο το χρονο και<br />
-αν η θερμοκρασία σε Celsius ειναι κάτω απο 0 να επιστρέφει &quot;cold&quot;, αλλις να<br />
-επιστρέφει &quot;warm&quot;. (Δε χρειαζεται έλεγχος για την εγκυρότητα του ορίσματος)</p>
+<div align="justify">
+Να γραφτεί πρόγραμμα που να δέχεται σαν όρισμα ένα πίνακα πραγματικών αριθμών που έχει θερμοκρασίες
+σε Farenheit για κάθε μήνα του έτους, να υπολογίζει το μέσω όρο όλου του χρόνου και
+αν η θερμοκρασία σε Celsius ειναι κάτω απο 0 να επιστρέφει "cold", αλλίως να
+επιστρέφει "warm". (Δε χρειάζεται έλεγχος για την εγκυρότητα του ορίσματος)
+</div>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">foo</span>(<span class="dt">double</span>[] a) {
         <span class="dt">double</span> t = <span class="dv">0</span>;
         <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">12</span>; i++) {
@@ -224,9 +225,9 @@ res=haulabout;
 </tr>
 <tr class="even">
 <td>Σχόλια σε block</td>
-<td align="center">ξεκινούν με /* και τελειώνουν με <em>/ ενώ στις ενδιάμεσες γραμμές βάζουμε μόνο </em></td>
+<td align="center">ξεκινούν με /<code>*</code> και τελειώνουν με <code>*</code>/ ενώ στις ενδιάμεσες γραμμές βάζουμε μόνο <code>*</code></td>
 <td>σε ροές ελέγχου, μεθόδους</td>
-<td>/* * Here is a block comment * with a special format. */</td>
+<td>/<code>*</code> Here is an <code>*</code> example of <code>*</code> how to use this. */</td>
 </tr>
 </tbody>
 </table>
@@ -249,7 +250,7 @@ res=haulabout;
 <tbody>
 <tr class="odd">
 <td>Σχόλια Javadoc</td>
-<td align="center">ξεκινούν με /** και τελειώνουν σε <em>/ ενώ στις ενδιάμεσες γραμμές βάζουμε μόνο </em></td>
+<td align="center">ξεκινούν με /<code>**</code> και τελειώνουν σε <code>*</code>/ ενώ στις ενδιάμεσες γραμμές βάζουμε μόνο *</td>
 <td>στην τεκμηρίωση κλάσεων, μεθόδων, και διεπαφών</td>
 <td><a href="http://www.oracle.com/technetwork/articles/java/index-137868.html">http://www.oracle.com/ technetwork/articles/java /index-137868.html</a></td>
 </tr>
@@ -292,23 +293,23 @@ res=haulabout;
             System.<span class="fu">out</span>.<span class="fu">println</span>(nesting); <span class="co">//?</span>
         }
     }</code></pre></div>
-<h2>Κενά</h2>
+<h2 id="-1">Κενά (1)</h2>
 <ul>
 <li>Ξεκινήστε μια κλάση από την αρχή της γραμμής</li>
 <li>Βάζουμε κενές γραμμές για να χωρίσουμε το πρόγραμμά μας σε λογικά μέρη, όχι παντού</li>
 <li>Βάζουμε ένα κενό πριν και μετά από τελεστές (&lt;, &gt;, &lt;=, =, +)</li>
 <li>Βάλτε κενό πριν και μετά τα σύμβολα των πράξεων (+, -, \, %)</li>
-<li>Μη βάζετε κενό μετά από την παρένθεση (</li>
 <li>Βάζουμε ένα κενό μετά τα while, for, if και την παρένθεση, δηλ. if (…)</li>
 <li>Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου</li>
 <li>Αφήστε 1 κενή γραμμή πριν ξεκινήσετε μια νέα μέθοδο</li>
+</ul>
+<h2 id="-2">Κενά (2)</h2>
+<ul>
 <li>Βαζουμε ένα κενό μετά από κάθε δήλωση στο for loop</li>
 <li>δηλ. for(int i=0;i&lt;10;i++) -&gt; for (int i = 0; i &lt; 10; i++)</li>
-<li>Βάζουμε ένα κενό μετά από κόμμα</li>
 <li>Βάλτε τις αγκύλες στην ίδια σειρά με τη δήλωση των κλάσεων και των<br />
 μεθόδων</li>
 <li>Βάζουμε ένα κενό πριν την αγκύλη {</li>
-<li>Δε βάζουμε κενό πριν το ;</li>
 <li>Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; int x = 5; στην ίδια γραμμή</li>
 </ul>
 <h2 id="-indentation">Εσοχές (Indentation)</h2>
