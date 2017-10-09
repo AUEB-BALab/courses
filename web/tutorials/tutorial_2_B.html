@@ -48,6 +48,7 @@
 <li>Λιγότερα λάθη</li>
 <li>Ευκολότερος εντοπιζμός σφαλμάτων</li>
 <li>Ευκολότερη συντήρηση του λογισμικού</li>
+<li>Ευκολότερη επέκταση του λογισμικού</li>
 <li>Ευκολότερη κατανόηση του κώδικά μας από τρίτους</li>
 </ul>
 <h2 id="1">Παράδειγμα(1)</h2>
@@ -68,7 +69,10 @@ res=haulabout;
 <span class="kw">return</span> res;}}</code></pre></div>
 <h2 id="-">Καλές Πρακτικές</h2>
 <ul>
-<li>Γράφουμε σύντομες μεθόδους (&lt;200 γραμμές)</li>
+<li>Γράφουμε σύντομες μεθόδους (&lt;&lt;200 γραμμές)</li>
+<li>Αν μια μέθοδος ή κλάση είναι υπεύθυνη για παραπάνω<br />
+από μία λογικές λειτουργίες, προσπαθούμε να τη σπάσουμε<br />
+σε επιμέρους κομμάτια. (Single Responsibility Principle)</li>
 <li>Χρησιμοποιούμε τους ιδιοματισμούς της Java</li>
 <li>Χρησιμοποιούμε απλή λογική και ροές ελέγχου</li>
 <li>KISS (Keep It Simple Stupid)</li>
@@ -107,26 +111,95 @@ res=haulabout;
 <td align="center">κεφαλαία γράμματα, underscore στο διαχωρισμό των λέξεων</td>
 <td>MIN_PER_HOUR</td>
 </tr>
-<tr class="odd">
-<td>Κλάσεις</td>
-<td align="center">χρήση ουσιαστικού που δηλώνει τι αντιπροσωπεύει η κλάση, κεφαλαίο αρχικό γράμμα, CamelCase</td>
-<td>class Office class PhoneBook</td>
+</tbody>
+</table>
+<h2 id="--2">Συμβάσεις Ονομάτων (2)</h2>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="68%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Σύμβολο</th>
+<th align="center">Κανόνας</th>
+<th>Παράδειγμα</th>
 </tr>
-<tr class="even">
+</thead>
+<tbody>
+<tr class="odd">
 <td>Μέθοδοι</td>
 <td align="center">χρήση ρήματος που δηλώνει τι κάνει η μέθοδος, μικρό αρχικό γράμμα, camelCase</td>
 <td>draw() calculateSum()</td>
 </tr>
+<tr class="even">
+<td>Κλάσεις</td>
+<td align="center">χρήση ουσιαστικού που δηλώνει τι αντιπροσωπεύει η κλάση, κεφαλαίο αρχικό γράμμα, CamelCase</td>
+<td>Office, PhoneBook</td>
+</tr>
 </tbody>
 </table>
+<h2>Παράδειγμα</h2>
+<p>Να γραφεί πρόγραμμα που να δέχεται σαν όρισμα ένα πίνακα πραγματικών που έχει θερμοκρασίες<br />
+σε Farenheit για κάθε μήνα του έτους, να υπολογιζει το μέσω όρο όλο το χρονο και<br />
+αν η θερμοκρασία σε Celsius ειναι κάτω απο 0 να επιστρέφει &quot;cold&quot;, αλλις να<br />
+επιστρέφει &quot;warm&quot;. (Δε χρειαζεται έλεγχος για την εγκυρότητα του ορίσματος)</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">foo</span>(<span class="dt">double</span>[] a) {
+        <span class="dt">double</span> t = <span class="dv">0</span>;
+        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">12</span>; i++) {
+        t = t + a[i];}
+        t=t/<span class="dv">12</span>;
+        t = ((t<span class="dv">-32</span>)*<span class="dv">5</span>)/<span class="dv">9</span>;
+        <span class="kw">if</span> (t &lt; <span class="dv">0</span>) {<span class="kw">return</span> <span class="st">&quot;cold&quot;</span>};
+        <span class="kw">else</span> {
+        <span class="kw">return</span> <span class="st">&quot;warm&quot;</span>;
+        }
+    }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">double</span> TEMPERATURE_THRESHOLD = <span class="fl">0.0</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> NUMBER_OF_MONTHS = <span class="dv">12</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> String COLD = <span class="st">&quot;cold&quot;</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> String WARM = <span class="st">&quot;warm&quot;</span>;
+
+    <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">findAnnualWeatherCondition</span>(<span class="dt">double</span>[] monthlyTemperaturesInFarenheit) {
+        <span class="dt">double</span> meanTemperature = <span class="fu">getMeanTemperatures</span>(monthlyTemperaturesInFarenheit);
+        <span class="dt">double</span> meanInCelsius = <span class="fu">convertFarenheitToCelsius</span>(meanTemperature);
+        <span class="kw">return</span> <span class="fu">weatherLabelRelativeToTemperature</span>(meanInCelsius);
+    }
+
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">double</span> <span class="fu">getMeanTemperatures</span>(<span class="dt">double</span>[] monthlyTemperaturesInFarenheit) {
+        <span class="dt">double</span> sumTemperatures = <span class="dv">0</span>;
+        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">12</span>; i++) {
+            sumTemperatures = sumTemperatures + monthlyTemperaturesInFarenheit[i];
+        }
+        <span class="kw">return</span> sumTemperatures/NUMBER_OF_MONTHS;
+    }
+
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">double</span> <span class="fu">convertFarenheitToCelsius</span>(<span class="dt">double</span> farenheitTemperature) {
+        <span class="kw">return</span> ((farenheitTemperature - <span class="dv">32</span>)*<span class="dv">5</span>)/<span class="dv">9</span>;
+    }
+
+    <span class="kw">private</span> <span class="dt">static</span> String <span class="fu">weatherLabelRelativeToTemperature</span>(<span class="dt">double</span> temperature) {
+        <span class="kw">if</span> (temperature &lt; TEMPERATURE_THRESHOLD) {
+            <span class="kw">return</span> COLD;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> WARM;
+        }
+    }</code></pre></div>
 <h2 id="-1">Σχόλια (1)</h2>
 <ul>
+<li>Προσπαθούμε όσο μπορούμε να κάνουμε το πρόγραμμα μας με επεξηγηματικό τρόπο χρησιμοποιώντας τις παραπάνω καλές παρακτικές<br />
+ώστε να μη χρειάζεται η χρήση σχολίων. (“Good code documents itself!”). Αν παρ' ολα αυτα χρειάζεται καποια<br />
+επεξήγηση και τα σχόλια ειναι απραίτητα τοτε:</li>
+</ul>
+<h2 id="-2">Σχόλια (2)</h2>
+<ul>
 <li>Με τη χρήση σχολίων, το πρόγραμμα εξηγεί στον προγραμματιστή γιατί έχει υλοποιηθεί με έναν συγκεκριμένο τρόπο</li>
-<li>Τα σχόλια θα πρέπει να συμφωνούν με τον κώδικα και να ανανεώνονται αναλόγως. Βάζουμε σχόλια όπου χρειάζεται, όχι απαραίτητα σε κάθε γραμμή του προγράμματός μας (“Good code documents itself!”)</li>
+<li>Τα σχόλια θα πρέπει να συμφωνούν με τον κώδικα και να ανανεώνονται αναλόγως. Βάζουμε σχόλια όπου χρειάζεται, όχι απαραίτητα σε κάθε γραμμή του προγράμματός μας</li>
 <li>Στην αρχή του προγράμματός μας βάζουμε σε σχόλια: 1) τα στοιχεία μας, 2) την ημερομηνία, 3) τον τρόπο εκτέλεσης, 4) την έκδοση του προγράμματός μας</li>
 <li>Τα σχόλια στην Java δεν εμφωλεύονται</li>
 </ul>
-<h2 id="-2">Σχόλια (2)</h2>
+<h2 id="-3">Σχόλια (3)</h2>
 <table>
 <colgroup>
 <col width="8%" />
@@ -157,7 +230,7 @@ res=haulabout;
 </tr>
 </tbody>
 </table>
-<h2 id="-3">Σχόλια (3)</h2>
+<h2 id="-4">Σχόλια (4)</h2>
 <table>
 <colgroup>
 <col width="8%" />
@@ -184,9 +257,9 @@ res=haulabout;
 </table>
 <h2 id="doc-comments">Doc Comments</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="co">/**</span>
-<span class="co"> * Returns an Image object that can then be painted on the screen. </span>
+<span class="co"> * Returns an Image object that can then be painted on the screen.</span>
 <span class="co"> * The url argument must specify an absolute </span><span class="kw">{@link URL}</span><span class="co">. The name</span>
-<span class="co"> * argument is a specifier that is relative to the url argument. </span>
+<span class="co"> * argument is a specifier that is relative to the url argument.</span>
 <span class="co"> *</span>
 <span class="co"> * </span><span class="kw">@param </span><span class="co"> </span><span class="kw">url </span><span class="co"> an absolute URL giving the base location of the image</span>
 <span class="co"> * </span><span class="kw">@param </span><span class="co"> </span><span class="kw">name </span><span class="co">the location of the image, relative to the url argument</span>
@@ -207,9 +280,9 @@ res=haulabout;
         <span class="co">//main method</span>
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
             <span class="dt">boolean</span> nesting = <span class="kw">true</span>;
-            <span class="dt">int</span> x = <span class="dv">10</span>; 
+            <span class="dt">int</span> x = <span class="dv">10</span>;
             <span class="kw">if</span> (x == <span class="dv">10</span>) {
-                <span class="dt">int</span> y = <span class="dv">20</span>; 
+                <span class="dt">int</span> y = <span class="dv">20</span>;
                 System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x +y);
                 x = y * <span class="dv">2</span>;
             }
@@ -221,16 +294,22 @@ res=haulabout;
     }</code></pre></div>
 <h2>Κενά</h2>
 <ul>
+<li>Ξεκινήστε μια κλάση από την αρχή της γραμμής</li>
 <li>Βάζουμε κενές γραμμές για να χωρίσουμε το πρόγραμμά μας σε λογικά μέρη, όχι παντού</li>
 <li>Βάζουμε ένα κενό πριν και μετά από τελεστές (&lt;, &gt;, &lt;=, =, +)</li>
+<li>Βάλτε κενό πριν και μετά τα σύμβολα των πράξεων (+, -, \, %)</li>
+<li>Μη βάζετε κενό μετά από την παρένθεση (</li>
 <li>Βάζουμε ένα κενό μετά τα while, for, if και την παρένθεση, δηλ. if (…)</li>
+<li>Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου</li>
+<li>Αφήστε 1 κενή γραμμή πριν ξεκινήσετε μια νέα μέθοδο</li>
 <li>Βαζουμε ένα κενό μετά από κάθε δήλωση στο for loop</li>
 <li>δηλ. for(int i=0;i&lt;10;i++) -&gt; for (int i = 0; i &lt; 10; i++)</li>
 <li>Βάζουμε ένα κενό μετά από κόμμα</li>
+<li>Βάλτε τις αγκύλες στην ίδια σειρά με τη δήλωση των κλάσεων και των<br />
+μεθόδων</li>
 <li>Βάζουμε ένα κενό πριν την αγκύλη {</li>
 <li>Δε βάζουμε κενό πριν το ;</li>
-<li>Δε βάζουμε κενό πριν την παρένθεση μιας μεθόδου</li>
-<li>Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; count—; στην ίδια γραμμή</li>
+<li>Χρησιμοποιούμε 1 δήλωση ανά γραμμή, όχι count++; int x = 5; στην ίδια γραμμή</li>
 </ul>
 <h2 id="-indentation">Εσοχές (Indentation)</h2>
 <ul>
@@ -240,7 +319,7 @@ res=haulabout;
 </ul>
 <h2 id="--2">Κατανόηση Κώδικα (2)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Queller {
-        
+
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getDispetal</span>(<span class="dt">int</span> cobber, <span class="dt">int</span> whinnock) {
             <span class="dt">int</span> result = <span class="dv">0</span>;
             <span class="kw">if</span> (cobber == whinnock) {
@@ -265,12 +344,16 @@ res=haulabout;
     }</code></pre></div>
 <h2 id="--">Προσομοίωση ρίψης ζαριών</h2>
 <div align="justify">
-Γράψτε ένα πρόγραμμα που προσομοιώνει τη ρίψη ενός ζεύγους ζαριών. Εκτελέστε το πείραμα μέχρι και τα 2 ζάρια να φέρουν 1. 
+Γράψτε ένα πρόγραμμα που προσομοιώνει τη ρίψη ενός ζεύγους ζαριών. Εκτελέστε το πείραμα μέχρι και τα 2 ζάρια να φέρουν 1
+και στο τέλος να επιστρέφει πόσες ρηψεις χρειάστηκαν.
+<br>
+Γράψτε πρόγραμμα που να καλεί και να τρέχει το προηγούμενο πρόγραμμα n φορές και να επιστρέφει το μέσο όρο των φορών
+που χρειάστηκε να γίνουν οι ρίψεις των ζαριών ώστε να έχουν και τα δύο 1.
 </div>
 <h2 id="--">Εκτύπωση πίνακα διαγώνια</h2>
 <div align="justify">
-Υλοποιείστε ένα πίνακα που να έχει 10 θέσεις και να λαμβάνει 10 αριθμούς από του 1 μέχρι και το 10. Στην συνέχεια υλοποιείστε μια συνάρτηση η οποία θα μπορεί αν μεταφέρει όλα τα στοιχεία από αριστερά προς τα δεξιά, δλδ το πρώτο στοιεχέια να το μεταφέρι στην θέση του δεύτερου, το δεύτερο στην θέση του τρίτου κ.τ.λ. Επίσης το παρόν τελευταίο στοιχείο του πίνακα να μεταφέρετε πάντα στην πρώτη θέση του πινακά. Κάθε φορά που θα μετακινήτε τον πίνακα προς τα αριστερά να εκτυπώνετε τα στοιχεία του σε μία γραμμή. 
-Στο τέλος πρέπει να έχετε το ακόλουθο αποτέλεσμα: 
+Υλοποιείστε ένα πίνακα που να έχει 10 θέσεις και να λαμβάνει 10 αριθμούς από του 1 μέχρι και το 10. Στην συνέχεια υλοποιείστε μια συνάρτηση η οποία θα μπορεί αν μεταφέρει όλα τα στοιχεία από αριστερά προς τα δεξιά, δλδ το πρώτο στοιεχέια να το μεταφέρι στην θέση του δεύτερου, το δεύτερο στην θέση του τρίτου κ.τ.λ. Επίσης το παρόν τελευταίο στοιχείο του πίνακα να μεταφέρετε πάντα στην πρώτη θέση του πινακά. Κάθε φορά που θα μετακινήτε τον πίνακα προς τα αριστερά να εκτυπώνετε τα στοιχεία του σε μία γραμμή.
+Στο τέλος πρέπει να έχετε το ακόλουθο αποτέλεσμα:
 </div>
 <div align="center">
 [10,1,2,3,4,5,6,7,8,9]<br>

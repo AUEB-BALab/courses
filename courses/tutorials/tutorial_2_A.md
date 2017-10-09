@@ -80,7 +80,11 @@
 # Επιστροφή σε παλία έκδοση
 
 * git log
-* git checkout <branch>
+* File level modifcations
+	* git checkout 
+	* git reset (unpublished commits)
+* git revert 
+
 
 
 # Ροή Εργασίας Git
