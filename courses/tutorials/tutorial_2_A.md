@@ -80,10 +80,9 @@
 # Επιστροφή σε παλία έκδοση
 
 * git log
-* File level modifcations
-	* git checkout 
-	* git reset (unpublished commits)
-* git revert 
+* git checkout 
+* git reset (unpublished commits)
+* git revert (published on remote)
 
 
 
