@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/codeandwork/courses.svg?branch=master)](https://travis-ci.org/codeandwork/courses)
 
 
-Καθηγητής Μαθήματος: Διομίδης Σπινέλλης
+Καθηγητής Μαθήματος: Διομήδης Σπινέλλης
 
 Βοηθοί Μαθήματος: Στέφανος Γεωργίου και Θεόδωρος Στασσινόπουλος
 
