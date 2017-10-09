@@ -6,3 +6,6 @@
 ## Φροντιστήριο 2
 * [Εισαγωγή στο GitHub](tutorials/tutorial_2_A.md)
 * [Κανόνες μορφοποίησης](tutorials/tutorial_2_B.md)
+
+## Φροντιστήριο 3
+* [Εισαγωγή στα Αντικείμενα](tutorials/tutorial_3.md)
