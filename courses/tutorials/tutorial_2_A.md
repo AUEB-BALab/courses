@@ -63,7 +63,6 @@
 Εντολές για ανανέωση κώδικα στην τελευταία έκδοση:
 </div>
 * git pull 
-* git merge 
 
 <div style="text-align: left">
 Εντολές για έλεγχο κατάτστασης:
@@ -82,7 +81,7 @@
 * git log
 * git checkout 
 * git reset (unpublished commits)
-* git revert (published on remote)
+* git revert (makes a copy, safer solution)
 
 
 
