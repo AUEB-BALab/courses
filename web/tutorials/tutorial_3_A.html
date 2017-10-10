@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Έλεγχος Ροής και Επαναλήψεις</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp----">Coding Bootcamp: Έλεγχος Ροής και Επαναλήψεις</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="---">Έλεγχος ροής και επαναλήψεις</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασσινόπουλος</a><br />
+<div style="height:10%; texxt-align: center; position: absolute;  bottom:-170px;">Αθήνα 2017<div></li>
+</ul>
+<h2>Συνθήκες</h2>
+<ul>
+<li>Μια συνθήκη είναι μια λογική καλώς συντεταγμένη έκφραση η οποία μπορεί να εκτιμηθεί<br />
+μονοσήμαντα είτε ως αληθής είτε ως ψευδής.</li>
+<li>Με τη βοήθεια συνθηκών μπορούμε να ελένξουμε τη ροή ενός προγράμματος καθώς και<br />
+να επαναλάβουμε ρουτίνες.</li>
+<li>Φυσικά κάθε boolean μεταβλητή, από μόνη της, είναι μια συνθήκη.</li>
+<li>Μπορούμε να δημιουργήσουμε συνθήκες απο μη boolean μεταβλητές με τη βοήθεια<br />
+συγκριτικών τελεστών (παρακάτω).</li>
+<li>Μπορούμε να παράγουμε σύνθετες συνθήκες από πιο απλές με τη βοήθεια των λογικών<br />
+τελεστών (παρακάτω).</li>
+</ul>
+<h2 id="-.">Συγκριτικοί τελεστές.</h2>
+<ul>
+<li>Οι &quot;φυσικοί&quot; συγκριτικοί τελεστές στην Java είναι οι εξής:</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td>&gt;</td>
+<td>μεγαλύτερο</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>μεγαλύτερο ή ίσο</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>μικρότερο</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>μικρότερο ή ίσο</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>ίσο</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>διάφορο</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Βεβαίως μπορούν να φτιαχτούν από το χρήστη δικοί του συγκρισιακοί τελεστές<br />
+ανάλογα με τις ανάγκες του.</li>
+</ul>
+<h2 id="-.">Λογικοί τελεστές.</h2>
+<ul>
+<li>Οι βασικοί λογικοί τελεστές &amp;&amp; (&quot;και&quot;), || (&quot;ή&quot;) και ! (&quot;όχι/δεν&quot;) είναι χρήσιμοι<br />
+για να κατασκευάσουμε σύνθετες συνθήκες από άλλες απλούστερες.</li>
+</ul>
+<p>| boolean x | boolean y | x &amp;&amp; y | x || y | | boolean x | !x |<br />
+|-----------|-----------|--------|--------| |-----------|-------|<br />
+| true | true | true | true | | true | false |<br />
+| true | false | false | true | | true | true |<br />
+| false | true | false | true |<br />
+| false | false | false | false |</p>
+<ul>
+<li><p>Παράδειγμα:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">boolean</span> x = <span class="kw">true</span>
+<span class="dt">int</span> y = <span class="dv">4</span>, z = <span class="dv">5</span>;
+System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == z) || x));</code></pre></div></li>
+</ul>
+<h2 id="if">if</h2>
+<ul>
+<li>Με τη βοήθεια των &quot;if&quot; μπορούμε να εκτελέσουμε ένα κομμάτι κώδικα μόνο όταν<br />
+ικανοποιείται μια συγκεκριμένη συνθήκη. Η δομή της &quot;if&quot; είναι η ακόλουθη:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span> (συνθήκη) {
+    <span class="co">// σώμα κώδικα</span>
+}</code></pre></div>
+<h2>Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
+<span class="kw">if</span> (mark &gt;= <span class="dv">5</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
+}</code></pre></div>
+<h2 id="ifelse">if/else</h2>
+<ul>
+<li><p>Με το &quot;if/else&quot; μπορούμε να εκτελέσουμε ένα κομμάτι κώδικα μόνο όταν<br />
+ικανοποιείται μια συγκεκριμένη συνθήκη αλλιώς θα εκτελεστει ενα διαφορετικό<br />
+κομμάτι κώδικα. Η δομή της &quot;if/else&quot; είναι η ακόλουθη:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span> (συνθήκη) {
+<span class="co">// σώμα κώδικα</span>
+} <span class="kw">else</span> {
+<span class="co">// άλλο σώμα κώδικα</span>
+}</code></pre></div></li>
+</ul>
+<h2 id="-1">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
+<span class="kw">if</span> (mark &gt;= <span class="dv">5</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
+} <span class="kw">else</span> {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+}</code></pre></div>
+<h2 id="ifelseifelse">if/elseif/else</h2>
+<ul>
+<li>Με το &quot;if/elseif/else&quot; μπορούμε να αντιστοιχίσουμε συγκεκριμένες συνθήκες<br />
+με συγκεκριμένα κομμάτια. Το κομμάτι κώδικα που θα εκτελεσθεί θα είναι εκείνο του<br />
+οποίου η αντίστοιχη συνθήκη θα ικανοποιηθεί πρώτα. Η δομή είναι η ακόλουθη:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span> (συνθήκη) {
+    <span class="co">// σώμα κώδικα</span>
+} <span class="kw">else</span> <span class="kw">if</span> (αλληΣυνθηκη) {
+    <span class="co">// άλλο σώμα κώδικα</span>
+} <span class="kw">else</span> <span class="kw">if</span> (καιΑλληΣυνθηκη) {
+    <span class="co">// κι αλλο σώμα κώδικα</span>
+} <span class="kw">else</span>
+    <span class="co">// αν δεν ικανοποιηθεί καμια απο τις παραπανω συνθηκες σώμα κώδικα</span>
+}</code></pre></div>
+<h2 id="-2">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
+<span class="kw">if</span> (mark &lt; <span class="dv">5</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+} <span class="kw">else</span> <span class="kw">if</span> (mark &gt;= <span class="dv">5</span> &amp;&amp; mark &lt; <span class="dv">8</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
+} <span class="kw">else</span> { <span class="co">// equivalent with &quot;else if (mark &gt;= 8) {&quot;</span>
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
+}</code></pre></div>
+<h2>Παρατηρήσεις</h2>
+<ul>
+<li><p>Σε μια &quot;if/elseif/else&quot; μπορεί να ικανοποιούνται πολλές συνθήκες αλλα μονο ο<br />
+κώδικας της πρώτης στη σειρά ικανοποιημένης συνθήκης θα εκτελεσθεί.</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
+<span class="kw">if</span> (mark &lt; <span class="dv">5</span>) {
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+} <span class="kw">else</span> <span class="kw">if</span> (mark &lt; <span class="dv">8</span>) {
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
+} <span class="kw">else</span> <span class="kw">if</span> (mark &lt;= <span class="dv">10</span>) { 
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
+}</code></pre></div></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

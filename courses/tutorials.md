@@ -8,4 +8,5 @@
 * [Κανόνες μορφοποίησης](tutorials/tutorial_2_B.md)
 
 ## Φροντιστήριο 3
+* [Έλεγχος Ροής και Επαναλήψεις](tutorials/tutorial_3_A.md)
 * [Εισαγωγή στα Αντικείμενα](tutorials/tutorial_3.md)
