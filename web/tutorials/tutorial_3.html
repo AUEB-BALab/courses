@@ -30,6 +30,59 @@
   </head>
   <body>
 <h1 id="coding-bootcamp---">Coding Bootcamp: Εισαγωγή στα Αντικείμενα</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="-">Κανόνες μορφοποιήσης</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασσινόπουλος</a><br />
+<div style="height:10%; texxt-align: center; position: absolute;  bottom:-170px;">Αθήνα 2017<div></li>
+</ul>
+<h2 id="-">Αντικειμενοστραφής Προγραμματισμός</h2>
+<ul>
+<li>Είναι τύπος προγραμματισμού βασισμένο σε αντικείμενα (objects) που μοντελοποιούν<br />
+τα δεδομένα με βάση την εσωτερική τους κατάσταση (state) και με βάση τη συμπεριφορά<br />
+τους (behaviour).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> <span class="fu">LightBulb</span>() {
+
+    <span class="co">// State</span>
+    <span class="kw">private</span> <span class="dt">boolean</span> state;
+
+    <span class="co">// Behaviour</span>
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isLit</span>() {
+        <span class="kw">return</span> state;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">switchOn</span>() {
+        state = <span class="kw">true</span>;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">switchOff</span>() {
+        state = <span class="kw">false</span>;
+    }
+}</code></pre></div>
+<h2 id="--2">Αντικειμενοστραφής Προγραμματισμός (2)\</h2>
+<ul>
+<li>Ένα αντικείμενο αποτελείται από κανένα ή περισσότερα πεδία που καθορίζουν την<br />
+κατάστασή του και απο καμία ή περισσότερες μεθόδους που καθορίζουν τη συμπεριφορά<br />
+του.</li>
+<li>Κάθε αντικείμενο είναι στιγμιότυπο μιας κλάσης που καθορίζει και τον τύπο του.</li>
+<li>Κάθε κλάση είναι ένα προσχέδιο (blueprint) ή πρότυπο (prototype) για τη<br />
+δημιουργία αντικειμένων.</li>
+<li>Ένα αντικειμενοστραφές πρόγραμμα αποτελεί μια συλλογή από αντικείμενα που<br />
+αλληλεπιδρούν μεταξύ τους.</li>
+</ul>
+<h2 id="---">Διεύθυνση Αντικειμένων στη Μνήμη</h2>
+<ul>
+<li>Για να κατασκευάσουμε ένα νέο αντικείμενο θα πρέπει να ζητηθεί μια περιοχή της<br />
+μνήμης οπου θα φυλαχθούν τα πεδία του μέσω του τελεστή new.</li>
+</ul>
+<p>Παράδειγμα:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">Foo foo = <span class="kw">new</span> <span class="fu">Foo</span>();</code></pre></div>
+<p>Η μεταβλητη του object (η foo στο παράδειγμα) δεν περιέχει όλη την πληροφορία της κατάστασής του<br />
+αλλά έναν ακέραιο που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε<br />
+print ένα object).</p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
