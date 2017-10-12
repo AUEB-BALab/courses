@@ -97,11 +97,11 @@
 | false | true | false | true |<br />
 | false | false | false | false |</p>
 <ul>
-<li><p>Παράδειγμα:</p>
+<li>Παράδειγμα:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">boolean</span> x = <span class="kw">true</span>
 <span class="dt">int</span> y = <span class="dv">4</span>, z = <span class="dv">5</span>;
-System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == z) || x));</code></pre></div></li>
-</ul>
+System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == z) || x));</code></pre></div>
 <h2 id="if">if</h2>
 <ul>
 <li>Με τη βοήθεια των &quot;if&quot; μπορούμε να εκτελέσουμε ένα κομμάτι κώδικα μόνο όταν<br />
@@ -295,11 +295,11 @@ java είναι με τη χρήση της 'while' επανάληψης. Η δ�
 συνεχίζει, αλλιώς σταματάει και συνεχίζει το πρόγραμμα απο την πρώτη εντολή μετά<br />
 απο αυτή.</li>
 </ul>
-<h1 id="-1">Άσκηση</h1>
+<h2 id="-1">Άσκηση</h2>
 <ul>
 <li>Να εξηγήσετε τις διαφορες 'while' με τη 'do...while'. Είναι ισοδύναμες;</li>
 </ul>
-<h1 id="--for">Η ενισχυμένη for</h1>
+<h2 id="--for">Η ενισχυμένη for</h2>
 <ul>
 <li>Συχνά θέλουμε να προσπελάσουμε όλα τα στοιχεία μιας συλλογής όπως κάποιος<br />
 πίνακας, ή κάποιο αντικείμενο της ArrayList κλάσης. Τότε η java προσφέρει ένα<br />
@@ -309,7 +309,7 @@ java είναι με τη χρήση της 'while' επανάληψης. Η δ�
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">for</span> (Τυπος μεταβλητή : συλλογη) {
     <span class="co">// Κώδικας</span>
 }</code></pre></div>
-<h1 id="-2">Παρατηρήσεις</h1>
+<h2 id="-2">Παρατηρήσεις</h2>
 <ul>
 <li>Η 'συλλογή' αναφέρεται στην συλλογη που θα προσπελαστεί όπως ένας πίνακας ή<br />
 ένα object της ArrayList</li>
@@ -324,7 +324,7 @@ java είναι με τη χρήση της 'while' επανάληψης. Η δ�
 iterable.<br />
 (Πληροφορίες <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" class="uri">https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html</a>)</li>
 </ul>
-<h1 id="--break">Η εντολή 'break'</h1>
+<h2 id="--break">Η εντολή 'break'</h2>
 <ul>
 <li>Σε κάποιες περιπτώσεις μπορεί να είναι απαραίτητο να διακοπεί η επανάληψη<br />
 πρόωρα. Η εντολή 'break' με το που διαβαστεί στο σώμα κάποιας έπανάληψης,<br />
@@ -333,7 +333,7 @@ iterable.<br />
 εξωτερική επανάληψη, τοτέ η δεύτερη επανάληψη δεν επιρρεάζεται από το 'break'<br />
 της πρώτης.</li>
 </ul>
-<h1 id="--continue">Η εντολή 'continue'</h1>
+<h2 id="--continue">Η εντολή 'continue'</h2>
 <ul>
 <li>Είναι πιθανό κάποιος από τους κύκλους της επανάληψεις να είναι αδιάφορος είτε<br />
 να μη πρέπει να επεξεργαστεί. Σε αυτή τη περίπτωση μπορεί να χρησιμοποιήθει η<br />
@@ -355,7 +355,7 @@ iterable.<br />
     }
     <span class="kw">return</span> outcome;
 }</code></pre></div>
-<h1>Αναδρομή</h1>
+<h2>Αναδρομή</h2>
 <ul>
 <li>Αναδρομή, στον προγραμματισμό συγκεκριμένα, είναι η διαδικασία με την οποία<br />
 μια συνάρτηση καλεί τον εαυτό της στο σώμα της. Η διαδικασία αυτή είναι συχνά<br />
@@ -367,7 +367,7 @@ iterable.<br />
 <li>Το δεύτερο είναι ότι θα πρέπει να υπάρχει μια βασική διαχείριση απο τη<br />
 συνάρτηση όταν το πρόβλημα γινει αρκετά μίκρό.</li>
 </ul>
-<h1 id="-7">Παράδειγμα</h1>
+<h2 id="-7">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">binarySearch</span>(<span class="dt">int</span>[] array, <span class="dt">int</span> key, <span class="dt">int</span> start, <span class="dt">int</span> end) {
     <span class="kw">if</span> (start &gt; end) {
         <span class="kw">return</span> -<span class="dv">1</span>;
@@ -381,7 +381,7 @@ iterable.<br />
         <span class="kw">return</span> <span class="fu">binarySearch</span>(array, key, start, middle - <span class="dv">1</span>);
     }
 }</code></pre></div>
-<h1 id="-3">Παρατηρήσεις</h1>
+<h2 id="-3">Παρατηρήσεις</h2>
 <ul>
 <li>Συχνά ο κώδικας με χρήση αναδρομής είναι πιο &quot;συμπαγής&quot; και κομψός από ότι με<br />
 άλλους τρόπους επανάληψης.</li>
@@ -393,22 +393,22 @@ iterable.<br />
 <li>Η αναδρομή συχνά δυσκολεύει τους χρήστες στην κατανόηση της.</li>
 <li>Η αναδρομή συχνά δυσκολεύει τους χρήστες στην εύρεση σφαλμάτων.</li>
 </ul>
-<h1 id="-2">Άσκηση</h1>
+<h2 id="-2">Άσκηση</h2>
 <ul>
 <li>Προσπαθείστε να εξηγήσετε γιατί οποιαδήποτε επανάληψη με 'while' μπορεί να<br />
 γραφεί μέσω αναδρομικής συνάρτησης και το ανάποδο.</li>
 </ul>
-<h1 id="-3">Άσκηση</h1>
+<h2 id="-3">Άσκηση</h2>
 <ul>
 <li>Να γράψετε πρόγραμμα που να υπολογίζει τη σειρά Σ(1/n!) για 100 πρώτους όρους και ύστερα για 1000. Ποια τιμή προσεγγίζει<br />
 η σειρά;</li>
 </ul>
-<h1 id="-4">Άσκηση</h1>
+<h2 id="-4">Άσκηση</h2>
 <ul>
 <li>Να γράψετε boolean συνάτηση που να δέχεται τρεις αριθμούς και να επιστρέφει true<br />
 αν και οι τρεις είναι ίσοι αλλιώς να επιστρέφει false.</li>
 </ul>
-<h1 id="-5">Άσκηση</h1>
+<h2 id="-5">Άσκηση</h2>
 <ul>
 <li>Να γράψετε συνάρτηση που να δέχεται ακέραιο και να επιστρέφει πόσα ψηφία περιέχει<br />
 που είναι είτε 3 είτε 7. Παράδειγμα ο 372 περιέχει 2 ψηφία 3 ή 7 ενώ ο αριθμός<br />
