@@ -49,19 +49,19 @@
 public class LightBulb() {
 
     // State
-    private boolean state;
+    public boolean state;
+
+    public LightBulb() {
+        this.state = state;
+    }
 
     // Behaviour
     public boolean isLit() {
         return state;
     }
 
-    public void switchOn() {
-        state = true;
-    }
-
-    public void switchOff() {
-        state = false;
+    public void switch() {
+        state = !state;
     }
 }
 ```
@@ -89,9 +89,73 @@ public class LightBulb() {
 ExampleForObjects aSimpleObject = new ExampleForObjects();
 ```
 
-Η μεταβλητη του object (η aSimpleObject στο παράδειγμα) δεν περιέχει όλη την πληροφορία της κατάστασής του
-αλλά έναν ακέραιο που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε
-print ένα object). 
+* Η μεταβλητη του object (η aSimpleObject στο παράδειγμα) δεν περιέχει την πληροφορία της κατάστασής του
+αλλά έναν αριθμό (δεκαεξαδικό) που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε
+print ένα object).
+
+
+## Παράδειγμα
+
+```java
+public class Foo {
+
+    private boolean state;
+
+    public Foo(boolean state) {
+        this.state = state;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+}
+```
+
+
+## Παράδειγμα(1)
+
+```java
+public class Test {
+
+    public static void main(String[] args) {
+        Foo foo1 = new Foo(true);
+        Foo foo2 = new Foo(true);
+
+        foo2.setState(false);
+
+        System.out.println(foo1);
+        System.out.println(foo2);
+    }
+}
+```
+
+
+## Παράδειγμα(2)
+
+```java
+public class Test {
+
+    public static void main(String[] args) {
+        Foo foo1 = new Foo(true);
+        Foo foo2 = foo1;
+
+        foo2.setState(false);
+
+        System.out.println(foo1);
+        System.out.println(foo2);
+    }
+}
+```
+
+
+## Άσκηση
+
+* Τι θα εκτυπωθεί στα δύο προηγούμενα κομμάτια κώδικα; Μπορείτε να αιτιολογησετε
+το αποτέλεσμα;
 
 					</script>
 				</section>

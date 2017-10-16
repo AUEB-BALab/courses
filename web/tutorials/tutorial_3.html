@@ -46,19 +46,19 @@
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> <span class="fu">LightBulb</span>() {
 
     <span class="co">// State</span>
-    <span class="kw">private</span> <span class="dt">boolean</span> state;
+    <span class="kw">public</span> <span class="dt">boolean</span> state;
+
+    <span class="kw">public</span> <span class="fu">LightBulb</span>() {
+        <span class="kw">this</span>.<span class="fu">state</span> = state;
+    }
 
     <span class="co">// Behaviour</span>
     <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isLit</span>() {
         <span class="kw">return</span> state;
     }
 
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">switchOn</span>() {
-        state = <span class="kw">true</span>;
-    }
-
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">switchOff</span>() {
-        state = <span class="kw">false</span>;
+    <span class="kw">public</span> <span class="dt">void</span> <span class="kw">switch</span>() {
+        state = !state;
     }
 }</code></pre></div>
 <h2 id="--2">Αντικειμενοστραφής Προγραμματισμός (2)</h2>
@@ -79,9 +79,59 @@
 </ul>
 <p>Παράδειγμα:</p>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">ExampleForObjects aSimpleObject = <span class="kw">new</span> <span class="fu">ExampleForObjects</span>();</code></pre></div>
-<p>Η μεταβλητη του object (η aSimpleObject στο παράδειγμα) δεν περιέχει όλη την πληροφορία της κατάστασής του<br />
-αλλά έναν ακέραιο που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε<br />
-print ένα object).</p>
+<ul>
+<li>Η μεταβλητη του object (η aSimpleObject στο παράδειγμα) δεν περιέχει την πληροφορία της κατάστασής του<br />
+αλλά έναν αριθμό (δεκαεξαδικό) που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε<br />
+print ένα object).</li>
+</ul>
+<h2>Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+
+    <span class="kw">private</span> <span class="dt">boolean</span> state;
+
+    <span class="kw">public</span> <span class="fu">Foo</span>(<span class="dt">boolean</span> state) {
+        <span class="kw">this</span>.<span class="fu">state</span> = state;
+    }
+
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">getState</span>() {
+        <span class="kw">return</span> state;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setState</span>(<span class="dt">boolean</span> state) {
+        <span class="kw">this</span>.<span class="fu">state</span> = state;
+    }
+}</code></pre></div>
+<h2 id="1">Παράδειγμα(1)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        Foo foo1 = <span class="kw">new</span> <span class="fu">Foo</span>(<span class="kw">true</span>);
+        Foo foo2 = <span class="kw">new</span> <span class="fu">Foo</span>(<span class="kw">true</span>);
+
+        foo2.<span class="fu">setState</span>(<span class="kw">false</span>);
+
+        System.<span class="fu">out</span>.<span class="fu">println</span>(foo1);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(foo2);
+    }
+}</code></pre></div>
+<h2 id="2">Παράδειγμα(2)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        Foo foo1 = <span class="kw">new</span> <span class="fu">Foo</span>(<span class="kw">true</span>);
+        Foo foo2 = foo1;
+
+        foo2.<span class="fu">setState</span>(<span class="kw">false</span>);
+
+        System.<span class="fu">out</span>.<span class="fu">println</span>(foo1);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(foo2);
+    }
+}</code></pre></div>
+<h2>Άσκηση</h2>
+<ul>
+<li>Τι θα εκτυπωθεί στα δύο προηγούμενα κομμάτια κώδικα; Μπορείτε να αιτιολογησετε<br />
+το αποτέλεσμα;</li>
+</ul>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
