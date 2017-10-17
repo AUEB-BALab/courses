@@ -3,7 +3,7 @@
 ## Κανόνες μορφοποιήσης
 
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
-* [Θεόδωρος Στασσινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
+* [Θεόδωρος Στασινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
 
 
 ## Περιεχόμενα
