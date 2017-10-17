@@ -36,7 +36,7 @@
 ## Κανόνες μορφοποιήσης
 
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
-* [Θεόδωρος Στασσινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
+* [Θεόδωρος Στασινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
 
 
 ## Αντικειμενοστραφής Προγραμματισμός
@@ -127,6 +127,7 @@ print ένα object).
 
 
 ## Προσδιοριστές Πρόσβασης
+<<<<<<< HEAD
 
 * Οι προσδιοριστές πρόσβασης χρησιμοποιούνται προθεματικά για να καθορίσουν την πρόσβαση σε
 μια μεταβλητή, μια μέθοδο ή μια κλάση απο κάποια άλλη πηγή. Οι προσδιοριστές στη java είναι οι εξής:
@@ -138,6 +139,19 @@ print ένα object).
     * private: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα μόνο από το εσωτερικό της ίδιας
 της κλάσεις που υπάρχουν.
 
+=======
+
+* Οι προσδιοριστές πρόσβασης χρησιμοποιούνται προθεματικά για να καθορίσουν την πρόσβαση σε
+μια μεταβλητή, μια μέθοδο ή μια κλάση απο κάποια άλλη πηγή. Οι προσδιοριστές στη java είναι οι εξής:
+* public: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα χωρίς κανένα περιορισμό.
+* protected: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα απο παραγώμενες κλάσεις
+(σε επόμενο μάθημα) και από κλάσεις του ίδιου πακέτου.
+* (default): Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα μόνο από κλάσεις του ίδιου
+πακέτου.
+* private: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα μόνο από το εσωτερικό της ίδιας
+της κλάσεις που υπάρχουν.
+
+>>>>>>> 0497c6f1354731c73690c41d64e0579db612937a
 
 ## O προσδιοριστής 'final'
 
@@ -175,6 +189,7 @@ public class Test {
     public static void main(String[] args) {
         LightBulb objLightBulb1 = new LightBulb(true);
         Foo objLightBulb2 = objLightBulb1;
+<<<<<<< HEAD
 
         objLightBulb1.switchlight();
 
@@ -190,6 +205,23 @@ public class Test {
 ```java
 public class Test {
 
+=======
+
+        objLightBulb1.switchlight();
+
+        System.out.println(objLightBulb1);
+        System.out.println(objLightBulb2);
+    }
+}
+```
+
+
+## Παράδειγμα(3)
+
+```java
+public class Test {
+
+>>>>>>> 0497c6f1354731c73690c41d64e0579db612937a
     public static void main(String[] args) {
         LightBulb objLightBulb1 = new LightBulb(true);
         LightBulb objLightBulb2 = new LightBulb(false);
