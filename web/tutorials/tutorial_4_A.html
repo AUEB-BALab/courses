@@ -58,11 +58,11 @@
     }
 
 <span class="co">// συμπεριφορά αυτοκινήτου</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">startEngine</span>() {} <span class="co">// εκκίνηση του κινητήρα</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">stopEngine</span>() {} <span class="co">// σβήσιμο του κινητήρα</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnLeft</span>(<span class="dt">int</span> degrees) {} <span class="co">// στροφή αριστερά</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnRight</span>(<span class="dt">int</span> degrees) {} <span class="co">// στροφή δεξιά</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="kw">break</span>() {} <span class="co">// φρενάρισμα</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">startEngine</span>() {...} <span class="co">// εκκίνηση του κινητήρα</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">stopEngine</span>() {...} <span class="co">// σβήσιμο του κινητήρα</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnLeft</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή αριστερά</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnRight</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή δεξιά</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="kw">break</span>() {...} <span class="co">// φρενάρισμα</span>
 <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getSpeed</span>() {<span class="kw">return</span> speed;} <span class="co">// μέτρηση ταχύτητας</span>
 <span class="co">// στατική μέθοδος</span>
 <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getNumberOfCars</span>() {<span class="kw">return</span> numberOfCars;}</code></pre></div>
@@ -77,13 +77,13 @@
 </ul>
 <h2 id="----2">Τύπου Πεδίων και Μεθόδων (2)</h2>
 <ul>
-<li><strong>Static</strong>:
+<li><strong>static</strong>:
 <ul>
 <li>Οι <strong>μεταβλητές</strong> είναι μοιρασμένες ανάμεσα σε ΟΛΑ τα στιγμιότυπα μιας κλάσης, δηλαδή υπάρχει μόνο ένα 'αντίγραφό' τους.</li>
 <li>Οι <strong>μέθοδοι</strong> μπορούν να χρησιμοποιηθούν χωρις να δημιουργηθεί ένα στιγμιότυπο της κλάσης και έχουν πρόσβαση ΜΟΝΟ σε στατικές μεταβλητές της κλάσης.</li>
 </ul></li>
 </ul>
-<h2 id="this">This</h2>
+<h2 id="this">this</h2>
 <ul>
 <li>Με τη λέξη-κλειδί <strong>this</strong> ένα αντικείμενο (το στιγμιότυπο μιας κλάσης) μπορεί να αναφερθεί στον ίδιο του τον εαυτό
 <ul>
