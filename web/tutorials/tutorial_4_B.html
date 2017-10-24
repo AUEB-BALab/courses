@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Κληρονομικότητα, Αφηρημένες Κλάσεις και Διεπαφές</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-----">Coding Bootcamp: Κληρονομικότητα, Αφηρημένες Κλάσεις και Διεπαφές</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="---">Κληρονομικότητα, Αφηρημένες κλάσεις, Διεπαφές</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h2>Κληρονομικότητα</h2>
+<ul>
+<li>Κληρονομικότητα στον αντικειμενοστραφή προγραμματισμο είναι η δυνατότητα να<br />
+παραχθούν ειδικότερες κλάσεις από γενικότερες.</li>
+<li>Οι ειδικότερες κλάσεις ονομάζονται και υποκλάσεις των γενικότερων και<br />
+αντίστροφα οι γενικότερες κλάσεις ονομάζονται υπερκλάσεις των ειδικότερων.</li>
+<li>Ένα αντικείμενο μιας υποκλάσης είναι και αντικείμενο της (κάθε) υπερκλασης.</li>
+<li><p>Στη java κάθε κλάση μπορεί να κληρομησει άμεσα μόνο μία υπερκλάση<br />
+χρησιμοποιώντας τη δεσμευμένη λέξη extends.</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> SubClass <span class="kw">extends</span> SuperClass {...}</code></pre></div></li>
+<li><p>Όλες οι κλάσεις στη java κληρονομούν την κλάση Object ακόμα και όταν αυτό δε<br />
+γίνεται ρητά μέσω της εντολής extends.</p></li>
+</ul>
+<h2>Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
+
+    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+}
+
+<span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
+
+    <span class="kw">public</span> String <span class="fu">whoIReallyAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am equilateral&quot;</span>; }
+}</code></pre></div>
+<h2>Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+    EquilateralTriangle equilateral = <span class="kw">new</span> <span class="fu">EquilateralTriangle</span>();
+    System.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIAm</span>())
+    System.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIReallyAm</span>());
+}</code></pre></div>
+<h2 id="override">Override</h2>
+<ul>
+<li>Μια κλάση μπορεί να αλλάξει τη συμπεριφορά μιας μεθόδου που αλλιώς θα<br />
+κληρονομούσε απο υπερκλάση της, ορίζοντάς την με το ίδιο όνομα, τα ίδια ορίσματα,<br />
+τον ίδιο τύπο και το σώμα που επιθυμεί ο χρήστης. (Αρκεί να μην έχει χαρακτηριστει<br />
+final).</li>
+<li>Όταν μια μέθοδος γίνεται Override ο χρήστης μπορεί να προσθέσει πάνω από τον<br />
+ορισμό της μεθόδου το annotation <script type="text/javascript">
+<!--
+h='&#x4f;&#118;&#x65;&#114;&#114;&#114;&#x69;&#100;&#x65;&#x27;';a='&#64;';n='&#x27;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x27;&#32;&#x61;&#116;&#32;&#x4f;&#118;&#x65;&#114;&#114;&#114;&#x69;&#100;&#x65;&#x27;</noscript>. Αυτό γίνεται για να:
+<ul>
+<li>κανει ξεκάθαρο στους χρήστες ότι η μέθοδος γίνεται override.</li>
+<li>ο μεταγλωτιστης θα αναγνωρίσει κάποιο σφάλμα οπώς για παράδειγμα να μην<br />
+υπάρχει αυτή η μέθοδος στην υπερκλάση.</li>
+</ul></li>
+</ul>
+<h2 id="-1">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
+
+    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+}
+
+<span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
+
+    <span class="fu">@Overrride</span>
+    <span class="kw">public</span> String whοΙ<span class="fu">Am</span>() { <span class="kw">return</span> <span class="st">&quot;I am an equilateral triangle&quot;</span>; }
+}</code></pre></div>
+<h2 id="super">super</h2>
+<ul>
+<li>Σε μια κλάση η δεσμευμένη λέξη super είναι αντίστοιχη της δεσμευμένης λέξης<br />
+this με τη διαφορά ότι το αντικείμενο αναφέρεται στον εαυτό του ως αντικείμενο<br />
+της άμεσης υπερκλάσης.</li>
+<li>Το super χρησιμοποιείται για να κληθεί κάποια μέθοδος της υπερκλάσης που έχει<br />
+γίνει override από την υποκλάση, ή κάποιο πεδίο που δεν είναι private.</li>
+<li>Το super(ορίσματα) χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης<br />
+υπερκλάσης.</li>
+<li>Σε κάθε κατασκευαστή πρέπει να καλείται ο κατασκευαστής της άμεσης υπερκλάσης<br />
+στην πρώτη γραμμή του σώματός του. Αν δεν γραφεί κάτι ρητά τοτε και πάλι καλείται<br />
+ο κατασκευαστής της υπερκλάσης στη πρώτη γραμμή ουσιαστικά χωρίς κάποιο όρισμα.</li>
+</ul>
+<h2 id="-2">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
+
+    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+}
+
+<span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
+
+    <span class="fu">@Override</span>
+    <span class="kw">public</span> String whοΙ<span class="fu">Am</span>() {
+        <span class="kw">return</span> <span class="kw">super</span>.<span class="fu">whoIAm</span>() + <span class="st">&quot; and an equilateral one too&quot;</span>;
+    }
+}</code></pre></div>
+<h2 id="2">Παράδειγμα(2)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
+
+    <span class="kw">private</span> <span class="dt">int</span> base;
+    <span class="kw">private</span> <span class="dt">int</span> height;
+
+    <span class="kw">public</span> <span class="fu">Triangle</span>(<span class="dt">int</span> base, <span class="dt">int</span> height) {
+        <span class="co">// super();   &lt;-- Εννοείται</span>
+        <span class="kw">this</span>.<span class="fu">base</span> = base;
+        <span class="kw">this</span>.<span class="fu">height</span> = height;
+    }
+}
+
+<span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
+
+    <span class="kw">public</span> <span class="fu">EquilateralTriangle</span>(<span class="dt">int</span> base, <span class="dt">int</span> height) {
+        <span class="kw">super</span>(base, height);  <span class="co">// Εδω η κλήση της super είναι απαραίτητη</span>
+    }
+}</code></pre></div>
+<h2 id="-">Αφηρημένες κλάσεις</h2>
+<ul>
+<li>Όταν μια συλλογη από κλάσεις εχουν κάποια κοινά πεδία ή/και κάποια κοινή<br />
+συμπεριφορά τότε Αυτά τα κοινά στοιχεία μπορούν να εγκολποθούν σε μια υπερκλάση.<br />
+Αν αυτή η υπερκλάση είναι υπερβολικά γενική ή τα αντικείμενά της από το<br />
+προγραμμα, τότε μπορούμε να την κάνουμε αφηρημένη.</li>
+<li>Μια αφηρημένη κλάση, είναι μια κλάση η οποία δε μπορεί να αρχικοποιηθεί<br />
+απευθειας και γινεται διακριτή, από τη δεσμευμένη λέξη 'abstract' στον ορισμό της.</li>
+<li>Παρ' όλο που δεν μπορεί να αρχικοποιηθεί, διαθέτει κατασκευαστή.</li>
+<li>Στις αφηρημένες (μόνο) κλάσεις μπορούν να ορισθούν αφηρημένες μέθοδοι.</li>
+<li>Οι αφηρημένες κλάσεις έχουν όμοιες συμβάσεις για τη γραφή του ονόματός τους με<br />
+τις συνήθεις κλάσεις.</li>
+</ul>
+<h2 id="-">Αφηρημένες μέθοδοι</h2>
+<ul>
+<li>Σε αφηρημένες κλάσεις δίνεται η δυνατότητα να οριστουν αφηρημένες μέθοδοι.</li>
+<li>Μια αφηρημένη μέθοδος είναι μια μέθοδος με τη δεσμευμένη λέξη 'abstract' στον<br />
+όρισμό της.</li>
+<li>Είναι χρήσιμες στο να επιβάλει μια αφηρημένη κλάση μια γενική συμπεριφορά στις<br />
+υποκλάσεις της, δίνοντας όμως στις τελευταιες τη δυνατότητα να ορίσουν τις<br />
+λεπτομέριές της (το σώμα της).</li>
+<li>Αν σε μια αφηρημένη κλάση ορισθεί μια αφηρημένη μέθοδος, τότε κάθε υποκλάση της<br />
+είναι υποχρεωμένη να την ορίσει λεπτομερώς.</li>
+</ul>
+<h2 id="-3">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
+
+    <span class="kw">private</span> <span class="dt">int</span> numberOfVertices;
+
+    <span class="kw">public</span> Shape(<span class="dt">int</span> numberOfVertices) {
+        <span class="kw">this</span>.<span class="fu">numberOfVertices</span> = numberOfVertices;
+    }
+
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfVertices</span>() {
+        <span class="kw">return</span> numberOfVertices;
+    }
+
+    <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">double</span> <span class="fu">area</span>();
+}</code></pre></div>
+<h2 id="-1">Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> triangle <span class="kw">extends</span> Shape {
+
+    <span class="kw">private</span> <span class="dt">int</span> base;
+    <span class="kw">private</span> <span class="dt">int</span> height;
+
+    <span class="kw">public</span> <span class="fu">Triangle</span>(<span class="dt">int</span> base, <span class="dt">int</span> height) {
+        <span class="kw">super</span>(<span class="dv">3</span>)
+        <span class="kw">this</span>.<span class="fu">base</span> = base;
+        <span class="kw">this</span>.<span class="fu">height</span> = height;
+    }
+
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
+        <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
+    }
+}</code></pre></div>
+<h2 id="-2">Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> square <span class="kw">extends</span> Shape {
+
+    <span class="kw">private</span> <span class="dt">int</span> edge;
+
+    <span class="kw">public</span> <span class="fu">Square</span>(<span class="dt">int</span> edge) {
+        <span class="kw">super</span>(<span class="dv">4</span>);
+        <span class="kw">this</span>.<span class="fu">edge</span> = edge;
+    }
+
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
+        <span class="kw">return</span> edge*edge;
+    }
+}</code></pre></div>
+<h2>Διεπαφές</h2>
+<ul>
+<li>Ομοιότητες με αφηρημένες κλάσεις
+<ul>
+<li>Καθορίζουν μέρος της συμπεριφοράς των κλάσεων που τις υλοποιούν.</li>
+<li>Μπορον να ορισθούν μέθοδοι χωρίς σώμα όπως οι αφηρημένες μέθοδοι χωρίς<br />
+όμως την ανάγκη της δεσμευμένης λέξης 'abstract'. Αντίθετα μέθοδοι με σώμα<br />
+μπορούν να ορισθούν (από το jdk1.8 και μετά) με τη δεσμευμένη λέξη 'default'<br />
+στον ορισμό.</li>
+<li>Κάθε αντικείμενο που υλοποιεί μια διεπαφή αποκτά και τον τύπο που ορίζει<br />
+το όνομά της.</li>
+</ul></li>
+</ul>
+<h2 id="2">Διεπαφές(2)</h2>
+<ul>
+<li>Διαφορές με αφηρημένες κλάσεις:
+<ul>
+<li>Οι διεπαφές υλοποιούνται με τη δεσμευμένη λέξη 'implements' από τις<br />
+κλάσεις.</li>
+<li>Μια κλάση μπορεί να υλοποιήσει παραπάνω από μια διεπαφές.</li>
+<li>Μια διεπαφή μπορεί να έχει μονο final static πεδιά (σταθερές). Συνεπώς μια<br />
+διεπαφή δεν επιρρεάζει τη κατάσταση του αντικειμένου που την υλοποιεί αλλά<br />
+μόνο τη συμπεριφορά.</li>
+<li>Δεν έχουν κατασκευαστές.</li>
+<li>Στα ονόματα των διεπαφών η σύμβαση έιναι να χρησιμοποιείται συνήθως επίθετο<br />
+αντί για ουσιαστικό σε μορφή CamelCase.</li>
+</ul></li>
+</ul>
+<h2 id="-4">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
+
+    <span class="kw">private</span> <span class="dt">int</span> numberOfVertices;
+
+    <span class="kw">public</span> Shape(<span class="dt">int</span> numberOfVertices) {
+        <span class="kw">this</span>.<span class="fu">numberOfVertices</span> = numberOfVertices;
+    }
+
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfVertices</span>() {
+        <span class="kw">return</span> numberOfVertices;
+    }
+}</code></pre></div>
+<h2 id="-3">Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> <span class="fu">CalculableArea</span>() {
+
+    <span class="dt">double</span> <span class="fu">area</span>();
+}</code></pre></div>
+<h2 id="-4">Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> triangle <span class="kw">extends</span> Shape <span class="kw">implements</span> CalculableArea {
+
+    <span class="kw">private</span> <span class="dt">int</span> base;
+    <span class="kw">private</span> <span class="dt">int</span> height;
+
+    <span class="kw">public</span> <span class="fu">Triangle</span>(<span class="dt">int</span> base, <span class="dt">int</span> height) {
+        <span class="kw">super</span>(<span class="dv">3</span>)
+        <span class="kw">this</span>.<span class="fu">base</span> = base;
+        <span class="kw">this</span>.<span class="fu">height</span> = height;
+    }
+
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
+        <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
+    }
+}</code></pre></div>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
