@@ -50,25 +50,27 @@ public class Car {
 
 	// κατασκευαστής χωρίς ορίσματα
 	public Car() {
-		// empty
+		numberOfCars++;
 	}
 
 	// κατασκευαστής με ορίσματα
 	public Car(Color color, String licenseNumber, int cc) {
+		this();
 		this.color = color;
 		this.licenseNumber = licenseNumber;
 		this.cc = cc;
 	}
 
-// συμπεριφορά αυτοκινήτου
-public void startEngine() {...} // εκκίνηση του κινητήρα
-public void stopEngine() {...} // σβήσιμο του κινητήρα
-public void turnLeft(int degrees) {...} // στροφή αριστερά
-public void turnRight(int degrees) {...} // στροφή δεξιά
-public void break() {...} // φρενάρισμα
-public double getSpeed() {return speed;} // μέτρηση ταχύτητας
-// στατική μέθοδος
-public static int getNumberOfCars() {return numberOfCars;}
+	// συμπεριφορά αυτοκινήτου
+	public void startEngine() {...} // εκκίνηση του κινητήρα
+	public void stopEngine() {...} // σβήσιμο του κινητήρα
+	public void turnLeft(int degrees) {...} // στροφή αριστερά
+	public void turnRight(int degrees) {...} // στροφή δεξιά
+	public void break() {...} // φρενάρισμα
+	public double getSpeed() {return speed;} // μέτρηση ταχύτητας
+	// στατική μέθοδος
+	public static int getNumberOfCars() {return numberOfCars;}
+}
 ```
 
 

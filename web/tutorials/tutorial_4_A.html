@@ -47,25 +47,27 @@
 
     <span class="co">// κατασκευαστής χωρίς ορίσματα</span>
     <span class="kw">public</span> <span class="fu">Car</span>() {
-        <span class="co">// empty</span>
+        numberOfCars++;
     }
 
     <span class="co">// κατασκευαστής με ορίσματα</span>
     <span class="kw">public</span> <span class="fu">Car</span>(Color color, String licenseNumber, <span class="dt">int</span> cc) {
+        <span class="kw">this</span>();
         <span class="kw">this</span>.<span class="fu">color</span> = color;
         <span class="kw">this</span>.<span class="fu">licenseNumber</span> = licenseNumber;
         <span class="kw">this</span>.<span class="fu">cc</span> = cc;
     }
 
-<span class="co">// συμπεριφορά αυτοκινήτου</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">startEngine</span>() {...} <span class="co">// εκκίνηση του κινητήρα</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">stopEngine</span>() {...} <span class="co">// σβήσιμο του κινητήρα</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnLeft</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή αριστερά</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnRight</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή δεξιά</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="kw">break</span>() {...} <span class="co">// φρενάρισμα</span>
-<span class="kw">public</span> <span class="dt">double</span> <span class="fu">getSpeed</span>() {<span class="kw">return</span> speed;} <span class="co">// μέτρηση ταχύτητας</span>
-<span class="co">// στατική μέθοδος</span>
-<span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getNumberOfCars</span>() {<span class="kw">return</span> numberOfCars;}</code></pre></div>
+    <span class="co">// συμπεριφορά αυτοκινήτου</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">startEngine</span>() {...} <span class="co">// εκκίνηση του κινητήρα</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">stopEngine</span>() {...} <span class="co">// σβήσιμο του κινητήρα</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnLeft</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή αριστερά</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnRight</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή δεξιά</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="kw">break</span>() {...} <span class="co">// φρενάρισμα</span>
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getSpeed</span>() {<span class="kw">return</span> speed;} <span class="co">// μέτρηση ταχύτητας</span>
+    <span class="co">// στατική μέθοδος</span>
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getNumberOfCars</span>() {<span class="kw">return</span> numberOfCars;}
+}</code></pre></div>
 <h2 id="----1">Τύπου Πεδίων και Μεθόδων (1)</h2>
 <ul>
 <li><strong>Στιγμιοτύπου</strong>:
