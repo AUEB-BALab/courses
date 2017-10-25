@@ -314,6 +314,9 @@ class House implements CalculableArea {
         this.area = area;
     }
 
-
+    @Override
+    public double area() {
+        return area;
+    }
 }
 ```
