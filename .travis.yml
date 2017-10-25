@@ -6,4 +6,7 @@ install:
 - sudo apt-get install pandoc
 
 language: bash
-script: sudo make
+script: 
+- rsync --version
+- sudo tools/travis-deploy.sh
+
