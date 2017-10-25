@@ -2,7 +2,6 @@ language: python
 install:
 - pip install requests[security]
 - sudo pip install pandoc
-- sudo pip install https://bitbucket.org/vds2212/rsync.py/downloads/rsync-2.1.zip
 - sudo python -m pip install jupyter
 
 language: bash
