@@ -7,6 +7,5 @@ install:
 
 language: bash
 script: 
-- rsync --version
-- sh tools/travis-deploy.sh
+- make
 
