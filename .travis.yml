@@ -2,7 +2,7 @@ language: python
 install:
 - pip install requests[security]
 - sudo pip install pandoc
-- sudo dnf -y install rsync
+- sudo apt-get install rsync
 - sudo python -m pip install jupyter
 
 language: bash
