@@ -8,5 +8,5 @@ install:
 language: bash
 script: 
 - rsync --version
-- sudo tools/travis-deploy.sh
+- sh tools/travis-deploy.sh
 
