@@ -3,7 +3,7 @@ install:
 - pip install requests[security]
 - sudo pip install pandoc
 - sudo apt-get install rsync
-- sudo python -m pip install jupyter
+- sudo apt-get install pandoc
 
 language: bash
 script: make
