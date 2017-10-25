@@ -97,6 +97,11 @@
 </ul>
 <h2 id="-1">Παράδειγμα 1</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Time {
+
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> HOURS_PER_DAY = <span class="dv">24</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> MINUTES_PER_HOUR = <span class="dv">60</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> SECONDS_PER_MINUTE = <span class="dv">60</span>;
+
     <span class="kw">private</span> <span class="dt">int</span> hour;
     <span class="kw">private</span> <span class="dt">int</span> minute;
     <span class="kw">private</span> <span class="dt">int</span> second;
@@ -115,7 +120,7 @@
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setHour</span>(<span class="dt">int</span> h) {
-        hour = ((h &gt;= <span class="dv">0</span> &amp;&amp; h &lt; <span class="dv">24</span>) ? h : <span class="dv">0</span>);
+        hour = ((h &gt;= <span class="dv">0</span> &amp;&amp; h &lt; HOURS_PER_DAY) ? h : <span class="dv">0</span>);
     }</code></pre></div>
 <h2 id="-1-">Παράδειγμα 1 (Συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getMinute</span>() {
@@ -123,7 +128,7 @@
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setMinute</span>(<span class="dt">int</span> m) {
-        minute = ((m &gt;= <span class="dv">0</span> &amp;&amp; m &lt; <span class="dv">60</span>) ? m : <span class="dv">0</span>);
+        minute = ((m &gt;= <span class="dv">0</span> &amp;&amp; m &lt; MINUTES_PER_HOUR) ? m : <span class="dv">0</span>);
     }
 
     <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getSecond</span>() {
@@ -131,7 +136,7 @@
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setSecond</span>(<span class="dt">int</span> s) {
-        second = ((s &gt;= <span class="dv">0</span> &amp;&amp; s &lt; <span class="dv">24</span>) ? s : <span class="dv">0</span>);
+        second = ((s &gt;= <span class="dv">0</span> &amp;&amp; s &lt; SECONDS_PER_MINUTEd) ? s : <span class="dv">0</span>);
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTime</span>(<span class="dt">int</span> h, <span class="dt">int</span> m, <span class="dt">int</span> s) {

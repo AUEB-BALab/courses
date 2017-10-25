@@ -300,4 +300,20 @@ class triangle extends Shape implements CalculableArea {
         return (base*height) / 2.0;
     }
 }
-```    
+```  
+
+
+## Παράδειγμα(συνέχεια)
+
+```java
+class House implements CalculableArea {
+
+    private int area;
+
+    public House(int area) {
+        this.area = area;
+    }
+
+
+}
+```

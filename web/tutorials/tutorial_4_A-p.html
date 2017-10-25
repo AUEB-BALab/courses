@@ -103,6 +103,11 @@ public class Car {
 
 ```java
 public class Time {
+
+	private static final int HOURS_PER_DAY = 24;
+	private static final int MINUTES_PER_HOUR = 60;
+	private static final int SECONDS_PER_MINUTE = 60;
+
 	private int hour;
 	private int minute;
 	private int second;
@@ -121,7 +126,7 @@ public class Time {
 	}
 
 	public void setHour(int h) {
-		hour = ((h >= 0 && h < 24) ? h : 0);
+		hour = ((h >= 0 && h < HOURS_PER_DAY) ? h : 0);
 	}
 ```
 
@@ -134,7 +139,7 @@ public class Time {
 	}
 
 	public void setMinute(int m) {
-		minute = ((m >= 0 && m < 60) ? m : 0);
+		minute = ((m >= 0 && m < MINUTES_PER_HOUR) ? m : 0);
 	}
 
 	public int getSecond() {
@@ -142,7 +147,7 @@ public class Time {
 	}
 
 	public void setSecond(int s) {
-		second = ((s >= 0 && s < 24) ? s : 0);
+		second = ((s >= 0 && s < SECONDS_PER_MINUTEd) ? s : 0);
 	}
 
 	public void setTime(int h, int m, int s) {
