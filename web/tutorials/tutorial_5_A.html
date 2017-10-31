@@ -51,9 +51,9 @@ types)</em>.</li>
 </ul>
 <h2 id="---">Στατικός πολυμορφισμός και Υπερφόρτωση</h2>
 <ul>
-<li>Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομά της αλλά με<br />
+<li>Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομα της αλλά με<br />
 διαφορετικούς τύπους ορισμάτων.</li>
-<li>Θα προκύψει σφάλμα ασάφειας αν δυο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων<br />
+<li>Θα προκύψει σφάλμα ασάφειας αν δύο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων<br />
 με τον ίδιο τύπο ανεξάρτητα:
 <ul>
 <li>από τη σειρά τους</li>
@@ -79,7 +79,7 @@ types)</em>.</li>
 ή γενικότερες συλλογές/δομές απο στοιχεία.</li>
 <li><p>Μπορούμε επίσης να ορίσουμε ένα αντικείμενο τύπου υποκλάσης και αναφορά σε<br />
 υπερκλάση ή διεπαφή. Το αντικείμενο θα έχει τη συμπεριφορά της υπερκλάσης/διεπαφής<br />
-αφου έχουν γίνει τα overrides που ορίζει η υποκλάση.</p>
+αφού έχουν γίνει τα overrides που ορίζει η υποκλάση.</p>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">Parent child = <span class="kw">new</span> <span class="fu">Child</span>();</code></pre></div></li>
 </ul>
 <h2 id="-1">Παράδειγμα</h2>
@@ -88,18 +88,18 @@ types)</em>.</li>
 }
 
 <span class="kw">public</span> <span class="kw">class</span> Triange <span class="kw">implements</span> CalculableArea {
-    @ <span class="bu">Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height/<span class="dv">2</span>;}
 }
 
 <span class="kw">public</span> <span class="kw">class</span> Square <span class="kw">implements</span> CalculableArea {
-    @ <span class="bu">Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height;}
 }</code></pre></div>
 <h2>Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">double</span> <span class="fu">findArea</span>(CalculableArea shape, <span class="dt">double</span> base, <span class="dt">double</span> height) {
-        <span class="kw">return</span> shape.<span class="fu">area</span>(base, height);
+        <span class="kw">return</span> <span class="bu">Shape</span>.<span class="fu">area</span>(base, height);
     }
 
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
