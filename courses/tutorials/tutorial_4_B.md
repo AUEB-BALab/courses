@@ -36,10 +36,6 @@ class EquilateralTriangle extends Triangle {
 }
 ```
 
-
-
-## Παράδειγμα(συνέχεια)
-
 ```java
 public class Test {
     EquilateralTriangle equilateral = new EquilateralTriangle();
@@ -85,7 +81,7 @@ class EquilateralTriangle extends Triangle {
 της άμεσης υπερκλάσης.
 * Το **super** χρησιμοποιείται για να κληθεί κάποια μέθοδος της υπερκλάσης που έχει
 γίνει **override** από την υποκλάση, ή κάποιο πεδίο που δεν είναι private.
-* Το **super** (ορίσμα) χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης
+* Το **super(ορίσμα)** χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης
 υπερκλάσης.
 * Σε κάθε κατασκευαστή πρέπει να καλείται ο κατασκευαστής της άμεσης υπερκλάσης
 στην πρώτη γραμμή του σώματός του. Αν δεν γραφτεί κάτι ρητά τοτε και πάλι καλείται
@@ -283,7 +279,7 @@ interface CalculableArea() {
 ## Παράδειγμα(συνέχεια)
 
 ```java
-class Τriangle extends Shape implements CalculableArea {
+class Triangle extends Shape implements CalculableArea {
 
     private int base;
     private int height;

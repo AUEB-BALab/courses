@@ -60,7 +60,6 @@
 
     <span class="kw">public</span> <span class="bu">String</span> <span class="fu">whoIReallyAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am equilateral&quot;</span>; }
 }</code></pre></div>
-<h2>Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
     EquilateralTriangle equilateral = <span class="kw">new</span> <span class="fu">EquilateralTriangle</span>();
     <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIAm</span>())
@@ -98,7 +97,7 @@
 της άμεσης υπερκλάσης.</li>
 <li>Το <strong>super</strong> χρησιμοποιείται για να κληθεί κάποια μέθοδος της υπερκλάσης που έχει<br />
 γίνει <strong>override</strong> από την υποκλάση, ή κάποιο πεδίο που δεν είναι private.</li>
-<li>Το <strong>super</strong> (ορίσμα) χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης<br />
+<li>Το <strong>super(ορίσμα)</strong> χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης<br />
 υπερκλάσης.</li>
 <li>Σε κάθε κατασκευαστή πρέπει να καλείται ο κατασκευαστής της άμεσης υπερκλάσης<br />
 στην πρώτη γραμμή του σώματός του. Αν δεν γραφτεί κάτι ρητά τοτε και πάλι καλείται<br />
@@ -174,7 +173,7 @@
 
     <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">double</span> <span class="fu">area</span>();
 }</code></pre></div>
-<h2 id="-1">Παράδειγμα(συνέχεια)</h2>
+<h2>Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> triangle <span class="kw">extends</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> base;
@@ -191,7 +190,7 @@
         <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
     }
 }</code></pre></div>
-<h2 id="-2">Παράδειγμα(συνέχεια)</h2>
+<h2 id="-1">Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> square <span class="kw">extends</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> edge;
@@ -246,13 +245,13 @@
         <span class="kw">return</span> numberOfVertices;
     }
 }</code></pre></div>
-<h2 id="-3">Παράδειγμα(συνέχεια)</h2>
+<h2 id="-2">Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> <span class="fu">CalculableArea</span>() {
 
     <span class="dt">double</span> <span class="fu">area</span>();
 }</code></pre></div>
-<h2 id="-4">Παράδειγμα(συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Τriangle <span class="kw">extends</span> <span class="bu">Shape</span> <span class="kw">implements</span> CalculableArea {
+<h2 id="-3">Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle <span class="kw">extends</span> <span class="bu">Shape</span> <span class="kw">implements</span> CalculableArea {
 
     <span class="kw">private</span> <span class="dt">int</span> base;
     <span class="kw">private</span> <span class="dt">int</span> height;
@@ -268,7 +267,7 @@
         <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
     }
 }</code></pre></div>
-<h2 id="-5">Παράδειγμα(συνέχεια)</h2>
+<h2 id="-4">Παράδειγμα(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> House <span class="kw">implements</span> CalculableArea {
 
     <span class="kw">private</span> <span class="dt">int</span> area;
