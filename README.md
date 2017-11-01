@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/stefanos1316/stefanos1316.github.io/branches)](https://travis-ci.org/stefanos1316/stefanos1316.github.io)
+[![Build Status](https://travis-ci.org/stefanos1316/stefanos1316.github.io.svg?branch=master)](https://travis-ci.org/stefanos1316/stefanos1316.github.io)
 
 Καθηγητής Μαθήματος: Διομήδης Σπινέλλης
 
