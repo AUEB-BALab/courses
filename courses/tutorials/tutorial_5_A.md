@@ -19,13 +19,14 @@ java.
 
 ## Στατικός πολυμορφισμός και Υπερφόρτωση
 
-* Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομα της αλλά με
+* Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομά της αλλά με
 διαφορετικούς τύπους ορισμάτων.
-* Θα προκύψει σφάλμα ασάφειας αν δύο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων
+* Θα προκύψει σφάλμα αν δυο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων
 με τον ίδιο τύπο ανεξάρτητα:
-    * από τη σειρά τους
     * από τον τύπο που επιστρέφει
     * το όνομα των ορισμάτων
+* Μπορεί να προκύψει σφάλμα ακόμα και όταν υπάρχουν ίδια ορίσματα με διαφορετική
+σειρά.
 
 
 ## Παράδειγμα
@@ -51,7 +52,7 @@ public class Example {
 ή γενικότερες συλλογές/δομές απο στοιχεία.
 * Μπορούμε επίσης να ορίσουμε ένα αντικείμενο τύπου υποκλάσης και αναφορά σε
 υπερκλάση ή διεπαφή. Το αντικείμενο θα έχει τη συμπεριφορά της υπερκλάσης/διεπαφής
-αφού έχουν γίνει τα overrides που ορίζει η υποκλάση.
+αφου έχουν γίνει τα overrides που ορίζει η υποκλάση.
 ```java
 Parent child = new Child();
 ```
@@ -65,12 +66,12 @@ interface CalculableArea {
 }
 
 public class Triange implements CalculableArea {
-    @Override
+    @ Override
     public double area(double base, double height) {return base*height/2;}
 }
 
 public class Square implements CalculableArea {
-    @Override
+    @ Override
     public double area(double base, double height) {return base*height;}
 }
 ```
@@ -81,7 +82,7 @@ public class Square implements CalculableArea {
 ```java
 public class Test {
     public static double findArea(CalculableArea shape, double base, double height) {
-        return Shape.area(base, height);
+        return shape.area(base, height);
     }
 
     public static void main(String[] args) {
