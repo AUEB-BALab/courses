@@ -17,3 +17,7 @@
 
 ## Φροντιστήριο 5
 * [Πολυμορφισμός](tutorials/tutorial_5_A.md)
+* [Εξαιρέσεις και Ισχυρισμοί](tutorials/tutorial_5_B.md)
+
+## Φροντιστήριο 6
+* [Πρατφόρμα Eclipse](tutorials/tutorial_6_A.md)
