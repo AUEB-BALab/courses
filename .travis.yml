@@ -7,5 +7,5 @@ install:
 
 language: bash
 script: 
-- make
+- bash tools/travis-deploy.sh
 
