@@ -20,7 +20,7 @@ public class LightBulb {
 
     public LightBulb(boolean light) {
         this.light = light;
-        numOfObjects++;
+        numOfObjects+=1;
     }
 
     public boolean isLit() {

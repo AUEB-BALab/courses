@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp----">Coding Bootcamp: Έλεγχος Ροής και Επαναλήψεις</h1>
+<h1 id="programming-ii----">Programming II: Έλεγχος Ροής και Επαναλήψεις</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="--">Έλεγχος ροής προγράμματος</h2>
@@ -82,7 +82,7 @@
 </tbody>
 </table>
 <ul>
-<li>Βεβαίως μπορούν να φτιαχτούν από το χρήστη δικοί του συγκρισιακοί τελεστές<br />
+<li>Επίσης, μπορούν να φτιαχτούν από το χρήστη δικοί του συγκρισιακοί τελεστές<br />
 ανάλογα με τις ανάγκες του.</li>
 </ul>
 <h2 id="-.">Λογικοί τελεστές.</h2>
@@ -101,7 +101,7 @@
 </ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">boolean</span> x = <span class="kw">true</span>;
 <span class="dt">int</span> y = <span class="dv">4</span>, z = <span class="dv">5</span>;
-System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == z) || x));</code></pre></div>
+<span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == z) || x));</code></pre></div>
 <h2 id="if">if</h2>
 <ul>
 <li>Με τη βοήθεια των &quot;if&quot; μπορούμε να εκτελέσουμε ένα κομμάτι κώδικα μόνο όταν<br />
@@ -113,7 +113,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 <h2>Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
 <span class="kw">if</span> (mark &gt;= <span class="dv">5</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
 }</code></pre></div>
 <h2 id="ifelse">if/else</h2>
 <ul>
@@ -129,9 +129,9 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 <h2 id="-1">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
 <span class="kw">if</span> (mark &gt;= <span class="dv">5</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student didn&#39;t fail the exams&quot;</span>);
 } <span class="kw">else</span> {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
 }</code></pre></div>
 <h2 id="ifelseifelse">if/elseif/else</h2>
 <ul>
@@ -151,11 +151,11 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 <h2 id="-2">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
 <span class="kw">if</span> (mark &lt; <span class="dv">5</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
 } <span class="kw">else</span> <span class="kw">if</span> (mark &gt;= <span class="dv">5</span> &amp;&amp; mark &lt; <span class="dv">8</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
 } <span class="kw">else</span> { <span class="co">// equivalent with &quot;else if (mark &gt;= 8) {&quot;</span>
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
 }</code></pre></div>
 <h2>Παρατηρήσεις</h2>
 <ul>
@@ -166,11 +166,11 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 </ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> mark = <span class="dv">7</span>;
 <span class="kw">if</span> (mark &lt; <span class="dv">5</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student failed the exams&quot;</span>);
 } <span class="kw">else</span> <span class="kw">if</span> (mark &lt; <span class="dv">8</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is good&quot;</span>);
 } <span class="kw">else</span> <span class="kw">if</span> (mark &lt;= <span class="dv">10</span>) {
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Student is excellent&quot;</span>);
 }</code></pre></div>
 <h2 id="switch">switch</h2>
 <ul>
@@ -194,16 +194,16 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 
 <span class="kw">switch</span> (numOfAngles) {
 <span class="kw">case</span> <span class="dv">3</span>:
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;triangle&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;triangle&quot;</span>);
     <span class="kw">break</span>;
 <span class="kw">case</span> <span class="dv">4</span>:
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;rectangle&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;rectangle&quot;</span>);
     <span class="kw">break</span>;
 <span class="kw">case</span> <span class="dv">5</span>:
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;pentagon&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;pentagon&quot;</span>);
     <span class="kw">break</span>;
 <span class="kw">default</span>:
-    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Higher polygon&quot;</span>);
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Higher polygon&quot;</span>);
 }</code></pre></div>
 <h2 id="-1">Παρατηρήσεις</h2>
 <ul>
@@ -217,7 +217,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
 <li>Σε περίπτωση που έχουμε μια σύντομη συνθήκη σε &quot;if/else&quot; με μικρό σώμα εντολών<br />
 μπορούμε να χρησιμοποιήσουμε &quot;?:&quot; με την ακόλουθη δομή:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">συνθήκη ? εντολή<span class="dv">1</span> : εντολη<span class="dv">2</span>;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">συνθήκη ? εντολή1 : εντολη2;</code></pre></div>
 <p>που σημαίνει ότι αν ικανοποιείται η συνθήκη το πρόγραμμα θα τρέξει την &quot;εντολή1&quot;<br />
 αλλιώς θα τρέξει την &quot;εντολή2&quot;</p>
 <h2 id="for">for</h2>
@@ -331,7 +331,7 @@ java είναι με τη χρήση της 'while' επανάληψης. Η δ�
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> <span class="fu">findSpecificNumber</span>(<span class="dt">int</span>[] array, <span class="dt">int</span> number) {
         <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; array.<span class="fu">lenght</span>; ++i) {
             <span class="kw">if</span> (array[i] == number) {
-                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number found at position &quot;</span> + i);
+                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number found at position &quot;</span> + i);
                 <span class="kw">break</span>;
             }
         }

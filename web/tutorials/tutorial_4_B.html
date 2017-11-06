@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp-----">Coding Bootcamp: Κληρονομικότητα, Αφηρημένες Κλάσεις και Διεπαφές</h1>
+<h1 id="programming-ii-----">Programming II: Κληρονομικότητα, Αφηρημένες Κλάσεις και Διεπαφές</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="---">Κληρονομικότητα, Αφηρημένες κλάσεις, Διεπαφές</h2>
@@ -44,26 +44,28 @@
 <li>Οι ειδικότερες κλάσεις ονομάζονται και υποκλάσεις των γενικότερων και<br />
 αντίστροφα οι γενικότερες κλάσεις ονομάζονται υπερκλάσεις των ειδικότερων.</li>
 <li>Ένα αντικείμενο μιας υποκλάσης είναι και αντικείμενο της (κάθε) υπερκλάσης.</li>
-<li><p>Στη java κάθε κλάση μπορεί να κληρομήσει άμεσα μόνο μία υπερκλάση<br />
-χρησιμοποιώντας τη δεσμευμένη λέξη extends.</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> SubClass <span class="kw">extends</span> SuperClass {...}</code></pre></div></li>
-<li><p>Όλες οι κλάσεις στη java κληρονομούν την κλάση Object ακόμα και όταν αυτό δε<br />
-γίνεται ρητά μέσω της εντολής extends.</p></li>
+<li>Στη java κάθε κλάση μπορεί να κληρομήσει άμεσα μόνο μία υπερκλάση<br />
+χρησιμοποιώντας τη δεσμευμένη λέξη extends.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> SubClass <span class="kw">extends</span> SuperClass {...}</code></pre></div>
+<ul>
+<li>Όλες οι κλάσεις στη java κληρονομούν την κλάση Object ακόμα και όταν αυτό δε<br />
+γίνεται ρητά μέσω της εντολής extends.</li>
 </ul>
 <h2>Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
 
-    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
 }
 
 <span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
 
-    <span class="kw">public</span> String <span class="fu">whoIReallyAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am equilateral&quot;</span>; }
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">whoIReallyAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am equilateral&quot;</span>; }
 }</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
     EquilateralTriangle equilateral = <span class="kw">new</span> <span class="fu">EquilateralTriangle</span>();
-    System.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIAm</span>())
-    System.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIReallyAm</span>());
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIAm</span>())
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(equilateral.<span class="fu">whoIReallyAm</span>());
 }</code></pre></div>
 <h2 id="override">Override</h2>
 <ul>
@@ -72,12 +74,7 @@
 τον ίδιο τύπο και το σώμα που επιθυμεί ο χρήστης. (Αρκεί να μην έχει χαρακτηριστεί<br />
 ως final).</li>
 <li>Όταν μια μέθοδος γίνεται Override ο χρήστης μπορεί να προσθέσει πάνω από τον<br />
-ορισμό της μεθόδου το annotation <script type="text/javascript">
-<!--
-h='&#x4f;&#118;&#x65;&#114;&#114;&#x69;&#100;&#x65;&#x27;';a='&#64;';n='&#x27;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>&#x27;&#32;&#x61;&#116;&#32;&#x4f;&#118;&#x65;&#114;&#114;&#x69;&#100;&#x65;&#x27;</noscript>. Αυτό γίνεται για να:
+ορισμό της μεθόδου το annotation '@Override'. Αυτό γίνεται για να:
 <ul>
 <li>κανει ξεκάθαρο στους χρήστες ότι η μέθοδος γίνεται override.</li>
 <li>ο μεταγλωτιστής θα αναγνωρίσει κάποιο σφάλμα οπώς για παράδειγμα να μην<br />
@@ -87,13 +84,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 <h2 id="-1">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
 
-    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
 }
 
 <span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
 
-    <span class="fu">@Overrride</span>
-    <span class="kw">public</span> String whοΙ<span class="fu">Am</span>() { <span class="kw">return</span> <span class="st">&quot;I am an equilateral triangle&quot;</span>; }
+    <span class="at">@Overrride</span>
+    <span class="kw">public</span> <span class="bu">String</span> whοΙAm() { <span class="kw">return</span> <span class="st">&quot;I am an equilateral triangle&quot;</span>; }
 }</code></pre></div>
 <h2 id="super">super</h2>
 <ul>
@@ -111,13 +108,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 <h2 id="-2">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
 
-    <span class="kw">public</span> String <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">whoIAm</span>() { <span class="kw">return</span> <span class="st">&quot;I am a triangle&quot;</span>; }
 }
 
 <span class="kw">class</span> EquilateralTriangle <span class="kw">extends</span> Triangle {
 
-    <span class="fu">@Override</span>
-    <span class="kw">public</span> String whοΙ<span class="fu">Am</span>() {
+    <span class="at">@Override</span>
+    <span class="kw">public</span> <span class="bu">String</span> whοΙAm() {
         <span class="kw">return</span> <span class="kw">super</span>.<span class="fu">whoIAm</span>() + <span class="st">&quot; and an equilateral one too&quot;</span>;
     }
 }</code></pre></div>
@@ -164,11 +161,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 είναι υποχρεωμένη να την ορίσει λεπτομερώς.</li>
 </ul>
 <h2 id="-3">Παράδειγμα</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> numberOfVertices;
 
-    <span class="kw">public</span> Shape(<span class="dt">int</span> numberOfVertices) {
+    <span class="kw">public</span> <span class="bu">Shape</span>(<span class="dt">int</span> numberOfVertices) {
         <span class="kw">this</span>.<span class="fu">numberOfVertices</span> = numberOfVertices;
     }
 
@@ -179,7 +176,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
     <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">double</span> <span class="fu">area</span>();
 }</code></pre></div>
 <h2>Παράδειγμα(συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> triangle <span class="kw">extends</span> Shape {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> triangle <span class="kw">extends</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> base;
     <span class="kw">private</span> <span class="dt">int</span> height;
@@ -190,13 +187,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
         <span class="kw">this</span>.<span class="fu">height</span> = height;
     }
 
-    <span class="fu">@Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
         <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
     }
 }</code></pre></div>
 <h2 id="-1">Παράδειγμα(συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> square <span class="kw">extends</span> Shape {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> square <span class="kw">extends</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> edge;
 
@@ -205,7 +202,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
         <span class="kw">this</span>.<span class="fu">edge</span> = edge;
     }
 
-    <span class="fu">@Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
         <span class="kw">return</span> edge*edge;
     }
@@ -238,11 +235,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 </ul></li>
 </ul>
 <h2 id="-4">Παράδειγμα</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> <span class="bu">Shape</span> {
 
     <span class="kw">private</span> <span class="dt">int</span> numberOfVertices;
 
-    <span class="kw">public</span> Shape(<span class="dt">int</span> numberOfVertices) {
+    <span class="kw">public</span> <span class="bu">Shape</span>(<span class="dt">int</span> numberOfVertices) {
         <span class="kw">this</span>.<span class="fu">numberOfVertices</span> = numberOfVertices;
     }
 
@@ -256,7 +253,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
     <span class="dt">double</span> <span class="fu">area</span>();
 }</code></pre></div>
 <h2 id="-3">Παράδειγμα(συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle <span class="kw">extends</span> Shape <span class="kw">implements</span> CalculableArea {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle <span class="kw">extends</span> <span class="bu">Shape</span> <span class="kw">implements</span> CalculableArea {
 
     <span class="kw">private</span> <span class="dt">int</span> base;
     <span class="kw">private</span> <span class="dt">int</span> height;
@@ -267,7 +264,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
         <span class="kw">this</span>.<span class="fu">height</span> = height;
     }
 
-    <span class="fu">@Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
         <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
     }
@@ -281,7 +278,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
         <span class="kw">this</span>.<span class="fu">area</span> = area;
     }
 
-    <span class="fu">@Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
         <span class="kw">return</span> area;
     }

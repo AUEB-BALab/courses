@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp---">Coding Bootcamp: Εισαγωγή στα Αντικείμενα</h1>
+<h1 id="programming-ii---">Programming II: Εισαγωγή στα Αντικείμενα</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="-">Κανόνες μορφοποιήσης</h2>
@@ -50,7 +50,7 @@
 
     <span class="kw">public</span> <span class="fu">LightBulb</span>(<span class="dt">boolean</span> light) {
         <span class="kw">this</span>.<span class="fu">light</span> = light;
-        numOfObjects++;
+        numOfObjects+=<span class="dv">1</span>;
     }
 
     <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isLit</span>() {
@@ -139,38 +139,38 @@ print ένα object).</li>
 <h2 id="1">Παράδειγμα(1)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
 
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
         LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
         LightBulb objLightBulb2 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
 
         objLightBulb1.<span class="fu">setState</span>();
 
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
     }
 }</code></pre></div>
 <h2 id="2">Παράδειγμα(2)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
 
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
         LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
         Foo objLightBulb2 = objLightBulb1;
 
         objLightBulb1.<span class="fu">switchlight</span>();
 
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
     }
 }</code></pre></div>
 <h2 id="3">Παράδειγμα(3)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
 
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
         LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
         LightBulb objLightBulb2 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">false</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(LightBulb.<span class="fu">getNumOfObjects</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">getNumOfObjects</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">isLit</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(LightBulb.<span class="fu">getNumOfObjects</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">getNumOfObjects</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">isLit</span>());
 
         <span class="co">// System.out.println(LightBulb.isLit());</span>
         <span class="co">// System.out.println(lightBulb.light);</span>

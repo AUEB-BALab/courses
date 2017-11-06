@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp-">Coding Bootcamp: Πολυμορφισμός</h1>
+<h1 id="programming-ii-">Programming II: Πολυμορφισμός</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2>Πολυμορφισμός</h2>
@@ -39,7 +39,7 @@
 </ul>
 <h2 id="-1">Πολυμορφισμός</h2>
 <ul>
-<li>Ο πολυμορφισμός είναι η ικανότητα να χρησιμοποιήσουμε μια λειτουργία με<br />
+<li>Είναι η ικανότητα να χρησιμοποιήσουμε μια λειτουργία με<br />
 διαφορετικό τύπο, ορίσματα ή παραμέτρους. Υπάρχουν τρία ήδη πολυμορφισμού στη<br />
 java.
 <ul>
@@ -89,12 +89,12 @@ types)</em>.</li>
 }
 
 <span class="kw">public</span> <span class="kw">class</span> Triange <span class="kw">implements</span> CalculableArea {
-    @ Override
+    @ <span class="bu">Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height/<span class="dv">2</span>;}
 }
 
 <span class="kw">public</span> <span class="kw">class</span> Square <span class="kw">implements</span> CalculableArea {
-    @ Override
+    @ <span class="bu">Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height;}
 }</code></pre></div>
 <h2>Παράδειγμα(συνέχεια)</h2>
@@ -103,43 +103,43 @@ types)</em>.</li>
         <span class="kw">return</span> shape.<span class="fu">area</span>(base, height);
     }
 
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
         Triangle triangle = <span class="kw">new</span> <span class="fu">Triangle</span>();
         Square square = <span class="kw">new</span> <span class="fu">Square</span>();
         <span class="dt">double</span> base = <span class="fl">2.0</span>;
         <span class="dt">double</span> height = <span class="fl">2.0</span>;
 
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(triangle, base, height));
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(square, base, height));
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(triangle, base, height));
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(square, base, height));
     }
 }</code></pre></div>
 <h2 id="2">Παράδειγμα2</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Parent {
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am parent&quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am parent&quot;</span>);
     }
 }
 
 <span class="kw">class</span> Child <span class="kw">extends</span> Parent{
-    <span class="fu">@Override</span>
+    <span class="at">@Override</span>
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am child &quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am child &quot;</span>);
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">also</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;and only a child&quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;and only a child&quot;</span>);
     }
 }</code></pre></div>
 <h2 id="2">Παράδειγμα2(συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
         Parent parent = <span class="kw">new</span> <span class="fu">Parent</span>();
         Child child = <span class="kw">new</span> <span class="fu">Child</span>();
         Parent child2 = <span class="kw">new</span> <span class="fu">Child</span>();
 
-        System.<span class="fu">out</span>.<span class="fu">println</span>(parent.<span class="fu">whoAmI</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(child.<span class="fu">whoAmI</span>() + child.<span class="fu">also</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(child2.<span class="fu">whoAmI</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(parent.<span class="fu">whoAmI</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(child.<span class="fu">whoAmI</span>() + child.<span class="fu">also</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(child2.<span class="fu">whoAmI</span>());
         <span class="co">// System.out.println(child2.also());</span>
     }
 }</code></pre></div>
@@ -152,26 +152,26 @@ types)</em>.</li>
 <li>Δεν χρειάζεται <em>type casting</em>.</li>
 </ul>
 <h2 id="--">Ορισμός γενικευμένων τύπων</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> ΟνομαΚλασης&lt;Τυπος<span class="dv">1</span>,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> ΟνομαΔιεπαφης&lt;Τυπος<span class="dv">1</span>,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> ΟνομαΚλασης&lt;Τυπος1,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> ΟνομαΔιεπαφης&lt;Τυπος1,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
 <h2 id="-2">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Summarizer&lt;T&gt; {
     <span class="kw">public</span> T <span class="fu">add</span>(T num1, T num <span class="dv">2</span>) {<span class="kw">return</span> num1 + num2;}
 }</code></pre></div>
 <h2 id="--">Αρχικοποίηση γενικευμένων τύπων</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">ΟνομαΚλάσης&lt;Τυπος<span class="dv">1</span>,<span class="kw">... </span>, ΤυποςΝ&gt; αντικείμενο = <span class="kw">new</span> ΟνομαΚλασης&lt;&gt;();</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">ΟνομαΚλάσης&lt;Τυπος1,<span class="kw">... </span>, ΤυποςΝ&gt; αντικείμενο = <span class="kw">new</span> ΟνομαΚλασης&lt;&gt;();</code></pre></div>
 <ul>
 <li><em>Παρατήρηση:</em> Πριν τη java7 έπρεπε να επαναλάβουμε τους τύπους και στα δεύτερα<br />
 '&lt;&gt;'.</li>
 </ul>
 <h2 id="-3">Παράδειγμα</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-        Summarizer&lt;Integer&gt; sum1 = <span class="kw">new</span> Summarizer&lt;&gt;();
-        Summarizer&lt;String&gt; sum2 = <span class="kw">new</span> Summarizer&lt;&gt;();
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        Summarizer&lt;<span class="bu">Integer</span>&gt; sum1 = <span class="kw">new</span> Summarizer&lt;&gt;();
+        Summarizer&lt;<span class="bu">String</span>&gt; sum2 = <span class="kw">new</span> Summarizer&lt;&gt;();
 
-        System.<span class="fu">out</span>.<span class="fu">println</span>(sum1.<span class="fu">add</span>(<span class="dv">3</span>, <span class="dv">5</span>));
-        System.<span class="fu">out</span>.<span class="fu">println</span>(sum2.<span class="fu">add</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>))
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(sum1.<span class="fu">add</span>(<span class="dv">3</span>, <span class="dv">5</span>));
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(sum2.<span class="fu">add</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>))
     }
 }</code></pre></div>
 

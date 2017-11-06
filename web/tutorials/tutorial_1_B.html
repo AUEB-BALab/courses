@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp-----">Coding Bootcamp: Τελεστές, τύποι, και εμβέλεια μεταβλητών</h1>
+<h1 id="programming-ii-----">Programming II: Τελεστές, τύποι, και εμβέλεια μεταβλητών</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="-1--">Φροντιστήριο 1 (Β' μέρος)</h2>
@@ -42,7 +42,7 @@
 <li>Δήλωση μεταβλητών</li>
 <li>Type Casting</li>
 <li>Τελεστές</li>
-<li>Τεκμηρίωση της Java</li>
+<li>Τεκμηρίωση</li>
 </ul>
 <h2 id="-">Δήλωση Μεταβλητών</h2>
 <ul>
@@ -183,30 +183,30 @@
 <h1 id="-1">Εμβέλεια Μεταβλητών(1)</h1>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Scope {
     
-        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
             <span class="dt">int</span> x = <span class="dv">10</span>;
             <span class="kw">if</span> (x == <span class="dv">10</span>) {
                 <span class="dt">int</span> y = <span class="dv">20</span>;
-                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
+                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
                 x = y * <span class="dv">2</span>;
             }
             y = <span class="dv">100</span>;
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
         }
 
     }</code></pre></div>
 <h1 id="-2">Εμβέλεια Μεταβλητών(2)</h1>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Scope {
     
-        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
             <span class="dt">int</span> x = <span class="dv">10</span>;
             <span class="kw">if</span> (x == <span class="dv">10</span>) {
                 <span class="dt">int</span> y = <span class="dv">20</span>;
-                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
+                <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y: &quot;</span> + x + y);
                 x = y * <span class="dv">2</span>;
             }
             y = <span class="dv">100</span>; <span class="co">//ERROR</span>
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span> + x);
         }
 
     }</code></pre></div>

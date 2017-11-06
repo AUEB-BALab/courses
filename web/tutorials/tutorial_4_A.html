@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp----">Coding Bootcamp: Τύποι Πεδίων και Μεθόδων</h1>
+<h1 id="programming-ii----">Programming II: Τύποι Πεδίων και Μεθόδων</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
 <h2 id="---">Τύποι Πεδίων και Μεθόδων</h2>
@@ -39,8 +39,8 @@
 </ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Car {
     <span class="co">// κατάσταση αυτοκινήτου</span>
-    <span class="kw">public</span> Color color; <span class="co">// χρώμα</span>
-    <span class="kw">private</span> String licenseNumber; <span class="co">// αριθμός κυκλοφορίας</span>
+    <span class="kw">public</span> <span class="bu">Color</span> color; <span class="co">// χρώμα</span>
+    <span class="kw">private</span> <span class="bu">String</span> licenseNumber; <span class="co">// αριθμός κυκλοφορίας</span>
     <span class="kw">public</span> <span class="dt">int</span> cc; <span class="co">// κυβισμός κινητήρα</span>
     <span class="kw">private</span> <span class="dt">double</span> speed; <span class="co">// ταχύτητα</span>
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> numberOfCars = <span class="dv">0</span>; <span class="co">// αριθμός αυτοκινήτων</span>
@@ -51,7 +51,7 @@
     }
 
     <span class="co">// κατασκευαστής με ορίσματα</span>
-    <span class="kw">public</span> <span class="fu">Car</span>(Color color, String licenseNumber, <span class="dt">int</span> cc) {
+    <span class="kw">public</span> <span class="fu">Car</span>(<span class="bu">Color</span> color, <span class="bu">String</span> licenseNumber, <span class="dt">int</span> cc) {
         <span class="kw">this</span>();
         <span class="kw">this</span>.<span class="fu">color</span> = color;
         <span class="kw">this</span>.<span class="fu">licenseNumber</span> = licenseNumber;
@@ -96,7 +96,7 @@
 <li>Οι στατικές (<strong>static</strong>) μέθοδοι δε μπορούν να χρησιμοποιήσουν το <strong>this</strong>, αφού δεν αναφέρονται σε ένα συγκεκριμένο αντικείμενο</li>
 </ul>
 <h2 id="-1">Παράδειγμα 1</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Time {
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> <span class="bu">Time</span> {
 
     <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> HOURS_PER_DAY = <span class="dv">24</span>;
     <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> MINUTES_PER_HOUR = <span class="dv">60</span>;
@@ -106,10 +106,10 @@
     <span class="kw">private</span> <span class="dt">int</span> minute;
     <span class="kw">private</span> <span class="dt">int</span> second;
 
-    <span class="kw">public</span> Time() {
+    <span class="kw">public</span> <span class="bu">Time</span>() {
     }
 
-    <span class="kw">public</span> Time(<span class="dt">int</span> hour, <span class="dt">int</span> minute, <span class="dt">int</span> second) {
+    <span class="kw">public</span> <span class="bu">Time</span>(<span class="dt">int</span> hour, <span class="dt">int</span> minute, <span class="dt">int</span> second) {
         <span class="kw">this</span>.<span class="fu">hour</span> = hour;
         <span class="kw">this</span>.<span class="fu">minute</span> = minute;
         <span class="kw">this</span>.<span class="fu">second</span> = second;
@@ -147,32 +147,32 @@
 }</code></pre></div>
 <h2 id="-1--1">Παράδειγμα 1 (Συνέχεια)</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TimeTest {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
-        Time t1 = <span class="kw">new</span> Time();
-        Time t2 = <span class="kw">new</span> Time(<span class="dv">12</span>, <span class="dv">25</span>, <span class="dv">42</span>);
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span> args[]) {
+        <span class="bu">Time</span> t1 = <span class="kw">new</span> <span class="bu">Time</span>();
+        <span class="bu">Time</span> t2 = <span class="kw">new</span> <span class="bu">Time</span>(<span class="dv">12</span>, <span class="dv">25</span>, <span class="dv">42</span>);
         t2.<span class="fu">setTime</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>);
         t1.<span class="fu">setTime</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">15</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(t2.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getSecond</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(t1.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getSecond</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(t2.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getSecond</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(t1.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getSecond</span>());
     }
 }</code></pre></div>
 <h2 id="-2">Παράδειγμα 2</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Date;</span>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.util.Date;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> Employee {
-    <span class="kw">private</span> String firstName;
-    <span class="kw">private</span> String lastName;
-    <span class="kw">private</span> Date birthDate;
-    <span class="kw">private</span> Date hireDate;
+    <span class="kw">private</span> <span class="bu">String</span> firstName;
+    <span class="kw">private</span> <span class="bu">String</span> lastName;
+    <span class="kw">private</span> <span class="bu">Date</span> birthDate;
+    <span class="kw">private</span> <span class="bu">Date</span> hireDate;
 
-    <span class="kw">public</span> <span class="fu">Employee</span>(String fN, String lN, Date dateOfBirth, Date dateOfHire) {
+    <span class="kw">public</span> <span class="fu">Employee</span>(<span class="bu">String</span> fN, <span class="bu">String</span> lN, <span class="bu">Date</span> dateOfBirth, <span class="bu">Date</span> dateOfHire) {
         firstName = fN;
         lastName = lN;
         birthDate = dateOfBirth;
         hireDate = dateOfHire;
     }
 
-    <span class="kw">public</span> String <span class="fu">toString</span>() {
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span>() {
         <span class="kw">return</span> <span class="st">&quot;Name of employee: &quot;</span> + firstName + <span class="st">&quot;, &quot;</span>
         + <span class="st">&quot;Surname of employee: &quot;</span> + lastName + <span class="st">&quot;, &quot;</span> + <span class="st">&quot;Date of birth: &quot;</span>
         + birthDate + <span class="st">&quot;, &quot;</span> + <span class="st">&quot;Date of hire: &quot;</span> + hireDate + <span class="st">&quot;. &quot;</span>;
@@ -180,35 +180,35 @@
     }
 }</code></pre></div>
 <h2 id="-2-">Παράδειγμα 2 (Συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.text.ParseException;</span>
-<span class="kw">import java.text.SimpleDateFormat;</span>
-<span class="kw">import java.util.Date;</span>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.text.ParseException;</span>
+<span class="kw">import</span><span class="im"> java.text.SimpleDateFormat;</span>
+<span class="kw">import</span><span class="im"> java.util.Date;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> EmployeeTest {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span> args[]) {
         <span class="kw">try</span> {
-            Date birth = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
-            Date hire = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
+            <span class="bu">Date</span> birth = <span class="kw">new</span> <span class="bu">SimpleDateFormat</span>(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
+            <span class="bu">Date</span> hire = <span class="kw">new</span> <span class="bu">SimpleDateFormat</span>(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
             Employee employee = <span class="kw">new</span> <span class="fu">Employee</span>(<span class="st">&quot;Tim&quot;</span>, <span class="st">&quot;Yellow&quot;</span>, birth, hire);
-            System.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
-        } <span class="kw">catch</span> (ParseException e) {
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
+        } <span class="kw">catch</span> (<span class="bu">ParseException</span> e) {
             e.<span class="fu">printStackTrace</span>();
         }
     }
 }</code></pre></div>
 <h2 id="-2--1">Παράδειγμα 2 (Συνέχεια)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.text.ParseException;</span>
-<span class="kw">import java.text.SimpleDateFormat;</span>
-<span class="kw">import java.util.Date;</span>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.text.ParseException;</span>
+<span class="kw">import</span><span class="im"> java.text.SimpleDateFormat;</span>
+<span class="kw">import</span><span class="im"> java.util.Date;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> EmployeeTest {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span> args[]) {
         <span class="kw">try</span> {
-            Date birth = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
-            Date hire = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
+            <span class="bu">Date</span> birth = <span class="kw">new</span> <span class="bu">SimpleDateFormat</span>(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
+            <span class="bu">Date</span> hire = <span class="kw">new</span> <span class="bu">SimpleDateFormat</span>(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
             Employee employee = <span class="kw">new</span> <span class="fu">Employee</span>(<span class="st">&quot;Tim&quot;</span>, <span class="st">&quot;Yellow&quot;</span>, birth, hire);
-            System.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
-        } <span class="kw">catch</span> (ParseException e) {
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
+        } <span class="kw">catch</span> (<span class="bu">ParseException</span> e) {
             e.<span class="fu">printStackTrace</span>();
         }
     }

@@ -53,7 +53,7 @@ for course in $COURSES ; do
 	  {
 	    sed "s/TITLE_HERE/$title/" assets/index-top.html
 	    {
-	      echo "# Coding Bootcamp: $title"
+	      echo "# Programming II: $title"
 	      cat $input
 	    } |
 	    pandoc -f markdown_github -t html
@@ -85,7 +85,7 @@ for course in $COURSES ; do
   # Prepare the course index files
   for hp in '' -p ; do
     {
-      sed "s/TITLE_HERE/Coding Bootcamp: Table of contents/" assets/index-top.html
+      sed "s/TITLE_HERE/Programming II: Table of contents/" assets/index-top.html
       pandoc -f markdown_github -t html courses/${course}.md |
       sed '/href/{;s/\.md"/'$hp'.html"/;s/\.ipynb"/'$hp'.html"/;}'
       cat assets/index-bottom.html

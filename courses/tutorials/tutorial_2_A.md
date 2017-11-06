@@ -11,7 +11,7 @@
 <img src="media/GitHub.jpg" width="525" height="525" /> 
 
 
-# Λογαρισμος + Εγκατάτσαση
+# Λογαρισμος και Εγκατάτσαση
 
 * [Github](https://github.com/)
 * [Git Student](https://education.github.com/)
