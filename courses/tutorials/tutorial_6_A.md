@@ -16,7 +16,8 @@
 ## Επιλογή του Workspace
 
 ![](media/selectWorkstation.png)
-[Download](https://www.eclipse.org/)
+
+* [Download](https://www.eclipse.org/)
 
 
 ## Δημιουργία νέου έργου
