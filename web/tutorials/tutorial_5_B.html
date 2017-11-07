@@ -40,7 +40,71 @@
 <h2>Εξαιρέσεις</h2>
 <ul>
 <li>Μία εξάιρεση είναι ένα γεγονός που παρακάμπτει την κανονική εκτέλεση ενός προγράμματος.</li>
+<li>Δίνει την δυνατότητα να χειριστούμε γεγονότα όταν γίνει κάτι το ασυνήθιστο.</li>
+<li>Αποφεύγουμε την δημιουργεία περίπλοκου κώδικα στον χειρισμό πιθανού σφάλματος.</li>
+<li>Δίνει δυναντότητα μετάδοσεις σφάλματος στο ίχνος στοίβας (stack trace).</li>
 </ul>
+<h2 id="-">Παράδειγμα ψευδοκώδικα</h2>
+<ul>
+<li>Λάθη?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">readFile {
+    open the file;
+    determine its size;
+    allocate that much memory;
+    read the file into memory;
+    close the file;
+}</code></pre></div>
+<h2 id="-">Χειρισμός ψευδοκώδικα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">errorCodeType readFile {
+    initialize errorCode = <span class="dv">0</span>;
+    
+    open the file;
+    <span class="kw">if</span> (theFileIsOpen) {
+        determine the length of the file;
+        <span class="kw">if</span> (gotTheFileLength) {
+            allocate that much memory;
+            <span class="kw">if</span> (gotEnoughMemory) {
+                read the file into memory;
+                <span class="kw">if</span> (readFailed) {
+                    errorCode = -<span class="dv">1</span>;
+                }
+            } <span class="kw">else</span> {
+                errorCode = -<span class="dv">2</span>;
+            }
+        } <span class="kw">else</span> {
+            errorCode = -<span class="dv">3</span>;
+        }
+        close the file;
+        <span class="kw">if</span> (theFileDidntClose &amp;&amp; errorCode == <span class="dv">0</span>) {
+            errorCode = -<span class="dv">4</span>;
+        } <span class="kw">else</span> {
+            errorCode = errorCode and -<span class="dv">4</span>;
+        }
+    } <span class="kw">else</span> {
+        errorCode = -<span class="dv">5</span>;
+    }
+    <span class="kw">return</span> errorCode;
+}</code></pre></div>
+<h2 id="--">Σωστός χειρισμός ψευδοκώδικα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">readFile {
+    <span class="kw">try</span> {
+        open the file;
+        determine its size;
+        allocate that much memory;
+        read the file into memory;
+        close the file;
+    } <span class="kw">catch</span> (fileOpenFailed) {
+       doSomething;
+    } <span class="kw">catch</span> (sizeDeterminationFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (memoryAllocationFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (readFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (fileCloseFailed) {
+        doSomething;
+    }</code></pre></div>
 <h2 id="-">Χηρισμός εξαιρέσεων</h2>
 <ul>
 <li>Μπορέι να γίνει χρησιμοποιώντας τον <strong>try-catch</strong> κατασκευαστή.</li>
@@ -60,8 +124,8 @@
 </ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">
 <span class="kw">public</span> <span class="dt">void</span> <span class="fu">checkAmout</span>(<span class="dt">int</span> amount) <span class="kw">throws</span> NegativeAmoutException {
-    <span class="kw">if</span> (ammount &lt; <span class="dv">0</span>) {
-        <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NegativeAmmountException</span>();
+    <span class="kw">if</span> (amount &lt; <span class="dv">0</span>) {
+        <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NegativeAmountException</span>();
     }
 }</code></pre></div>
 <h2 id="-">Τύποι εξαιρέσεων</h2>
