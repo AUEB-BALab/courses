@@ -91,7 +91,7 @@ readFile {
 
 ## Χηρισμός εξαιρέσεων 
 
-* Μπορέι να γίνει χρησιμοποιώντας τον **try-catch** κατασκευαστή.
+* Μπορέι να γίνει χρησιμοποιώντας το **try-catch**.
 
 ```java
 try {
@@ -156,10 +156,10 @@ public  class testClass {
 ```java
 	import java.io.*;
 	
-	public calss ExcepTest {
+	public class ExcepTest {
 		public static void main(String[] args) {
+			int a[] = new int[2];
 			try {
-				int a[] = new int[2];
 				System.out.println("Access elements three:" + a[3]);
 			} catch(ArrayIndexOutOfBoundsException e) {
 				System.out.println("Exception thrown :" +e);
@@ -202,19 +202,11 @@ public class ExcepTest {
 ## Παράδειγμα για Ίχνη Στοίβας
 
 ```java
-HighLevelException: MidLevelException: LowLevelException
-         at Junk.a(Junk.java:13)
-         at Junk.main(Junk.java:4)
- Caused by: MidLevelException: LowLevelException
-         at Junk.c(Junk.java:23)
-         at Junk.b(Junk.java:17)
-         at Junk.a(Junk.java:11)
-         ... 1 more
- Caused by: LowLevelException
-         at Junk.e(Junk.java:30)
-         at Junk.d(Junk.java:27)
-         at Junk.c(Junk.java:21)
-         ... 3 more
+Exception in thread "main" java.lang.NullPointerException: Fictitious NullPointerException
+at StackTraceExample.method111(StackTraceExample.java:15)
+at StackTraceExample.method11(StackTraceExample.java:11)
+at StackTraceExample.method1(StackTraceExample.java:7)
+at StackTraceExample.main(StackTraceExample.java:3)
 ```
 
 

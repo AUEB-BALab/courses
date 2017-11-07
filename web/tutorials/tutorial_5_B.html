@@ -107,7 +107,7 @@
     }</code></pre></div>
 <h2 id="-">Χηρισμός εξαιρέσεων</h2>
 <ul>
-<li>Μπορέι να γίνει χρησιμοποιώντας τον <strong>try-catch</strong> κατασκευαστή.</li>
+<li>Μπορέι να γίνει χρησιμοποιώντας το <strong>try-catch</strong>.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
     some code here
@@ -150,10 +150,10 @@
 <h2 id="-unchecked-exception">Παράδειγμα Unchecked Exception</h2>
 <div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">import</span><span class="im"> java.io.*;</span>
     
-    <span class="kw">public</span> calss ExcepTest {
+    <span class="kw">public</span> <span class="kw">class</span> ExcepTest {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+            <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
             <span class="kw">try</span> {
-                <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
                 <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access elements three:&quot;</span> + a[<span class="dv">3</span>]);
             } <span class="kw">catch</span>(<span class="bu">ArrayIndexOutOfBoundsException</span> e) {
                 <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown :&quot;</span> +e);
@@ -185,19 +185,11 @@
 στοίβας αν κάποια μέθοδος έχει αποτύχη.</li>
 </ul>
 <h2 id="---">Παράδειγμα για Ίχνη Στοίβας</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">HighLevelException: MidLevelException: LowLevelException
-         at Junk.<span class="fu">a</span>(Junk.<span class="fu">java</span>:<span class="dv">13</span>)
-         at Junk.<span class="fu">main</span>(Junk.<span class="fu">java</span>:<span class="dv">4</span>)
- Caused by: MidLevelException: LowLevelException
-         at Junk.<span class="fu">c</span>(Junk.<span class="fu">java</span>:<span class="dv">23</span>)
-         at Junk.<span class="fu">b</span>(Junk.<span class="fu">java</span>:<span class="dv">17</span>)
-         at Junk.<span class="fu">a</span>(Junk.<span class="fu">java</span>:<span class="dv">11</span>)
-         <span class="kw">... </span><span class="dv">1</span> more
- Caused by: LowLevelException
-         at Junk.<span class="fu">e</span>(Junk.<span class="fu">java</span>:<span class="dv">30</span>)
-         at Junk.<span class="fu">d</span>(Junk.<span class="fu">java</span>:<span class="dv">27</span>)
-         at Junk.<span class="fu">c</span>(Junk.<span class="fu">java</span>:<span class="dv">21</span>)
-         <span class="kw">... </span><span class="dv">3</span> more</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Exception</span> in thread <span class="st">&quot;main&quot;</span> java.<span class="fu">lang</span>.<span class="fu">NullPointerException</span>: Fictitious <span class="bu">NullPointerException</span>
+at StackTraceExample.<span class="fu">method111</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">15</span>)
+at StackTraceExample.<span class="fu">method11</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">11</span>)
+at StackTraceExample.<span class="fu">method1</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">7</span>)
+at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">3</span>)</code></pre></div>
 <h2 id="-">Δημιουργεία εξαιρέσεων</h2>
 <ul>
 <li>Μπορούμε να δημιουργήσουμε τις δικές μας εξαιρέσεις επεκτείνοντας τις κλάσεις π.χ. <strong>Exception</strong>, <strong>RuntimeException</strong></li>
