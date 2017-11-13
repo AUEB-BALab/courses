@@ -21,3 +21,6 @@
 
 ## Φροντιστήριο 6
 * [Πλατφόρμα Eclipse](tutorials/tutorial_6_A.md)
+
+## Φροντιστήριο 7
+* [Debugging and BetterCodeHub](tutorials/tutorial_7_A.md)
