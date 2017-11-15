@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/stefanos1316/stefanos1316.github.io.svg?branch=master)](https://travis-ci.org/stefanos1316/stefanos1316.github.io)
+[![BCH compliance](https://bettercodehub.com/edge/badge/stefanos1316/stefanos1316.github.io?branch=master)](https://bettercodehub.com/)
 
 Καθηγητής Μαθήματος: Διομήδης Σπινέλλης
 
