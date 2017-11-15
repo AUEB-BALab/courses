@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Πολυμορφισμός</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii-">Programming II: Πολυμορφισμός</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2>Πολυμορφισμός</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h2 id="-1">Πολυμορφισμός</h2>
+<ul>
+<li>Είναι η ικανότητα να χρησιμοποιήσουμε μια λειτουργία με<br />
+διαφορετικό τύπο, ορίσματα ή παραμέτρους. Υπάρχουν τρία ήδη πολυμορφισμού στη<br />
+java.
+<ul>
+<li><em>Ο στατικός</em>, γνωστός και ως <em>υπερφόρτωση (overloading)</em>.</li>
+<li><em>Ο δυναμικός</em>.</li>
+<li><em>Ο παραμετρικός</em> γνωστός και μέσω της χρήσης <em>γενικευμένων τύπων (generic<br />
+types)</em>.</li>
+</ul></li>
+</ul>
+<h2 id="---">Στατικός πολυμορφισμός και Υπερφόρτωση</h2>
+<ul>
+<li>Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομά της αλλά με<br />
+διαφορετικούς τύπους ορισμάτων.</li>
+<li>Θα προκύψει σφάλμα αν δυο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων<br />
+με τον ίδιο τύπο ανεξάρτητα:
+<ul>
+<li>από τον τύπο που επιστρέφει</li>
+<li>το όνομα των ορισμάτων</li>
+</ul></li>
+<li>Μπορεί να προκύψει σφάλμα ακόμα και όταν υπάρχουν ίδια ορίσματα με διαφορετική<br />
+σειρά.</li>
+</ul>
+<h2>Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Example {
+
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">add</span>(<span class="dt">int</span> number1, <span class="dt">int</span> number2) {...}
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">add</span>(<span class="dt">double</span> number1, <span class="dt">int</span> number) {...}
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">add</span>(<span class="dt">int</span> number1, <span class="dt">int</span> number2, <span class="dt">int</span> number3) {...}
+    <span class="co">// public double add(int number1, double number2) {...}</span>
+    <span class="co">// public double add(int number1, int number2) {...}</span>
+    <span class="co">// public int add(int x, int y) {...}</span>
+}</code></pre></div>
+<h2 id="-">Δυναμικός πολυμορφισμός</h2>
+<ul>
+<li>Κάθε αντικείμενο μιας κλάσης που την υλοποιεί έχει τον τύπο της, οπως επίσης<br />
+και τον τύπο κάθε υπερκλάσης της και κάθε διεπαφής που υλοποιεί.</li>
+<li>Αυτό είναι χρήσιμο ώστε να μπορούμε να φτιάξουμε ποιο αφηρημένα ορίσματα για μεθόδους<br />
+ή γενικότερες συλλογές/δομές απο στοιχεία.</li>
+<li><p>Μπορούμε επίσης να ορίσουμε ένα αντικείμενο τύπου υποκλάσης και αναφορά σε<br />
+υπερκλάση ή διεπαφή. Το αντικείμενο θα έχει τη συμπεριφορά της υπερκλάσης/διεπαφής<br />
+αφου έχουν γίνει τα overrides που ορίζει η υποκλάση.</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">Parent child = <span class="kw">new</span> <span class="fu">Child</span>();</code></pre></div></li>
+</ul>
+<h2 id="-1">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> CalculableArea {
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height);
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Triange <span class="kw">implements</span> CalculableArea {
+    @ <span class="bu">Override</span>
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height/<span class="dv">2</span>;}
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Square <span class="kw">implements</span> CalculableArea {
+    @ <span class="bu">Override</span>
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>(<span class="dt">double</span> base, <span class="dt">double</span> height) {<span class="kw">return</span> base*height;}
+}</code></pre></div>
+<h2>Παράδειγμα(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">double</span> <span class="fu">findArea</span>(CalculableArea shape, <span class="dt">double</span> base, <span class="dt">double</span> height) {
+        <span class="kw">return</span> shape.<span class="fu">area</span>(base, height);
+    }
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        Triangle triangle = <span class="kw">new</span> <span class="fu">Triangle</span>();
+        Square square = <span class="kw">new</span> <span class="fu">Square</span>();
+        <span class="dt">double</span> base = <span class="fl">2.0</span>;
+        <span class="dt">double</span> height = <span class="fl">2.0</span>;
+
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(triangle, base, height));
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">findArea</span>(square, base, height));
+    }
+}</code></pre></div>
+<h2 id="2">Παράδειγμα2</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Parent {
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am parent&quot;</span>);
+    }
+}
+
+<span class="kw">class</span> Child <span class="kw">extends</span> Parent{
+    <span class="at">@Override</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am child &quot;</span>);
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">also</span>() {
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;and only a child&quot;</span>);
+    }
+}</code></pre></div>
+<h2 id="2">Παράδειγμα2(συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        Parent parent = <span class="kw">new</span> <span class="fu">Parent</span>();
+        Child child = <span class="kw">new</span> <span class="fu">Child</span>();
+        Parent child2 = <span class="kw">new</span> <span class="fu">Child</span>();
+
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(parent.<span class="fu">whoAmI</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(child.<span class="fu">whoAmI</span>() + child.<span class="fu">also</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(child2.<span class="fu">whoAmI</span>());
+        <span class="co">// System.out.println(child2.also());</span>
+    }
+}</code></pre></div>
+<h2 id="----">Παραμετρικός Πολυμορφισμός και Γενικευμένοι Τύποι</h2>
+<ul>
+<li>Ένας γενικευμένος τύπος (generic type) είναι μια γενικευμένη κλάση ή διεπαφή<br />
+η οποία μπορεί να παραμετροποιηθεί μέσω τύπων.</li>
+<li>Ένας γενικευμένος τύπος επιτρέπει την επαναχρησιμοποιήσει κώδικα με<br />
+διαφορετικά αντικείμενα ως παράμετρο.</li>
+<li>Δεν χρειάζεται <em>type casting</em>.</li>
+</ul>
+<h2 id="--">Ορισμός γενικευμένων τύπων</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> ΟνομαΚλασης&lt;Τυπος1,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> ΟνομαΔιεπαφης&lt;Τυπος1,<span class="kw">... </span>,ΤυποςΝ&gt; {...}</code></pre></div>
+<h2 id="-2">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Summarizer&lt;T&gt; {
+    <span class="kw">public</span> T <span class="fu">add</span>(T num1, T num <span class="dv">2</span>) {<span class="kw">return</span> num1 + num2;}
+}</code></pre></div>
+<h2 id="--">Αρχικοποίηση γενικευμένων τύπων</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">ΟνομαΚλάσης&lt;Τυπος1,<span class="kw">... </span>, ΤυποςΝ&gt; αντικείμενο = <span class="kw">new</span> ΟνομαΚλασης&lt;&gt;();</code></pre></div>
+<ul>
+<li><em>Παρατήρηση:</em> Πριν τη java7 έπρεπε να επαναλάβουμε τους τύπους και στα δεύτερα<br />
+'&lt;&gt;'.</li>
+</ul>
+<h2 id="-3">Παράδειγμα</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        Summarizer&lt;<span class="bu">Integer</span>&gt; sum1 = <span class="kw">new</span> Summarizer&lt;&gt;();
+        Summarizer&lt;<span class="bu">String</span>&gt; sum2 = <span class="kw">new</span> Summarizer&lt;&gt;();
+
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(sum1.<span class="fu">add</span>(<span class="dv">3</span>, <span class="dv">5</span>));
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(sum2.<span class="fu">add</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>))
+    }
+}</code></pre></div>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
