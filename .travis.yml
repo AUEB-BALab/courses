@@ -1,11 +1,16 @@
 language: python
+sudo: 
+- required
+
 install:
 - pip install requests[security]
-- sudo pip install pandoc
-- sudo apt-get install rsync
-- sudo apt-get install pandoc
+- pip install pandoc
+- apt-get install rsync
+- apt-get install pandoc
 
-language: bash
+global_env: 
+- ENCRYPTION_LABEL=d7e0dc08b1d8 COMMIT_AUTHOR_EMAIL=sgeorgiou@aueb.gr
+
 script: 
 - bash tools/travis-deploy.sh
 
