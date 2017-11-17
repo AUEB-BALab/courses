@@ -1,14 +1,20 @@
 language: python
 
+python:
+  - "3.5"
+
+sudo: required
+dist: trusty
+
 install:
-- pip install requests[security]
-- sudo pip install pandoc
-- sudo apt-get install rsync
-- sudo apt-get install pandoc
+- pip install "notebook==4.1" requests jupyter_cms jupyter_dashboards
 
-global_env: 
-- ENCRYPTION_LABEL=d7e0dc08b1d8 COMMIT_AUTHOR_EMAIL=sgeorgiou@aueb.gr
+addons:
+  apt_packages:
+    - pandoc
 
-script: 
-- bash tools/travis-deploy.sh
-
+script: bash tools/travis-deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: d7e0dc08b1d8
+  - COMMIT_AUTHOR_EMAIL: "sgeorgiou@aueb.gr"
