@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Τύποι Πεδίων και Μεθόδων</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii----">Programming II: Τύποι Πεδίων και Μεθόδων</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="---">Τύποι Πεδίων και Μεθόδων</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Car {
+    <span class="co">// κατάσταση αυτοκινήτου</span>
+    <span class="kw">public</span> Color color; <span class="co">// χρώμα</span>
+    <span class="kw">private</span> String licenseNumber; <span class="co">// αριθμός κυκλοφορίας</span>
+    <span class="kw">public</span> <span class="dt">int</span> cc; <span class="co">// κυβισμός κινητήρα</span>
+    <span class="kw">private</span> <span class="dt">double</span> speed; <span class="co">// ταχύτητα</span>
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> numberOfCars = <span class="dv">0</span>; <span class="co">// αριθμός αυτοκινήτων</span>
+
+    <span class="co">// κατασκευαστής χωρίς ορίσματα</span>
+    <span class="kw">public</span> <span class="fu">Car</span>() {
+        numberOfCars++;
+    }
+
+    <span class="co">// κατασκευαστής με ορίσματα</span>
+    <span class="kw">public</span> <span class="fu">Car</span>(Color color, String licenseNumber, <span class="dt">int</span> cc) {
+        <span class="kw">this</span>();
+        <span class="kw">this</span>.<span class="fu">color</span> = color;
+        <span class="kw">this</span>.<span class="fu">licenseNumber</span> = licenseNumber;
+        <span class="kw">this</span>.<span class="fu">cc</span> = cc;
+    }
+
+    <span class="co">// συμπεριφορά αυτοκινήτου</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">startEngine</span>() {...} <span class="co">// εκκίνηση του κινητήρα</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">stopEngine</span>() {...} <span class="co">// σβήσιμο του κινητήρα</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnLeft</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή αριστερά</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">turnRight</span>(<span class="dt">int</span> degrees) {...} <span class="co">// στροφή δεξιά</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="kw">break</span>() {...} <span class="co">// φρενάρισμα</span>
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">getSpeed</span>() {<span class="kw">return</span> speed;} <span class="co">// μέτρηση ταχύτητας</span>
+    <span class="co">// στατική μέθοδος</span>
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getNumberOfCars</span>() {<span class="kw">return</span> numberOfCars;}
+}</code></pre></div>
+<h2 id="----1">Τύπου Πεδίων και Μεθόδων (1)</h2>
+<ul>
+<li><strong>Στιγμιοτύπου</strong>:
+<ul>
+<li>Κάθε στιγμιότυπο έχει το δικό του 'αντίγραφο' <strong>μεταβλητών</strong>.</li>
+<li>Οι <strong>μέθοδοι</strong> μπορούν να εκτελεστούν ΜΟΝΟ σε ένα στιγμιότυπο μιας κλάσης (ένα αντικείμενο).</li>
+<li>Για να προσπελαστούν οι <strong>μεταβλητές</strong> στιγμιοτύπου και να κληθούν οι <strong>μέθοδοι</strong> του στιγμιοτύπου πρέπει να έχει φτιαχτεί πρώτα ένα αντικείμενο!</li>
+</ul></li>
+</ul>
+<h2 id="----2">Τύπου Πεδίων και Μεθόδων (2)</h2>
+<ul>
+<li><strong>static</strong>:
+<ul>
+<li>Οι <strong>μεταβλητές</strong> είναι μοιρασμένες ανάμεσα σε ΟΛΑ τα στιγμιότυπα μιας κλάσης, δηλαδή υπάρχει μόνο ένα 'αντίγραφό' τους.</li>
+<li>Οι <strong>μέθοδοι</strong> μπορούν να χρησιμοποιηθούν χωρις να δημιουργηθεί ένα στιγμιότυπο της κλάσης και έχουν πρόσβαση ΜΟΝΟ σε στατικές μεταβλητές της κλάσης.</li>
+</ul></li>
+</ul>
+<h2 id="this">this</h2>
+<ul>
+<li>Με τη λέξη-κλειδί <strong>this</strong> ένα αντικείμενο (το στιγμιότυπο μιας κλάσης) μπορεί να αναφερθεί στον ίδιο του τον εαυτό
+<ul>
+<li>Δηλαδή το <strong>this</strong> όταν χρησιμοποιείται σε μια μέθοδο υπόστασης είναι μια αναφορά (ένας δείκτης) στο ίδιο το αντικείμενο</li>
+<li>Το <strong>this</strong> μπορεί να χρησιμοποιηθεί και κατά την κατασκευή ενός αντικειμένου (μέσα στις μεθόδους – constructors)</li>
+<li>Χρησιμοποιείται για την αντιμετώπιση της ασάφειας όταν μια μέθοδος έχει παραμέτρους που έχουν ίδιο όνομα με κάποια μεταβλητή υπόστασης του αντικειμένου</li>
+</ul></li>
+<li>Οι στατικές (<strong>static</strong>) μέθοδοι δε μπορούν να χρησιμοποιήσουν το <strong>this</strong>, αφού δεν αναφέρονται σε ένα συγκεκριμένο αντικείμενο</li>
+</ul>
+<h2 id="-1">Παράδειγμα 1</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Time {
+
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> HOURS_PER_DAY = <span class="dv">24</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> MINUTES_PER_HOUR = <span class="dv">60</span>;
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> SECONDS_PER_MINUTE = <span class="dv">60</span>;
+
+    <span class="kw">private</span> <span class="dt">int</span> hour;
+    <span class="kw">private</span> <span class="dt">int</span> minute;
+    <span class="kw">private</span> <span class="dt">int</span> second;
+
+    <span class="kw">public</span> Time() {
+    }
+
+    <span class="kw">public</span> Time(<span class="dt">int</span> hour, <span class="dt">int</span> minute, <span class="dt">int</span> second) {
+        <span class="kw">this</span>.<span class="fu">hour</span> = hour;
+        <span class="kw">this</span>.<span class="fu">minute</span> = minute;
+        <span class="kw">this</span>.<span class="fu">second</span> = second;
+    }
+
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getHour</span>() {
+        <span class="kw">return</span> hour;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setHour</span>(<span class="dt">int</span> h) {
+        hour = ((h &gt;= <span class="dv">0</span> &amp;&amp; h &lt; HOURS_PER_DAY) ? h : <span class="dv">0</span>);
+    }</code></pre></div>
+<h2 id="-1-">Παράδειγμα 1 (Συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getMinute</span>() {
+        <span class="kw">return</span> minute;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setMinute</span>(<span class="dt">int</span> m) {
+        minute = ((m &gt;= <span class="dv">0</span> &amp;&amp; m &lt; MINUTES_PER_HOUR) ? m : <span class="dv">0</span>);
+    }
+
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getSecond</span>() {
+        <span class="kw">return</span> second;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setSecond</span>(<span class="dt">int</span> s) {
+        second = ((s &gt;= <span class="dv">0</span> &amp;&amp; s &lt; SECONDS_PER_MINUTEd) ? s : <span class="dv">0</span>);
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTime</span>(<span class="dt">int</span> h, <span class="dt">int</span> m, <span class="dt">int</span> s) {
+        <span class="fu">setHour</span>(h);
+        <span class="fu">setMinute</span>(m);
+        <span class="fu">setSecond</span>(s);
+    }
+}</code></pre></div>
+<h2 id="-1--1">Παράδειγμα 1 (Συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TimeTest {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        Time t1 = <span class="kw">new</span> Time();
+        Time t2 = <span class="kw">new</span> Time(<span class="dv">12</span>, <span class="dv">25</span>, <span class="dv">42</span>);
+        t2.<span class="fu">setTime</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>);
+        t1.<span class="fu">setTime</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">15</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(t2.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t2.<span class="fu">getSecond</span>());
+        System.<span class="fu">out</span>.<span class="fu">println</span>(t1.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getSecond</span>());
+    }
+}</code></pre></div>
+<h2 id="-2">Παράδειγμα 2</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Date;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Employee {
+    <span class="kw">private</span> String firstName;
+    <span class="kw">private</span> String lastName;
+    <span class="kw">private</span> Date birthDate;
+    <span class="kw">private</span> Date hireDate;
+
+    <span class="kw">public</span> <span class="fu">Employee</span>(String fN, String lN, Date dateOfBirth, Date dateOfHire) {
+        firstName = fN;
+        lastName = lN;
+        birthDate = dateOfBirth;
+        hireDate = dateOfHire;
+    }
+
+    <span class="kw">public</span> String <span class="fu">toString</span>() {
+        <span class="kw">return</span> <span class="st">&quot;Name of employee: &quot;</span> + firstName + <span class="st">&quot;, &quot;</span>
+        + <span class="st">&quot;Surname of employee: &quot;</span> + lastName + <span class="st">&quot;, &quot;</span> + <span class="st">&quot;Date of birth: &quot;</span>
+        + birthDate + <span class="st">&quot;, &quot;</span> + <span class="st">&quot;Date of hire: &quot;</span> + hireDate + <span class="st">&quot;. &quot;</span>;
+
+    }
+}</code></pre></div>
+<h2 id="-2-">Παράδειγμα 2 (Συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.text.ParseException;</span>
+<span class="kw">import java.text.SimpleDateFormat;</span>
+<span class="kw">import java.util.Date;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> EmployeeTest {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        <span class="kw">try</span> {
+            Date birth = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
+            Date hire = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
+            Employee employee = <span class="kw">new</span> <span class="fu">Employee</span>(<span class="st">&quot;Tim&quot;</span>, <span class="st">&quot;Yellow&quot;</span>, birth, hire);
+            System.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
+        } <span class="kw">catch</span> (ParseException e) {
+            e.<span class="fu">printStackTrace</span>();
+        }
+    }
+}</code></pre></div>
+<h2 id="-2--1">Παράδειγμα 2 (Συνέχεια)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.text.ParseException;</span>
+<span class="kw">import java.text.SimpleDateFormat;</span>
+<span class="kw">import java.util.Date;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> EmployeeTest {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        <span class="kw">try</span> {
+            Date birth = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
+            Date hire = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
+            Employee employee = <span class="kw">new</span> <span class="fu">Employee</span>(<span class="st">&quot;Tim&quot;</span>, <span class="st">&quot;Yellow&quot;</span>, birth, hire);
+            System.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
+        } <span class="kw">catch</span> (ParseException e) {
+            e.<span class="fu">printStackTrace</span>();
+        }
+    }
+}</code></pre></div>
+<h2 id="singleton">Singleton</h2>
+<ul>
+<li>Ένα singleton είναι μια κλάση η οποία αρχικοποιείται μια μόνο φορά.</li>
+<li>Το σχεδιαστικό πρότυπο (design pattern) singleton επιτρέπει τον ελεγχόμενο ορισμό ενός μοναδικού αντικειμένου μιας κλάσης.</li>
+<li>Τα singletons μπορεί να αναφέρονται σε κάποιο τμήμα ενός συστήματος που είναι μοναδικό, π.χ. ένα σύστημα αρχείων.</li>
+</ul>
+<h2 id="-3">Παράδειγμα 3</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> FileSystem {
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> FileSystem INSTANCE = <span class="kw">new</span> <span class="fu">FileSystem</span>();
+
+    <span class="kw">private</span> <span class="fu">FileSystem</span>() {
+    <span class="co">// empty</span>
+    }
+
+    <span class="kw">public</span> <span class="dt">static</span> FileSystem <span class="fu">getInstance</span>() {
+        <span class="kw">return</span> INSTANCE;
+    }
+}</code></pre></div>
+<h2>Βιβλιογραφία</h2>
+<ul>
+<li>Harvey M. Deitel και Paul J. Deitel. Java Προγραμματισμός, 6η έκδοση. Εκδόσεις Μ. Γκιούρδας, Αθήνα 2005. Κεφάλαια 5,8.</li>
+<li>Joshua Bloch. Effective Java, pages 10–12. Addison-Wesley, Reading, MA, 2001.</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
