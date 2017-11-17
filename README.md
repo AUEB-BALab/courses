@@ -11,6 +11,6 @@
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
-* [Παρουσιάσεις Φροντιστηρίων](https://stefanos1316.github.io/web/tutorials-p.html)
+* [Παρουσιάσεις Φροντιστηρίων](https://stefanos1316.github.io/tutorials-p.html)
 * [Παρουσιάσεις Φροντιστηρίων προς εκτύπωση](https://stefanos1316.github.io/web/tutorials.html)
 
