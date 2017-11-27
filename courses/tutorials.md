@@ -24,3 +24,6 @@
 
 ## Φροντιστήριο 7
 * [Debugging and BetterCodeHub](tutorials/tutorial_7_A.md)
+
+## Φροντιστήριο 8
+* [Νήματα](tutorials/tutorial_8_A.md)
