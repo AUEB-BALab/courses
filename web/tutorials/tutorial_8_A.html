@@ -43,7 +43,7 @@
 <li>Διεργασία είναι ένα πρόγραμμα που εκτελείτε.</li>
 <li>Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.</li>
 <li>Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.</li>
-<li>Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήσει.</li>
+<li>Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση.</li>
 </ul>
 <h1 id="-">Διεργασίες Παράδειγμα</h1>
 <p><img src="media/Processes_SnapShot.png" /></p>
@@ -93,7 +93,7 @@ write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  writ
           <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
           <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;        
       }
-
+      <span class="at">@Override</span> 
       <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
           <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
           {
@@ -149,6 +149,7 @@ t.<span class="fu">start</span>();</code></pre></div>
     <span class="co">//Extending Thread class</span>
     <span class="kw">class</span> ExtendsThread <span class="kw">extends</span> <span class="bu">Thread</span> {
         <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
+    <span class="at">@Override</span>
         <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span> () {
             counter++;
             <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ExtendsThread : Counter : &quot;</span>+ counter);

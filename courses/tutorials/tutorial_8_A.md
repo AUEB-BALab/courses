@@ -12,7 +12,7 @@
 * Διεργασία είναι ένα πρόγραμμα που εκτελείτε.
 * Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.
 * Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.
-* Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήσει. 
+* Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση. 
 
 
 # Διεργασίες Παράδειγμα
@@ -83,7 +83,7 @@ class FindCountOfEvenNumbers extneds Thread {
           this.maxNumber = maxNumber;
           this.count = 0;        
       }
-
+      @Override	
       public void run() {
           for (int i=0; i<this.maxNumber; ++i)
           {
@@ -154,6 +154,7 @@ class FindCountOfEvenNumbers implements Runnable {
     //Extending Thread class
     class ExtendsThread extends Thread {
         private int counter = 0;
+	@Override
         public void run () {
             counter++;
             System.out.println("ExtendsThread : Counter : "+ counter);
