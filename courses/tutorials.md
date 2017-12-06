@@ -27,3 +27,4 @@
 
 ## Φροντιστήριο 8
 * [Νήματα](tutorials/tutorial_8_A.md)
+* [Συμβολοσειρές και Συλλογές](tutorials/tutorial_8_B.md)
