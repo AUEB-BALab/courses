@@ -28,3 +28,7 @@
 ## Φροντιστήριο 8
 * [Νήματα](tutorials/tutorial_8_A.md)
 * [Συμβολοσειρές και Συλλογές](tutorials/tutorial_8_B.md)
+
+## Φροντιστήριο 9
+* [Διαχείρηση αρχείων](tutorials/tutorial_9_A.md)
+* [Διαχείρηση XML δεδομένων](tutorials/tutorial_9_B.md)
