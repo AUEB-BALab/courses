@@ -31,4 +31,4 @@
 
 ## Φροντιστήριο 9
 * [Διαχείρηση αρχείων](tutorials/tutorial_9_A.md)
-* [Διαχείρηση XML δεδομένων](tutorials/tutorial_9_B.md)
+* [Κανονικές εκφράσεις](tutorials/tutorial_9_B.md)
