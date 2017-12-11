@@ -42,10 +42,10 @@
 για να κατασκευάσουμε σύνθετες συνθήκες από άλλες απλούστερες.
 
 
-| boolean x | boolean y | x && y | x &#124;&#124; y |    | boolean x | !x    |
-|-----------|-----------|--------|--------|    |-----------|-------|
-| true      | true      | true   | true   |    | true      | false |
-| true      | false     | false  | true   |    | true      | true  |
+| boolean x | boolean y | x && y | x &#124;&#124; y   | | boolean x | !x    |
+|-----------|-----------|--------|--------|    		|-----------|-------|
+| true      | true      | true   | true   |    		| true      | false |
+| true      | false     | false  | true   |    		| true      | true  |
 | false     | true      | false  | true   |
 | false     | false     | false  | false  |
 
