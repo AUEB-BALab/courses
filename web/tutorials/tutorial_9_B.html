@@ -61,7 +61,7 @@
 <tr class="odd">
 <td align="center">[ab]</td>
 <td align="center">ταιριάζει κάθε χαρακτήρα μέσα στις αγκύλες</td>
-<td align="center">ri[cs]e -&gt; rice ή rise]</td>
+<td align="center">ri[cs]e -&gt; rice ή rise</td>
 </tr>
 <tr class="even">
 <td align="center">abc|adc</td>
@@ -230,8 +230,8 @@
 </tr>
 <tr class="even">
 <td align="center">String</td>
-<td align="center">replace(char oldChar, char newChar)</td>
-<td align="center">αλλάζει ένα χαρακτήρα με κάποιον άλλο</td>
+<td align="center">replaceAll(String regex, String relpacement)</td>
+<td align="center">αλλάζει μία έκφραση με μία συγκεκριμένη συμβολοσειρά</td>
 </tr>
 <tr class="odd">
 <td align="center">String[]</td>
@@ -305,57 +305,57 @@
 </tbody>
 </table>
 <h2 id="-1">Παράδειγμα (1)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.regex.Matcher;</span>
-<span class="kw">import java.util.regex.Pattern;</span>
-<span class="kw">import java.util.regex.PatternSyntaxException;</span>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.util.regex.Matcher;</span>
+<span class="kw">import</span><span class="im"> java.util.regex.Pattern;</span>
+<span class="kw">import</span><span class="im"> java.util.regex.PatternSyntaxException;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> RegexMatchFind {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) <span class="kw">throws</span> PatternSyntaxException {
-        Pattern p = Pattern.<span class="fu">compile</span>(<span class="st">&quot;[</span><span class="ch">\\</span><span class="st">d]{3}&quot;</span>);
-        Matcher m = p.<span class="fu">matcher</span>(<span class="st">&quot;a123b&quot;</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
-        <span class="dt">boolean</span> b = Pattern.<span class="fu">matches</span>(<span class="st">&quot;[</span><span class="ch">\\</span><span class="st">d]{3}&quot;</span>, <span class="st">&quot;a123b&quot;</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(b);
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) <span class="kw">throws</span> <span class="bu">PatternSyntaxException</span> {
+        <span class="bu">Pattern</span> p = <span class="bu">Pattern</span>.<span class="fu">compile</span>(<span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d]{3}&quot;</span>);
+        <span class="bu">Matcher</span> m = p.<span class="fu">matcher</span>(<span class="st">&quot;a123b&quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
+        <span class="dt">boolean</span> b = <span class="bu">Pattern</span>.<span class="fu">matches</span>(<span class="st">&quot;[</span><span class="sc">\\</span><span class="st">d]{3}&quot;</span>, <span class="st">&quot;a123b&quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(b);
 
-        p = Pattern.<span class="fu">compile</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>);
+        p = <span class="bu">Pattern</span>.<span class="fu">compile</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>);
         m = p.<span class="fu">matcher</span>(<span class="st">&quot;123&quot;</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
-        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
-        <span class="dt">boolean</span> c = Pattern.<span class="fu">matches</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>, <span class="st">&quot;123&quot;</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(c);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
+        <span class="dt">boolean</span> c = <span class="bu">Pattern</span>.<span class="fu">matches</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>, <span class="st">&quot;123&quot;</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(c);
     }
 }</code></pre></div>
 <h2 id="-2">Παράδειγμα (2)</h2>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.regex.Matcher;</span>
-<span class="kw">import java.util.regex.Pattern;</span>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.util.regex.Matcher;</span>
+<span class="kw">import</span><span class="im"> java.util.regex.Pattern;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> SimpleRegex {
     
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span> args[]) {
         <span class="co">// String for the pattern-matching.</span>
-        String line = <span class="st">&quot;New order 567TW.&quot;</span>;
+        <span class="bu">String</span> line = <span class="st">&quot;New order 567TW.&quot;</span>;
         <span class="co">// Given pattern</span>
-        String pattern = <span class="st">&quot;[0-9]+(Q|TW){1,2}.&quot;</span>;
+        <span class="bu">String</span> pattern = <span class="st">&quot;[0-9]+(Q|TW){1,2}.&quot;</span>;
 
         <span class="co">// Pattern object</span>
-        Pattern r = Pattern.<span class="fu">compile</span>(pattern);
+        <span class="bu">Pattern</span> r = <span class="bu">Pattern</span>.<span class="fu">compile</span>(pattern);
         <span class="co">// Matcher object.</span>
-        Matcher m = r.<span class="fu">matcher</span>(line);
+        <span class="bu">Matcher</span> m = r.<span class="fu">matcher</span>(line);
         
         <span class="co">// Check</span>
         <span class="kw">if</span> (m.<span class="fu">find</span>()) {
-            System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">group</span>());
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">group</span>());
         } <span class="kw">else</span> {
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;NO MATCH&quot;</span>);
+            <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;NO MATCH&quot;</span>);
         }
 
         <span class="co">// Replace m with the given string</span>
         line = m.<span class="fu">replaceAll</span>(<span class="st">&quot;##&quot;</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(line);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(line);
         
-        String line2 = <span class="st">&quot;mesquite in your cellar&quot;</span>;
-        System.<span class="fu">out</span>.<span class="fu">println</span>(line2.<span class="fu">replace</span>(&#39;e&#39;, &#39;o&#39;));
+        <span class="bu">String</span> line2 = <span class="st">&quot;mesquite in your cellar&quot;</span>;
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(line2.<span class="fu">replace</span>(&#39;e&#39;, &#39;o&#39;));
     }
 }</code></pre></div>
 
