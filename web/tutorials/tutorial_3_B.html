@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Εισαγωγή στα Αντικείμενα</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii---">Programming II: Εισαγωγή στα Αντικείμενα</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="-">Κανόνες μορφοποιήσης</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h2 id="-">Αντικειμενοστραφής Προγραμματισμός</h2>
+<ul>
+<li>Είναι τύπος προγραμματισμού βασισμένος σε αντικείμενα (objects) που μοντελοποιούν<br />
+τα δεδομένα με βάση την εσωτερική τους κατάσταση (state) και με βάση τη συμπεριφορά<br />
+τους (behaviour).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> LightBulb {
+
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> numOfObjects = <span class="dv">0</span>;
+    <span class="kw">private</span> <span class="dt">boolean</span> light;
+
+    <span class="kw">public</span> <span class="fu">LightBulb</span>(<span class="dt">boolean</span> light) {
+        <span class="kw">this</span>.<span class="fu">light</span> = light;
+        numOfObjects+=<span class="dv">1</span>;
+    }
+
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isLit</span>() {
+        <span class="kw">return</span> light;
+    }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">switchLight</span>() {
+        light = !light;
+    }
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getNumOfObjects</span>() {
+        <span class="kw">return</span> numOfObjects;
+    }
+}</code></pre></div>
+<h2 id="--2">Αντικειμενοστραφής Προγραμματισμός (2)</h2>
+<ul>
+<li>Ένα αντικείμενο αποτελείται από κανένα ή περισσότερα πεδία/ιδιότητες που καθορίζουν την<br />
+κατάστασή του και απο καμία ή περισσότερες μεθόδους που καθορίζουν τη συμπεριφορά<br />
+του.</li>
+<li>Κάθε αντικείμενο είναι στιγμιότυπο μιας κλάσης που καθορίζει και τον τύπο του.</li>
+<li>Κάθε κλάση είναι ένα προσχέδιο (blueprint) ή πρότυπο (prototype) για τη<br />
+δημιουργία αντικειμένων.</li>
+<li>Ένα αντικειμενοστραφές πρόγραμμα αποτελεί μια συλλογή από αντικείμενα που<br />
+αλληλεπιδρούν μεταξύ τους.</li>
+</ul>
+<h2>Κατασκευαστής</h2>
+<ul>
+<li>Ο κατασκευαστής (constructor) είναι μια ειδική μέθοδος η οποία:</li>
+<li>Έχει πάντα το ίδιο όνομα με την κλάση που βρίσκεται</li>
+<li>Στη σύνταξή του δε δηλώνεται κάποιος τύπος επιστροφής ούτε void.</li>
+<li>Μπορεί να δεχθεί ορίσματα.</li>
+<li>Καλείται μέσω του τελεστή new είναι υπεύθυνος για τη δημιουργία κάποιου<br />
+αντικειμένου προσδίδοντάς του ενδεχομένως και κάποιες τιμές στα πεδία του.</li>
+<li>Ο κατασκευαστής είτε θα ορίστει από τον προγραμματιστή είτε θα χρησιμοποίηθει<br />
+ένας εγγενής κατασκευαστής που δεν αρχικοποιεί κανένα πεδίο. Σε κάθε περίπτωση<br />
+κάθε κλάση έχει (τουλάχιστον ένα) κατασκευαστή.</li>
+</ul>
+<h2 id="---">Διεύθυνση Αντικειμένων στη Μνήμη</h2>
+<ul>
+<li>Η 'new' πέρα από το ότι καλεί τον κατασκευαστή μιας κλάσης φροντίζει επίσης τη<br />
+δέσμευση αναγκαίας μνήμης για το αντικείμενο που θα δημιουργηθεί.</li>
+</ul>
+<p>Παράδειγμα:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java">LightBulb lightBulb = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">false</span>);</code></pre></div>
+<ul>
+<li>Η μεταβλητη του object (η lightBulb στο παράδειγμα) δεν περιέχει την πληροφορία της κατάστασής του<br />
+αλλά έναν αριθμό (σε δεκαεξαδικό σύστημα) που είναι η διεύθυνση στη μνήμη που βρίσκεται το object. (Δοκιμάστε να κάνετε<br />
+print ένα object).</li>
+</ul>
+<h2 id="------.">Στατικά και μη στατικά πεδία και μέθοδοι.</h2>
+<ul>
+<li>Ένα στατικό πεδίο σε μια κλάση είναι ένα κοινό πεδίο με συγκεκριμένη κατάσταση<br />
+για όλα τα αντικείμενα που έχουν τύπο αυτή την κλάση. Με άλλα λόγια τα<br />
+αντικείμενα μιας κλάσης μοιράζονται ένα αντίγραφο αυτού του πεδίου.</li>
+<li>Μια στατική μέθοδος μπορεί να κληθεί χωρίς να δημιουργηθεί κάποιο<br />
+αντικείμενο απαραιτητα. Μια τέτοια μέθοδος έχει πρόσβαση μόνο σε στατικά πεδία</li>
+<li>Ένα μη στατικό πεδίο είναι ένα πεδίο όπου κάθε ξεχωριστό αντικείμενο εχει το<br />
+δικό του αντίγραφο. Συνεπώς μια μεταβολή της κατάστασης του από ένα αντικείμενο<br />
+δε θα επιρρεάσει το αντίστοιχο πεδίο σε κάποιο άλλο αντικείμενο (της ίδιας κλάσης).</li>
+<li>Οι μη στατικές μέθοδοι μπορούν να κληθούν μόνο από στιγμιότυπα μιας κλάσης<br />
+και έχουν πρόσβαση και σε στατικά και σε μη στατικά πεδία.</li>
+</ul>
+<h2 id="-">Προσδιοριστές Πρόσβασης</h2>
+<ul>
+<li>Οι προσδιοριστές πρόσβασης χρησιμοποιούνται προθεματικά για να καθορίσουν την πρόσβαση σε<br />
+μια μεταβλητή, μια μέθοδο ή μια κλάση απο κάποια άλλη πηγή. Οι προσδιοριστές στη java είναι οι εξής:
+<ul>
+<li>public: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα χωρίς κανένα περιορισμό.</li>
+<li>protected: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα απο παραγώμενες κλάσεις<br />
+(σε επόμενο μάθημα) και από κλάσεις του ίδιου πακέτου.</li>
+<li>(default): Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα μόνο από κλάσεις του ίδιου<br />
+πακέτου.</li>
+<li>private: Κλάσεις, μέθοδοι ή πεδία είναι προσβάσιμα μόνο από το εσωτερικό της ίδιας<br />
+της κλάσεις που υπάρχουν.</li>
+</ul></li>
+</ul>
+<h2 id="o--final">O προσδιοριστής 'final'</h2>
+<ul>
+<li>Μεταβλητές που χρησιμοποιούν προθεματικά το 'final' στον ορισμό τους, αν πάρουν κάποια τιμή<br />
+τότε αυτή δεν μπορεί να αλλάξει (γίνεται σταθερά).</li>
+<li>Μέθοδοι που χρησιμοποιούν προθεματικά το 'final' στον ορισμό τους δεν μπορούν<br />
+να γίνουν override απο παραγώμενες κλάσεις (σε επόμενο μάθημα).</li>
+<li>Κλάσεις που χρησιμοποιούν προθεματικά το 'final' στον ορισμό τους δεν μπορούν<br />
+να επεκταθούν απο άλλες κλάσεις.</li>
+</ul>
+<h2 id="1">Παράδειγμα(1)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
+        LightBulb objLightBulb2 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
+
+        objLightBulb1.<span class="fu">setState</span>();
+
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
+    }
+}</code></pre></div>
+<h2 id="2">Παράδειγμα(2)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
+        Foo objLightBulb2 = objLightBulb1;
+
+        objLightBulb1.<span class="fu">switchlight</span>();
+
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb2);
+    }
+}</code></pre></div>
+<h2 id="3">Παράδειγμα(3)</h2>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(<span class="bu">String</span>[] args) {
+        LightBulb objLightBulb1 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">true</span>);
+        LightBulb objLightBulb2 = <span class="kw">new</span> <span class="fu">LightBulb</span>(<span class="kw">false</span>);
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(LightBulb.<span class="fu">getNumOfObjects</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">getNumOfObjects</span>());
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(objLightBulb1.<span class="fu">isLit</span>());
+
+        <span class="co">// System.out.println(LightBulb.isLit());</span>
+        <span class="co">// System.out.println(lightBulb.light);</span>
+    }
+}</code></pre></div>
+<h2>Άσκηση</h2>
+<ul>
+<li>Τι θα εκτυπωθεί στα δύο προηγούμενα κομμάτια κώδικα; Μπορείτε να αιτιολογησετε<br />
+το αποτέλεσμα; Μπορούμε να χρησιμοποιήσουμε τον κώδικα που βρίσκεται στα σχόλια;</li>
+</ul>
+<h2 id="-">Καταστροφή Αντικειμένων</h2>
+<ul>
+<li>Συχνά κατά τη διάρκεια εκτέλεσης ενός προγράμματος, δημιουργούνται αντικείμενα<br />
+που χρησιμοποιούνται για να εκπληρώσουν ένα σκοπό και μόλις αυτό γίνει χάνουν<br />
+τη χρησιμότητά τους και δεν ξαναχρησιμοποιούνται. Προκειμένου να απελευθερωθούν<br />
+πόροι από τη μνήμη, στη java. υπάρχει μηχανισμός συλλογής σκουπιδιών (garbage<br />
+collection) ο οποίος εντοπίζει αντικείμενα που δε θα χρησιμοποιηθούν στο μέλλον<br />
+και τα σβήνει. Ο μηχανισμός αυτός είναι ο μοναδικός τρόπος για να γίνει κάτι<br />
+τέτοιο. Με άλλα λόγια ένας χρήστης στη java δεν μπορεί ο ίδιος να σβήσει<br />
+κάποιο αντικείμενο.</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
