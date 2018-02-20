@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/stefanos1316/stefanos1316.github.io.svg?branch=master)](https://travis-ci.org/stefanos1316/stefanos1316.github.io)
 [![BCH compliance](https://bettercodehub.com/edge/badge/stefanos1316/stefanos1316.github.io?branch=master)](https://bettercodehub.com/)
+[![Coverage Status](https://coveralls.io/repos/github/stefanos1316/stefanos1316.github.io/badge.svg?branch=master)](https://coveralls.io/github/stefanos1316/stefanos1316.github.io?branch=master)
 
 Καθηγητής Μαθήματος: Διομήδης Σπινέλλης
 
