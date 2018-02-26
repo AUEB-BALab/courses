@@ -1,20 +1,16 @@
 language: python
-
 python:
-  - "3.5"
-
+- '3.5'
 sudo: required
 dist: trusty
-
 install:
 - pip install "notebook==4.1" requests jupyter_cms jupyter_dashboards
-
 addons:
   apt_packages:
-    - pandoc
-
+  - pandoc
 script: bash tools/travis-deploy.sh
 env:
   global:
   - ENCRYPTION_LABEL: d7e0dc08b1d8
-  - COMMIT_AUTHOR_EMAIL: "sgeorgiou@aueb.gr"
+  - COMMIT_AUTHOR_EMAIL: stefanos1316@gmail.com
+  - secure: OUTsPzM/TYVtiQ9OOIwgdMjeQENTG66MSdzeqctL4oZPtgnCn0LtBp60m5YpN7Vs0QO/Dk6egKnQz4ks0JhvIp67fvHmCsuEDBpqAUPL/0oyGWuaxR/wXC8wKgWcJT7PyMeIVQVzGKZCBwPL7a5XjU/ag9gl/QfQEwp0MZn/6OSLzwxaBlSEUVMG52NxdkbjiiREfZbbKLgQuN5vrbaUk7lPkKeEDReCzdHrkpVH+yL1o7TDqoDyZ7QrB15/ZIOWqF2nWGBLJdiEERhGLwzBJ3ig2P9OfvwzIdY3sqfYL3jkWclN3Y0uUFDp4JygNUcSo0thEEv/O3NIuOw+kf5VxTd/gH/mQrPCAueOcAfJOctDAH+tlIMScTZivl/zlLmzE3l/tZ3taAQPQAL5HobVT0dkTsFg3lXqJKdm6cCTa33WzRW2tH4prdV5G5eYe9gx0ajXT9X1CNIYlAzdZ67vFtezhrlHX/5Dm19iad+S7JxGvebOvPhHswilPwohNxAJRphoHhu19zlOnkIhHJ2/Ka7AWrTYglGwKDf5JN4rzgsIphZNAeCkuyeo3IkZckGqVtnrZLRMODOAEhaBhfa4VhmCF2yQoDyUCEi5xYx/Nrbz4G8YchdPahE13FSU2A61t6izoJoc39oLao6oSloHJUG6H13OQ481BsY9pkA3C34=
