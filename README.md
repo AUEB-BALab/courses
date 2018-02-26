@@ -12,8 +12,6 @@
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
-[Testing](https://stefanos1316/stefanos1316.github.io/)
-
-* [Παρουσιάσεις Φροντιστηρίων](https://stefanos1316.github.io/courses/tutorials.-p.html)
+* [Παρουσιάσεις Φροντιστηρίων](https://stefanos1316.github.io/courses/tutorials-p.html)
 * [Παρουσιάσεις Φροντιστηρίων προς εκτύπωση](https://stefanos1316.github.io/courses/tutorials.html)
 
