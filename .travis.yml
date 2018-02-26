@@ -13,4 +13,3 @@ env:
   global:
   - ENCRYPTION_LABEL: ee62bfef4a49
   - COMMIT_AUTHOR_EMAIL: stefanos1316@gmail.com
-
