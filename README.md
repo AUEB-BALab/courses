@@ -12,7 +12,7 @@
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
-* [Φροντιστήρια][courses/tutorials.md]
+* [Φροντιστήρια](courses/tutorials.md)
 
 * [Παρουσιάσεις και σημειώσεις](https://stefanos1316.github.io/courses/)
 
