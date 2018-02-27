@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/codeandwork/courses.svg?branch=master)](https://travis-ci.org/codeandwork/courses)
+[![Build Status](https://travis-ci.org/stefanos1316/courses.svg?branch=master)](https://travis-ci.org/stefanos1316/courses)
 
 # Υλικό για το μάθημα του Προγραμματισμού ΙΙ
 

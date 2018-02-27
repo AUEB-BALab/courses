@@ -82,7 +82,7 @@ eval `ssh-agent -s`
 
 echo "Exactly here..."
 
-ssh-add deploy_key
+ssh-add ../deploy_key
 
 echo "I am not crushing here..."
 
