@@ -1,1 +1,0 @@
-## Exercise: Understanding Software Architectures
