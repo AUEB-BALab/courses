@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/stefanos1316/courses.svg?branch=master)](https://travis-ci.org/stefanos1316/courses)
 
-# Υλικό για το μάθημα του Προγραμματισμού ΙΙ
+# Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
 
 The course materials are available as presentations and handouts from [here](https://stefanos1316.github.io/courses/index.html).
