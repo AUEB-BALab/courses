@@ -81,7 +81,8 @@ chmod 600 deploy_key
 eval `ssh-agent -s`
 
 echo "Exactly here..."
-
+ls -l 
+ls -l ../
 ssh-add ../deploy_key
 
 echo "I am not crushing here..."
