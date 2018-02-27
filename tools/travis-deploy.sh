@@ -77,13 +77,13 @@ echo "Maybe I am crushing here"
 
 echo "Some sanitizing...$SSH_REPO and $TARGET_BRANCH"
 
-chmod 600 ../deploy_key
+chmod 600 deploy_key
 eval `ssh-agent -s`
 
 echo "Exactly here..."
 ls -l 
 ls -l ../
-ssh-add ../deploy_key
+ssh-add deploy_key
 
 echo "I am not crushing here..."
 
