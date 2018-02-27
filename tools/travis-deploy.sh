@@ -73,10 +73,6 @@ if [ -n "$DEBUG" ] ; then
   set -x
 fi
 
-echo "Maybe I am crushing here"
-
-echo "Some sanitizing...$SSH_REPO and $TARGET_BRANCH"
-
 chmod 600 deploy_key
 eval `ssh-agent -s`
 
