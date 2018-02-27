@@ -75,13 +75,7 @@ fi
 
 chmod 600 ../deploy_key
 eval `ssh-agent -s`
-
-pwd
-ls -l 
-ls -l ../
 ssh-add ../deploy_key
-
-echo "I am not crushing here..."
 
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
