@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/codeandwork/courses.svg?branch=master)](https://travis-ci.org/codeandwork/courses)
 
-# Course material for the Coding Bootcamp
+# Υλικό για το μάθημα του Προγραμματισμού ΙΙ
+
+PLease work
 
 The course materials are available as presentations and handouts from [here](https://stefanos1316.github.io/courses/index.html).
 You can find more about how we author material from [these instructions](courses/admin/authoring.md).
