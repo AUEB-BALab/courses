@@ -53,13 +53,6 @@
 * Use the PNG format for clipart and JPEG for photographs
 
 
-## Tables
-* You may use this [link](https://www.tablesgenerator.com/markdown_tables) to generate the tables
-* Example: `| Name | Surname | Major |`
-* Example: `|----- |:-------:|:-----:|`
-* Example: `| Stef |  Georg  |  PhD  |`
-
-
 ## File organization
 * Each lecture is written as a single Markdown or as a Jupyter Notebook file
 * Name the file using Java variable identifier rules

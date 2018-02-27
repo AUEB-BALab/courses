@@ -1,21 +1,12 @@
-[![Build Status](https://travis-ci.org/stefanos1316/stefanos1316.github.io.svg?branch=gh-page)](https://travis-ci.org/stefanos1316/stefanos1316.github.io)
-[![BCH compliance](https://bettercodehub.com/edge/badge/stefanos1316/stefanos1316.github.io?branch=master)](https://bettercodehub.com/)
-[![Coverage Status](https://coveralls.io/repos/github/stefanos1316/stefanos1316.github.io/badge.svg?branch=master)](https://coveralls.io/github/stefanos1316/stefanos1316.github.io?branch=master)
+[![Build Status](https://travis-ci.org/codeandwork/courses.svg?branch=master)](https://travis-ci.org/codeandwork/courses)
 
-Καθηγητής Μαθήματος: Διομήδης Σπινέλλης
+# Course material for the Coding Bootcamp
 
-Βοηθοί Μαθήματος: Στέφανος Γεωργίου και Θεόδωρος Στασσινόπουλος
+The course materials are available as presentations and handouts on https://codeandwork.github.io/courses/.
+You can find more about how we author material from [these instructions](courses/admin/authoring.md).
+From the following links you can browse the available material and make minor changes through GitHub's interface.
 
-# Περιγραφή 
-Οι πιο κάτω σύνδεσμοι περιέχουν υλικό από τις διαλέξεις, τα φροντιστήρια, και τα εργαστήρια για τον Προγραμματισμό 
-ΙΙ που προσφέρεται από το τμήμα Διοικητική Επιστήμη και Τεχνολογία του Οικονομικού Πανεπιστημίου Αθηνών. 
-
-# Υλικό για το μάθημα Προγραμματισμός ΙΙ
-
-* [Παρουσιάσεις Φροντιστήρια](courses/web/tutorials-p.html)
-* [Φροντιστήρια προς εκτύπωση](courses/web/tutorials.html)
-
-
-* [Παρουσιάσεις Φροντιστηρίων](https://stefanos1316.github.io/courses/courses/tutorials-p.html)
-* [Παρουσιάσεις Φροντιστηρίων προς εκτύπωση](https://stefanos1316.github.io/courses/courses/tutorials.html)
-
+* [Trainer and administrator resources](courses/admin.md)
+* [Preparatory material](courses/prep.md)
+* [C# specialization](courses/cs.md)
+* [Java specialization](courses/java.md)
