@@ -12,10 +12,10 @@
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
-* [Φροντιστήρια](courses/admin/meterial.md)
+* [Φροντιστήρια](courses/admin/material.md)
 
-* [Παρουσιάσεις Φροντιστήρια](courses/tutorials.md)
-* [Φροντιστήρια προς εκτύπωση](courses/tutorials.md)
+* [Παρουσιάσεις Φροντιστήρια](courses/tutorials-p.html)
+* [Φροντιστήρια προς εκτύπωση](courses/tutorials.html)
 
 * [Παρουσιάσεις και σημειώσεις](https://stefanos1316.github.io/courses/)
 
