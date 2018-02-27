@@ -73,9 +73,15 @@ if [ -n "$DEBUG" ] ; then
   set -x
 fi
 
+echo "Maybe I am crushing here"
+
+echo "Some sanitizing...$SSH_REPO and $TARGET_BRANCH"
+
 chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
+
+echo "I am not crushing here..."
 
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
