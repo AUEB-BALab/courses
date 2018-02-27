@@ -94,4 +94,4 @@ for course in $COURSES ; do
 
 done
 
-sed 's/\.\.\///' web/admin/materials.html >courses/index.html
+sed 's/\.\.\///' web/admin/materials.html > web/index.html
