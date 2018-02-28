@@ -1,5 +1,12 @@
-## Java specialization
-* [Presentations](../tutorial-p.html)
-* [Handouts](../tutorial.html)
+## Διαλέξεις Προγραμματισμού ΙΙ
+* [Παρουσιάσεις](../tutorial-p.html)
+* [Σημειώσεις](../tutorial.html)
 
 
+## Φροντιστήρια Προγραμματισμού ΙΙ
+* [Παρουσιάσεις](../tutorial-p.html)
+* [Σημειώσεις](../tutorial.html)
+
+## Παρουσιάσεις εργαλείων
+* [Παρουσιάσεις](../tools-p.html)
+* [Σημειώσεις](../tools.html)
