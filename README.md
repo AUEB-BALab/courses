@@ -8,7 +8,7 @@ From the following links you can browse the available material and make minor ch
 
 * [Java lectures]()
 * [Java handouts]()
-* [Java tutorial presentations] (https://stefanos1316.github.io/courses/tutorials-p.html)
-* [Java tutorial handouts] (https://stefanos1316.github.io/courses/tutorials.html)
+* [Java tutorial presentations](https://stefanos1316.github.io/courses/tutorials-p.html)
+* [Java tutorial handouts](https://stefanos1316.github.io/courses/tutorials.html)
 * [Tools and practices presentations](https://stefanos1316.github.io/courses/tools-p.html)
 * [Tools and practices handouts](https://stefanos1316.github.io/courses/tools.html)
