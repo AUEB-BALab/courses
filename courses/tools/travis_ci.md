@@ -17,7 +17,7 @@
 * .travis.yml
 * Github repository GUI with Travis
 * Managing settings
-* Testing 
+* Automate Travis push on GitHub pages
 
 
 # Importance of CI (1) 
