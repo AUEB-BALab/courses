@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Εισαγωγή στο GitHub</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii---github">Programming II: Εισαγωγή στο GitHub</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="-github">Χειρισμός GitHub</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h1 id="github">GitHub</h1>
+<p><img src="media/GitHub.jpg" width="525" height="525" /></p>
+<h1 id="--">Λογαρισμος και Εγκατάτσαση</h1>
+<ul>
+<li><a href="https://github.com/">Github</a><br /></li>
+<li><a href="https://education.github.com/">Git Student</a><br /></li>
+<li>Linux Users apt-get | yum | dnf install git-all<br /></li>
+<li><a href="https://git-for-windows.github.io/">Install Git Bash for Windows</a><br /></li>
+<li><a href="https://desktop.github.com/">Install GitHubDeskopt</a></li>
+</ul>
+<h1 id="-">Δημιουργία αποθετήρα</h1>
+<p><img src="media/Create_New_Repo.png" /></p>
+<h1 id="i-">Iδιωτικός αποθετήρας</h1>
+<p><img src="media/Create_Private_Repo.png" /></p>
+<h1 id="-">Όψη Αποθετήρα</h1>
+<p><img src="media/Repo_view.png" /></p>
+<h1 id="1">Κλωνοποιήση(1)</h1>
+<p><img src="media/Clone_Repo.png" /></p>
+<h1 id="2">Κλωνοποιήση(2)</h1>
+<p><img src="media/Clone_Bash.png" /></p>
+<h1 id="--">Πρόσθεση και Ώθηση</h1>
+<p><img src="media/Push_Changes.png" /></p>
+<h1 id="git-">Git Εντολές</h1>
+<div style="text-align: left"> 
+
+<p>Εντολές για προώθηση κώδικα:<br /></dv></p>
+<ul>
+<li>git add .<br /></li>
+<li>git commit -m &quot;Version 1.1&quot;<br /></li>
+<li>git push</li>
+</ul>
+<div style="text-align: left">
+Εντολές για ανανέωση κώδικα στην τελευταία έκδοση:
+</div>
+
+<ul>
+<li>git pull</li>
+</ul>
+<div style="text-align: left">
+Εντολές για έλεγχο κατάτστασης:
+</div>
+
+<ul>
+<li>git status<br /></li>
+<li>git log</li>
+</ul>
+<h1 id="-">Ένωση Κώδικα</h1>
+<iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+<p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI">via GIPHY</a></p>
+
+
+
+<h1 id="---">Επιστροφή σε παλία έκδοση</h1>
+<ul>
+<li>git log<br /></li>
+<li>git checkout<br /></li>
+<li>git reset (unpublished commits)<br /></li>
+<li>git revert (makes a copy, safer solution)</li>
+</ul>
+<h1 id="--git">Ροή Εργασίας Git</h1>
+<p><img src="media/Git_Workflow.png" /></p>
+<p><a href="http://blog.osteele.com/2008/05/my-git-workflow/">Git Workflow</a></p>
+<h1 id="git-gui">Git GUI</h1>
+<p><img src="media/GitHubDesktopCloneRepo.png" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

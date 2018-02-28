@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Travis CI</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Programming II
+
+## Travis CI
+
+
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Tools and practices: Continuous Integration
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+
+
+# Travis CI
+
+<img src="media/travis_ci_logo.png" width="425" /> 
+
+
+# Agenda
+
+* Importance of Continuous Integration
+* About Travis CI
+* Getting started
+* .travis.yml
+* Github repository GUI with Travis
+* Managing settings
+* Automate Travis push on GitHub pages
+
+
+# Importance of CI (1) 
+
+* Continuous Integration is a software development practice where members of a team integrate their work frequently.
+* Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible.
+* Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.
+
+
+# Importance of CI (2) 
+
+<img src="media/git_branch.svg" width="800" height="458" /> 
+
+
+# Importance of CI (3)
+
+![](media/its_compilcated.png)
+
+
+# Merging without CI?
+
+<iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI"></a></p>
+
+
+# About Travis CI
+
+* Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub. 
+* Is using Amazon cloud infrastructure to host, build, and test various projects.
+* Testing service fpr private repository is fee basis while free of charge for public.
+* TravisPro offers custom deployments on customer's own hardware.
+
+
+# Getting started
+
+![](media/getting_started.png)
+
+
+# .travis.yml
+
+* Define all dependencies, programming lanauges, packages, etc.
+* Define specific versions.
+* Define scripts to execute.
+
+
+# .travis.yml example
+
+```java
+language: python
+python:
+- '3.5'
+sudo: required
+dist: trusty
+install:
+- pip install "notebook==4.1" requests jupyter_cms jupyter_dashboards
+addons:
+  apt_packages:
+  - pandoc
+script: bash tools/travis-deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: b88dab5c5665
+  - COMMIT_AUTHOR_EMAIL: stefanos1316@gmail.com
+```
+
+
+# 
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>

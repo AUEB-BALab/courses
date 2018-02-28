@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Travis CI</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii-travis-ci">Programming II: Travis CI</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-continuous-integration">Tools and practices: Continuous Integration</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+</ul>
+<h1 id="travis-ci">Travis CI</h1>
+<p><img src="media/travis_ci_logo.png" width="425" /></p>
+<h1 id="agenda">Agenda</h1>
+<ul>
+<li>Importance of Continuous Integration<br /></li>
+<li>About Travis CI<br /></li>
+<li>Getting started<br /></li>
+<li>.travis.yml<br /></li>
+<li>Github repository GUI with Travis<br /></li>
+<li>Managing settings<br /></li>
+<li>Automate Travis push on GitHub pages</li>
+</ul>
+<h1 id="importance-of-ci-1">Importance of CI (1)</h1>
+<ul>
+<li>Continuous Integration is a software development practice where members of a team integrate their work frequently.<br /></li>
+<li>Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible.<br /></li>
+<li>Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.</li>
+</ul>
+<h1 id="importance-of-ci-2">Importance of CI (2)</h1>
+<p><img src="media/git_branch.svg" width="800" height="458" /></p>
+<h1 id="importance-of-ci-3">Importance of CI (3)</h1>
+<p><img src="media/its_compilcated.png" /></p>
+<h1 id="merging-without-ci">Merging without CI?</h1>
+<iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+<p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI"></a></p>
+
+
+
+<h1 id="about-travis-ci">About Travis CI</h1>
+<ul>
+<li>Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub.<br /></li>
+<li>Is using Amazon cloud infrastructure to host, build, and test various projects.<br /></li>
+<li>Testing service fpr private repository is fee basis while free of charge for public.<br /></li>
+<li>TravisPro offers custom deployments on customer's own hardware.</li>
+</ul>
+<h1 id="getting-started">Getting started</h1>
+<p><img src="media/getting_started.png" /></p>
+<h1 id="travis.yml">.travis.yml</h1>
+<ul>
+<li>Define all dependencies, programming lanauges, packages, etc.<br /></li>
+<li>Define specific versions.<br /></li>
+<li>Define scripts to execute.</li>
+</ul>
+<h1 id="travis.yml-example">.travis.yml example</h1>
+<pre class="sourceCode java"><code class="sourceCode java">language: python
+python:
+- &#39;<span class="fl">3.5</span>&#39;
+sudo: required
+dist: trusty
+install:
+- pip install <span class="st">&quot;notebook==4.1&quot;</span> requests jupyter_cms jupyter_dashboards
+addons:
+  apt_packages:
+  - pandoc
+script: bash tools/travis-deploy.<span class="fu">sh</span>
+env:
+  global:
+  - ENCRYPTION_LABEL: b88dab5c5665
+  - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
+<h1 id="section"></h1>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

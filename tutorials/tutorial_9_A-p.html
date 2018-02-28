@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Διαχείρηση αρχείων</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Programming II
+
+## Διαχείρηση αρχείων
+
+
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Προγραμματισμός ΙΙ
+# Διαχείρηση Αρχείων
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+* [Θεόδωρος Στασινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
+
+
+## Αρχεία
+
+* Τρόπος μόνιμης αποθήκευσης δεδομένων.
+* Για να γράψουμε ή να διαβάσουμε μέσα από αρχεία, χρησιμοποιούμε τη ροή εισόδου 
+και εξόδου (I/O streams)
+
+
+## Ροή Εισόδου και Εξόδου (I/O Streams)
+
+Μία ροή (**stream**) αναφέρεται σε μια σειρά από ταξινομημένα δεδομένα που διαβάζονται από ή γράφονται σε ένα αρχείο. 
+
+![](media/files_1.png)
+![](media/files_2.png)
+
+
+## Τρόποι διαχείρισης αρχείων (1)
+
+<div style="text-align: justify"> 
+**Byte Streams**: εισαγωή και εξαγωγή 8-bit ή 1 byte. Χρησιμοποιούνται για χαμηλού επιπέδου διαχείριση δεδομένων εισόδου και εξόδου. Η είσοδος και η έξοδος από ένα αρχείο βασίζεται σε bytes.
+</div>
+
+```java
+FileInputStream in = new FileInputStream("infile.txt");
+FileOutputStream in = new FileOutputStream("outfile.txt");
+```
+
+
+## Τρόποι διαχείρισης αρχείων (2)
+<div style="text-align: justify"> 
+**Character Streams**: αποτελούν “wrappers” των byte streams. Χρησιμοποιούν byte streams για χειρισμό δεδομένων εισόδου και εξόδου σε χαμηλό επίπεδο (low-level I/O), καθώς τα character streams χειρίζονται τη μετάφραση των χαρακτήρων σε bytes. Η είσοδος και η έξοδος σε και από ένα αρχείο βασίζεται σε χαρακτήρες.
+</div>
+
+```java
+FileReader in = new FileReader("infile.txt"); 
+FileWriter in = new FileWriter("outfile.txt"); 
+```
+
+
+## Τρόποι διαχείρισης αρχείων (3)
+<div style="text-align: justify"> 
+**Buffer Streams**: χρήσιμοποιούν _buffers_ στο διάβασμα (**read**) ή στο γράψιμο (**write**) αρχείων. Βοηθούν στην αποδοτικότητα των προγραμμάτων καθώς τα αιτήματα read/write δεν χειρίζονται κατευθείαν από το λειτουργικό σύστημα.
+</div>
+
+```java
+BufferedReader in = new BufferedReader(new FileReader("infile.txt"));
+BufferedWriter out = new BufferedWriter(new FileWriter("outfile.txt"));
+```
+
+
+## Τρόποι διαχείρισης αρχείων (4)
+<div style="text-align: justify"> 
+**Data Streams**: υποστηρίζουν δυαδική είσοδο και έξοδο (**binary Ι/Ο**) από πρωταρχικούς τύπους δεδομένων (**primitive data types**: boolean, char, byte, short, int, long, float, και double) καθώς και **String**.
+</div>
+
+```java
+DataOutputStream out = new DataOutputStream(new BufferedOutputStream(
+              new FileOutputStream(dataFile)));
+DataInputStream in = new DataInputStream(new BufferedInputStream(
+              new FileInputStream(dataFile)));
+```
+
+
+![](media/files_3.png)
+
+
+## Ανάγνωση αρχείου
+
+<div style="text-align: justify"> 
+Mε FileInputStream: διαβάζει ροές από bytes (π.χ. image data) αφού ανοίξει μια σύνδεση με το αρχείο. 
+</div>
+
+* Μπορεί να διαβάσει μέχρι ένα συγκεκριμένο αριθμό δεδομένων με την χρήση της read(byte[] b).
+	* Εάν δε βρεθεί το αρχείο, πετάει την εξαίρεση: **FileNotFoundException**.
+	* Με **DataInputStream**: διαβάζει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.
+	* Γράφει ένα String σε ένα αρχείο με τη χρήση της writeUTF(String str). 
+	* Mπορεί να πετάξει IOException (προβλήματα εισόδου/εξόδου), γι’ αυτό πρέπει να χρησιμοποιούνται οι μέθοδοι .flush() για τις ροές (πετάει τα δεδομένα του buffer στο αρχείο).
+
+
+## Εγγραφή σε αρχείο 
+
+<div style="text-align: justify"> 
+Με FileOutputStream: ανοίγει μια ροή για να γράψει δεδομένα σε ένα αρχείο.
+</div>
+* Μπορεί να γράψει μέχρι ένα συγκεκριμένο αριθμό δεδομένων με την χρήση της write(byte[] b).
+	* Εάν δε βρεθεί το αρχείο, πετάει την εξαίρεση: **FileNotFoundException**.
+	* Με **DataOutputStream**: γράφει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>

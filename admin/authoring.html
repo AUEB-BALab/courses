@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Course authoring</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii-course-authoring">Programming II: Course authoring</h1>
+<h2 id="basics">Basics</h2>
+<ul>
+<li>We use <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> for our slides,<br /> but this should be transparent to you<br /></li>
+<li>We write slides either in Markdown or as a Jupyter Notebook<br /></li>
+<li>More details follow</li>
+</ul>
+<h2 id="markdown-slides">Markdown slides</h2>
+<ul>
+<li>Write slides in <a href="https://help.github.com/categories/writing-on-github/">GitHub flavoured Markdown</a><br /></li>
+<li>Start title text with <code>##</code> followed by a space<br /></li>
+<li>Start bullet items with <code>*</code> followed by a space<br /></li>
+<li>Separate each slide from the next with two empty lines<br /></li>
+<li>Add hyperlinks using the <code>[</code><em>text</em><code>](</code><em>URL</em><code>)</code> syntax</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre class="md"><code>## First slide title
+* Bullet item 1
+* Bullet item 2
+ 
+ 
+## Second slide title</code></pre>
+<h2 id="code-listings">Code listings</h2>
+<ul>
+<li>Code listings are automatically highlighted<br /></li>
+<li>Start a code listing with three backticks followed by the language's suffix<br /> on a single line<br /></li>
+<li><p>Example:</p>
+<pre class="md"><code> ```java
+ ```cs
+ ```sql
+ ```js
+ ```HTML</code></pre></li>
+<li>End code listings with three backticks on a single line<br /></li>
+<li>Indent Markdown code with a space to avoid it being interpreted by <em>reveal.js</em><br /></li>
+<li>Prepend a space when closing a script tag in HTML listings (<code>&lt;/ script&gt;</code>)<br /></li>
+<li><p>Avoid two blank lines in the code; they confuse <em>reveal.js</em>.</p></li>
+</ul>
+<h2 id="images-and-other-media">Images and other media</h2>
+<ul>
+<li>Place images in the <code>media</code> directory under the corresponding course<br /> directory<br /></li>
+<li>Insert media on a slide with the syntax <code>![](media/</code><em>filename</em><code>)</code><br /></li>
+<li><p>Example:</p>
+<pre class="md"><code>![](media/hello.png)</code></pre></li>
+<li><p>Use the PNG format for clipart and JPEG for photographs</p></li>
+</ul>
+<h2 id="file-organization">File organization</h2>
+<ul>
+<li>Each lecture is written as a single Markdown or as a Jupyter Notebook file<br /></li>
+<li>Name the file using Java variable identifier rules<br /></li>
+<li>Suffix the Markdown file name with <code>.md</code><br /></li>
+<li>Example: <code>unitTests.md</code><br /></li>
+<li>Suffix the Jupyter file name with <code>.ipynb</code></li>
+</ul>
+<h2 id="folder-organization">Folder organization</h2>
+<ul>
+<li>Place the file in one of the following folders<br /></li>
+<li><code>java</code>: Java material<br /></li>
+<li><code>cs</code>: C# material<br /></li>
+<li><code>common</code>: Material common to both courses<br /></li>
+<li><code>admin</code>: Course instructor and administrator material</li>
+</ul>
+<h2 id="linking-lectures-into-a-course">Linking lectures into a course</h2>
+<ul>
+<li>Within the <code>courses</code> directory create or edit a Markdown file named after<br /> the course<br /></li>
+<li>Use a level-1 title for the course<br /></li>
+<li>Use a level-2 title for units<br /></li>
+<li>Enter each lecture as a separate bullet<br /></li>
+<li>Example</li>
+</ul>
+<pre class="md"><code># Coding bootcamp: Java specialization
+## Test driven development and object-oriented programming
+* [Hello world!](java/hello.md)
+* [Constructing and using objects](java/objects.md)
+* [Python classes](common/pythonClasses.ipynb)</code></pre>
+<h2 id="contributions">Contributions</h2>
+<ul>
+<li>You can perform small changes directly on the <a href="https://github.com/codeandwork/courses">GitHub repository</a><br /></li>
+<li>For substantial work it is recommended that you work on a local repository<br /></li>
+<li>Commit your changes with <a href="http://chris.beams.io/posts/git-commit/">proper commit messages</a><br /></li>
+<li>Do not forget to push after committing</li>
+</ul>
+<h2 id="editing-and-build-tools">Editing and build tools</h2>
+<ul>
+<li>You will need to have the following tools installed<br /></li>
+<li>A Unix shell<br /></li>
+<li>Git<br /></li>
+<li><a href="http://pandoc.org/">Pandoc</a><br /></li>
+<li><a href="https://rsync.samba.org/">rsync</a><br /></li>
+<li><a href="http://jupyter.org/">Jupyter Notebook</a><br /></li>
+<li>This setup is trivial on Mac and Linux systems<br /></li>
+<li>On Windows systems we recommend the installation of <a href="https://www.cygwin.com/">Cygwin</a><br /></li>
+<li><a href="https://www.continuum.io/downloads">Anaconda</a> simplifies the Jupyter Notebook installation</li>
+</ul>
+<h2 id="building-and-deploying">Building and deploying</h2>
+<ul>
+<li>First clone the <a href="https://github.com/codeandwork/courses">GitHub repository</a><br /></li>
+<li>Run <code>make</code> to build the presentation and note handouts<br /></li>
+<li>This generates the material in the <code>web</code> directory<br /></li>
+<li>View the presentations and handouts through <a href="../index.html">this link</a><br /></li>
+<li>Pushing your changes will result in an automatic update of the <a href="https://codeandwork.github.io/courses/">web site</a></li>
+</ul>
+<h2 id="style">Style</h2>
+<ul>
+<li>Use lower case in titles, Not Title Case<br /></li>
+<li>Start each bullet item with a capital<br /></li>
+<li>Don't punctuate at the end of bullet items<br /></li>
+<li>Spell-check what you write<br /></li>
+<li>Use British spelling<br /></li>
+<li>Don't pack your slides with text<br /></li>
+<li>Take care of capitalization: JavaScript, SQL, Java, C#, Git, GitHub<br /></li>
+<li>Put names of code and commands in backticks, e.g. `main` or `git`<br /></li>
+<li>Avoid lines longer than 67 characters</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

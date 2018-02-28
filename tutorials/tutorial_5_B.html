@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Εξαιρέσεις και Ισχυρισμοί</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii---">Programming II: Εξαιρέσεις και Ισχυρισμοί</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="--">Εξαιρέσεις και Ισχυρισμοί</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h2>Εξαιρέσεις</h2>
+<ul>
+<li>Μία εξάιρεση είναι ένα γεγονός που παρακάμπτει την κανονική εκτέλεση ενός προγράμματος.<br /></li>
+<li>Δίνει την δυνατότητα να χειριστούμε γεγονότα όταν γίνει κάτι το ασυνήθιστο.<br /></li>
+<li>Αποφεύγουμε την δημιουργεία περίπλοκου κώδικα στον χειρισμό πιθανού σφάλματος.<br /></li>
+<li>Δίνει δυναντότητα μετάδοσεις σφάλματος στο ίχνος στοίβας (stack trace).</li>
+</ul>
+<h2 id="-">Παράδειγμα ψευδοκώδικα</h2>
+<ul>
+<li>Λάθη?</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">readFile {
+    open the file;
+    determine its size;
+    allocate that much memory;
+    read the file into memory;
+    close the file;
+}</code></pre>
+<h2 id="-">Χειρισμός ψευδοκώδικα</h2>
+<pre class="sourceCode java"><code class="sourceCode java">errorCodeType readFile {
+    initialize errorCode = <span class="dv">0</span>;
+    
+    open the file;
+    <span class="kw">if</span> (theFileIsOpen) {
+        determine the length of the file;
+        <span class="kw">if</span> (gotTheFileLength) {
+            allocate that much memory;
+            <span class="kw">if</span> (gotEnoughMemory) {
+                read the file into memory;
+                <span class="kw">if</span> (readFailed) {
+                    errorCode = -<span class="dv">1</span>;
+                }
+            } <span class="kw">else</span> {
+                errorCode = -<span class="dv">2</span>;
+            }
+        } <span class="kw">else</span> {
+            errorCode = -<span class="dv">3</span>;
+        }
+        close the file;
+        <span class="kw">if</span> (theFileDidntClose &amp;&amp; errorCode == <span class="dv">0</span>) {
+            errorCode = -<span class="dv">4</span>;
+        } <span class="kw">else</span> {
+            errorCode = errorCode and -<span class="dv">4</span>;
+        }
+    } <span class="kw">else</span> {
+        errorCode = -<span class="dv">5</span>;
+    }
+    <span class="kw">return</span> errorCode;
+}</code></pre>
+<h2 id="--">Σωστός χειρισμός ψευδοκώδικα</h2>
+<pre class="sourceCode java"><code class="sourceCode java">readFile {
+    <span class="kw">try</span> {
+        open the file;
+        determine its size;
+        allocate that much memory;
+        read the file into memory;
+        close the file;
+    } <span class="kw">catch</span> (fileOpenFailed) {
+       doSomething;
+    } <span class="kw">catch</span> (sizeDeterminationFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (memoryAllocationFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (readFailed) {
+        doSomething;
+    } <span class="kw">catch</span> (fileCloseFailed) {
+        doSomething;
+    }</code></pre>
+<h2 id="-">Χηρισμός εξαιρέσεων</h2>
+<ul>
+<li>Μπορέι να γίνει χρησιμοποιώντας το <strong>try-catch</strong>.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
+    some code here
+} <span class="kw">catch</span> and <span class="kw">finally</span> blocks …</code></pre>
+<h2 id="throws">throws</h2>
+<ul>
+<li>Μπορούμε να ορίσουμε την πιθανότητα να προκήψη μία εξαίρεση στην υπογραφή μίας μεθόδου.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">writeList</span>() <span class="kw">throws</span> IOException, IndexOutOfBoundsException {...}</code></pre>
+<h2 id="throw-new">throw new</h2>
+<ul>
+<li>Μπορούμε να ορίσουμε την πιθανότητα δημιουργίας μίας εξαίρεσης μέσο της <strong>throw new</strong> λέξης.<br /></li>
+<li>Επίσης, θα πρέπει αν ορίσουμε στην υπογραφή της μεθόδου την λέξη <strong>throws</strong> με το όνομα της εξαίρεσης.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">checkAmout</span>(<span class="dt">int</span> amount) <span class="kw">throws</span> NegativeAmoutException {
+    <span class="kw">if</span> (amount &lt; <span class="dv">0</span>) {
+        <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NegativeAmountException</span>();
+    }
+}</code></pre>
+<h2 id="-">Τύποι εξαιρέσεων</h2>
+<p><img src="media/exceptions.png" /></p>
+<h2 id="-checked-exception">Παραδείγμα Checked Exception</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.File;</span>
+<span class="kw">import java.io.FileNotFoundException;</span>
+<span class="kw">import java.io.FileReader;</span>
+
+<span class="kw">public</span>  <span class="kw">class</span> testClass {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])  {       
+          File file = <span class="kw">new</span> File(<span class="st">&quot;E://file.txt&quot;</span>);
+          <span class="kw">try</span> {
+            FileReader fr = <span class="kw">new</span> FileReader(file);
+        } <span class="kw">catch</span> (FileNotFoundException e) {
+            <span class="co">// TODO Auto-generated catch block</span>
+            e.<span class="fu">printStackTrace</span>();
+        } 
+       }
+}</code></pre>
+<h2 id="-unchecked-exception">Παράδειγμα Unchecked Exception</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">import java.io.*;</span>
+    
+    <span class="kw">public</span> <span class="kw">class</span> ExcepTest {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+            <span class="kw">try</span> {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access elements three:&quot;</span> + a[<span class="dv">3</span>]);
+            } <span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown :&quot;</span> +e);
+            }
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Out of the block&quot;</span>);
+        }
+    }</code></pre>
+<h2 id="--finally">Χρήση της finally</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExcepTest {
+
+   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+      <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+      <span class="kw">try</span> {
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access element three :&quot;</span> + a[<span class="dv">3</span>]);
+      } <span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown  :&quot;</span> + e);
+      } <span class="kw">finally</span> {
+         a[<span class="dv">0</span>] = <span class="dv">6</span>;
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;First element value: &quot;</span> + a[<span class="dv">0</span>]);
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The finally statement is executed&quot;</span>);
+      }
+   }
+}</code></pre>
+<h2 id="-">Ίχνη Στοίβας</h2>
+<ul>
+<li>Τα ίχνη στοίβας περιέχουν αποτελέσματα σφαλμάτων μίας εφαρμογής<br />όπου προσφέρουν στοιχεία για τα αίτια του σφάλματος.<br /></li>
+<li>Η χρήση της μεθόδου <strong>printStackTrace()</strong> δίνει το δέντρο της<br />στοίβας αν κάποια μέθοδος έχει αποτύχη.</li>
+</ul>
+<h2 id="---">Παράδειγμα για Ίχνη Στοίβας</h2>
+<pre class="sourceCode java"><code class="sourceCode java">Exception in thread <span class="st">&quot;main&quot;</span> java.<span class="fu">lang</span>.<span class="fu">NullPointerException</span>: Fictitious NullPointerException
+at StackTraceExample.<span class="fu">method111</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">15</span>)
+at StackTraceExample.<span class="fu">method11</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">11</span>)
+at StackTraceExample.<span class="fu">method1</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">7</span>)
+at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">3</span>)</code></pre>
+<h2 id="-">Δημιουργεία εξαιρέσεων</h2>
+<ul>
+<li>Μπορούμε να δημιουργήσουμε τις δικές μας εξαιρέσεις επεκτείνοντας τις κλάσεις π.χ. <strong>Exception</strong>, <strong>RuntimeException</strong></li>
+</ul>
+<h2 id="-1">Ισχυρισμοί (1)</h2>
+<ul>
+<li>Χρησιμοποιείτε για έβρεση λαθών μέσα στον κώδικα.<br /></li>
+<li>Χρησιμοποιεί μια έκφραση boolean, αν αυτή επιστρέψει λάθος τότε προσδιορίζει την ένδειξη σφάλματος στο κώδικα<br />με την εκτύπωση κάποιου μηνύματος.<br /></li>
+<li>Για χρήση του assertion πρέπει να εκτελέσετε ώς έχει: java -ea|-enableassertion executable<br /></li>
+<li>Επιτρέπει την τεκμηρίωση του κώδικα και τον τρόπο λειτουργίας του.</li>
+</ul>
+<h2 id="-2">Ισχυρισμοί (2)</h2>
+<ul>
+<li>Επιτρέπει την κατανοώηση του προγράμματος μας για άλλα άτομα.<br /></li>
+<li>Βοηθούν στην εύκολη αποσφαλμάτωση του κώδικα.<br /></li>
+<li>Οι ισχυρισμοί δεν έιναι για τους χρήστες ενός προγράμματος αλλά για του μηχανικούς λογισμικού.<br /></li>
+<li>Οταν εντοπιστεί σφάλμα ισχυρισμού συνήθως πρέπει να σταματά η λειτουργία ενός προγράμματος.</li>
+</ul>
+<h2 id="---">Διαφορές Ισχυρισμών με Εξαιρέσεις</h2>
+<ul>
+<li>Με τους ισχυρισμούς ελέγχουμε περιπτώσεις που δεν πρέπει ποτέ να συμβούν ενώ με τις εξαιρέσεις<br />κάτι που μπορεί να συμβεί.<br /></li>
+<li>Ο ισχυρισμός σταματάει την εκτέλεση του προγράμματος ενώ η εξαίρεση επιτρέπει την συνέχεια αν μπορεί<br />να διορθωθεί το συγκεκριμένο σφάλμα.</li>
+</ul>
+<h2 id="-1">Παράδειγμα (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">BankAccount acct = <span class="kw">null</span>;
+
+<span class="co">// ...</span>
+<span class="co">// Get a BankAccount object</span>
+<span class="co">// ...</span>
+
+<span class="co">// Check to ensure we have one</span>
+              assert acct != <span class="kw">null</span> : <span class="st">&quot;Object Null&quot;</span>;</code></pre>
+<h2 id="-2">Παράδειγμα (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> AssertionTest3 {
+
+   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String argv[]) <span class="kw">throws</span> IOException {
+      System.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Enter your marital status: &quot;</span>);
+      <span class="dt">int</span> c = System.<span class="fu">in</span>.<span class="fu">read</span>();
+      <span class="kw">switch</span> ((<span class="dt">char</span>) c) {
+         <span class="kw">case</span> &#39;s&#39;:
+         <span class="kw">case</span> &#39;S&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Single&quot;</span>); <span class="kw">break</span>;
+         <span class="kw">case</span> &#39;m&#39;:
+         <span class="kw">case</span> &#39;M&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Married&quot;</span>); <span class="kw">break</span>;
+         <span class="kw">case</span> &#39;d&#39;:
+         <span class="kw">case</span> &#39;D&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Divorced&quot;</span>); <span class="kw">break</span>;
+         <span class="kw">default</span>: assert !<span class="kw">true</span> : <span class="st">&quot;Invalid Option&quot;</span>; <span class="kw">break</span>;
+      }
+
+   }
+}</code></pre>
+<h2 id="-3">Παράδειγμα (3)</h2>
+<pre class="sourceCode bash"><code class="sourceCode bash">    [<span class="kw">sgeorgiou@aiolos</span>]$ java -ea AssertionTest3 
+    <span class="kw">Enter</span> your marital status: n
+    <span class="kw">Exception</span> in thread <span class="st">&quot;main&quot;</span> java.lang.AssertionError: Invalid Option
+        <span class="kw">at</span> AssertionTest3.main(AssertionTest3.java:15)</code></pre>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

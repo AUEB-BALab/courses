@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Εισαγωγή στο Jarpeb</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="programming-ii---jarpeb">Programming II: Εισαγωγή στο Jarpeb</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="-1-a-">Φροντιστήριο 1 (A' μέρος)</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
+<li><a href="https://www.balab.aueb.gr/theodore-stassinopoulos.html">Θεόδωρος Στασινόπουλος</a></li>
+</ul>
+<h2 id="-">Στοιχεία Μαθήματος</h2>
+<ul>
+<li><strong>Μάθημα</strong>: Προγραμματισμός ΙΙ<br /></li>
+<li><strong>Καθηγητής</strong>: Διομήδης Σπινέλλης<br /></li>
+<li><strong>Βοηθοί</strong>: Στέφανος Γεωργίου και Θεόδωρος Στασσινόπουλος<br /></li>
+<li><strong>Θεωρία</strong> και <strong>ατομικές ασκήσεις</strong>: κάθε <strong>Δευτέρα</strong>. 3-5μμ, Δ23<br /></li>
+<li><strong>Πρακτικές</strong> και <strong>ομαδικές ασκήσεις</strong>: κάθε <strong>Τετάρτη</strong> 3-5μμ, Α23<br /></li>
+<li><strong>Φροντιστήριο</strong>: κάθε <strong>Τρίτη</strong>, 3-5μμ, Α23<br /></li>
+<li><strong>Εργαστήριο</strong>: 4 ώρες/εβδομάδα (<strong>Τετάρτη</strong> και <strong>Πέμπτη</strong>, 5-7μμ, ELOI2)</li>
+</ul>
+<h2 id="-">Σημειώσεις μαθήματος</h2>
+<p><img src="media/Main_Page.png" /><br /><a href="https://edu.dmst.aueb.gr/course/view.php?id=20"><a href="https://edu.dmst.aueb.gr/course/view.php?id=20">https://edu.dmst.aueb.gr/course/view.php?id=20</a></a></p>
+<h2 id="-----">Σημειώσεις Θεωρίας και Σύνδεσμοι Ατομικώ Ασκήσεων</h2>
+<p><img src="media/Exercises.png" /><br /><a href="https://www2.dmst.aueb.gr/dds/isdi/index.htm"><a href="https://www2.dmst.aueb.gr/dds/isdi/index.htm">https://www2.dmst.aueb.gr/dds/isdi/index.htm</a></a></p>
+<h2 id="-">Ατομικές Ασκήσεις</h2>
+<p><img src="media/Programming_II_Grading_System.png" /><br /><a href="https://www2.dmst.aueb.gr/dds/isdi/exercise/index.htm"><a href="https://www2.dmst.aueb.gr/dds/isdi/exercise/index.htm">https://www2.dmst.aueb.gr/dds/isdi/exercise/index.htm</a></a></p>
+<h2 id="-">Αξιολόγηση Συμμετοχής</h2>
+<p><img src="media/Participation.png" /><br /><a href="https://www2.dmst.aueb.gr/dds/isdi/intro/token.htm"><a href="https://www2.dmst.aueb.gr/dds/isdi/intro/token.htm">https://www2.dmst.aueb.gr/dds/isdi/intro/token.htm</a></a></p>
+<h2 id="-">Φροντιστηριακές Παραδόσεις</h2>
+<ul>
+<li>Εκμάθηση και υποστήριξη του <strong>Jarpeb</strong> (Java Randomised and Psersonalized Exercise Builder)<br /></li>
+<li>Επεξήγηση ασκήσεων ατομικών<br /></li>
+<li>Επίλυση αποριών και ασκήσεων</li>
+</ul>
+<h2 id="----">Απαιτήσεις για το Σύστημα Ασκήσεων</h2>
+<ul>
+<li>Να έχετ <strong>εγκαταστήσει</strong> τη <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java</a> (τουλάχιστον jdk 1.7)<br /></li>
+<li>Να <strong>ακολουθήσετε</strong> τον <a href="https://edu.dmst.aueb.gr/pluginfile.php/9682/mod_resource/content/0/%CE%9F%CE%B4%CE%B7%CE%B3%CF%8C%CF%82%20%CE%95%CE%B3%CE%BA%CE%B1%CF%84%CE%AC%CF%83%CF%84%CE%B1%CF%83%CE%B7%CF%82%20Jarpeb.pdf"><strong>Οδηγό Εγκατάστασης Jarpeb</strong></a></li>
+</ul>
+<h2 id="---">Κριτήρια Βαθμολογίας Ατομικών Ασκήσεων</h2>
+<ul>
+<li>Υλοποίηση του προγράμματος κάθε άσκησης<br /></li>
+<li>Μορφοποίηση του προγράμματος κάθε άσκησης<br /></li>
+<li>Απαντήσεις στις ερωτήσεις πολλαπλής επιλογής</li>
+</ul>
+<h2 id="--java">Προγραμματισμός σε Java</h2>
+<ul>
+<li>Διορθωτής (editor) + Μεταγλωττιστής (compiler)<br /><strong>ή</strong><br /></li>
+<li>Ολοκληρωμένο Περιβάλλον Ανάπτυξης Εφαρμογών (Integrated Development Environment - IDE)</li>
+</ul>
+<h2 id="editors">Editors</h2>
+<ul>
+<li>TextPad<br /></li>
+<li>Notepad++<br /></li>
+<li>Notepad<br /></li>
+<li>Vim<br /></li>
+<li>Emacs<br /></li>
+<li>Sublime<br /></li>
+<li>TextEdit</li>
+</ul>
+<h2 id="integrated-development-environments---ides">Integrated Development Environments - IDEs</h2>
+<ul>
+<li>Eclipse<br /></li>
+<li>NetBeans<br /></li>
+<li>IntelliJ</li>
+</ul>
+<h2 id="-1">Παράδειγμα 1</h2>
+<p><img src="media/IDE.png" /></p>
+<h2 id="------">Μεταγλώττιση και Εκτέλεση από τη Γραμμή Εντολών</h2>
+<ul>
+<li>Μεταγλωττίζουμε το πρόγραμμα με την εντολή <strong>javac <όνομα αρχείου.java></strong><br /></li>
+<li>Αν δεν έχουμε κάνει λάθη τότε θα δημιουργηθεί ένα αρχείο με κατάληξη <strong>.class</strong><br /></li>
+<li>Εκτελούμε το πρόγραμμα με την εντολή <strong>java <όνομα αρχείου></strong> (χωρίς την κατάληξη .class)</li>
+</ul>
+<h2 id="-2">Παράδειγμα 2</h2>
+<p><img src="media/Jarpeb_GUI.png" /></p>
+<p><img src="media/Jarpeb_Exercises.jpg" /></p>
+<h2 id="-">Έλεγχος Υλοποιήσης</h2>
+<p><img src="media/Correct_Sumbission.png" /></p>
+<h2 id="-">Ποιότητα Μπρφοποίησης</h2>
+<ul>
+<li>Κενό πριν την αγκύλη {<br /></li>
+<li>Όχι κενό μετά την παρένθεση (<br /></li>
+<li>Κενό πριν και μετά τους τελεστές (==, &lt;, &gt;, &amp;&amp;, ||…)<br /></li>
+<li>Κενό πριν και μετά τα σύμβολα των πράξεων (+, -, \, %)<br /></li>
+<li>1 κενή γραμμή πριν κάθε νέα μέθοδο</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">if</span> {
+        ...
+    } <span class="kw">else</span> {
+        ...
+    }</code></pre>
+<h2 id="-">Έλεγχος Καταχώρησης</h2>
+<p><img src="media/Correctly_Submitted_Exercises.jpg" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
