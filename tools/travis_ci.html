@@ -43,8 +43,8 @@
 <li>About Travis CI<br /></li>
 <li>Getting started<br /></li>
 <li>.travis.yml<br /></li>
-<li>Github Travis webhook<br /></li>
-<li>Automate Travis push on GitHub pages</li>
+<li>GitHub Travis webhook<br /></li>
+<li>Auto-deploying gh-pages with Travis</li>
 </ul>
 <h1 id="importance-of-ci-1">Importance of CI (1)</h1>
 <ul>
@@ -94,12 +94,77 @@ env:
   global:
   - ENCRYPTION_LABEL: b88dab5c5665
   - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
-<h1 id="travis-github-webhook-1">Travis Github webhook (1)</h1>
+<h1 id="travis-github-webhook-1">Travis GitHub webhook (1)</h1>
 <p><img src="media/github_travis_check.png" /></p>
-<h1 id="travis-github-webhook-2">Travis Github webhook (2)</h1>
+<h1 id="travis-github-webhook-2">Travis GitHub webhook (2)</h1>
 <p><img src="media/travis_deploy.png" /></p>
-<h1 id="travis-github-webhook-3">Travis Github webhook (3)</h1>
+<h1 id="travis-github-webhook-3">Travis GitHub webhook (3)</h1>
 <p><img src="media/github_travis_pass.png" /></p>
+<h1 id="auto-deploying-gh-pages-with-travis">Auto-deploying gh-pages with Travis</h1>
+<ul>
+<li>Set GitHub Pages option on a repository.<br /></li>
+<li>Enable Travis webhook on the above repository.<br /></li>
+<li>Create .travis.yml settings file.<br /></li>
+<li>Generate SSH key and encrypt private key.<br /></li>
+<li>Scripts<br /></li>
+<li>Push to GitHub and experience the magic.</li>
+</ul>
+<h1 id="set-github-pages-option-on-a-repository">Set GitHub Pages option on a repository</h1>
+<ul>
+<li>Create gh-pages branch<br /></li>
+<li>In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
+<li>In case you would like index page to change from default (README) add and index.html.</li>
+</ul>
+<h1 id="enable-travis-webhook-on-the-above-repository">Enable Travis webhook on the above repository</h1>
+<p><img src="media/getting_started.png" /></p>
+<h1 id="create-.travis.yml-settings-file.">Create .travis.yml settings file.</h1>
+<pre class="sourceCode java"><code class="sourceCode java">language: python
+python:
+- &#39;<span class="fl">3.5</span>&#39;
+sudo: required
+dist: trusty
+install:
+- pip install <span class="st">&quot;notebook==4.1&quot;</span> requests jupyter_cms jupyter_dashboards
+addons:
+  apt_packages:
+  - pandoc
+script: bash tools/travis-deploy.<span class="fu">sh</span>
+env:
+  global:
+  - ENCRYPTION_LABEL: b88dab5c5665
+  - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
+<h1 id="generate-ssh-key-and-encrypt-the-private-key-1">Generate SSH key and encrypt the private key (1)</h1>
+<ul>
+<li>Execute <strong>ssh-keygen -t rsa -b 4096 -C <script type="text/javascript">
+<!--
+h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'&quot;stefanos1316@gmail.com'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;&#32;&#40;&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;&#x29;</noscript>&quot; -f deploy_key</strong><br /></li>
+<li>Place both private and public key under the ~/.ssh/ directory.<br /></li>
+<li>Add the deploy_key.pub content inside your repo's Settings Deploy Key section (you can also follow this <a href="http://infoheap.com/how-to-setup-password-less-git-push-for-github/">link</a>).<br /></li>
+<li>Install travis client <strong>gem install travis</strong>.<br /></li>
+<li>Log in using travis clinet <strong>travis login</strong> (use github credentials).<br /></li>
+<li>Encrypt private key <strong>travis encrypt-file ~/.sshdeploy_key</strong>.<br /></li>
+<li>Replace the generated line <strong>openssl...</strong>_ with the existing inside the tools/travis_deploy.sh.<br /></li>
+<li>Replace the ENCRYPTION_LABEL's value, from .travis.yml, with the generated label from the above command.</li>
+</ul>
+<h1 id="generate-ssh-key-and-encrypt-the-private-key-2">Generate SSH key and encrypt the private key (2)</h1>
+<ul>
+<li>Put the generated file (deploy_key.enc) inside your repository.<br /></li>
+<li>Push changes on your remote GitHub repository.</li>
+</ul>
+<h1 id="scripts">Scripts</h1>
+<ul>
+<li>Deploy travis script can be found in this <a href="https://gist.github.com/domenic/ec8b0fc8ab45f39403dd">link</a>.<br /></li>
+<li><a href="https://github.com/stefanos1316/courses/blob/master/tools/build.sh">Build script</a> is the script that creates our webpages content.<br /></li>
+<li>Make some changes on the materials found under the courses/courses directory and try to push on your repository.</li>
+</ul>
+<h1 id="push-to-github-and-experience-the-magic">Push to GitHub and experience the magic</h1>
+<ul>
+<li>Access your webpage using the following pattern <a href="https://_UserName_.github.io/_Repository&#39;sName_/index.html">https://_UserName_.github.io/_Repository'sName_/index.html</a><br /></li>
+<li>This might take some time until travis is done with the build process</li>
+</ul>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
