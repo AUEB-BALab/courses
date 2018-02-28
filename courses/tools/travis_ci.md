@@ -15,8 +15,7 @@
 * About Travis CI
 * Getting started
 * .travis.yml
-* Github repository GUI with Travis
-* Managing settings
+* Github Travis webhook
 * Automate Travis push on GitHub pages
 
 
@@ -83,4 +82,19 @@ env:
 ```
 
 
-# 
+# Travis Github webhook (1)
+
+![](media/github_travis_check.png)
+
+
+# Travis Github webhook (2)
+
+![](media/travis_deploy.png)
+
+
+# Travis Github webhook (3)
+
+![](media/github_travis_pass.png)
+
+
+
