@@ -4,7 +4,7 @@
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
-Καθηγητής: [Διομίδης Σπινέλλης](https://www.balab.aueb.gr/diomidis-spinellis.html)
+Καθηγητής: [Διομίδης Σπινέλλης](https://www.balab.aueb.gr/diomidis-spinellis.html) <br/>
 Βοηθοί: [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html), [Θεόδωρος Στασινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
 
 Το αποθετήριο αυτό περιέχει υλικό, όπως [παρουσιάσεις και σημειώσεις](https://stefanos1316.github.io/courses/index.html), 
