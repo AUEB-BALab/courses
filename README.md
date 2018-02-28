@@ -10,3 +10,4 @@ From the following links you can browse the available material and make minor ch
 * [Preparatory material](courses/prep.md)
 * [C# specialization](courses/cs.md)
 * [Java specialization](courses/java.md)
+* Tools and practices
