@@ -100,14 +100,15 @@ env:
 <p><img src="media/travis_deploy.png" /></p>
 <h1 id="travis-github-webhook-3">Travis GitHub webhook (3)</h1>
 <p><img src="media/github_travis_pass.png" /></p>
-<h1 id="auto-deploying-gh-pages-with-travis">Auto-deploying gh-pages with Travis</h1>
+<h1 id="auto-deploying-gh-pages-with-travis-linux-distros">Auto-deploying gh-pages with Travis (Linux distros)</h1>
 <ul>
-<li>Set GitHub Pages option on a repository.<br /></li>
-<li>Enable Travis webhook on the above repository.<br /></li>
-<li>Create .travis.yml settings file.<br /></li>
-<li>Generate SSH key and encrypt private key.<br /></li>
-<li>Scripts<br /></li>
-<li>Push to GitHub and experience the magic.</li>
+<li>Set GitHub Pages option on a repository<br /></li>
+<li>Enable Travis webhook on the above repository<br /></li>
+<li>Create .travis.yml settings file<br /></li>
+<li>Generate SSH key and encrypt private key<br /></li>
+<li>Store Public Key on GitHub<br /></li>
+<li>Modify Scripts<br /></li>
+<li>Push to GitHub and experience the magic</li>
 </ul>
 <h1 id="set-github-pages-option-on-a-repository">Set GitHub Pages option on a repository</h1>
 <ul>
@@ -135,24 +136,36 @@ env:
   - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
 <h1 id="generate-ssh-key-and-encrypt-the-private-key-1">Generate SSH key and encrypt the private key (1)</h1>
 <ul>
-<li>Execute <strong>ssh-keygen -t rsa -b 4096 -C <script type="text/javascript">
-<!--
-h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'&quot;stefanos1316@gmail.com'+'<\/'+'a'+'>');
-// -->
-</script><noscript>&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;&#32;&#40;&#34;&#x73;&#116;&#x65;&#102;&#x61;&#110;&#x6f;&#x73;&#x31;&#x33;&#x31;&#54;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;&#x29;</noscript>&quot; -f deploy_key</strong><br /></li>
-<li>Place both private and public key under the ~/.ssh/ directory.<br /></li>
-<li>Add the deploy_key.pub content inside your repo's Settings Deploy Key section (you can also follow this <a href="http://infoheap.com/how-to-setup-password-less-git-push-for-github/">link</a>).<br /></li>
-<li>Install travis client <strong>gem install travis</strong>.<br /></li>
-<li>Log in using travis clinet <strong>travis login</strong> (use github credentials).<br /></li>
-<li>Encrypt private key <strong>travis encrypt-file ~/.sshdeploy_key</strong>.<br /></li>
-<li>Replace the generated line <strong>openssl...</strong>_ with the existing inside the tools/travis_deploy.sh.<br /></li>
-<li>Replace the ENCRYPTION_LABEL's value, from .travis.yml, with the generated label from the above command.</li>
+<li><p>Create a new ssh key:</p>
+<pre><code> $ ssh-keygen -t rsa -b 4096 -C &quot;stefanos1316@gmail.com&quot; -f ~/.ssh/deploy_key</code></pre></li>
+<li><p>Install travis client</p>
+<pre><code>$ gem install travis</code></pre></li>
+<li><p>Log in using travis client (use github credentials inside your repository)</p>
+<pre><code>$ travis login</code></pre></li>
 </ul>
 <h1 id="generate-ssh-key-and-encrypt-the-private-key-2">Generate SSH key and encrypt the private key (2)</h1>
 <ul>
+<li><p>Encrypt private key</p>
+<pre><code>$ travis encrypt-file ~/.ssh/deploy_key</code></pre></li>
+<li>Replace the generated line <strong>openssl...</strong> with the existing inside the tools/travis_deploy.sh.<br /></li>
+<li>Replace the <strong>ENCRYPTION_LABEL</strong>'s value, from .travis.yml, with the generated label from the encrypt-file command.<br /></li>
 <li>Put the generated file (deploy_key.enc) inside your repository.<br /></li>
-<li>Push changes on your remote GitHub repository.</li>
+<li><p>Push changes on your remote GitHub repository.</p></li>
+</ul>
+<h1 id="add-pub-key-on-github-1">Add Pub Key on GitHub (1)</h1>
+<ul>
+<li>On GitHub interface select Settings then:<br /><img src="media/github_ssh_key_store.png" /></li>
+</ul>
+<h1 id="add-pub-key-on-github-2">Add Pub Key on GitHub (2)</h1>
+<p><img src="media/github_account_ssh_keys_list.png" /></p>
+<h1 id="add-pub-key-on-github-3">Add Pub Key on GitHub (3)</h1>
+<ul>
+<li><p>First setup remote.origin.url using <br\></p>
+<pre><code>$ git config  remote.origin.url git+ssh://git@github.com/youriserid/repoid.git</code></pre></li>
+<li><p>To see all git config values and validate if remote.origin.url has been set <br\></p>
+<pre><code>$ git config -l </code></pre></li>
+<li><p>Test that you can ssh to GitHub <br\></p>
+<pre><code>$ ssh -T git@github.com </code></pre></li>
 </ul>
 <h1 id="scripts">Scripts</h1>
 <ul>

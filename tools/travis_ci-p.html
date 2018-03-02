@@ -130,14 +130,15 @@ env:
 ![](media/github_travis_pass.png)
 
 
-# Auto-deploying gh-pages with Travis
+# Auto-deploying gh-pages with Travis (Linux distros)
 
-* Set GitHub Pages option on a repository.
-* Enable Travis webhook on the above repository.
-* Create .travis.yml settings file.
-* Generate SSH key and encrypt private key.
-* Scripts
-* Push to GitHub and experience the magic.
+* Set GitHub Pages option on a repository
+* Enable Travis webhook on the above repository
+* Create .travis.yml settings file
+* Generate SSH key and encrypt private key
+* Store Public Key on GitHub
+* Modify Scripts
+* Push to GitHub and experience the magic
 
 
 # Set GitHub Pages option on a repository
@@ -175,20 +176,52 @@ env:
 
 # Generate SSH key and encrypt the private key (1)
 
-* Execute __ssh-keygen -t rsa -b 4096 -C "stefanos1316@gmail.com" -f deploy_key__
-* Place both private and public key under the ~/.ssh/ directory.
-* Add the deploy_key.pub content inside your repo's Settings Deploy Key section (you can also follow this [link](http://infoheap.com/how-to-setup-password-less-git-push-for-github/)).
-* Install travis client __gem install travis__.
-* Log in using travis clinet __travis login__ (use github credentials).
-* Encrypt private key __travis encrypt-file ~/.sshdeploy_key__.
-* Replace the generated line __openssl...___ with the existing inside the tools/travis_deploy.sh.
-* Replace the ENCRYPTION_LABEL's value, from .travis.yml, with the generated label from the above command.
+* Create a new ssh key:
+
+		 $ ssh-keygen -t rsa -b 4096 -C "stefanos1316@gmail.com" -f ~/.ssh/deploy_key
+	
+* Install travis client 
+		
+		$ gem install travis
+
+* Log in using travis client (use github credentials inside your repository)
+	
+		$ travis login
 
 
 # Generate SSH key and encrypt the private key (2)
 
+* Encrypt private key 
+	
+		$ travis encrypt-file ~/.ssh/deploy_key
+* Replace the generated line __openssl...__ with the existing inside the tools/travis_deploy.sh.
+* Replace the __ENCRYPTION_LABEL__'s value, from .travis.yml, with the generated label from the encrypt-file command.
 * Put the generated file (deploy_key.enc) inside your repository.
 * Push changes on your remote GitHub repository.
+
+
+# Add Pub Key on GitHub (1)
+
+* On GitHub interface select Settings then:
+![](media/github_ssh_key_store.png)
+
+
+# Add Pub Key on GitHub (2)
+
+![](media/github_account_ssh_keys_list.png)
+
+
+# Add Pub Key on GitHub (3)
+
+* First setup remote.origin.url using <br\>
+	
+		$ git config  remote.origin.url git+ssh://git@github.com/youriserid/repoid.git
+* To see all git config values and validate if remote.origin.url has been set <br\>
+
+		$ git config -l 
+* Test that you can ssh to GitHub <br\>
+
+		$ ssh -T git@github.com 
 
 
 # Scripts
