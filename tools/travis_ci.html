@@ -43,6 +43,7 @@
 <li>About Travis CI<br /></li>
 <li>Getting started<br /></li>
 <li>.travis.yml<br /></li>
+<li>Code Quality Check<br /></li>
 <li>GitHub Travis webhook<br /></li>
 <li>Auto-deploying gh-pages with Travis</li>
 </ul>
@@ -56,7 +57,7 @@
 <p><img src="media/git_branch.svg" width="800" height="458" /></p>
 <h1 id="importance-of-ci-3">Importance of CI (3)</h1>
 <p><img src="media/its_compilcated.png" /></p>
-<h1 id="merging-without-ci">Merging without CI?</h1>
+<h1 id="merging-without-any-ci-tool">Merging without any CI tool?</h1>
 <iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen>
 </iframe>
 <p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI"></a></p>
@@ -67,15 +68,16 @@
 <ul>
 <li>Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub.<br /></li>
 <li>Is using Amazon cloud infrastructure to host, build, and test various projects.<br /></li>
-<li>Testing service fpr private repository is fee basis while free of charge for public.<br /></li>
-<li>TravisPro offers custom deployments on customer's own hardware.</li>
+<li>The testing service for private repositories is fee basis while free of charge for public.<br /></li>
+<li>TravisPro offers custom deployments on customer's own hardware.<br /></li>
+<li>Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation.</li>
 </ul>
 <h1 id="getting-started">Getting started</h1>
 <p><img src="media/getting_started.png" /></p>
 <h1 id="travis.yml">.travis.yml</h1>
 <ul>
 <li>Define all dependencies, programming lanauges, packages, etc.<br /></li>
-<li>Define specific versions.<br /></li>
+<li>Define specific versions and installations.<br /></li>
 <li>Define scripts to execute.</li>
 </ul>
 <h1 id="travis.yml-example">.travis.yml example</h1>
@@ -94,12 +96,107 @@ env:
   global:
   - ENCRYPTION_LABEL: b88dab5c5665
   - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
-<h1 id="travis-github-webhook-1">Travis GitHub webhook (1)</h1>
+<h1 id="pushing-a-pr-on-github-1">Pushing a PR on GitHub (1)</h1>
 <p><img src="media/github_travis_check.png" /></p>
-<h1 id="travis-github-webhook-2">Travis GitHub webhook (2)</h1>
+<h1 id="deploying-on-travis-2">Deploying on Travis (2)</h1>
 <p><img src="media/travis_deploy.png" /></p>
-<h1 id="travis-github-webhook-3">Travis GitHub webhook (3)</h1>
+<h1 id="passed-from-travis-3">Passed from Travis (3)</h1>
 <p><img src="media/github_travis_pass.png" /></p>
+<h1 id="utilizing-travis-for-github-java-projects">Utilizing Travis for GitHub Java Projects</h1>
+<ul>
+<li><p>Maven</p>
+<ul>
+<li>Dependencies<br /></li>
+<li><p>Build</p>
+<ul>
+<li>JaCoCo, Coveralls<br /></li>
+</ul></li>
+<li><p>Reporting</p>
+<ul>
+<li>CheckStyles, JDepend, FindBugs, PMD, JavaDoc, Surefire</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="travis-with-jacoco-1">Travis with JaCoCo (1)</h1>
+<pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
+    &lt;groupId&gt;org.<span class="fu">jacoco</span>&lt;/groupId&gt;
+    &lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;<span class="fl">0.7.4.201502262128</span> &lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;pre-unit-test&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;prepare-agent&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;propertyName&gt;surefireArgLine&lt;/propertyName&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;post-unit-test&lt;/id&gt;
+            &lt;phase&gt;test&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;report&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;configuration&gt;
+        &lt;excludes&gt;
+            &lt;exclude&gt;**/ui<span class="co">/**&lt;/exclude</span>&gt;
+<span class="er">            &lt;exclude&gt;**/StartSolverUi**&lt;/exclude&gt;</span>
+<span class="er">        &lt;/excludes&gt;</span>
+<span class="er">    &lt;/configuration&gt;</span>
+<span class="er">&lt;/plugin&gt;</span></code></pre>
+<h1 id="travis-with-jacoco-2">Travis with JaCoCo (2)</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java
+script: mvn test
+after_success:
+- mvn clean test jacoco:report      
+jdk:
+- oraclejdk8            </code></pre></li>
+</ul>
+<h1 id="travis-with-coveralls-1">Travis with Coveralls (1)</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java          
+script: mvn test
+after_success:
+- mvn clean test coveralls:report   
+jdk:
+- oraclejdk8</code></pre></li>
+<li><p>Remember to webhook your repository from coveralls.io site</p></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
+    &lt;groupId&gt;org.<span class="fu">eluder</span>.<span class="fu">coveralls</span>&lt;/groupId&gt;
+    &lt;artifactId&gt;coveralls-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;<span class="fl">3.1.0</span>&lt;/version&gt;
+&lt;/plugin&gt;</code></pre>
+<h1 id="travis-with-coveralls-2">Travis with Coveralls (2)</h1>
+<p><img src="media/coveralls.png" /></p>
+<h1 id="travis-with-checkstyles">Travis with CheckStyles</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">    language: java
+    jdk:
+    - oraclejdk8
+script:
+    - mvn test --batch-mode
+    - mvn checkstyle:check --batch-mode --fail-never</code></pre></li>
+<li><p>Output: <em>[ERROR] ... You have 323 Checkstyle violations. -&gt; [Help 1]</em></p></li>
+</ul>
+<h1 id="travis-with-jdepend-findbugs-sunfire-reports-javadoca">Travis with jDepend, FindBugs, Sunfire Reports, JavaDoca</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java
+jdk:
+- oraclejdk8            
+script:
+- mvn site              </code></pre></li>
+</ul>
+<h1 id="findbugs-and-jdepend">FindBugs and JDepend</h1>
+<p><img src="media/findbugs.png" /><br /><img src="media/jdepend.png" /></p>
 <h1 id="auto-deploying-gh-pages-with-travis-linux-distros">Auto-deploying gh-pages with Travis (Linux distros)</h1>
 <ul>
 <li>Set GitHub Pages option on a repository<br /></li>
@@ -112,6 +209,7 @@ env:
 </ul>
 <h1 id="set-github-pages-option-on-a-repository">Set GitHub Pages option on a repository</h1>
 <ul>
+<li>Fork our repository found in this <a href="https://github.com/stefanos1316/courses">link</a><br /></li>
 <li>Create gh-pages branch<br /></li>
 <li>In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
 <li>In case you would like index page to change from default (README) add and index.html.</li>
@@ -169,7 +267,7 @@ env:
 </ul>
 <h1 id="scripts">Scripts</h1>
 <ul>
-<li>Deploy travis script can be found in this <a href="https://gist.github.com/domenic/ec8b0fc8ab45f39403dd">link</a>.<br /></li>
+<li>Deploy travis script can be found in this <a href="https://github.com/stefanos1316/courses/blob/master/tools/travis-deploy.sh">link</a>.<br /></li>
 <li><a href="https://github.com/stefanos1316/courses/blob/master/tools/build.sh">Build script</a> is the script that creates our webpages content.<br /></li>
 <li>Make some changes on the materials found under the courses/courses directory and try to push on your repository.</li>
 </ul>
@@ -178,6 +276,7 @@ env:
 <li>Access your webpage using the following pattern <a href="https://_UserName_.github.io/_Repository&#39;sName_/index.html">https://_UserName_.github.io/_Repository'sName_/index.html</a><br /></li>
 <li>This might take some time until travis is done with the build process</li>
 </ul>
+<h1 id="thank-you-for-your-attention">Thank you for your attention!</h1>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

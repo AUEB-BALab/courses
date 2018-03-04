@@ -48,6 +48,7 @@
 * About Travis CI
 * Getting started
 * .travis.yml
+* Code Quality Check
 * GitHub Travis webhook
 * Auto-deploying gh-pages with Travis
 
@@ -69,7 +70,7 @@
 ![](media/its_compilcated.png)
 
 
-# Merging without CI?
+# Merging without any CI tool?
 
 <iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI"></a></p>
 
@@ -78,8 +79,9 @@
 
 * Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub. 
 * Is using Amazon cloud infrastructure to host, build, and test various projects.
-* Testing service fpr private repository is fee basis while free of charge for public.
+* The testing service for private repositories is fee basis while free of charge for public.
 * TravisPro offers custom deployments on customer's own hardware.
+* Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation. 
 
 
 # Getting started
@@ -90,7 +92,7 @@
 # .travis.yml
 
 * Define all dependencies, programming lanauges, packages, etc.
-* Define specific versions.
+* Define specific versions and installations.
 * Define scripts to execute.
 
 
@@ -115,19 +117,135 @@ env:
 ```
 
 
-# Travis GitHub webhook (1)
+# Pushing a PR on GitHub (1)
 
 ![](media/github_travis_check.png)
 
 
-# Travis GitHub webhook (2)
+# Deploying on Travis (2)
 
 ![](media/travis_deploy.png)
 
 
-# Travis GitHub webhook (3)
+# Passed from Travis (3)
 
 ![](media/github_travis_pass.png)
+
+
+# Utilizing Travis for GitHub Java Projects
+
+* Maven 
+	* Dependencies
+	* Build
+		* JaCoCo, Coveralls
+	* Reporting
+		* CheckStyles, JDepend, FindBugs, PMD, JavaDoc, Surefire
+
+
+# Travis with JaCoCo (1)
+
+```java
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.7.4.201502262128 </version>
+    <executions>
+        <execution>
+            <id>pre-unit-test</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+                <propertyName>surefireArgLine</propertyName>
+            </configuration>
+        </execution>
+        <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <excludes>
+            <exclude>**/ui/**</exclude>
+            <exclude>**/StartSolverUi**</exclude>
+        </excludes>
+    </configuration>
+</plugin>
+```
+
+
+# Travis with JaCoCo (2)
+
+* .travis.yml
+```java
+language: java
+script: mvn test
+after_success:
+  	- mvn clean test jacoco:report		
+jdk:
+  	- oraclejdk8			
+```
+
+
+# Travis with Coveralls (1)
+
+* .travis.yml
+```java
+language: java			
+script: mvn test
+after_success:
+  	- mvn clean test coveralls:report	
+jdk:
+  	- oraclejdk8
+```
+* Remember to webhook your repository from coveralls.io site
+
+```java
+<plugin>
+    <groupId>org.eluder.coveralls</groupId>
+    <artifactId>coveralls-maven-plugin</artifactId>
+    <version>3.1.0</version>
+</plugin>
+```
+
+
+# Travis with Coveralls (2)
+
+![](media/coveralls.png)
+
+
+# Travis with CheckStyles 
+* .travis.yml
+```java
+	language: java
+	jdk:
+  		- oraclejdk8
+	script:
+  		- mvn test --batch-mode
+  		- mvn checkstyle:check --batch-mode --fail-never
+```
+* Output: *[ERROR] ...  You have 323 Checkstyle violations. -> [Help 1]*
+
+
+# Travis with jDepend, FindBugs, Sunfire Reports, JavaDoca
+
+* .travis.yml
+```java
+language: java
+jdk:
+  	- oraclejdk8			
+script:
+	- mvn site				
+```
+
+
+# FindBugs and JDepend
+
+![](media/findbugs.png)
+![](media/jdepend.png)
 
 
 # Auto-deploying gh-pages with Travis (Linux distros)
@@ -143,6 +261,7 @@ env:
 
 # Set GitHub Pages option on a repository
 
+* Fork our repository found in this [link](https://github.com/stefanos1316/courses)
 * Create gh-pages branch
 * In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)
 * In case you would like index page to change from default (README) add and index.html.
@@ -226,7 +345,7 @@ env:
 
 # Scripts
 
-* Deploy travis script can be found in this [link](https://gist.github.com/domenic/ec8b0fc8ab45f39403dd).
+* Deploy travis script can be found in this [link](https://github.com/stefanos1316/courses/blob/master/tools/travis-deploy.sh).
 * [Build script](https://github.com/stefanos1316/courses/blob/master/tools/build.sh) is the script that creates our webpages content. 
 * Make some changes on the materials found under the courses/courses directory and try to push on your repository.
 
@@ -234,7 +353,10 @@ env:
 # Push to GitHub and experience the magic
 
 * Access your webpage using the following pattern https://_UserName_.github.io/_Repository'sName_/index.html
-* This might take some time until travis is done with the build process 
+* This might take some time until travis is done with the build process
+
+
+# Thank you for your attention!
 
 					</script>
 				</section>
