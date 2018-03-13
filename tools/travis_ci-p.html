@@ -77,7 +77,7 @@
 # About Travis CI
 
 * Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub. 
-* Is using Amazon cloud infrastructure to host, build, and test various projects.
+* Is using cloud infrastructure to host, build, and test various projects.
 * The testing service for private repositories is fee basis while free of charge for public.
 * TravisPro offers custom deployments on customer's own hardware.
 * Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation. 
@@ -121,7 +121,7 @@ env:
 ![](media/github_travis_check.png)
 
 
-# Deploying on Travis (2)
+# Building/Testing on Travis (2)
 
 ![](media/travis_deploy.png)
 
@@ -224,13 +224,12 @@ jdk:
 	jdk:
   		- oraclejdk8
 	script:
-  		- mvn test --batch-mode
-  		- mvn checkstyle:check --batch-mode --fail-never
+  		- mvn test checkstyle:check
 ```
 * Output: *[ERROR] ...  You have 323 Checkstyle violations. -> [Help 1]*
 
 
-# Travis with jDepend, FindBugs, Sunfire Reports, JavaDoca
+# Travis with jDepend, FindBugs, JavaDoc
 
 * .travis.yml
 ```java

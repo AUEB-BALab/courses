@@ -66,7 +66,7 @@
 <h1 id="about-travis-ci">About Travis CI</h1>
 <ul>
 <li>Is a distributed continuous integration service purposing on building and testing software projects hosted at GitHub.<br /></li>
-<li>Is using Amazon cloud infrastructure to host, build, and test various projects.<br /></li>
+<li>Is using cloud infrastructure to host, build, and test various projects.<br /></li>
 <li>The testing service for private repositories is fee basis while free of charge for public.<br /></li>
 <li>TravisPro offers custom deployments on customer's own hardware.<br /></li>
 <li>Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation.</li>
@@ -97,7 +97,7 @@ env:
   - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
 <h1 id="pushing-a-pr-on-github-1">Pushing a PR on GitHub (1)</h1>
 <p><img src="media/github_travis_check.png" /></p>
-<h1 id="deploying-on-travis-2">Deploying on Travis (2)</h1>
+<h1 id="buildingtesting-on-travis-2">Building/Testing on Travis (2)</h1>
 <p><img src="media/travis_deploy.png" /></p>
 <h1 id="passed-from-travis-3">Passed from Travis (3)</h1>
 <p><img src="media/github_travis_pass.png" /></p>
@@ -182,11 +182,10 @@ jdk:
     jdk:
     - oraclejdk8
 script:
-    - mvn test --batch-mode
-    - mvn checkstyle:check --batch-mode --fail-never</code></pre></li>
+    - mvn test checkstyle:check</code></pre></li>
 <li><p>Output: <em>[ERROR] ... You have 323 Checkstyle violations. -&gt; [Help 1]</em></p></li>
 </ul>
-<h1 id="travis-with-jdepend-findbugs-sunfire-reports-javadoca">Travis with jDepend, FindBugs, Sunfire Reports, JavaDoca</h1>
+<h1 id="travis-with-jdepend-findbugs-javadoc">Travis with jDepend, FindBugs, JavaDoc</h1>
 <ul>
 <li><p>.travis.yml</p>
 <pre class="sourceCode java"><code class="sourceCode java">language: java
