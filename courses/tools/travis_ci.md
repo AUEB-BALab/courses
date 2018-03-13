@@ -4,11 +4,6 @@
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
 
 
-# Travis CI
-
-<img src="media/travis_ci_logo.png" width="425" /> 
-
-
 # Agenda
 
 * Importance of Continuous Integration
@@ -16,7 +11,6 @@
 * Getting started
 * .travis.yml
 * Code Quality Check
-* GitHub Travis webhook
 * Auto-deploying gh-pages with Travis
 
 
@@ -40,6 +34,11 @@
 # Merging without any CI tool?
 
 <iframe src="https://giphy.com/embed/cFkiFMDg3iFoI" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/git-merge-cFkiFMDg3iFoI"></a></p>
+
+
+# Travis CI
+
+<img src="media/travis_ci_logo.png" width="425" /> 
 
 
 # About Travis CI
@@ -324,4 +323,4 @@ env:
 * This might take some time until travis is done with the build process
 
 
-# Thank you for your attention!
+# Thank you for your attention!!!
