@@ -95,6 +95,62 @@ env:
   global:
   - ENCRYPTION_LABEL: b88dab5c5665
   - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
+<h1 id="building-environments">Building Environments</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Ubuntu Precise</th>
+<th align="left">Ubuntu Trusty</th>
+<th align="left">Ubuntu Trusty</th>
+<th align="left">OS X</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Infrastructure</td>
+<td align="left">VM GCE</td>
+<td align="left">Cont.EC2</td>
+<td align="left">VM GCE</td>
+<td align="left">VM</td>
+</tr>
+<tr class="even">
+<td align="left">.travis.yml</td>
+<td align="left">sudo: required dist: precise</td>
+<td align="left">sudo: false dist: trusty</td>
+<td align="left">sudo: required dist: trusty</td>
+<td align="left">os: osx</td>
+</tr>
+<tr class="odd">
+<td align="left">Boot time(s)</td>
+<td align="left">20-50</td>
+<td align="left">1-6</td>
+<td align="left">20-50</td>
+<td align="left">60-90</td>
+</tr>
+<tr class="even">
+<td align="left">OS version</td>
+<td align="left">12.04</td>
+<td align="left">14.04</td>
+<td align="left">14.04</td>
+<td align="left">OSX</td>
+</tr>
+<tr class="odd">
+<td align="left">Memory GB</td>
+<td align="left">7.5</td>
+<td align="left">4</td>
+<td align="left">7.5</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">Cores</td>
+<td align="left">~2, bursted</td>
+<td align="left">2</td>
+<td align="left">~2, bursted</td>
+<td align="left">2</td>
+</tr>
+</tbody>
+</table>
 <h1 id="pushing-a-pr-on-github-1">Pushing a PR on GitHub (1)</h1>
 <p><img src="media/github_travis_check.png" /></p>
 <h1 id="buildingtesting-on-travis-2">Building/Testing on Travis (2)</h1>
@@ -117,7 +173,7 @@ env:
 </ul></li>
 </ul></li>
 </ul>
-<h1 id="travis-with-jacoco-1">Travis with JaCoCo (1)</h1>
+<h1 id="travis-jacoco-coveralls-1">Travis, JaCoCo, Coveralls (1)</h1>
 <pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
     &lt;groupId&gt;org.<span class="fu">jacoco</span>&lt;/groupId&gt;
     &lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
@@ -147,33 +203,23 @@ env:
 <span class="er">        &lt;/excludes&gt;</span>
 <span class="er">    &lt;/configuration&gt;</span>
 <span class="er">&lt;/plugin&gt;</span></code></pre>
-<h1 id="travis-with-jacoco-2">Travis with JaCoCo (2)</h1>
+<h1 id="travis-jacoco-coveralls-2">Travis, JaCoCo, Coveralls (2)</h1>
 <ul>
-<li><p>.travis.yml</p>
-<pre class="sourceCode java"><code class="sourceCode java">language: java
-script: mvn test
-after_success:
-- mvn clean test jacoco:report      
-jdk:
-- oraclejdk8            </code></pre></li>
-</ul>
-<h1 id="travis-with-coveralls-1">Travis with Coveralls (1)</h1>
-<ul>
-<li><p>.travis.yml</p>
-<pre class="sourceCode java"><code class="sourceCode java">language: java          
-script: mvn test
-after_success:
-- mvn clean test coveralls:report   
-jdk:
-- oraclejdk8</code></pre></li>
-<li><p>Remember to webhook your repository from coveralls.io site</p></li>
-</ul>
+<li><p>Remember to webhook your repository from coveralls.io site</p>
 <pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
     &lt;groupId&gt;org.<span class="fu">eluder</span>.<span class="fu">coveralls</span>&lt;/groupId&gt;
     &lt;artifactId&gt;coveralls-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;<span class="fl">3.1.0</span>&lt;/version&gt;
-&lt;/plugin&gt;</code></pre>
-<h1 id="travis-with-coveralls-2">Travis with Coveralls (2)</h1>
+&lt;/plugin&gt;</code></pre></li>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java          
+script: mvn test
+after_success:
+- mvn clean test jacoco:report coveralls:report 
+jdk:
+- oraclejdk8</code></pre></li>
+</ul>
+<h1 id="travis-jacoco-coveralls-3">Travis, JaCoCo, Coveralls (3)</h1>
 <p><img src="media/coveralls.png" /></p>
 <h1 id="travis-with-checkstyles">Travis with CheckStyles</h1>
 <ul>
