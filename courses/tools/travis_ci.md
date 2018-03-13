@@ -83,6 +83,19 @@ env:
 ```
 
 
+# Building Environments
+
+| |Ubuntu Precise|Ubuntu Trusty|Ubuntu Trusty|OS X|
+|--- |--- |--- |--- |--- |
+|Infrastructure|VM GCE|Cont.EC2|VM GCE|VM|
+|.travis.yml|sudo: required  dist: precise|sudo: false  dist: trusty|sudo: required  dist: trusty|os: osx|
+|Boot time(s)|20-50|1-6|20-50|60-90|
+|OS version|12.04|14.04|14.04|OSX|
+|Memory GB|7.5|4|7.5|4|
+|Cores|~2, bursted|2|~2, bursted|2|
+
+
+
 # Pushing a PR on GitHub (1)
 
 ![](media/github_travis_check.png)
@@ -109,7 +122,7 @@ env:
 		* [CheckStyles](https://maven.apache.org/plugins/maven-checkstyle-plugin/), [JDepend](http://www.mojohaus.org/jdepend-maven-plugin/), [FindBugs](https://gleclaire.github.io/findbugs-maven-plugin/), [PMD](https://maven.apache.org/plugins/maven-pmd-plugin/), [JavaDoc](https://maven.apache.org/plugins/maven-javadoc-plugin/usage.html), [Surefire](http://maven.apache.org/surefire/maven-surefire-plugin/)
 
 
-# Travis with JaCoCo (1)
+# Travis, JaCoCo, Coveralls (1)
 
 ```java
 <plugin>
@@ -144,32 +157,9 @@ env:
 ```
 
 
-# Travis with JaCoCo (2)
+# Travis, JaCoCo, Coveralls (2)
 
-* .travis.yml
-```java
-language: java
-script: mvn test
-after_success:
-  	- mvn clean test jacoco:report		
-jdk:
-  	- oraclejdk8			
-```
-
-
-# Travis with Coveralls (1)
-
-* .travis.yml
-```java
-language: java			
-script: mvn test
-after_success:
-  	- mvn clean test coveralls:report	
-jdk:
-  	- oraclejdk8
-```
 * Remember to webhook your repository from coveralls.io site
-
 ```java
 <plugin>
     <groupId>org.eluder.coveralls</groupId>
@@ -178,8 +168,18 @@ jdk:
 </plugin>
 ```
 
+* .travis.yml
+```java
+language: java			
+script: mvn test
+after_success:
+  	- mvn clean test jacoco:report coveralls:report	
+jdk:
+  	- oraclejdk8
+```
 
-# Travis with Coveralls (2)
+
+# Travis, JaCoCo, Coveralls (3)
 
 ![](media/coveralls.png)
 

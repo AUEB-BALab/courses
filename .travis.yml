@@ -9,6 +9,8 @@ addons:
   apt_packages:
   - pandoc
 script: bash tools/travis-deploy.sh
+after_success:
+  - coveralls
 env:
   global:
   - ENCRYPTION_LABEL: b88dab5c5665
