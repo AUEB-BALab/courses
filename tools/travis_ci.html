@@ -205,7 +205,8 @@ env:
 <span class="er">&lt;/plugin&gt;</span></code></pre>
 <h1 id="travis-jacoco-coveralls-2">Travis, JaCoCo, Coveralls (2)</h1>
 <ul>
-<li><p>Remember to webhook your repository from coveralls.io site</p>
+<li>Remember to webhook your repository from coveralls.io site<br /></li>
+<li><p><a href="https://github.com/trautonen/coveralls-maven-plugin">coveralls-maven-plugin</a>: JaCoCo, Cobertura, Saga</p>
 <pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
     &lt;groupId&gt;org.<span class="fu">eluder</span>.<span class="fu">coveralls</span>&lt;/groupId&gt;
     &lt;artifactId&gt;coveralls-maven-plugin&lt;/artifactId&gt;
@@ -254,10 +255,7 @@ script:
 </ul>
 <h1 id="set-github-pages-option-on-a-repository">Set GitHub Pages option on a repository</h1>
 <ul>
-<li>Fork our repository found in this <a href="https://github.com/stefanos1316/courses">link</a><br /></li>
-<li>Create gh-pages branch<br /></li>
-<li>In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
-<li>In case you would like index page to change from default (README) add and index.html.</li>
+<li>Clone our repository found in this <a href="https://github.com/stefanos1316/courses">link</a></li>
 </ul>
 <h1 id="enable-travis-webhook-on-the-above-repository">Enable Travis webhook on the above repository</h1>
 <p><img src="media/getting_started.png" /></p>
@@ -318,8 +316,10 @@ env:
 </ul>
 <h1 id="push-to-github-and-experience-the-magic">Push to GitHub and experience the magic</h1>
 <ul>
+<li>In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
+<li>In case you would like index page to change from default (README) add and index.html.<br /></li>
 <li>Access your webpage using the following pattern <a href="https://_UserName_.github.io/_Repository&#39;sName_/index.html">https://_UserName_.github.io/_Repository'sName_/index.html</a><br /></li>
-<li>This might take some time until travis is done with the build process</li>
+<li>This might take some time until travis is done with the build process.</li>
 </ul>
 <h1 id="thank-you-for-your-attention">Thank you for your attention!!!</h1>
 

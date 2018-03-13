@@ -193,6 +193,7 @@ env:
 # Travis, JaCoCo, Coveralls (2)
 
 * Remember to webhook your repository from coveralls.io site
+* [coveralls-maven-plugin](https://github.com/trautonen/coveralls-maven-plugin): JaCoCo, Cobertura, Saga
 ```java
 <plugin>
     <groupId>org.eluder.coveralls</groupId>
@@ -260,10 +261,7 @@ script:
 
 # Set GitHub Pages option on a repository
 
-* Fork our repository found in this [link](https://github.com/stefanos1316/courses)
-* Create gh-pages branch
-* In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)
-* In case you would like index page to change from default (README) add and index.html.
+* Clone our repository found in this [link](https://github.com/stefanos1316/courses)
 
 
 # Enable Travis webhook on the above repository
@@ -351,8 +349,10 @@ env:
 
 # Push to GitHub and experience the magic
 
+* In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)
+* In case you would like index page to change from default (README) add and index.html.
 * Access your webpage using the following pattern https://_UserName_.github.io/_Repository'sName_/index.html
-* This might take some time until travis is done with the build process
+* This might take some time until travis is done with the build process.
 
 
 # Thank you for your attention!!!
