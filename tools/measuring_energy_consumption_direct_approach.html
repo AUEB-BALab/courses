@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Hardware Energy Monitoring Tools</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--hardware-energy-monitoring-tools">Προγραμματισμός ΙΙ: Hardware Energy Monitoring Tools</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-measuring-energy-consumption">Tools and practices: Measuring Energy Consumption</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Stefanos Georgiou</a></li>
+</ul>
+<h1 id="measuring-applications-energy-consumption">Measuring Applications Energy Consumption</h1>
+<ul>
+<li><p>Two ways of measuring energy consumption of computer applications.</p>
+<ul>
+<li><strong>Direct:</strong> Using Board sensors or hard power analysers<br /></li>
+<li><strong>Indirect:</strong> Energy estimation models using computer resource usage information<br /></li>
+</ul></li>
+<li>Each of the above has its own pitfalls (low reporting rate, overheat, and so on)<br /></li>
+<li>Accuracy is a main concern<br /></li>
+<li><p>Preparing the test-bed is crucail (interferances)</p></li>
+</ul>
+<h1 id="hemts-examples">HEMTs: Examples</h1>
+<ul>
+<li><a href="https://www.conservationmart.com/specs/wattsup_specifications.pdf">Watts Up? Pro</a><br /></li>
+<li><a href="https://www.msoon.com/online-store">Mosoon</a><br /></li>
+<li><a href="http://www.ni.com/data-acquisition/">DAQ</a><br /></li>
+<li><a href="https://www.adafruit.com/product/904">INA219</a></li>
+</ul>
+<h1 id="watts-up-pro">Watts Up? Pro</h1>
+<p><img src="media/watts_up_pro.jpg" /></p>
+<h1 id="watts-up-pro-info">Watts Up? Pro Info</h1>
+<ul>
+<li>display of volts, amps, power factor.<br /></li>
+<li>display of average monthly cost and KWH<br /></li>
+<li>display of minimun and maximum values<br /></li>
+<li>increased 15 amp continuous rating<br /></li>
+<li>accuracy of +/- 1.5% watts<br /></li>
+<li>super samping</li>
+</ul>
+<h1 id="test-bed-requirements">Test-bed Requirements</h1>
+<ul>
+<li>A computer node (laptop or server)<br /></li>
+<li>An energy monitoring node (e.g., Raspberry Pi)<br /></li>
+<li>Watts Up Pro (with a micro USB)<br /></li>
+<li>Network connection among the nodes<br /></li>
+<li>Install <a href="https://github.com/pyrovski/watts-up">utility</a> on energy monitoring node<br /></li>
+<li>Set <a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">passwordless SSH</a> among the nodes</li>
+</ul>
+<h1 id="test-bed-overview">Test-bed overview</h1>
+<p><img src="media/test_bed.png" /></p>
+<h1 id="source-code-to-measure">Source Code to Measure</h1>
+<p>UNDER CONSTRUCTION</p>
+<h1 id="available-on-github">Available on GitHub</h1>
+<p>UNDER CONSTRUCTION</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
