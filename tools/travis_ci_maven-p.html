@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Travis CI and Maven</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Προγραμματισμός ΙΙ
+
+## Travis CI and Maven
+
+
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Tools and practices: Continuous Integration
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+
+
+# Utilizing Travis for GitHub Java Projects
+
+* [Use case repository](https://github.com/stefanos1316/wordbrain-solver)
+* Maven([pom.xml](https://github.com/stefanos1316/wordbrain-solver/blob/master/pom.xml))  
+	* Dependencies
+	* Build
+		* [JaCoCo](http://www.eclemma.org/jacoco/trunk/doc/maven.html), [Coveralls](https://github.com/trautonen/coveralls-maven-plugin)
+	* Reporting
+		* [CheckStyles](https://maven.apache.org/plugins/maven-checkstyle-plugin/), [JDepend](http://www.mojohaus.org/jdepend-maven-plugin/), [FindBugs](https://gleclaire.github.io/findbugs-maven-plugin/), [PMD](https://maven.apache.org/plugins/maven-pmd-plugin/), [JavaDoc](https://maven.apache.org/plugins/maven-javadoc-plugin/usage.html), [Surefire](http://maven.apache.org/surefire/maven-surefire-plugin/)
+
+
+# Travis, JaCoCo, Coveralls (1)
+
+```java
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.7.4.201502262128 </version>
+    <executions>
+        <execution>
+            <id>pre-unit-test</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+                <propertyName>surefireArgLine</propertyName>
+            </configuration>
+        </execution>
+        <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <excludes>
+            <exclude>**/ui/**</exclude>
+            <exclude>**/StartSolverUi**</exclude>
+        </excludes>
+    </configuration>
+</plugin>
+```
+
+
+# Travis, JaCoCo, Coveralls (2)
+
+* Remember to webhook your repository from coveralls.io site
+* [coveralls-maven-plugin](https://github.com/trautonen/coveralls-maven-plugin): JaCoCo, Cobertura, Saga
+```java
+<plugin>
+    <groupId>org.eluder.coveralls</groupId>
+    <artifactId>coveralls-maven-plugin</artifactId>
+    <version>3.1.0</version>
+</plugin>
+```
+
+* .travis.yml
+```java
+language: java			
+script: mvn test
+after_success:
+  	- mvn clean test jacoco:report coveralls:report	
+jdk:
+  	- oraclejdk8
+```
+
+
+# Travis, JaCoCo, Coveralls (3)
+
+![](media/coveralls.png)
+
+
+# Travis with CheckStyles 
+* .travis.yml
+```java
+	language: java
+	jdk:
+  		- oraclejdk8
+	script:
+  		- mvn test checkstyle:check
+```
+* Output: *[ERROR] ...  You have 323 Checkstyle violations. -> [Help 1]*
+
+
+# Travis with jDepend, FindBugs, JavaDoc
+
+* .travis.yml
+```java
+language: java
+jdk:
+  	- oraclejdk8			
+script:
+	- mvn site				
+```
+
+
+# FindBugs and JDepend
+
+![](media/findbugs.png)
+![](media/jdepend.png)
+
+
+# Thank you for your attention!!!
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>

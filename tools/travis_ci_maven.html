@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Travis CI and Maven</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--travis-ci-and-maven">Προγραμματισμός ΙΙ: Travis CI and Maven</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-continuous-integration">Tools and practices: Continuous Integration</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+</ul>
+<h1 id="utilizing-travis-for-github-java-projects">Utilizing Travis for GitHub Java Projects</h1>
+<ul>
+<li><a href="https://github.com/stefanos1316/wordbrain-solver">Use case repository</a><br /></li>
+<li><p>Maven(<a href="https://github.com/stefanos1316/wordbrain-solver/blob/master/pom.xml">pom.xml</a>)</p>
+<ul>
+<li>Dependencies<br /></li>
+<li><p>Build</p>
+<ul>
+<li><a href="http://www.eclemma.org/jacoco/trunk/doc/maven.html">JaCoCo</a>, <a href="https://github.com/trautonen/coveralls-maven-plugin">Coveralls</a><br /></li>
+</ul></li>
+<li><p>Reporting</p>
+<ul>
+<li><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/">CheckStyles</a>, <a href="http://www.mojohaus.org/jdepend-maven-plugin/">JDepend</a>, <a href="https://gleclaire.github.io/findbugs-maven-plugin/">FindBugs</a>, <a href="https://maven.apache.org/plugins/maven-pmd-plugin/">PMD</a>, <a href="https://maven.apache.org/plugins/maven-javadoc-plugin/usage.html">JavaDoc</a>, <a href="http://maven.apache.org/surefire/maven-surefire-plugin/">Surefire</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="travis-jacoco-coveralls-1">Travis, JaCoCo, Coveralls (1)</h1>
+<pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
+    &lt;groupId&gt;org.<span class="fu">jacoco</span>&lt;/groupId&gt;
+    &lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;<span class="fl">0.7.4.201502262128</span> &lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;pre-unit-test&lt;/id&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;prepare-agent&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;propertyName&gt;surefireArgLine&lt;/propertyName&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;post-unit-test&lt;/id&gt;
+            &lt;phase&gt;test&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;report&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;configuration&gt;
+        &lt;excludes&gt;
+            &lt;exclude&gt;**/ui<span class="co">/**&lt;/exclude</span>&gt;
+<span class="er">            &lt;exclude&gt;**/StartSolverUi**&lt;/exclude&gt;</span>
+<span class="er">        &lt;/excludes&gt;</span>
+<span class="er">    &lt;/configuration&gt;</span>
+<span class="er">&lt;/plugin&gt;</span></code></pre>
+<h1 id="travis-jacoco-coveralls-2">Travis, JaCoCo, Coveralls (2)</h1>
+<ul>
+<li>Remember to webhook your repository from coveralls.io site<br /></li>
+<li><p><a href="https://github.com/trautonen/coveralls-maven-plugin">coveralls-maven-plugin</a>: JaCoCo, Cobertura, Saga</p>
+<pre class="sourceCode java"><code class="sourceCode java">&lt;plugin&gt;
+    &lt;groupId&gt;org.<span class="fu">eluder</span>.<span class="fu">coveralls</span>&lt;/groupId&gt;
+    &lt;artifactId&gt;coveralls-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;<span class="fl">3.1.0</span>&lt;/version&gt;
+&lt;/plugin&gt;</code></pre></li>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java          
+script: mvn test
+after_success:
+- mvn clean test jacoco:report coveralls:report 
+jdk:
+- oraclejdk8</code></pre></li>
+</ul>
+<h1 id="travis-jacoco-coveralls-3">Travis, JaCoCo, Coveralls (3)</h1>
+<p><img src="media/coveralls.png" /></p>
+<h1 id="travis-with-checkstyles">Travis with CheckStyles</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">    language: java
+    jdk:
+    - oraclejdk8
+script:
+    - mvn test checkstyle:check</code></pre></li>
+<li><p>Output: <em>[ERROR] ... You have 323 Checkstyle violations. -&gt; [Help 1]</em></p></li>
+</ul>
+<h1 id="travis-with-jdepend-findbugs-javadoc">Travis with jDepend, FindBugs, JavaDoc</h1>
+<ul>
+<li><p>.travis.yml</p>
+<pre class="sourceCode java"><code class="sourceCode java">language: java
+jdk:
+- oraclejdk8            
+script:
+- mvn site              </code></pre></li>
+</ul>
+<h1 id="findbugs-and-jdepend">FindBugs and JDepend</h1>
+<p><img src="media/findbugs.png" /><br /><img src="media/jdepend.png" /></p>
+<h1 id="thank-you-for-your-attention">Thank you for your attention!!!</h1>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
