@@ -68,7 +68,8 @@
 <li>Is using cloud infrastructure to host, build, and test various projects.<br /></li>
 <li>The testing service for private repositories is fee basis while free of charge for public.<br /></li>
 <li>TravisPro offers custom deployments on customer's own hardware.<br /></li>
-<li>Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation.</li>
+<li>Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation.<br /></li>
+<li>Auto-testing on multiple environments (language versions, jdks, and so on).</li>
 </ul>
 <h1 id="getting-started">Getting started</h1>
 <p><img src="media/getting_started.png" /></p>
@@ -82,6 +83,8 @@
 <pre class="sourceCode java"><code class="sourceCode java">language: python
 python:
 - &#39;<span class="fl">3.5</span>&#39;
+language: java
+- oraclejdk8
 sudo: required
 dist: trusty
 install:
@@ -89,11 +92,9 @@ install:
 addons:
   apt_packages:
   - pandoc
-script: bash tools/travis-deploy.<span class="fu">sh</span>
-env:
-  global:
-  - ENCRYPTION_LABEL: b88dab5c5665
-  - COMMIT_AUTHOR_EMAIL: stefanos1316<span class="fu">@gmail</span>.<span class="fu">com</span></code></pre>
+script: 
+- python test1.<span class="fu">py</span>
+- mvn clean install</code></pre>
 <h1 id="building-environments">Building Environments</h1>
 <table>
 <thead>
@@ -156,6 +157,8 @@ env:
 <p><img src="media/travis_deploy.png" /></p>
 <h1 id="passed-from-travis-3">Passed from Travis (3)</h1>
 <p><img src="media/github_travis_pass.png" /></p>
+<h1 id="auto-deploying-workflow">Auto-deploying workflow</h1>
+<p><img src="media/workflow.jpg" /></p>
 <h1 id="auto-deploying-gh-pages-with-travis-linux-distros">Auto-deploying gh-pages with Travis (Linux distros)</h1>
 <ul>
 <li>Set GitHub Pages option on a repository<br /></li>
@@ -170,7 +173,7 @@ env:
 <ul>
 <li>Fork our repository found under this <a href="https://github.com/stefanos1316/my_curriculum_vitae">link</a></li>
 </ul>
-<h1 id="enable-travis-webhook-on-the-above-repository">Enable Travis webhook on the above repository</h1>
+<h1 id="enable-travis-webhook">Enable Travis webhook</h1>
 <p><img src="media/getting_started.png" /></p>
 <h1 id="create-.travis.yml-settings-file.">Create .travis.yml settings file.</h1>
 <pre class="sourceCode java"><code class="sourceCode java">language: python
