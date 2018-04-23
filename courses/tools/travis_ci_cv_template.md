@@ -47,6 +47,7 @@
 * The testing service for private repositories is fee basis while free of charge for public.
 * TravisPro offers custom deployments on customer's own hardware.
 * Sends email reports regrading the building status (fail, error, passed) after a pull request or merge operation. 
+* Auto-testing on multiple environments (language versions, jdks, and so on).
 
 
 # Getting started
@@ -67,6 +68,8 @@
 language: python
 python:
 - '3.5'
+language: java
+- oraclejdk8
 sudo: required
 dist: trusty
 install:
@@ -74,11 +77,9 @@ install:
 addons:
   apt_packages:
   - pandoc
-script: bash tools/travis-deploy.sh
-env:
-  global:
-  - ENCRYPTION_LABEL: b88dab5c5665
-  - COMMIT_AUTHOR_EMAIL: stefanos1316@gmail.com
+script: 
+- python test1.py
+- mvn clean install
 ```
 
 
@@ -94,7 +95,6 @@ env:
 |Cores|~2, bursted|2|~2, bursted|2|
 
 
-
 # Pushing a PR on GitHub (1)
 
 ![](media/github_travis_check.png)
@@ -108,6 +108,11 @@ env:
 # Passed from Travis (3)
 
 ![](media/github_travis_pass.png)
+
+
+# Auto-deploying workflow
+
+![](media/workflow.jpg)
 
 
 # Auto-deploying gh-pages with Travis (Linux distros)
@@ -126,7 +131,7 @@ env:
 * Fork our repository found under this [link](https://github.com/stefanos1316/my_curriculum_vitae)
 
 
-# Enable Travis webhook on the above repository
+# Enable Travis webhook
 
 ![](media/getting_started.png)
 
