@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Validate your links</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--validate-your-links">Προγραμματισμός ΙΙ: Validate your links</h1>
+<p><omg src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-validate-links">Tools and practices: Validate Links</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+</ul>
+<h1 id="problem">Problem</h1>
+<ul>
+<li>Does your webpage includes broken links?<br /></li>
+<li>Are your documents or repositories have valid links?<br /></li>
+<li>Maybe now not but what about later?</li>
+</ul>
+<h1 id="solution">Solution</h1>
+<ul>
+<li><a href="https://github.com/stefanos1316/validateLinks">validateLinks</a>, a command-line tools written in BASH.<br /></li>
+<li>Free of use and open source.<br /></li>
+<li>Can identify passing, redirected, Client and Server Error links.<br /></li>
+<li>Can be used on local documents or online links.<br /></li>
+<li>Offers statistic results on your links status.<br /></li>
+<li>First Depth Search for local directories.<br /></li>
+<li>Can be added as a crotab to check your webpages or documents periodically.</li>
+</ul>
+<h1 id="usage-instructions">Usage Instructions</h1>
+<pre class="sourceCode java"><code class="sourceCode java">bash validateLinks <span class="co">// Performs analysis on CWD</span>
+bash validateLinks --help <span class="co">// prints help message</span>
+bash validateLinks --dir ../ <span class="co">//Performs analysis on PWD</span>
+bash validateLinks --link http:<span class="co">//www.google.com // Analysis on google site</span>
+bash validateLinks --recursive <span class="co">//Depth First Search on CWD</span>
+bash validateLinks --passing <span class="co">//show all passing links</span>
+bash validateLinks --redirection <span class="co">//show all redirected links</span>
+bash validateLinks --clientError <span class="co">//show all client error links</span>
+bash validateLinks --serverError <span class="co">//show all server error links</span>
+bash validateLinks --version <span class="co">//show current version</span></code></pre>
+<h1 id="overview">Overview</h1>
+<p><img src="media/validateLinks.png" /></p>
+<h1 id="report-bugs">Report Bugs</h1>
+<ul>
+<li>You are more than welcome to replicate and extend the tools.<br /></li>
+<li>You may report bugs <a href="https://github.com/stefanos1316/validateLinks/issues">here</a></li>
+</ul>
+<h1 id="thank-you-for-your-attention">Thank you for your attention!</h1>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
