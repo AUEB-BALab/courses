@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/stefanos1316/courses.svg?branch=master)](https://travis-ci.org/stefanos1316/courses)
-[![BCH compliance](https://bettercodehub.com/edge/badge/stefanos1316/courses?branch=master)](https://bettercodehub.com/)
-[![Coverage Status](https://coveralls.io/repos/github/stefanos1316/courses/badge.svg?branch=master)](https://coveralls.io/github/stefanos1316/courses?branch=master)
+[![Build Status](https://travis-ci.org/AUEB-BALab/courses.svg?branch=master)](https://travis-ci.org/AUEB-BALab/courses)
 
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
