@@ -46,6 +46,18 @@
 * Auto-deploying gh-pages with Travis
 
 
+# Historically 
+
+<p>
+<img src="media/grady_booch.jpg" width="200" style="float:left;margin:0 20px 20px 0;" / > 
+<p align = "left";  text-align = "justify"; >Grady Booch in 1991 coined the term of Continuous Integration (CI) as the practice of merging all developer working copies to a shared mainline. </p></p>
+<br/>
+<br/>
+<p>
+<img src="media/kent_beck.jpg" width="200" style="float:left;margin:0 20px 20px 0;" / > 
+<p align = "left";  text-align = "justify";>Kent Beck 1999 added CI as part of Extreme Programming (XP) where developers continuously integrate source code several times per day. </p></p>
+
+
 # Importance of CI (1) 
 
 * Continuous Integration is a software development practice where members of a team integrate their work frequently.
@@ -211,8 +223,8 @@ env:
 * Encrypt private key (inside the root directory and **DON'T use passphrase**)
 	
 		$ travis encrypt-file ~/.ssh/deploy_key
-* Inside the tools/travis_deploy.sh file replace the existing with the new encryption label (__openssl...__)
-* Replace the __ENCRYPTION_LABEL__'s value, from .travis.yml, with the generated label from the encrypt-file command.
+* Inside the tools/travis_deploy.sh file replace the existing line __openssl...__ with the newly generated from the above command (keep the file paths of the keys same with the previous openssl line).
+* Replace the __ENCRYPTION_LABEL__'s value, inside the .travis.yml, with the newly generated label from the encrypt-file command.
 
 
 # Add Pub Key on GitHub (1)

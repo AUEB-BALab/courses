@@ -43,6 +43,12 @@
 <li>.travis.yml<br /></li>
 <li>Auto-deploying gh-pages with Travis</li>
 </ul>
+<h1 id="historically">Historically</h1>
+<p>
+<img src="media/grady_booch.jpg" width="200" style="float:left;margin:0 20px 20px 0;" / > 
+<p align = "left";  text-align = "justify"; >Grady Booch in 1991 coined the term of Continuous Integration (CI) as the practice of merging all developer working copies to a shared mainline. </p></p>
+
+<p><br/><br /><br/><br /><p><br /><img src="media/kent_beck.jpg" width="200" style="float:left;margin:0 20px 20px 0;" / ><br /><p align = "left";  text-align = "justify";>Kent Beck 1999 added CI as part of Extreme Programming (XP) where developers continuously integrate source code several times per day. </p></p></p>
 <h1 id="importance-of-ci-1">Importance of CI (1)</h1>
 <ul>
 <li>Continuous Integration is a software development practice where members of a team integrate their work frequently.<br /></li>
@@ -205,8 +211,8 @@ env:
 <ul>
 <li><p>Encrypt private key (inside the root directory and <strong>DON'T use passphrase</strong>)</p>
 <pre><code>$ travis encrypt-file ~/.ssh/deploy_key</code></pre></li>
-<li>Inside the tools/travis_deploy.sh file replace the existing with the new encryption label (<strong>openssl...</strong>)<br /></li>
-<li><p>Replace the <strong>ENCRYPTION_LABEL</strong>'s value, from .travis.yml, with the generated label from the encrypt-file command.</p></li>
+<li>Inside the tools/travis_deploy.sh file replace the existing line <strong>openssl...</strong> with the newly generated from the above command (keep the file paths of the keys same with the previous openssl line).<br /></li>
+<li><p>Replace the <strong>ENCRYPTION_LABEL</strong>'s value, inside the .travis.yml, with the newly generated label from the encrypt-file command.</p></li>
 </ul>
 <h1 id="add-pub-key-on-github-1">Add Pub Key on GitHub (1)</h1>
 <ul>
