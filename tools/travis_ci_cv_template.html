@@ -203,13 +203,10 @@ env:
 </ul>
 <h1 id="generate-ssh-key-and-encrypt-the-private-key-2">Generate SSH key and encrypt the private key (2)</h1>
 <ul>
-<li><p>Encrypt private key (inside the root directory)</p>
+<li><p>Encrypt private key (inside the root directory and <strong>DON'T use passphrase</strong>)</p>
 <pre><code>$ travis encrypt-file ~/.ssh/deploy_key</code></pre></li>
 <li>Inside the tools/travis_deploy.sh file replace the existing with the new encryption label (<strong>openssl...</strong>)<br /></li>
-<li>Replace the <strong>ENCRYPTION_LABEL</strong>'s value, from .travis.yml, with the generated label from the encrypt-file command.<br /></li>
-<li><p>Create a new branch with name gh-pages</p>
-<pre><code>$ git branch gh-pages</code></pre></li>
-<li><p>Push changes on your remote GitHub repository.</p></li>
+<li><p>Replace the <strong>ENCRYPTION_LABEL</strong>'s value, from .travis.yml, with the generated label from the encrypt-file command.</p></li>
 </ul>
 <h1 id="add-pub-key-on-github-1">Add Pub Key on GitHub (1)</h1>
 <ul>
@@ -235,7 +232,7 @@ env:
 </ul>
 <h1 id="push-to-github-and-experience-the-magic">Push to GitHub and experience the magic</h1>
 <ul>
-<li>In repo's settings set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
+<li>In repo's <strong>settings</strong> set GitHub Pages' source to gh-pages branch (be patient it takes some time)<br /></li>
 <li>In case you would like index page to change from default (README) add and index.html.<br /></li>
 <li>Access your webpage using the following pattern <a href="https://_UserName_.github.io/_Repository&#39;sName_/index.html">https://_UserName_.github.io/_Repository'sName_/index.html</a><br /></li>
 <li>This might take some time until travis is done with the build process.</li>
