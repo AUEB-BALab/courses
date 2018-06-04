@@ -214,7 +214,8 @@ env:
 
 * Deploy travis script can be found in this [link](https://github.com/stefanos1316/courses/blob/master/tools/travis-deploy.sh).
 * [Build script](https://github.com/stefanos1316/courses/blob/master/tools/build.sh) is the script that creates our webpages content. 
-* Make some changes on the materials found under the courses/courses directory and try to push on your repository.
+* Make some changes on the materials found under the makrdown/index.md directory 
+* Change the link in README.md (link it with your own repository) also and try to push on your repository.
 
 
 # Push to GitHub and experience the magic
