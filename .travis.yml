@@ -4,7 +4,8 @@ python:
 sudo: required
 dist: trusty
 install:
-- pip install "notebook==4.1" requests jupyter_cms jupyter_dashboards gfm
+- pip install "notebook==4.1" requests jupyter_cms jupyter_dashboards 
+- pip install gfm
 addons:
   apt_packages:
   - pandoc
