@@ -56,7 +56,7 @@ for course in $COURSES ; do
 	      echo "# Προγραμματισμός ΙΙ: $title"
 	      cat $input
 	    } |
-	    pandoc -f gfm -t html
+	    pandoc -f markdown_github -t html
 	    cat assets/index-bottom.html
 	  } >$hand_out
 	fi
@@ -86,7 +86,7 @@ for course in $COURSES ; do
   for hp in '' -p ; do
     {
       sed "s/TITLE_HERE/Programming II: Table of contents/" assets/index-top.html
-      pandoc -f gfm -t html courses/${course}.md |
+      pandoc -f markdown_github -t html courses/${course}.md |
       sed '/href/{;s/\.md"/'$hp'.html"/;s/\.ipynb"/'$hp'.html"/;}'
       cat assets/index-bottom.html
     } >web/${course}${hp}.html
