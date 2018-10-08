@@ -3,7 +3,7 @@
 ## Τύποι Πεδίων και Μεθόδων
 
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
-* [Θεόδωρος Στασινόπουλος](https://www.balab.aueb.gr/theodore-stassinopoulos.html)
+* [Κωνσταντίος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
 
 
 
