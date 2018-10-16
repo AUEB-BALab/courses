@@ -3,7 +3,7 @@
 # Υλικό για το μάθημα Προγραμματισμός ΙΙ
 
 Καθηγητής: [Διομίδης Σπινέλλης](https://www.balab.aueb.gr/diomidis-spinellis.html) <br/>
-Βοηθοί: [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html), [Κωνσταντίος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
+Βοηθοί: [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html), [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
 
 Το αποθετήριο αυτό περιέχει υλικό, όπως [παρουσιάσεις και σημειώσεις](https://aueb-balab.github.io/courses/index.html), 
 για το μάθημα Προγραμματισμός ΙΙ που προσφέρετε από το Τμήμα Διοικητικής Επιστήμης και Τεχνολογίας του Οικονομικού Πανεπιστήμιου Αθηνών. 

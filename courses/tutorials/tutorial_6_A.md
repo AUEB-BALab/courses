@@ -3,7 +3,7 @@
 # Πλατφόρμα Eclipse
 
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
-* [Κωνσταντίος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
+* [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
 
 
 ## Eclipse, checkstyle and Find Bugs
