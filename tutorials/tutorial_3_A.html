@@ -339,6 +339,22 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(!x || ((y == 
         <span class="kw">return</span> <span class="fu">binarySearch</span>(array, key, start, middle - <span class="dv">1</span>);
     }
 }</code></pre>
+<h2 id="-2-1">Παράδειγμα (2)</h2>
+<p>Επανάληψη</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> <span class="dt">static</span> <span class="dt">long</span> <span class="fu">factorialIterative</span> (<span class="dt">int</span> theNumber) {
+  <span class="dt">int</span> theFactorial = <span class="dv">1</span>;
+  <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; theNumber; i++) {
+    theFactorial = theFactorial * i;
+  }
+  <span class="kw">return</span> theFactorial;
+}</code></pre>
+<p>Αναδρομή</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> <span class="dt">static</span> <span class="dt">long</span> <span class="fu">factorialRecursive</span> (<span class="dt">int</span> theNumber) {
+  <span class="kw">if</span> (theNumber == <span class="dv">1</span>)
+    <span class="kw">return</span> <span class="dv">1</span>;
+  <span class="kw">else</span>
+    <span class="kw">return</span> theNumber * <span class="fu">factorialRecursive</span>(theNumber - <span class="dv">1</span>);
+}</code></pre>
 <h2 id="------">Παρατηρήσεις - Τα θετικά της αναδρομής</h2>
 <ul>
 <li>Συχνά ο κώδικας με χρήση αναδρομής είναι πιο &quot;συμπαγής&quot; και κομψός από ότι με<br />άλλους τρόπους επανάληψης.<br /></li>

@@ -469,6 +469,29 @@ public static int binarySearch(int[] array, int key, int start,
 ```
 
 
+## Παράδειγμα (2)
+
+Επανάληψη
+```java
+private static long factorialIterative (int theNumber) {
+  int theFactorial = 1;
+  for (int i = 0; i < theNumber; i++) {
+    theFactorial = theFactorial * i;
+  }
+  return theFactorial;
+}
+```
+Αναδρομή
+```java
+private static long factorialRecursive (int theNumber) {
+  if (theNumber == 1)
+    return 1;
+  else
+    return theNumber * factorialRecursive(theNumber - 1);
+}
+```
+
+
 ## Παρατηρήσεις - Τα θετικά της αναδρομής
 
 * Συχνά ο κώδικας με χρήση αναδρομής είναι πιο "συμπαγής" και κομψός από ότι με
