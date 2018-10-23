@@ -140,9 +140,9 @@ public class Test {
 
     public static void main(String[] args) {
         LightBulb objLightBulb1 = new LightBulb(true);
-        Foo objLightBulb2 = objLightBulb1;
+        LightBulb objLightBulb2 = objLightBulb1;
 
-        objLightBulb1.switchlight();
+        objLightBulb1.switchLight();
 
         System.out.println(objLightBulb1);
         System.out.println(objLightBulb2);
