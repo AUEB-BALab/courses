@@ -136,7 +136,7 @@
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setSecond</span>(<span class="dt">int</span> s) {
-        second = ((s &gt;= <span class="dv">0</span> &amp;&amp; s &lt; SECONDS_PER_MINUTEd) ? s : <span class="dv">0</span>);
+        second = ((s &gt;= <span class="dv">0</span> &amp;&amp; s &lt; SECONDS_PER_MINUTE) ? s : <span class="dv">0</span>);
     }
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTime</span>(<span class="dt">int</span> h, <span class="dt">int</span> m, <span class="dt">int</span> s) {
@@ -156,6 +156,12 @@
         System.<span class="fu">out</span>.<span class="fu">println</span>(t1.<span class="fu">getHour</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getMinute</span>() + <span class="st">&quot; &quot;</span> + t1.<span class="fu">getSecond</span>());
     }
 }</code></pre>
+<h2>Ερώτηση</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">double</span> PI = <span class="fl">3.14</span>;
+    
+    or
+
+    <span class="kw">private</span> <span class="dt">final</span> <span class="dt">float</span> PI = <span class="fl">3.</span>14F; </code></pre>
 <h2 id="-2">Παράδειγμα 2</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Date;</span>
 
@@ -194,41 +200,6 @@
         } <span class="kw">catch</span> (ParseException e) {
             e.<span class="fu">printStackTrace</span>();
         }
-    }
-}</code></pre>
-<h2 id="-2--1">Παράδειγμα 2 (Συνέχεια)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.text.ParseException;</span>
-<span class="kw">import java.text.SimpleDateFormat;</span>
-<span class="kw">import java.util.Date;</span>
-
-<span class="kw">public</span> <span class="kw">class</span> EmployeeTest {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
-        <span class="kw">try</span> {
-            Date birth = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;05/12/95&quot;</span>);
-            Date hire = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;MM/dd/yy&quot;</span>).<span class="fu">parse</span>(<span class="st">&quot;10/9/05&quot;</span>);
-            Employee employee = <span class="kw">new</span> <span class="fu">Employee</span>(<span class="st">&quot;Tim&quot;</span>, <span class="st">&quot;Yellow&quot;</span>, birth, hire);
-            System.<span class="fu">out</span>.<span class="fu">println</span>(employee.<span class="fu">toString</span>());
-        } <span class="kw">catch</span> (ParseException e) {
-            e.<span class="fu">printStackTrace</span>();
-        }
-    }
-}</code></pre>
-<h2 id="singleton">Singleton</h2>
-<ul>
-<li>Ένα singleton είναι μια κλάση η οποία αρχικοποιείται μια μόνο φορά.<br /></li>
-<li>Το σχεδιαστικό πρότυπο (design pattern) singleton επιτρέπει τον ελεγχόμενο ορισμό ενός μοναδικού αντικειμένου μιας κλάσης.<br /></li>
-<li>Τα singletons μπορεί να αναφέρονται σε κάποιο τμήμα ενός συστήματος που είναι μοναδικό, π.χ. ένα σύστημα αρχείων.</li>
-</ul>
-<h2 id="-3">Παράδειγμα 3</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> FileSystem {
-    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> FileSystem INSTANCE = <span class="kw">new</span> <span class="fu">FileSystem</span>();
-
-    <span class="kw">private</span> <span class="fu">FileSystem</span>() {
-    <span class="co">// empty</span>
-    }
-
-    <span class="kw">public</span> <span class="dt">static</span> FileSystem <span class="fu">getInstance</span>() {
-        <span class="kw">return</span> INSTANCE;
     }
 }</code></pre>
 <h2>Βιβλιογραφία</h2>

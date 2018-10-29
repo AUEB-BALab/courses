@@ -148,7 +148,7 @@ public class Time {
 	}
 
 	public void setSecond(int s) {
-		second = ((s >= 0 && s < SECONDS_PER_MINUTEd) ? s : 0);
+		second = ((s >= 0 && s < SECONDS_PER_MINUTE) ? s : 0);
 	}
 
 	public void setTime(int h, int m, int s) {
@@ -173,6 +173,17 @@ public class TimeTest {
 		System.out.println(t1.getHour() + " " + t1.getMinute() + " " + t1.getSecond());
 	}
 }
+```
+
+
+## Ερώτηση
+
+```java
+	private static final double PI = 3.14;
+	
+	or
+
+	private final float PI = 3.14F; 
 ```
 
 
@@ -221,52 +232,6 @@ public class EmployeeTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	}
-}
-```
-
-
-## Παράδειγμα 2 (Συνέχεια)
-
-```java
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class EmployeeTest {
-	public static void main(String args[]) {
-		try {
-			Date birth = new SimpleDateFormat("MM/dd/yy").parse("05/12/95");
-			Date hire = new SimpleDateFormat("MM/dd/yy").parse("10/9/05");
-			Employee employee = new Employee("Tim", "Yellow", birth, hire);
-			System.out.println(employee.toString());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
-}
-```
-
-
-##  Singleton
-
-* Ένα singleton είναι μια κλάση η οποία αρχικοποιείται μια μόνο φορά.
-* Το σχεδιαστικό πρότυπο (design pattern) singleton επιτρέπει τον ελεγχόμενο ορισμό ενός μοναδικού αντικειμένου μιας κλάσης.
-* Τα singletons μπορεί να αναφέρονται σε κάποιο τμήμα ενός συστήματος που είναι μοναδικό, π.χ. ένα σύστημα αρχείων.
-
-
-## Παράδειγμα 3
-
-```java
-public class FileSystem {
-	private static final FileSystem INSTANCE = new FileSystem();
-
-	private FileSystem() {
-	// empty
-	}
-
-	public static FileSystem getInstance() {
-		return INSTANCE;
 	}
 }
 ```

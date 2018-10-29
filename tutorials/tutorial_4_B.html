@@ -93,7 +93,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>Σε μια κλάση η δεσμευμένη λέξη <strong>super</strong> είναι αντίστοιχη της δεσμευμένης λέξης<br /><strong>this</strong> με τη διαφορά ότι το αντικείμενο αναφέρεται στον εαυτό του ως αντικείμενο<br />της άμεσης υπερκλάσης.<br /></li>
 <li>Το <strong>super</strong> χρησιμοποιείται για να κληθεί κάποια μέθοδος της υπερκλάσης που έχει<br />γίνει <strong>override</strong> από την υποκλάση, ή κάποιο πεδίο που δεν είναι private.<br /></li>
 <li>Το <strong>super(ορίσμα)</strong> χρησιμοποιείται για να καλέσει τον κατασκευαστή της άμεσης<br />υπερκλάσης.<br /></li>
-<li>Σε κάθε κατασκευαστή πρέπει να καλείται ο κατασκευαστής της άμεσης υπερκλάσης<br />στην πρώτη γραμμή του σώματός του. Αν δεν γραφτεί κάτι ρητά τοτε και πάλι καλείται<br />ο κατασκευαστής της υπερκλάσης στη πρώτη γραμμή ουσιαστικά χωρίς κάποιο όρισμα.</li>
+<li>Σε κάθε κατασκευαστή πρέπει να καλείται ο κατασκευαστής της άμεσης υπερκλάσης<br />στην πρώτη γραμμή του σώματός του. Αν δεν γραφτεί κάτι ρητά τοτε και πάλι καλείται<br />ο κατασκευαστής της υπερκλάσης στη πρώτη γραμμή χωρίς κάποιο όρισμα.</li>
 </ul>
 <h2 id="-2">Παράδειγμα</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle {
@@ -129,7 +129,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 }</code></pre>
 <h2 id="-">Αφηρημένες κλάσεις</h2>
 <ul>
-<li>Όταν μια συλλογή από κλάσεις έχουν κάποια κοινά πεδία ή/και κάποια κοινή<br />συμπεριφορά τότε αυτά τα κοινά στοιχεία μπορούν να εγκολαποτούν σε μια υπερκλάση.<br />Αν αυτή η υπερκλάση είναι υπερβολικά γενική ή τα αντικείμενά της από το<br />προγραμμά δεν είναι χρήσιμα, τότε είναι καλή πράκτική να την κάνουμε αφηρημένη.<br /></li>
+<li>Όταν μια συλλογή από κλάσεις έχουν κάποια κοινά πεδία ή/και κάποια κοινή<br />συμπεριφορά τότε αυτά τα κοινά στοιχεία μπορούν να εγκολαπτούν σε μια υπερκλάση.<br />Αν αυτή η υπερκλάση είναι υπερβολικά γενική ή τα αντικείμενά της από το<br />προγραμμά δεν είναι χρήσιμα, τότε είναι καλή πράκτική να την κάνουμε αφηρημένη.<br /></li>
 <li>Μια αφηρημένη κλάση έχει τη δεσμευμένη λέξη <strong>abstract</strong> στον ορισμό της.<br /></li>
 <li>Παρ' όλο που δεν μπορεί να αρχικοποιηθεί, διαθέτει κατασκευαστή.<br /></li>
 <li>Στις αφηρημένες κλάσεις μπορούν να ορισθούν αφηρημένες μέθοδοι.<br /></li>
@@ -139,8 +139,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <ul>
 <li>Σε αφηρημένες κλάσεις δίνεται η δυνατότητα να οριστούν αφηρημένες μέθοδοι.<br /></li>
 <li>Μια αφηρημένη μέθοδος είναι μια μέθοδος που τη δεσμευμένη λέξη 'abstract' στον<br />όρισμό της.<br /></li>
-<li>Είναι χρήσιμες στο να επιβάλει μια αφηρημένη κλάση μια γενική συμπεριφορά στις<br />υποκλάσεις της, δίνοντας όμως στις τελευταιες τη δυνατότητα να ορίσουν τις<br />λεπτομέριές της (το σώμα της).<br /></li>
-<li>Αν σε μια αφηρημένη κλάση ορισθεί μια αφηρημένη μέθοδος, τότε κάθε υποκλάση της<br />είναι υποχρεωμένη να την ορίσει λεπτομερώς.</li>
+<li>Είναι χρήσιμες στο να επιβάλει μια αφηρημένη κλάση μια γενική συμπεριφορά στις<br />υποκλάσεις της.<br /></li>
+<li>Αν σε μια αφηρημένη κλάση ορισθεί μια αφηρημένη μέθοδος, τότε κάθε υποκλάση της<br />είναι υποχρεωμένη να την υλοποιήσει.</li>
 </ul>
 <h2 id="-3">Παράδειγμα</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
@@ -152,7 +152,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
     }
 
     <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfVertices</span>() {
-        <span class="kw">return</span> numberOfVertices;
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">numberOfVertices</span>;
     }
 
     <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">double</span> <span class="fu">area</span>();
@@ -171,7 +171,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 
     <span class="fu">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
-        <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
+        <span class="kw">return</span> (base * height) / <span class="fl">2.0</span>;
     }
 }</code></pre>
 <h2 id="-1">Παράδειγμα(συνέχεια)</h2>
@@ -186,7 +186,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 
     <span class="fu">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
-        <span class="kw">return</span> edge*edge;
+        <span class="kw">return</span> edge * edge;
     }
 }</code></pre>
 <h2>Διεπαφές</h2>
@@ -202,11 +202,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <ul>
 <li><p>Διαφορές με αφηρημένες κλάσεις:</p>
 <ul>
-<li>Οι διεπαφές υλοποιούνται με τη δεσμευμένη λέξη 'implements' από τις<br />κλάσεις.<br /></li>
-<li>Μια κλάση μπορεί να υλοποιήσει παραπάνω από μια διεπαφές.<br /></li>
+<li>Οι διεπαφές υλοποιούνται με τη δεσμευμένη λέξη 'implements'.<br /></li>
+<li>Μια κλάση μπορεί να υλοποιήσει παραπάνω από μια διεπαφή.<br /></li>
 <li>Μια διεπαφή μπορεί να έχει μονο final static πεδιά (σταθερές). Συνεπώς μια<br />διεπαφή δεν επηρεάζει τη κατάσταση του αντικειμένου που την υλοποιεί αλλά<br />μόνο τη συμπεριφορά.<br /></li>
 <li>Δεν έχουν κατασκευαστές.<br /></li>
-<li>Στα ονόματα των διεπαφών η σύμβαση έιναι να χρησιμοποιείται συνήθως επίθετο<br />αντί για ουσιαστικό σε μορφή CamelCase.</li>
+<li>Στα ονόματα των διεπαφών η σύμβαση είναι να χρησιμοποιείται συνήθως επίθετο<br />αντί για ουσιαστικό σε μορφή CamelCase.</li>
 </ul></li>
 </ul>
 <h2 id="-4">Παράδειγμα</h2>
@@ -228,7 +228,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
     <span class="dt">double</span> <span class="fu">area</span>();
 }</code></pre>
 <h2 id="-3">Παράδειγμα(συνέχεια)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Triangle <span class="kw">extends</span> Shape <span class="kw">implements</span> CalculableArea {
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Triangle <span class="kw">extends</span> Shape <span class="kw">implements</span> CalculableArea {
 
     <span class="kw">private</span> <span class="dt">int</span> base;
     <span class="kw">private</span> <span class="dt">int</span> height;
@@ -241,21 +241,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 
     <span class="fu">@Override</span>
     <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
-        <span class="kw">return</span> (base*height) / <span class="fl">2.0</span>;
-    }
-}</code></pre>
-<h2 id="-4">Παράδειγμα(συνέχεια)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> House <span class="kw">implements</span> CalculableArea {
-
-    <span class="kw">private</span> <span class="dt">int</span> area;
-
-    <span class="kw">public</span> <span class="fu">House</span>(<span class="dt">int</span> area) {
-        <span class="kw">this</span>.<span class="fu">area</span> = area;
-    }
-
-    <span class="fu">@Override</span>
-    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
-        <span class="kw">return</span> area;
+        <span class="kw">return</span> (base * height) / <span class="fl">2.0</span>;
     }
 }</code></pre>
 
