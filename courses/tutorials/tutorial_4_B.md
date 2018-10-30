@@ -281,7 +281,7 @@ public class Triangle extends Shape implements CalculableArea {
     private int height;
 
     public Triangle(int base, int height) {
-        super(3)
+        super(3);
         this.base = base;
         this.height = height;
     }
