@@ -43,13 +43,13 @@
 <ul>
 <li><em>Ο στατικός</em>, γνωστός και ως <em>υπερφόρτωση (overloading)</em>.<br /></li>
 <li><em>Ο δυναμικός</em>.<br /></li>
-<li><em>Ο παραμετρικός</em> γνωστός και μέσω της χρήσης <em>γενικευμένων τύπων (generic<br /> types)</em>.</li>
+<li><em>Ο παραμετρικός</em>, γνωστός και μέσω της χρήσης <em>γενικευμένων τύπων (generic<br /> types)</em>.</li>
 </ul></li>
 </ul>
 <h2 id="---">Στατικός πολυμορφισμός και Υπερφόρτωση</h2>
 <ul>
 <li>Η υπερφόρτωση είναι η δυνατότητα χρήσης μιας μεθόδου με το όνομά της αλλά με<br />διαφορετικούς τύπους ορισμάτων.<br /></li>
-<li><p>Θα προκύψει σφάλμα αν δυο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων<br />με τον ίδιο τύπο ανεξάρτητα:</p>
+<li><p>Θα προκύψει σφάλμα αν δύο υλοποιήσεις έχουν τον ίδιο αριθμό ορισμάτων<br />με τον ίδιο τύπο ανεξάρτητα:</p>
 <ul>
 <li>από τον τύπο που επιστρέφει<br /></li>
 <li>το όνομα των ορισμάτων<br /></li>
@@ -68,8 +68,8 @@
 }</code></pre>
 <h2 id="-">Δυναμικός πολυμορφισμός</h2>
 <ul>
-<li>Κάθε αντικείμενο μιας κλάσης που την υλοποιεί έχει τον τύπο της, οπως επίσης<br />και τον τύπο κάθε υπερκλάσης της και κάθε διεπαφής που υλοποιεί.<br /></li>
-<li>Αυτό είναι χρήσιμο ώστε να μπορούμε να φτιάξουμε ποιο αφηρημένα ορίσματα για μεθόδους<br />ή γενικότερες συλλογές/δομές απο στοιχεία.<br /></li>
+<li>Κάθε αντικείμενο μιας κλάσης που την υλοποιεί έχει τον τύπο της, όπως επίσης<br />και τον τύπο κάθε υπερκλάσης της και κάθε διεπαφής που υλοποιεί.<br /></li>
+<li>Αυτό είναι χρήσιμο ώστε να μπορούμε να φτιάξουμε πιο αφηρημένα ορίσματα για μεθόδους<br />ή γενικότερες συλλογές/δομές απο στοιχεία.<br /></li>
 <li><p>Μπορούμε επίσης να ορίσουμε ένα αντικείμενο τύπου υποκλάσης και αναφορά σε<br />υπερκλάση ή διεπαφή. Το αντικείμενο θα έχει τη συμπεριφορά της υπερκλάσης/διεπαφής<br />αφου έχουν γίνει τα overrides που ορίζει η υποκλάση.</p>
 <pre class="sourceCode java"><code class="sourceCode java">Parent child = <span class="kw">new</span> <span class="fu">Child</span>();</code></pre></li>
 </ul>
@@ -105,19 +105,19 @@
 }</code></pre>
 <h2 id="2">Παράδειγμα2</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Parent {
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am parent&quot;</span>);
+    <span class="kw">public</span> String <span class="fu">whoAmI</span>() {
+        <span class="kw">return</span> <span class="st">&quot;I am parent&quot;</span>;
     }
 }
 
 <span class="kw">class</span> Child <span class="kw">extends</span> Parent{
     <span class="fu">@Override</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">whoAmI</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am child &quot;</span>);
+    <span class="kw">public</span> String <span class="fu">whoAmI</span>() {
+        <span class="kw">return</span> <span class="st">&quot;I am child &quot;</span>;
     }
 
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">also</span>() {
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;and only a child&quot;</span>);
+    <span class="kw">public</span> String <span class="fu">also</span>() {
+        <span class="kw">return</span> <span class="st">&quot;and only a child&quot;</span>;
     }
 }</code></pre>
 <h2 id="2">Παράδειγμα2(συνέχεια)</h2>
@@ -136,7 +136,7 @@
 <h2 id="----">Παραμετρικός Πολυμορφισμός και Γενικευμένοι Τύποι</h2>
 <ul>
 <li>Ένας γενικευμένος τύπος (generic type) είναι μια γενικευμένη κλάση ή διεπαφή<br />η οποία μπορεί να παραμετροποιηθεί μέσω τύπων.<br /></li>
-<li>Ένας γενικευμένος τύπος επιτρέπει την επαναχρησιμοποιήσει κώδικα με<br />διαφορετικά αντικείμενα ως παράμετρο.<br /></li>
+<li>Ένας γενικευμένος τύπος επιτρέπει την επαναχρησιμοποιήση κώδικα με<br />διαφορετικά αντικείμενα ως παράμετρο.<br /></li>
 <li>Δεν χρειάζεται <em>type casting</em>.</li>
 </ul>
 <h2 id="--">Ορισμός γενικευμένων τύπων</h2>
