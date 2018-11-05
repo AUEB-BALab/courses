@@ -39,8 +39,8 @@
 </ul>
 <h1 id="-threads">Νήματα (Threads)</h1>
 <ul>
-<li>Νήματα είναι κομμάτια κώδικα που &quot;ζουν&quot; μεα σε μιά διεργασία.<br /></li>
-<li>Διεργασία είναι ένα πρόγραμμα που εκτελείτε.<br /></li>
+<li>Νήματα είναι κομμάτια κώδικα που &quot;ζούνε&quot; μέσα σε μιά διεργασία.<br /></li>
+<li>Διεργασία είναι ένα πρόγραμμα που εκτελείτε είτε θα εκτελεστεί.<br /></li>
 <li>Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.<br /></li>
 <li>Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.<br /></li>
 <li>Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση.</li>
@@ -51,13 +51,13 @@
 <p><img src="media/Threads_Snapshot.png" /></p>
 <h1 id="--1">Πρόβλημα Συγχρονισμού (1)</h1>
 <ul>
-<li>Ένα ζευγάρι έχει κοινό λογαρισμό<br /></li>
-<li>Ταυτόχρονα προσθέτουν χρήματα από δύο διαφορετικά ATM</li>
+<li>Ένα ζευγάρι έχει ένα κοινό λογαρισμό<br /></li>
+<li>Ταυτόχρονα προσθέτουν χρήματα από διαφορετικά ATMς</li>
 </ul>
 <p><img src="media/Concurrency_Bank_Accounts_Example.png" /></p>
 <h1 id="--2">Πρόβλημα Συγχονισμού (2)</h1>
 <ul>
-<li><p>Σενάριο με Κανονική Ροή</p>
+<li><p>Σενάριο με κανονική ροή</p>
 <pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
 add $<span class="dv">100</span>
 write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
@@ -79,13 +79,13 @@ write back <span class="fu">result</span> (balance = $<span class="dv">100</span
 add $<span class="dv">100</span>            add $<span class="dv">50</span>
 write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  write <span class="fu">results</span>(balace=$<span class="dv">50</span>)</code></pre></li>
 </ul>
-<h1 id="----1">Τρόποι για εκτέλεση νημάτων (1)</h1>
+<h1 id="--1">Εκτέλεση νημάτων (1)</h1>
 <ul>
 <li>Η Java υποστηρίζει δύο διαφορετικούς τρόπους για εκτέλεση νημάτων<br /></li>
 <li>Δήλωση κλάσης που να επεκτήνει την Thread<br /></li>
 <li>Υπερσκελίζει (Override) την run της κλάσης Thread</li>
 </ul>
-<h1 id="----2">Τρόποι για εκτελεση νημάτων (2)</h1>
+<h1 id="--2">Εκτελεση νημάτων (2)</h1>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers extneds Thread { 
       <span class="kw">private</span> <span class="dt">int</span> maxNumber;
       <span class="kw">private</span> <span class="dt">int</span> count;
@@ -102,14 +102,14 @@ write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  writ
           }    
       }
   }</code></pre>
-<h1 id="-">Εκτέλεση Νημάτων</h1>
+<h1 id="-">Εκτέλεση νημάτων</h1>
 <pre class="sourceCode java"><code class="sourceCode java">FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
 <span class="kw">new</span> Thread(findNumber).<span class="fu">start</span>();
 
 FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
 Thread t = <span class="kw">new</span> Thread(findNumber);
 t.<span class="fu">start</span>();</code></pre>
-<h1 id="--">Τρόποι εκτέλεσης νημάτων</h1>
+<h1 id="--2">Εκτέλεση νημάτων</h1>
 <ul>
 <li>Δήλωση κλάσης που να υλοποιεί την διεπαφή Runnable<br /></li>
 <li>Αυτή η κλάση υλοποιεί την μέθοδο run της Runnable.</li>
@@ -133,8 +133,8 @@ t.<span class="fu">start</span>();</code></pre>
 <h1 id="--thread--runnable">Διαφορές μεταξύ Thread και Runnable</h1>
 <ul>
 <li>Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.<br /></li>
-<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείλουμε και άλλες κλάσεις.<br /></li>
-<li>Επεκτείνοντας την κλάση Thread δημιουργεί διαφορετικά αντικείμενα, ενώ στην Runnable πολλά νήματα χρησιμοποιούν το ίδιο στιγμιότυπο αντικειμένου.</li>
+<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε και άλλες κλάσεις.<br /></li>
+<li>Επεκτείνοντας την κλάση Thread δημιουργεί διαφορετικά αντικείμενα,<br />ενώ στην Runnable πολλά νήματα χρησιμοποιούν το ίδιο στιγμιότυπο αντικειμένου.</li>
 </ul>
 <h1 id="-thread-vs-runnable-1">Παράδειγμα Thread Vs Runnable (1)</h1>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Implementing Runnable Interface</span>
@@ -189,13 +189,13 @@ t.<span class="fu">start</span>();</code></pre>
     ExtendsThread : Counter : <span class="dv">1</span></code></pre>
 <h1 id="thread-join1">Thread join(1)</h1>
 <ul>
-<li>Μέθοδος που επιτρέπει σε ένα νήμα να περιμένει μέχρι να ολοκληρωθεί η εκτέλεση ένας άλλου.</li>
+<li>Μέθοδος που επιτρέπει σε ένα νήμα να περιμένει μέχρι να ολοκληρωθεί η εκτέλεση ένος άλλου.</li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java">  Thread t = <span class="kw">new</span> Thread(findNumber);
   t.<span class="fu">start</span>();
   System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Now thread &quot;</span> + t.<span class="fu">getName</span>() + <span class="st">&quot; is running&quot;</span>);
   t.<span class="fu">join</span>();</code></pre>
-<h1 id="--">Παράδειγμα με Νήματα</h1>
+<h1 id="--">Παράδειγμα με νήματα</h1>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleThreads {
             <span class="dt">static</span> <span class="dt">void</span> <span class="fu">threadMessage</span>(String message) {
                 String threadName = Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>();
