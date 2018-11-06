@@ -130,12 +130,21 @@ write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  writ
       }
   }</code></pre>
 <h1 id="-">Εκτέλεση νημάτων</h1>
-<pre class="sourceCode java"><code class="sourceCode java">FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
-<span class="kw">new</span> Thread(findNumber).<span class="fu">start</span>();
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestThreads {
 
-FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
-Thread t = <span class="kw">new</span> Thread(findNumber);
-t.<span class="fu">start</span>();</code></pre>
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+
+        <span class="co">// Ένας τρόπος</span>
+        FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
+        findNumber.<span class="fu">start</span>();
+        
+        <span class="co">// Άλλος τρόπος</span>
+        Thread t = <span class="kw">new</span> Thread(findNumber);
+        t.<span class="fu">start</span>();
+        
+        System.<span class="fu">out</span>.<span class="fu">println</span>(findNumber.<span class="fu">count</span>);
+    }
+}</code></pre>
 <h1 id="--2">Εκτέλεση νημάτων</h1>
 <ul>
 <li>Δήλωση κλάσης που να υλοποιεί την διεπαφή Runnable<br /></li>
@@ -160,7 +169,7 @@ t.<span class="fu">start</span>();</code></pre>
 <h1 id="--thread--runnable">Διαφορές μεταξύ Thread και Runnable</h1>
 <ul>
 <li>Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.<br /></li>
-<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε και άλλες κλάσεις.</li>
+<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε κάποια άλλη κλάση.</li>
 </ul>
 <h1 id="-thread-vs-runnable-1">Παράδειγμα Thread Vs Runnable (1)</h1>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Implementing Runnable Interface</span>

@@ -170,12 +170,21 @@ class FindCountOfEvenNumbers extends Thread {
 # Εκτέλεση νημάτων
 
 ```java 
-FindCountOfEvenNumbers newThread = new FindCountOfEvenNumbers(1200);
-new Thread(findNumber).start();
+public class TestThreads {
 
-FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumbers(1200);
-Thread t = new Thread(findNumber);
-t.start();
+	public static void main(String[] args) {
+
+		// Ένας τρόπος
+		FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumbers(1200);
+		findNumber.start();
+		
+		// Άλλος τρόπος
+		Thread t = new Thread(findNumber);
+		t.start();
+		
+		System.out.println(findNumber.count);
+	}
+}
 ```
 
 
@@ -207,7 +216,7 @@ class FindCountOfEvenNumbers implements Runnable {
 # Διαφορές μεταξύ Thread και Runnable
 
 * Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.
-* Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε και άλλες κλάσεις.
+* Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε κάποια άλλη κλάση.
 
 
 
