@@ -56,6 +56,45 @@ write back result (balance = $100)
 ```
 
 
+# Παράδειγμα σε κώδικα (1)
+```java
+public class SynchronousProblem {
+	private static int balance = 50;
+	
+	public int getBalance() {
+		return this.balance;
+	}	
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+}
+```
+
+
+# Παράδειγμα σε κώδικα (2)
+```java
+public class TestSynch {
+
+	public static void main(String[] args) {
+		SynchronousProblem commonAccount = new SynchronousProblem();
+		int wifesBalance = commonAccount.getBalance();
+		int husbandsBalance = commonAccount.getBalance(); 
+		commonAccount.setBalance(wifesBalance += 100);
+		commonAccount.setBalance(husbandsBalance += 50);
+		System.out.println("The current balance is $" 
+		+ commonAccount.getBalance());
+	}
+}
+
+```
+
+
+# Προσοχή!
+![](media/if_something_can_go_wrong.jpg)
+
+
+
 # Πρόβλημα Παραλληλισμού (1)
 
 * Σενάριο με παραλληλισμό
