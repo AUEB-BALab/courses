@@ -62,7 +62,7 @@ write back result (balance = $100)
 ```java
 get balance(balance=$50)	get balance(balance=$50)
 add $100			add $50
-write result(balance=$150) 	write results(balace=$50)
+write result(balance=$150) 	write results(balace=$100)
 ```
 
 
@@ -76,7 +76,7 @@ write result(balance=$150) 	write results(balace=$50)
 # Τρόποι για εκτελεση νημάτων (2)
 
 ```java
-class FindCountOfEvenNumbers extneds Thread { 
+class FindCountOfEvenNumbers extends Thread { 
       private int maxNumber;
       private int count;
       FindCountOfEvenNumbers(int maxNumber) {
@@ -136,7 +136,6 @@ class FindCountOfEvenNumbers implements Runnable {
 
 * Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.
 * Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείλουμε και άλλες κλάσεις.
-* Επεκτείνοντας την κλάση Thread δημιουργεί διαφορετικά αντικείμενα, ενώ στην Runnable πολλά νήματα χρησιμοποιούν το ίδιο στιγμιότυπο αντικειμένου.
 
 
 # Παράδειγμα Thread Vs Runnable (1)
@@ -154,7 +153,7 @@ class FindCountOfEvenNumbers implements Runnable {
     //Extending Thread class
     class ExtendsThread extends Thread {
         private int counter = 0;
-	@Override
+		@Override
         public void run () {
             counter++;
             System.out.println("ExtendsThread : Counter : "+ counter);

@@ -22,7 +22,6 @@ class SubClass extends SuperClass {...}
 * Όλες οι κλάσεις στη java κληρονομούν την κλάση Object ακόμα και όταν αυτό δε
 γίνεται ρητά μέσω της εντολής extends.
 
-
 ## Παράδειγμα
 
 ```java
@@ -107,7 +106,6 @@ class EquilateralTriangle extends Triangle {
 ```
 
 
-
 ## Παράδειγμα(2)
 
 ```java
@@ -130,7 +128,6 @@ class EquilateralTriangle extends Triangle {
     }
 }
 ```
-
 
 
 ## Αφηρημένες κλάσεις
@@ -259,7 +256,6 @@ abstract class Shape {
     }
 }
 ```
-
 
 
 ## Παράδειγμα(συνέχεια)
