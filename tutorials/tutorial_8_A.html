@@ -77,7 +77,7 @@ write back <span class="fu">result</span> (balance = $<span class="dv">100</span
 <li><p>Σενάριο με παραλληλισμό</p>
 <pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)    get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)
 add $<span class="dv">100</span>            add $<span class="dv">50</span>
-write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  write <span class="fu">results</span>(balace=$<span class="dv">50</span>)</code></pre></li>
+write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  write <span class="fu">results</span>(balace=$<span class="dv">100</span>)</code></pre></li>
 </ul>
 <h1 id="--1">Εκτέλεση νημάτων (1)</h1>
 <ul>
@@ -86,7 +86,7 @@ write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  writ
 <li>Υπερσκελίζει (Override) την run της κλάσης Thread</li>
 </ul>
 <h1 id="--2">Εκτελεση νημάτων (2)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers extneds Thread { 
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">extends</span> Thread { 
       <span class="kw">private</span> <span class="dt">int</span> maxNumber;
       <span class="kw">private</span> <span class="dt">int</span> count;
       <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
@@ -133,8 +133,7 @@ t.<span class="fu">start</span>();</code></pre>
 <h1 id="--thread--runnable">Διαφορές μεταξύ Thread και Runnable</h1>
 <ul>
 <li>Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.<br /></li>
-<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε και άλλες κλάσεις.<br /></li>
-<li>Επεκτείνοντας την κλάση Thread δημιουργεί διαφορετικά αντικείμενα,<br />ενώ στην Runnable πολλά νήματα χρησιμοποιούν το ίδιο στιγμιότυπο αντικειμένου.</li>
+<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε και άλλες κλάσεις.</li>
 </ul>
 <h1 id="-thread-vs-runnable-1">Παράδειγμα Thread Vs Runnable (1)</h1>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Implementing Runnable Interface</span>
@@ -149,7 +148,7 @@ t.<span class="fu">start</span>();</code></pre>
     <span class="co">//Extending Thread class</span>
     <span class="kw">class</span> ExtendsThread <span class="kw">extends</span> Thread {
         <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
-    <span class="fu">@Override</span>
+        <span class="fu">@Override</span>
         <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span> () {
             counter++;
             System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ExtendsThread : Counter : &quot;</span>+ counter);
