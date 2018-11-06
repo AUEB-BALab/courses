@@ -72,6 +72,33 @@ add $<span class="dv">50</span>
 write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
 write back <span class="fu">result</span> (balance = $<span class="dv">100</span>)</code></pre></li>
 </ul>
+<h1 id="---1">Παράδειγμα σε κώδικα (1)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SynchronousProblem {
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> balance = <span class="dv">50</span>;
+    
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getBalance</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">balance</span>;
+    }   
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setBalance</span>(<span class="dt">int</span> balance) {
+        <span class="kw">this</span>.<span class="fu">balance</span> = balance;
+    }
+}</code></pre>
+<h1 id="---2">Παράδειγμα σε κώδικα (2)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestSynch {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        SynchronousProblem commonAccount = <span class="kw">new</span> <span class="fu">SynchronousProblem</span>();
+        <span class="dt">int</span> wifesBalance = commonAccount.<span class="fu">getBalance</span>();
+        <span class="dt">int</span> husbandsBalance = commonAccount.<span class="fu">getBalance</span>(); 
+        commonAccount.<span class="fu">setBalance</span>(wifesBalance += <span class="dv">100</span>);
+        commonAccount.<span class="fu">setBalance</span>(husbandsBalance += <span class="dv">50</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The current balance is $&quot;</span> 
+        + commonAccount.<span class="fu">getBalance</span>());
+    }
+}</code></pre>
+<h1>Προσοχή!</h1>
+<p><img src="media/if_something_can_go_wrong.jpg" /></p>
 <h1 id="--1">Πρόβλημα Παραλληλισμού (1)</h1>
 <ul>
 <li><p>Σενάριο με παραλληλισμό</p>
