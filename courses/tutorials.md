@@ -14,6 +14,7 @@
 ## Φροντιστήριο 4
 * [Τύποι Πεδίων και Μεθόδων](tutorials/tutorial_4_A.md)
 * [Κληρονομικότητα, Αφηρημένες Κλάσεις και Διεπαφές](tutorials/tutorial_4_B.md)
+* [Apache Maven](tutorials/tutorial_4_C.md)
 
 ## Φροντιστήριο 5
 * [Πολυμορφισμός](tutorials/tutorial_5_A.md)
