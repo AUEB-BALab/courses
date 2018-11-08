@@ -42,7 +42,7 @@
 
 ## Εγκατάσταση plug-ins για Eclipse
 
-* Help - >Install New Software*
+* Help -> Install New Software
 * Στην καρτέλα Install πατάμε Αdd
 * Στην επόμενη καρτέλα προσθέτουμε το όνομα του plug-in και το URL που βρίσκεται (π.χ. FindBugs, http://findbugs.cs.umd.edu/eclipse)
 * Επιλέγουμε το project που θέλουμε να εγκαταστήσουμε
