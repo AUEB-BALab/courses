@@ -30,4 +30,4 @@
 * [Διαχείρηση αρχείων](tutorials/tutorial_7_B.md)
 
 ## Φροντιστήριο 8
-* [Κανονικές εκφράσεις](tutorials/tutorial_9_B.md)
+* [Κανονικές εκφράσεις](tutorials/tutorial_8_A.md)
