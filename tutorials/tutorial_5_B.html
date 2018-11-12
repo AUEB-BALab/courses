@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Εξαιρέσεις και Ισχυρισμοί</title>
+    <title>Νήματα</title>
 
     <!-- Bootstrap -->
     <!-- JQuery is required -->
@@ -29,222 +29,259 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="----">Προγραμματισμός ΙΙ: Εξαιρέσεις και Ισχυρισμοί</h1>
+<h1 id="--">Προγραμματισμός ΙΙ: Νήματα</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
-<h2 id="--">Εξαιρέσεις και Ισχυρισμοί</h2>
+<h1>Νήματα</h1>
 <ul>
 <li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
 <li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
 </ul>
-<h2>Εξαιρέσεις</h2>
+<h1 id="-threads">Νήματα (Threads)</h1>
 <ul>
-<li>Μία εξαίρεση είναι ένα γεγονός που παρακάμπτει την κανονική εκτέλεση ενός προγράμματος.<br /></li>
-<li>Δίνει την δυνατότητα να χειριστούμε γεγονότα όταν γίνει κάτι το ασυνήθιστο.<br /></li>
-<li>Αποφεύγουμε την δημιουργία περίπλοκου κώδικα στον χειρισμό πιθανού σφάλματος.<br /></li>
-<li>Δίνει δυναντότητα μετάδοσης σφάλματος στο ίχνος στοίβας (stack trace).</li>
+<li>Νήματα είναι κομμάτια κώδικα που &quot;ζούνε&quot; μέσα σε μιά διεργασία.<br /></li>
+<li>Διεργασία είναι ένα πρόγραμμα που εκτελείτε είτε θα εκτελεστεί.<br /></li>
+<li>Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.<br /></li>
+<li>Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.<br /></li>
+<li>Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση.</li>
 </ul>
-<h2 id="-">Παράδειγμα ψευδοκώδικα</h2>
+<h1 id="-">Διεργασίες Παράδειγμα</h1>
+<p><img src="media/Processes_SnapShot.png" /></p>
+<h1 id="-">Νήματα Παράδειγμα</h1>
+<p><img src="media/Threads_Snapshot.png" /></p>
+<h1 id="--1">Πρόβλημα Συγχρονισμού (1)</h1>
 <ul>
-<li>Λάθη?</li>
+<li>Ένα ζευγάρι έχει ένα κοινό λογαρισμό<br /></li>
+<li>Ταυτόχρονα προσθέτουν χρήματα από διαφορετικά ATMς</li>
 </ul>
-<pre class="sourceCode java"><code class="sourceCode java">readFile {
-    open the file;
-    determine its size;
-    allocate that much memory;
-    read the file into memory;
-    close the file;
-}</code></pre>
-<h2 id="-">Χειρισμός ψευδοκώδικα</h2>
-<pre class="sourceCode java"><code class="sourceCode java">errorCodeType readFile {
-    initialize errorCode = <span class="dv">0</span>;
+<p><img src="media/Concurrency_Bank_Accounts_Example.png" /></p>
+<h1 id="--2">Πρόβλημα Συγχονισμού (2)</h1>
+<ul>
+<li><p>Σενάριο με κανονική ροή</p>
+<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+add $<span class="dv">100</span>
+write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
+get <span class="fu">balance</span> (balance = $<span class="dv">150</span>)
+add $<span class="dv">50</span> 
+write back <span class="fu">result</span> (balance = $<span class="dv">200</span>)  </code></pre></li>
+<li><p>Σενάριο με πρόβλημα συγχρονισμού</p>
+<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+add $<span class="dv">100</span>
+add $<span class="dv">50</span>
+write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
+write back <span class="fu">result</span> (balance = $<span class="dv">100</span>)</code></pre></li>
+</ul>
+<h1 id="---1">Παράδειγμα σε κώδικα (1)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SynchronousProblem {
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> balance = <span class="dv">50</span>;
     
-    open the file;
-    <span class="kw">if</span> (theFileIsOpen) {
-        determine the length of the file;
-        <span class="kw">if</span> (gotTheFileLength) {
-            allocate that much memory;
-            <span class="kw">if</span> (gotEnoughMemory) {
-                read the file into memory;
-                <span class="kw">if</span> (readFailed) {
-                    errorCode = -<span class="dv">1</span>;
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getBalance</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">balance</span>;
+    }   
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setBalance</span>(<span class="dt">int</span> balance) {
+        <span class="kw">this</span>.<span class="fu">balance</span> = balance;
+    }
+}</code></pre>
+<h1 id="---2">Παράδειγμα σε κώδικα (2)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestSynch {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        SynchronousProblem commonAccount = <span class="kw">new</span> <span class="fu">SynchronousProblem</span>();
+        <span class="dt">int</span> wifesBalance = commonAccount.<span class="fu">getBalance</span>();
+        <span class="dt">int</span> husbandsBalance = commonAccount.<span class="fu">getBalance</span>(); 
+        commonAccount.<span class="fu">setBalance</span>(wifesBalance += <span class="dv">100</span>);
+        commonAccount.<span class="fu">setBalance</span>(husbandsBalance += <span class="dv">50</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The current balance is $&quot;</span> 
+        + commonAccount.<span class="fu">getBalance</span>());
+    }
+}</code></pre>
+<h1>Προσοχή!</h1>
+<p><img src="media/if_something_can_go_wrong.jpg" /></p>
+<h1 id="--1">Πρόβλημα Παραλληλισμού (1)</h1>
+<ul>
+<li><p>Σενάριο με παραλληλισμό</p>
+<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)    get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)
+add $<span class="dv">100</span>            add $<span class="dv">50</span>
+write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  write <span class="fu">results</span>(balace=$<span class="dv">100</span>)</code></pre></li>
+</ul>
+<h1 id="--1">Εκτέλεση νημάτων (1)</h1>
+<ul>
+<li>Η Java υποστηρίζει δύο διαφορετικούς τρόπους για εκτέλεση νημάτων<br /></li>
+<li>Δήλωση κλάσης που να επεκτήνει την Thread<br /></li>
+<li>Υπερσκελίζει (Override) την run της κλάσης Thread</li>
+</ul>
+<h1 id="--2">Εκτελεση νημάτων (2)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">extends</span> Thread { 
+      <span class="kw">private</span> <span class="dt">int</span> maxNumber;
+      <span class="kw">private</span> <span class="dt">int</span> count;
+      <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
+          <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
+          <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;        
+      }
+      <span class="fu">@Override</span> 
+      <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+          <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
+          {
+              <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
+                  ++count;        
+          }    
+      }
+  }</code></pre>
+<h1 id="-">Εκτέλεση νημάτων</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestThreads {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+
+        <span class="co">// Ένας τρόπος</span>
+        FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
+        findNumber.<span class="fu">start</span>();
+        
+        <span class="co">// Άλλος τρόπος</span>
+        Thread t = <span class="kw">new</span> Thread(findNumber);
+        t.<span class="fu">start</span>();
+        
+        System.<span class="fu">out</span>.<span class="fu">println</span>(findNumber.<span class="fu">count</span>);
+    }
+}</code></pre>
+<h1 id="--2">Εκτέλεση νημάτων</h1>
+<ul>
+<li>Δήλωση κλάσης που να υλοποιεί την διεπαφή Runnable<br /></li>
+<li>Αυτή η κλάση υλοποιεί την μέθοδο run της Runnable.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">implements</span> Runnable {
+      <span class="kw">private</span> <span class="dt">int</span> maxNumber;
+      <span class="kw">private</span> <span class="dt">int</span> count;
+      <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
+          <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
+          <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;        
+      }
+
+      <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+          <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
+          {
+              <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
+                  ++count;        
+          }    
+      }
+  }</code></pre>
+<h1 id="--thread--runnable">Διαφορές μεταξύ Thread και Runnable</h1>
+<ul>
+<li>Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.<br /></li>
+<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε κάποια άλλη κλάση.</li>
+</ul>
+<h1 id="-thread-vs-runnable-1">Παράδειγμα Thread Vs Runnable (1)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Implementing Runnable Interface</span>
+    <span class="kw">class</span> ImplementsRunnable <span class="kw">implements</span> Runnable {
+        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+            counter++;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ImplementsRunnable : Counter : &quot;</span>+ counter);
+        }
+    }
+
+    <span class="co">//Extending Thread class</span>
+    <span class="kw">class</span> ExtendsThread <span class="kw">extends</span> Thread {
+        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
+        <span class="fu">@Override</span>
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span> () {
+            counter++;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ExtendsThread : Counter : &quot;</span>+ counter);
+        }
+    }</code></pre>
+<h1 id="-thread-vs-runnable-2">Παράδειγμα Thread Vs Runnable (2)</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ThreadVsRunnable {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
+                <span class="co">// Multiple threads share the same object.</span>
+                ImplementsRunnable rc = <span class="kw">new</span> <span class="fu">ImplementsRunnable</span>();
+                Thread t1 = <span class="kw">new</span> Thread(rc);
+                t1.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
+                Thread t2 = <span class="kw">new</span> Thread(rc);
+                t2.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
+                Thread t3 = <span class="kw">new</span> Thread(rc);
+                t3.<span class="fu">start</span>();
+
+                ExtendsThread tc1 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc1.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>);
+                ExtendsThread tc2 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc2.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
+                ExtendsThread tc3 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc3.<span class="fu">start</span>();
+         }
+    }</code></pre>
+<h1 id="-">Αποτέλεσμα εκλεσης</h1>
+<pre class="sourceCode java"><code class="sourceCode java">    ImplementsRunnable : Counter : <span class="dv">1</span>
+    ImplementsRunnable : Counter : <span class="dv">2</span>
+    ImplementsRunnable : Counter : <span class="dv">3</span>
+
+    ExtendsThread : Counter : <span class="dv">1</span>
+    ExtendsThread : Counter : <span class="dv">1</span>
+    ExtendsThread : Counter : <span class="dv">1</span></code></pre>
+<h1 id="thread-join1">Thread join(1)</h1>
+<ul>
+<li>Μέθοδος που επιτρέπει σε ένα νήμα να περιμένει μέχρι να ολοκληρωθεί η εκτέλεση ένος άλλου.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">  Thread t = <span class="kw">new</span> Thread(findNumber);
+  t.<span class="fu">start</span>();
+  System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Now thread &quot;</span> + t.<span class="fu">getName</span>() + <span class="st">&quot; is running&quot;</span>);
+  t.<span class="fu">join</span>();</code></pre>
+<h1 id="--">Παράδειγμα με νήματα</h1>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleThreads {
+            <span class="dt">static</span> <span class="dt">void</span> <span class="fu">threadMessage</span>(String message) {
+                String threadName = Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>();
+                System.<span class="fu">out.format</span>(<span class="st">&quot;</span><span class="ch">%s</span><span class="st">: </span><span class="ch">%s%n</span><span class="st">&quot;</span>,threadName, message);
+        }
+
+            <span class="kw">private</span> <span class="dt">static</span> <span class="kw">class</span> MessageLoop <span class="kw">implements</span> Runnable {
+            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+                String importantInfo[] = {<span class="st">&quot;Mares eat oats&quot;</span>,<span class="st">&quot;Does eat oats&quot;</span>,<span class="st">&quot;Little lambs eat ivy&quot;</span>,<span class="st">&quot;A kid will eat ivy too&quot;</span>};
+                <span class="kw">try</span> {
+                <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; importantInfo.<span class="fu">length</span>; i++) {
+                    Thread.<span class="fu">sleep</span>(<span class="dv">4000</span>);
+                    <span class="fu">threadMessage</span>(importantInfo[i]);
                 }
-            } <span class="kw">else</span> {
-                errorCode = -<span class="dv">2</span>;
+                } <span class="kw">catch</span> (InterruptedException e) {<span class="fu">threadMessage</span>(<span class="st">&quot;I wasn&#39;t done!&quot;</span>);
+                }
             }
-        } <span class="kw">else</span> {
-            errorCode = -<span class="dv">3</span>;
         }
-        close the file;
-        <span class="kw">if</span> (theFileDidntClose &amp;&amp; errorCode == <span class="dv">0</span>) {
-            errorCode = -<span class="dv">4</span>;
-        } <span class="kw">else</span> {
-            errorCode = errorCode and -<span class="dv">4</span>;
-        }
-    } <span class="kw">else</span> {
-        errorCode = -<span class="dv">5</span>;
-    }
-    <span class="kw">return</span> errorCode;
-}</code></pre>
-<h2 id="--">Σωστός χειρισμός ψευδοκώδικα</h2>
-<pre class="sourceCode java"><code class="sourceCode java">readFile {
-    <span class="kw">try</span> {
-        open the file;
-        determine its size;
-        allocate that much memory;
-        read the file into memory;
-        close the file;
-    } <span class="kw">catch</span> (fileOpenFailed) {
-       doSomething;
-    } <span class="kw">catch</span> (sizeDeterminationFailed) {
-        doSomething;
-    } <span class="kw">catch</span> (memoryAllocationFailed) {
-        doSomething;
-    } <span class="kw">catch</span> (readFailed) {
-        doSomething;
-    } <span class="kw">catch</span> (fileCloseFailed) {
-        doSomething;
-    }</code></pre>
-<h2 id="-">Χειρισμός εξαιρέσεων</h2>
-<ul>
-<li>Μπορεί να γίνει χρησιμοποιώντας το <strong>try-catch</strong>.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
-    some code here
-} <span class="kw">catch</span> and <span class="kw">finally</span> blocks …</code></pre>
-<h2 id="throws">throws</h2>
-<ul>
-<li>Μπορούμε να ορίσουμε την πιθανότητα να προκύψει μία εξαίρεση στην υπογραφή μίας μεθόδου.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">writeList</span>() <span class="kw">throws</span> IOException, IndexOutOfBoundsException {...}</code></pre>
-<h2 id="throw-new">throw new</h2>
-<ul>
-<li>Μπορούμε να ορίσουμε την πιθανότητα δημιουργίας μίας εξαίρεσης μέσο της <strong>throw new</strong> λέξης.<br /></li>
-<li>Επίσης, θα πρέπει να ορίσουμε στην υπογραφή της μεθόδου την λέξη <strong>throws</strong> με το όνομα της εξαίρεσης.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java">
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">checkAmout</span>(<span class="dt">int</span> amount) <span class="kw">throws</span> NegativeAmoutException {
-    <span class="kw">if</span> (amount &lt; <span class="dv">0</span>) {
-        <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NegativeAmountException</span>();
-    }
-}</code></pre>
-<h2 id="-">Τύποι εξαιρέσεων</h2>
-<p><img src="media/exceptions.png" /></p>
-<h2 id="-checked-exception">Παράδειγμα Checked Exception</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.File;</span>
-<span class="kw">import java.io.FileNotFoundException;</span>
-<span class="kw">import java.io.FileReader;</span>
 
-<span class="kw">public</span>  <span class="kw">class</span> testClass {
-
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])  {       
-          File file = <span class="kw">new</span> File(<span class="st">&quot;E://file.txt&quot;</span>);
-          <span class="kw">try</span> {
-            FileReader fr = <span class="kw">new</span> FileReader(file);
-        } <span class="kw">catch</span> (FileNotFoundException e) {
-            <span class="co">// TODO Auto-generated catch block</span>
-            e.<span class="fu">printStackTrace</span>();
-        } 
-       }
-}</code></pre>
-<h2 id="-unchecked-exception">Παράδειγμα Unchecked Exception</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">import java.io.*;</span>
-    
-    <span class="kw">public</span> <span class="kw">class</span> ExcepTest {
-        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-            <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+<span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])<span class="kw">throws</span> InterruptedException {
+        <span class="dt">long</span> patience = <span class="dv">1000</span> * <span class="dv">60</span> * <span class="dv">60</span>;
+        <span class="co">// If command line argument</span>
+        <span class="co">// present, gives patience</span>
+        <span class="co">// in seconds.</span>
+        <span class="kw">if</span> (args.<span class="fu">length</span> &gt; <span class="dv">0</span>) {
             <span class="kw">try</span> {
-                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access elements three:&quot;</span> + a[<span class="dv">3</span>]);
-            } <span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
-                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown :&quot;</span> +e);
+                patience = Long.<span class="fu">parseLong</span>(args[<span class="dv">0</span>]) * <span class="dv">1000</span>;
+            } <span class="kw">catch</span> (NumberFormatException e) {
+                System.<span class="fu">err</span>.<span class="fu">println</span>(<span class="st">&quot;Argument must be an integer.&quot;</span>);
+                System.<span class="fu">exit</span>(<span class="dv">1</span>);
             }
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Out of the block&quot;</span>);
         }
-    }</code></pre>
-<h2 id="--finally">Χρήση της finally</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExcepTest {
 
-   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
-      <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
-      <span class="kw">try</span> {
-         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access element three :&quot;</span> + a[<span class="dv">3</span>]);
-      } <span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
-         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown  :&quot;</span> + e);
-      } <span class="kw">finally</span> {
-         a[<span class="dv">0</span>] = <span class="dv">6</span>;
-         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;First element value: &quot;</span> + a[<span class="dv">0</span>]);
-         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The finally statement is executed&quot;</span>);
-      }
-   }
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Starting MessageLoop thread&quot;</span>);
+        <span class="dt">long</span> startTime = System.<span class="fu">currentTimeMillis</span>();
+        Thread t = <span class="kw">new</span> Thread(<span class="kw">new</span> <span class="fu">MessageLoop</span>());
+        t.<span class="fu">start</span>();
+
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Waiting for MessageLoop thread to finish&quot;</span>);
+        <span class="kw">while</span> (t.<span class="fu">isAlive</span>()) {
+            <span class="fu">threadMessage</span>(<span class="st">&quot;Still waiting...&quot;</span>);
+            t.<span class="fu">join</span>(<span class="dv">1000</span>);
+            <span class="kw">if</span> (((System.<span class="fu">currentTimeMillis</span>() - startTime) &gt; patience)&amp;&amp; t.<span class="fu">isAlive</span>()) {
+                <span class="fu">threadMessage</span>(<span class="st">&quot;Tired of waiting!&quot;</span>);
+                t.<span class="fu">interrupt</span>();
+                t.<span class="fu">join</span>();
+            }
+        }
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Finally!&quot;</span>);
+    }
 }</code></pre>
-<h2 id="-">Ίχνη Στοίβας</h2>
-<ul>
-<li>Τα ίχνη στοίβας περιέχουν αποτελέσματα σφαλμάτων μίας εφαρμογής<br />όπου προσφέρουν στοιχεία για τα αίτια του σφάλματος.<br /></li>
-<li>Η χρήση της μεθόδου <strong>printStackTrace()</strong> δίνει το δέντρο της<br />στοίβας αν κάποια μέθοδος έχει αποτύχει.</li>
-</ul>
-<h2 id="---">Παράδειγμα για Ίχνη Στοίβας</h2>
-<pre class="sourceCode java"><code class="sourceCode java">Exception in thread <span class="st">&quot;main&quot;</span> java.<span class="fu">lang</span>.<span class="fu">NullPointerException</span>: Fictitious NullPointerException
-at StackTraceExample.<span class="fu">method111</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">15</span>)
-at StackTraceExample.<span class="fu">method11</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">11</span>)
-at StackTraceExample.<span class="fu">method1</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">7</span>)
-at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">3</span>)</code></pre>
-<h2 id="-">Δημιουργία εξαιρέσεων</h2>
-<ul>
-<li>Μπορούμε να δημιουργήσουμε τις δικές μας εξαιρέσεις επεκτείνοντας τις κλάσεις π.χ. <strong>Exception</strong>, <strong>RuntimeException</strong></li>
-</ul>
-<h2 id="-1">Ισχυρισμοί (1)</h2>
-<ul>
-<li>Χρησιμοποιείται για εύρεση λαθών μέσα στον κώδικα.<br /></li>
-<li>Χρησιμοποιεί μια έκφραση boolean, αν αυτή επιστρέψει λάθος τότε προσδιορίζει την ένδειξη σφάλματος στο κώδικα<br />με την εκτύπωση κάποιου μηνύματος.<br /></li>
-<li>Για χρήση του assertion πρέπει να εκτελέσετε ώς έχει: java -ea|-enableassertion executable<br /></li>
-<li>Επιτρέπει την τεκμηρίωση του κώδικα και τον τρόπο λειτουργίας του.</li>
-</ul>
-<h2 id="-2">Ισχυρισμοί (2)</h2>
-<ul>
-<li>Επιτρέπει την κατανόηση του προγράμματος μας από άλλα άτομα.<br /></li>
-<li>Βοηθούν στην εύκολη αποσφαλμάτωση του κώδικα.<br /></li>
-<li>Οι ισχυρισμοί δεν είναι για τους χρήστες ενός προγράμματος αλλά για του μηχανικούς λογισμικού.<br /></li>
-<li>Οταν εντοπιστεί σφάλμα ισχυρισμού συνήθως πρέπει να σταματά η λειτουργία ενός προγράμματος.</li>
-</ul>
-<h2 id="---">Διαφορές Ισχυρισμών με Εξαιρέσεις</h2>
-<ul>
-<li>Με τους ισχυρισμούς ελέγχουμε περιπτώσεις που δεν πρέπει ποτέ να συμβούν ενώ με τις εξαιρέσεις<br />κάτι που μπορεί να συμβεί.<br /></li>
-<li>Ο ισχυρισμός σταματάει την εκτέλεση του προγράμματος ενώ η εξαίρεση επιτρέπει την συνέχεια αν μπορεί<br />να διορθωθεί το συγκεκριμένο σφάλμα.</li>
-</ul>
-<h2 id="-1">Παράδειγμα (1)</h2>
-<pre class="sourceCode java"><code class="sourceCode java">BankAccount acct = <span class="kw">null</span>;
-
-<span class="co">// ...</span>
-<span class="co">// Get a BankAccount object</span>
-<span class="co">// ...</span>
-
-<span class="co">// Check to ensure we have one</span>
-              assert acct != <span class="kw">null</span> : <span class="st">&quot;Object Null&quot;</span>;</code></pre>
-<h2 id="-2">Παράδειγμα (2)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
-
-<span class="kw">public</span> <span class="kw">class</span> AssertionTest3 {
-
-   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String argv[]) <span class="kw">throws</span> IOException {
-      System.<span class="fu">out</span>.<span class="fu">print</span>(<span class="st">&quot;Enter your marital status: &quot;</span>);
-      <span class="dt">int</span> c = System.<span class="fu">in</span>.<span class="fu">read</span>();
-      <span class="kw">switch</span> ((<span class="dt">char</span>) c) {
-         <span class="kw">case</span> &#39;s&#39;:
-         <span class="kw">case</span> &#39;S&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Single&quot;</span>); <span class="kw">break</span>;
-         <span class="kw">case</span> &#39;m&#39;:
-         <span class="kw">case</span> &#39;M&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Married&quot;</span>); <span class="kw">break</span>;
-         <span class="kw">case</span> &#39;d&#39;:
-         <span class="kw">case</span> &#39;D&#39;: System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Divorced&quot;</span>); <span class="kw">break</span>;
-         <span class="kw">default</span>: assert !<span class="kw">true</span> : <span class="st">&quot;Invalid Option&quot;</span>; <span class="kw">break</span>;
-      }
-
-   }
-}</code></pre>
-<h2 id="-3">Παράδειγμα (3)</h2>
-<pre class="sourceCode bash"><code class="sourceCode bash">    [<span class="kw">sgeorgiou@aiolos</span>]$ java -ea AssertionTest3 
-    <span class="kw">Enter</span> your marital status: n
-    <span class="kw">Exception</span> in thread <span class="st">&quot;main&quot;</span> java.lang.AssertionError: Invalid Option
-        <span class="kw">at</span> AssertionTest3.main(AssertionTest3.java:15)</code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

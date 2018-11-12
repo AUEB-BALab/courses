@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Νήματα</title>
+    <title>Κανονικές εκφράσεις</title>
 
     <!-- Bootstrap -->
     <!-- JQuery is required -->
@@ -29,257 +29,296 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="--">Προγραμματισμός ΙΙ: Νήματα</h1>
+<h1 id="---">Προγραμματισμός ΙΙ: Κανονικές εκφράσεις</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
-<h1>Νήματα</h1>
+<h1 id="-">Καννονικές Εκφράσεις</h1>
 <ul>
 <li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
 <li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
 </ul>
-<h1 id="-threads">Νήματα (Threads)</h1>
+<h2 id="-">Κανονικές Εκφράσεις</h2>
 <ul>
-<li>Νήματα είναι κομμάτια κώδικα που &quot;ζούνε&quot; μέσα σε μιά διεργασία.<br /></li>
-<li>Διεργασία είναι ένα πρόγραμμα που εκτελείτε είτε θα εκτελεστεί.<br /></li>
-<li>Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.<br /></li>
-<li>Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.<br /></li>
-<li>Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση.</li>
+<li>Είναι σειρές από χαρακτήρες, αριθμούς και ειδικά σύμβολα που εκφράζουν καθορισμένα πρότυπα βάσει συγκεκριμένης σύνταξης.<br /></li>
+<li>Χρησιμοποιούνται για ταυτοποίηση συγκεκριμένων μοτίβων (pattern matching) κανονικών εκφράσεων (regular expressions) σε λέξεις, προτάσεις, αριθμούς, και αρχεία.<br /></li>
+<li>Βοηθούν στην αναζήτηση, στην επεξεργασία και στο χειρισμό κειμένου και δεδομένων.</li>
 </ul>
-<h1 id="-">Διεργασίες Παράδειγμα</h1>
-<p><img src="media/Processes_SnapShot.png" /></p>
-<h1 id="-">Νήματα Παράδειγμα</h1>
-<p><img src="media/Threads_Snapshot.png" /></p>
-<h1 id="--1">Πρόβλημα Συγχρονισμού (1)</h1>
+<h2 id="--1">Ειδικά Σύμβολα (1)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Μοτίβο</th>
+<th align="center">Επεξήγηση</th>
+<th align="center">Παράδειγμα</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">[ab]</td>
+<td align="center">ταιριάζει κάθε χαρακτήρα μέσα στις αγκύλες</td>
+<td align="center">ri[cs]e -&gt; rice ή rise</td>
+</tr>
+<tr class="even">
+<td align="center">abc|adc</td>
+<td align="center">ταιριάζει είτε τη μία είτε την άλλη λέξη</td>
+<td align="center">man|men -&gt; man ή men</td>
+</tr>
+<tr class="odd">
+<td align="center">^</td>
+<td align="center">ταιριάζει το μοτίβο στην αρχή της γραμμής</td>
+<td align="center">^What-&gt; What time...</td>
+</tr>
+<tr class="even">
+<td align="center">$</td>
+<td align="center">ταιριάζει το μοτίβο στο τέλος της γραμμής</td>
+<td align="center">o'clock.$ -&gt; 8 o'clock.</td>
+</tr>
+<tr class="odd">
+<td align="center">?</td>
+<td align="center">0 ή 1 εμφάνιση του προηγούμενου μοτίβου</td>
+<td align="center">colou?r -&gt; Light blue is my colour</td>
+</tr>
+</tbody>
+</table>
+<h2 id="--2">Ειδικά Σύμβολα (2)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Μοτίβο</th>
+<th align="center">Επεξήγηση</th>
+<th align="center">Παράδειγμα</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">+</td>
+<td align="center">1 ή περισσότερες εμφανίσεις του προηγούμενου μοτίβου</td>
+<td align="center">[123]+-&gt; 2</td>
+</tr>
+<tr class="even">
+<td align="center">*</td>
+<td align="center">0 ή περισσότερες εμφανίσεις του προηγούμενου μοτίβου</td>
+<td align="center">[123]*-&gt;456 |<br />| {n} | ταιριάζει ένα συγκεκριμένο αριθμό ψηφίων | 5{3}-&gt; 555 |<br />| {min,max} | ταιριάζει από/μέχρι ένα συγκεκριμένο αριθμό ψηφίων | m{1,5}-&gt;mmmm |<br />| [0-9] | ταιριάζει αριθμούς από 0 έως 9 | [0-9] -&gt; 7 |</td>
+</tr>
+</tbody>
+</table>
+<h2 id="--3">Ειδικά Σύμβολα (3)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Μοτίβο</th>
+<th align="center">Επεξήγηση</th>
+<th align="center">Παράδειγμα</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">[a-zA-Z]</td>
+<td align="center">ταιριάζει γράμματα από το a έως το z κεφαλαία και μικρά</td>
+<td align="center">[a-zA-Z] -&gt; r</td>
+</tr>
+<tr class="even">
+<td align="center">[^a-z]</td>
+<td align="center">δεν ταιριάζει ό,τι υπάρχει μέσα στα άγκυστρα</td>
+<td align="center">[^a-z] -&gt; R</td>
+</tr>
+<tr class="odd">
+<td align="center">\n, \t</td>
+<td align="center">ταιριάζει χαρακτήρες με backslash</td>
+<td align="center">new line\n -&gt; \n</td>
+</tr>
+<tr class="even">
+<td align="center">\w</td>
+<td align="center">ταιριάζει γράμματα χαρακτήρες [0-9Α-Ζa-z_]</td>
+<td align="center">[\w]\t -&gt; o\t</td>
+</tr>
+<tr class="odd">
+<td align="center">\W</td>
+<td align="center">δεν ταιριάζει γράμματα χαρακτήρες [^0-9Α-Ζa-z_]</td>
+<td align="center">[\W] -&gt; \n</td>
+</tr>
+</tbody>
+</table>
+<h2 id="--4">Ειδικά Σύμβολα (4)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Μοτίβο</th>
+<th align="center">Επεξήγηση</th>
+<th align="center">Παράδειγμα</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">\d</td>
+<td align="center">ταιριάζει ψηφία όπως το [0-9]</td>
+<td align="center">[\d] -&gt; 7</td>
+</tr>
+<tr class="even">
+<td align="center">\D</td>
+<td align="center">δεν ταιριάζει ψηφία όπως το [^0-9]</td>
+<td align="center">[\D] -&gt; a</td>
+</tr>
+<tr class="odd">
+<td align="center">\s</td>
+<td align="center">ταιριάζει whitespace χαρακτήρες όπως [\t\n\r]</td>
+<td align="center">a\s -&gt; a (space)</td>
+</tr>
+<tr class="even">
+<td align="center">\S</td>
+<td align="center">δεν ταιριάζει whitespace χαρακτήρες όπως [^\t\n\r]</td>
+<td align="center">a[^\t\n\r] -&gt; cat</td>
+</tr>
+<tr class="odd">
+<td align="center">.</td>
+<td align="center">ταιριάζει οτιδήποτε</td>
+<td align="center">.+ -&gt; jdf235!\n</td>
+</tr>
+</tbody>
+</table>
+<h2 id="---java">Κανονικές εκφράσεις στη Java</h2>
 <ul>
-<li>Ένα ζευγάρι έχει ένα κοινό λογαρισμό<br /></li>
-<li>Ταυτόχρονα προσθέτουν χρήματα από διαφορετικά ATMς</li>
+<li>Για τη χρήση κανονικών εκφράσεων στη Java χρησιμοποιείται το java.util.regex API το οποίο διαθέτει 3 βασικές κλάσεις: Pattern, Matcher, και PatternSyntaxException.<br /></li>
+<li>Η κλάση String διαθέτει μεθόδους που χρησιμοποιούν κανονικές εκφράσεις<br />(Summary of regular-expression constructs:<br /><a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html</a>).</li>
 </ul>
-<p><img src="media/Concurrency_Bank_Accounts_Example.png" /></p>
-<h1 id="--2">Πρόβλημα Συγχονισμού (2)</h1>
-<ul>
-<li><p>Σενάριο με κανονική ροή</p>
-<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
-add $<span class="dv">100</span>
-write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
-get <span class="fu">balance</span> (balance = $<span class="dv">150</span>)
-add $<span class="dv">50</span> 
-write back <span class="fu">result</span> (balance = $<span class="dv">200</span>)  </code></pre></li>
-<li><p>Σενάριο με πρόβλημα συγχρονισμού</p>
-<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
-get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
-add $<span class="dv">100</span>
-add $<span class="dv">50</span>
-write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
-write back <span class="fu">result</span> (balance = $<span class="dv">100</span>)</code></pre></li>
-</ul>
-<h1 id="---1">Παράδειγμα σε κώδικα (1)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SynchronousProblem {
-    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> balance = <span class="dv">50</span>;
+<h2 id="---string---">Μεθόδοι της κλάσης String για κανονικές εκφράσεις</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Τύπος</th>
+<th align="center">Όνομα μεθόδου</th>
+<th align="center">Περιγραφή</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">boolean</td>
+<td align="center">matches(String regex)</td>
+<td align="center">επιστρέφει true αν υπάρχει η έκφραση</td>
+</tr>
+<tr class="even">
+<td align="center">String</td>
+<td align="center">replaceAll(String regex, String relpacement)</td>
+<td align="center">αλλάζει μία έκφραση με μία συγκεκριμένη συμβολοσειρά</td>
+</tr>
+<tr class="odd">
+<td align="center">String[]</td>
+<td align="center">split(String regex)</td>
+<td align="center">Σπάει μια συμβολοσειρά σε ένα πίνακα από συμβολοσειρές</td>
+</tr>
+</tbody>
+</table>
+<h2>Μοτίβα</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Τύπος</th>
+<th align="center">Όνομα μεθόδου</th>
+<th align="center">Περιγραφή</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">static Pattern</td>
+<td align="center">compile(String regex)</td>
+<td align="center">μεταγλωττίζει την κανονική έκφραση σε μοτίβο</td>
+</tr>
+<tr class="even">
+<td align="center">static Pattern</td>
+<td align="center">compile(String regex, int flag)</td>
+<td align="center">μεταγλωττίζει την κανονική έκφραση σε μοτίβο με &quot;σημαίες&quot;</td>
+</tr>
+<tr class="odd">
+<td align="center">static Pattern</td>
+<td align="center">matches(String regex, CharSequence input)</td>
+<td align="center">Προσπαθεί να ταιριάξει το μοτίβο με δεδομένα εισόδου</td>
+</tr>
+</tbody>
+</table>
+<h2>Ταιριαστής</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Τύπος</th>
+<th align="center">Όνομα μεθόδου</th>
+<th align="center">Περιγραφή</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">boolean</td>
+<td align="center">matches()</td>
+<td align="center">προσπαθεί να βρει την εμφάνιση ενός μοτίβου</td>
+</tr>
+<tr class="even">
+<td align="center">int</td>
+<td align="center">start()</td>
+<td align="center">επιστρέφει την θέση που αρχίζει η έκφραση</td>
+</tr>
+<tr class="odd">
+<td align="center">int</td>
+<td align="center">end()</td>
+<td align="center">επιστρέφει την θέση που τελειώνει η έκφραση +1</td>
+</tr>
+<tr class="even">
+<td align="center">boolean</td>
+<td align="center">find()</td>
+<td align="center">ψάχνει εμφανίσεις της κανονικής έκφρασης σε ένα κείμενο</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-1">Παράδειγμα (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.regex.Matcher;</span>
+<span class="kw">import java.util.regex.Pattern;</span>
+<span class="kw">import java.util.regex.PatternSyntaxException;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> RegexMatchFind {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) <span class="kw">throws</span> PatternSyntaxException {
+        Pattern p = Pattern.<span class="fu">compile</span>(<span class="st">&quot;[</span><span class="ch">\\</span><span class="st">d]{3}&quot;</span>);
+        Matcher m = p.<span class="fu">matcher</span>(<span class="st">&quot;a123b&quot;</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
+        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
+        <span class="dt">boolean</span> b = Pattern.<span class="fu">matches</span>(<span class="st">&quot;[</span><span class="ch">\\</span><span class="st">d]{3}&quot;</span>, <span class="st">&quot;a123b&quot;</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(b);
+
+        p = Pattern.<span class="fu">compile</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>);
+        m = p.<span class="fu">matcher</span>(<span class="st">&quot;123&quot;</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">find</span>());
+        System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">matches</span>());
+        <span class="dt">boolean</span> c = Pattern.<span class="fu">matches</span>(<span class="st">&quot;^[a-z0-9]+$&quot;</span>, <span class="st">&quot;123&quot;</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(c);
+    }
+}</code></pre>
+<h2 id="-2">Παράδειγμα (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.regex.Matcher;</span>
+<span class="kw">import java.util.regex.Pattern;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> SimpleRegex {
     
-    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getBalance</span>() {
-        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">balance</span>;
-    }   
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        <span class="co">// String for the pattern-matching.</span>
+        String line = <span class="st">&quot;New order 567TW.&quot;</span>;
+        <span class="co">// Given pattern</span>
+        String pattern = <span class="st">&quot;[0-9]+(Q|TW){1,2}.&quot;</span>;
 
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setBalance</span>(<span class="dt">int</span> balance) {
-        <span class="kw">this</span>.<span class="fu">balance</span> = balance;
-    }
-}</code></pre>
-<h1 id="---2">Παράδειγμα σε κώδικα (2)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestSynch {
-
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-        SynchronousProblem commonAccount = <span class="kw">new</span> <span class="fu">SynchronousProblem</span>();
-        <span class="dt">int</span> wifesBalance = commonAccount.<span class="fu">getBalance</span>();
-        <span class="dt">int</span> husbandsBalance = commonAccount.<span class="fu">getBalance</span>(); 
-        commonAccount.<span class="fu">setBalance</span>(wifesBalance += <span class="dv">100</span>);
-        commonAccount.<span class="fu">setBalance</span>(husbandsBalance += <span class="dv">50</span>);
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The current balance is $&quot;</span> 
-        + commonAccount.<span class="fu">getBalance</span>());
-    }
-}</code></pre>
-<h1>Προσοχή!</h1>
-<p><img src="media/if_something_can_go_wrong.jpg" /></p>
-<h1 id="--1">Πρόβλημα Παραλληλισμού (1)</h1>
-<ul>
-<li><p>Σενάριο με παραλληλισμό</p>
-<pre class="sourceCode java"><code class="sourceCode java">get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)    get <span class="fu">balance</span>(balance=$<span class="dv">50</span>)
-add $<span class="dv">100</span>            add $<span class="dv">50</span>
-write <span class="fu">result</span>(balance=$<span class="dv">150</span>)  write <span class="fu">results</span>(balace=$<span class="dv">100</span>)</code></pre></li>
-</ul>
-<h1 id="--1">Εκτέλεση νημάτων (1)</h1>
-<ul>
-<li>Η Java υποστηρίζει δύο διαφορετικούς τρόπους για εκτέλεση νημάτων<br /></li>
-<li>Δήλωση κλάσης που να επεκτήνει την Thread<br /></li>
-<li>Υπερσκελίζει (Override) την run της κλάσης Thread</li>
-</ul>
-<h1 id="--2">Εκτελεση νημάτων (2)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">extends</span> Thread { 
-      <span class="kw">private</span> <span class="dt">int</span> maxNumber;
-      <span class="kw">private</span> <span class="dt">int</span> count;
-      <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
-          <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
-          <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;        
-      }
-      <span class="fu">@Override</span> 
-      <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
-          <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
-          {
-              <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
-                  ++count;        
-          }    
-      }
-  }</code></pre>
-<h1 id="-">Εκτέλεση νημάτων</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> TestThreads {
-
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-
-        <span class="co">// Ένας τρόπος</span>
-        FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
-        findNumber.<span class="fu">start</span>();
+        <span class="co">// Pattern object</span>
+        Pattern r = Pattern.<span class="fu">compile</span>(pattern);
+        <span class="co">// Matcher object.</span>
+        Matcher m = r.<span class="fu">matcher</span>(line);
         
-        <span class="co">// Άλλος τρόπος</span>
-        Thread t = <span class="kw">new</span> Thread(findNumber);
-        t.<span class="fu">start</span>();
+        <span class="co">// Check</span>
+        <span class="kw">if</span> (m.<span class="fu">find</span>()) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(m.<span class="fu">group</span>());
+        } <span class="kw">else</span> {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;NO MATCH&quot;</span>);
+        }
+
+        <span class="co">// Replace m with the given string</span>
+        line = m.<span class="fu">replaceAll</span>(<span class="st">&quot;##&quot;</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(line);
         
-        System.<span class="fu">out</span>.<span class="fu">println</span>(findNumber.<span class="fu">count</span>);
-    }
-}</code></pre>
-<h1 id="--2">Εκτέλεση νημάτων</h1>
-<ul>
-<li>Δήλωση κλάσης που να υλοποιεί την διεπαφή Runnable<br /></li>
-<li>Αυτή η κλάση υλοποιεί την μέθοδο run της Runnable.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">implements</span> Runnable {
-      <span class="kw">private</span> <span class="dt">int</span> maxNumber;
-      <span class="kw">private</span> <span class="dt">int</span> count;
-      <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
-          <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
-          <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;        
-      }
-
-      <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
-          <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
-          {
-              <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
-                  ++count;        
-          }    
-      }
-  }</code></pre>
-<h1 id="--thread--runnable">Διαφορές μεταξύ Thread και Runnable</h1>
-<ul>
-<li>Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.<br /></li>
-<li>Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε κάποια άλλη κλάση.</li>
-</ul>
-<h1 id="-thread-vs-runnable-1">Παράδειγμα Thread Vs Runnable (1)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Implementing Runnable Interface</span>
-    <span class="kw">class</span> ImplementsRunnable <span class="kw">implements</span> Runnable {
-        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
-        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
-            counter++;
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ImplementsRunnable : Counter : &quot;</span>+ counter);
-        }
-    }
-
-    <span class="co">//Extending Thread class</span>
-    <span class="kw">class</span> ExtendsThread <span class="kw">extends</span> Thread {
-        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
-        <span class="fu">@Override</span>
-        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span> () {
-            counter++;
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ExtendsThread : Counter : &quot;</span>+ counter);
-        }
-    }</code></pre>
-<h1 id="-thread-vs-runnable-2">Παράδειγμα Thread Vs Runnable (2)</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ThreadVsRunnable {
-        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
-                <span class="co">// Multiple threads share the same object.</span>
-                ImplementsRunnable rc = <span class="kw">new</span> <span class="fu">ImplementsRunnable</span>();
-                Thread t1 = <span class="kw">new</span> Thread(rc);
-                t1.<span class="fu">start</span>();
-                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
-                Thread t2 = <span class="kw">new</span> Thread(rc);
-                t2.<span class="fu">start</span>();
-                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
-                Thread t3 = <span class="kw">new</span> Thread(rc);
-                t3.<span class="fu">start</span>();
-
-                ExtendsThread tc1 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
-                tc1.<span class="fu">start</span>();
-                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>);
-                ExtendsThread tc2 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
-                tc2.<span class="fu">start</span>();
-                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); 
-                ExtendsThread tc3 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
-                tc3.<span class="fu">start</span>();
-         }
-    }</code></pre>
-<h1 id="-">Αποτέλεσμα εκλεσης</h1>
-<pre class="sourceCode java"><code class="sourceCode java">    ImplementsRunnable : Counter : <span class="dv">1</span>
-    ImplementsRunnable : Counter : <span class="dv">2</span>
-    ImplementsRunnable : Counter : <span class="dv">3</span>
-
-    ExtendsThread : Counter : <span class="dv">1</span>
-    ExtendsThread : Counter : <span class="dv">1</span>
-    ExtendsThread : Counter : <span class="dv">1</span></code></pre>
-<h1 id="thread-join1">Thread join(1)</h1>
-<ul>
-<li>Μέθοδος που επιτρέπει σε ένα νήμα να περιμένει μέχρι να ολοκληρωθεί η εκτέλεση ένος άλλου.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java">  Thread t = <span class="kw">new</span> Thread(findNumber);
-  t.<span class="fu">start</span>();
-  System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Now thread &quot;</span> + t.<span class="fu">getName</span>() + <span class="st">&quot; is running&quot;</span>);
-  t.<span class="fu">join</span>();</code></pre>
-<h1 id="--">Παράδειγμα με νήματα</h1>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleThreads {
-            <span class="dt">static</span> <span class="dt">void</span> <span class="fu">threadMessage</span>(String message) {
-                String threadName = Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>();
-                System.<span class="fu">out.format</span>(<span class="st">&quot;</span><span class="ch">%s</span><span class="st">: </span><span class="ch">%s%n</span><span class="st">&quot;</span>,threadName, message);
-        }
-
-            <span class="kw">private</span> <span class="dt">static</span> <span class="kw">class</span> MessageLoop <span class="kw">implements</span> Runnable {
-            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
-                String importantInfo[] = {<span class="st">&quot;Mares eat oats&quot;</span>,<span class="st">&quot;Does eat oats&quot;</span>,<span class="st">&quot;Little lambs eat ivy&quot;</span>,<span class="st">&quot;A kid will eat ivy too&quot;</span>};
-                <span class="kw">try</span> {
-                <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; importantInfo.<span class="fu">length</span>; i++) {
-                    Thread.<span class="fu">sleep</span>(<span class="dv">4000</span>);
-                    <span class="fu">threadMessage</span>(importantInfo[i]);
-                }
-                } <span class="kw">catch</span> (InterruptedException e) {<span class="fu">threadMessage</span>(<span class="st">&quot;I wasn&#39;t done!&quot;</span>);
-                }
-            }
-        }
-
-<span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])<span class="kw">throws</span> InterruptedException {
-        <span class="dt">long</span> patience = <span class="dv">1000</span> * <span class="dv">60</span> * <span class="dv">60</span>;
-        <span class="co">// If command line argument</span>
-        <span class="co">// present, gives patience</span>
-        <span class="co">// in seconds.</span>
-        <span class="kw">if</span> (args.<span class="fu">length</span> &gt; <span class="dv">0</span>) {
-            <span class="kw">try</span> {
-                patience = Long.<span class="fu">parseLong</span>(args[<span class="dv">0</span>]) * <span class="dv">1000</span>;
-            } <span class="kw">catch</span> (NumberFormatException e) {
-                System.<span class="fu">err</span>.<span class="fu">println</span>(<span class="st">&quot;Argument must be an integer.&quot;</span>);
-                System.<span class="fu">exit</span>(<span class="dv">1</span>);
-            }
-        }
-
-        <span class="fu">threadMessage</span>(<span class="st">&quot;Starting MessageLoop thread&quot;</span>);
-        <span class="dt">long</span> startTime = System.<span class="fu">currentTimeMillis</span>();
-        Thread t = <span class="kw">new</span> Thread(<span class="kw">new</span> <span class="fu">MessageLoop</span>());
-        t.<span class="fu">start</span>();
-
-        <span class="fu">threadMessage</span>(<span class="st">&quot;Waiting for MessageLoop thread to finish&quot;</span>);
-        <span class="kw">while</span> (t.<span class="fu">isAlive</span>()) {
-            <span class="fu">threadMessage</span>(<span class="st">&quot;Still waiting...&quot;</span>);
-            t.<span class="fu">join</span>(<span class="dv">1000</span>);
-            <span class="kw">if</span> (((System.<span class="fu">currentTimeMillis</span>() - startTime) &gt; patience)&amp;&amp; t.<span class="fu">isAlive</span>()) {
-                <span class="fu">threadMessage</span>(<span class="st">&quot;Tired of waiting!&quot;</span>);
-                t.<span class="fu">interrupt</span>();
-                t.<span class="fu">join</span>();
-            }
-        }
-        <span class="fu">threadMessage</span>(<span class="st">&quot;Finally!&quot;</span>);
+        String line2 = <span class="st">&quot;mesquite in your cellar&quot;</span>;
+        System.<span class="fu">out</span>.<span class="fu">println</span>(line2.<span class="fu">replace</span>(&#39;e&#39;, &#39;o&#39;));
     }
 }</code></pre>
 
