@@ -39,8 +39,8 @@
 </ul>
 <h2>Συμβολοσειρές</h2>
 <ul>
-<li><p>Μία συμβολοσειρα (String) είναι μια σειρά από χαρακτήρες. Στην java τα string είναι<br />αντικείμενα της κλάσης String.</p></li>
-<li><p>Οι συμβολοσειρές είναι σταθερές - δηλαδή, οι τιμές τους <strong>δεν αλλάζουν μετά την<br />δημιουργεία τους</strong>. Σε αντίθεση, οι Stringbuffer έχουν μεταβλητό μήκος και τιμές<br />χαρακτήρων.</p></li>
+<li><p>Μία συμβολοσείρα (String) είναι μια σειρά από χαρακτήρες. Στην java τα strings είναι<br />αντικείμενα της κλάσης String.</p></li>
+<li><p>Οι συμβολοσειρές είναι σταθερές - δηλαδή, οι τιμές τους <strong>δεν αλλάζουν μετά την<br />δημιουργία τους</strong>. Αντίθετα, ο Stringbuffer έχει μεταβλητό μήκος και τιμές<br />χαρακτήρων.</p></li>
 <li><p>Όπως και για την δημιουργία άλλων αντικειμένων, έτσι και για να δημιουργήσουμε<br />αντικείμενα τύπου String χρειάζεται να χρησιμοποιήσουμε τη λέξη <strong>new</strong> και να<br />επικαλεστούμε τον κατασκευαστή.</p></li>
 </ul>
 <h2>Παράδειγμα</h2>
@@ -52,7 +52,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(helloStr);</c
 <li><p>Το μέγεθος μία συμβολοσειράς επιστρέφεται με το κάλεσμα της συνάρτησεις <strong>length()</strong></p>
 <pre class="sourceCode java"><code class="sourceCode java">String h = <span class="st">&quot;hello world!&quot;</span>;
 <span class="dt">int</span> l = h.<span class="fu">lenght</span>();</code></pre></li>
-<li><p>Μία αλληλουχία (<strong>concatenation</strong>) από συμβολοσειρές μπορεί να καλεστεί ως εξής:</p>
+<li><p>Μία αλληλουχία (<strong>concatenation</strong>) από συμβολοσειρές μπορεί να κληθεί ως εξής:</p>
 <pre class="sourceCode java"><code class="sourceCode java">String h = <span class="st">&quot;hello world&quot;</span>;
 System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;This is an example: &quot;</span> + h);</code></pre></li>
 <li><p>Για την μετατροπή ενός αριθμού σε συμοβολοσειρά καλούμε την εξής συνάρτηση:</p>
@@ -71,7 +71,7 @@ String s = Integer.<span class="fu">toString</span>(i); </code></pre></li>
 </ul>
 <h2 id="-substring">Μέθοδος substring</h2>
 <ul>
-<li>Για να επιστρέψουμε ένα τμήμα μία συμβολοσειράς χρησιμοποιούμε την <strong>substring(int beginIndex, int endIndex)</strong><br />η οποία επισρέφει το τμήμα που αρχίζει στη θέση beginIndex και τελειώνει στη θέση endIndex - 1.</li>
+<li>Για να επιστρέψουμε ένα τμήμα μία συμβολοσειράς χρησιμοποιούμε την <strong>substring(int beginIndex, int endIndex)</strong><br />η οποία επιστρέφει το τμήμα που αρχίζει στη θέση beginIndex και τελειώνει στη θέση endIndex - 1.</li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Return sustring &quot;world&quot;</span>
 <span class="co">// H e l l o   w o r l d</span>
@@ -165,7 +165,7 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;List contains 2? &quot;</span> + myList.<span class="fu">contains</span>(<span class="dv">2</span>) + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>
                             + <span class="st">&quot;List contains 0? &quot;</span> + myList.<span class="fu">contains</span>(<span class="dv">0</span>));
         
-        <span class="co">// διαγραφή όλων όλων των στοιχείων από την ArrayList</span>
+        <span class="co">// διαγραφή όλων των στοιχείων από την ArrayList</span>
         myList.<span class="fu">clear</span>();
         System.<span class="fu">out</span>.<span class="fu">println</span>(myList);
     }
@@ -179,9 +179,9 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
     []</code></pre>
 <h2 id="linkedlist-----">LinkedList -- Συνεδεμένη Λίστα</h2>
 <ul>
-<li>Κάθε στοιχεία (<strong>κομβος</strong>) της λίστας έχει δύο χαρακτηριστήκα, τα δεδομένα και τον δείκτη<br />για τον επόμενο κόμβο.<br /></li>
+<li>Κάθε στοιχείο (<strong>κόμβος</strong>) της λίστας έχει δύο χαρακτηριστικά, τα δεδομένα και τον δείκτη<br />για τον επόμενο κόμβο.<br /></li>
 <li>Ο τελευταίος κόμβος πρέπει να αναφέρεται στο <strong>null</strong>.<br /></li>
-<li>Το πρώτο στοιχείο της λίστας ονομάζεται το κεφάλι (<strong>head</strong>).</li>
+<li>Το πρώτο στοιχείο της λίστας ονομάζεται κεφάλι (<strong>head</strong>).</li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// class declaration according to Oracle</span>
 <span class="kw">public</span> <span class="kw">class</span> LinkedList&lt;E&gt; <span class="kw">extends</span> AbstractSequentialList&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, Queue&lt;E&gt;, .<span class="kw">... </span>{
@@ -226,13 +226,13 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
 }</code></pre>
 <h2 id="stack----">Stack -- Στοίβα</h2>
 <ul>
-<li><p><strong>Stack</strong> προσφέρει 2 βασικές λειτουργίες (μεθόδους)</p>
+<li><p><strong>Stack</strong>: προσφέρει 2 βασικές λειτουργίες (μεθόδους)</p>
 <ul>
-<li>push (προσθέτει στοιχεία)<br /></li>
+<li>push (προσθέτει στοιχείο)<br /></li>
 <li>pop (αφαιρεί στοιχείο)<br /></li>
 </ul></li>
-<li>Εκπροσωπεί το μοντέλο &quot;ο τελευταίος ερχόμενος εξυπηρετείται πρώτος&quot; (lifo).<br /></li>
-<li><p>Κάθε φορά μπορεί να αφαιρείτε το παρόν τελευταίο στοιχείο.</p></li>
+<li>Εκπροσωπεί το μοντέλο &quot;αυτός που ήρθε τελευταίος εξυπηρετείται πρώτος&quot; (lifo).<br /></li>
+<li><p>Κάθε φορά μπορεί να αφαιρείται το τελευταίο στοιχείο.</p></li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// The Stack class, as defined by Oracle</span>
 <span class="kw">public</span> <span class="kw">class</span> Stack&lt;E&gt; <span class="kw">extends</span> Vector&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, <span class="kw">... </span>{ 
@@ -246,7 +246,7 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
 <span class="kw">public</span> <span class="kw">class</span> StackDemo {
 
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-        <span class="co">// Αρχικοποιήσει στοίβας</span>
+        <span class="co">// Αρχικοποιήση στοίβας</span>
         Stack&lt;Integer&gt; stack = <span class="kw">new</span> Stack&lt;&gt;();
         
         <span class="co">// προσθέτουμε στοιχεία στην οροφή της στοίβας</span>
@@ -256,15 +256,15 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
         stack.<span class="fu">push</span>(<span class="dv">4</span>);
         System.<span class="fu">out</span>.<span class="fu">println</span>(stack);
         
-        <span class="co">// δες την τελευταία εισχώρηση</span>
+        <span class="co">// δες την τελευταία προσθήκη</span>
         <span class="dt">int</span> top = stack.<span class="fu">peek</span>();
         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;top element: &quot;</span> + top);
         
-        <span class="co">// αφαίρεση το τελευαίο στοιχεία και αποθήκευση</span>
+        <span class="co">// αφαίρεση του τελευταίου στοιχείου και αποθήκευση</span>
         <span class="dt">int</span> first = stack.<span class="fu">pop</span>();
         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;popped element: &quot;</span> + first + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> + stack);
         
-        <span class="co">// δες τελευταίο στοιχείο</span>
+        <span class="co">// δες το τελευταίο στοιχείο</span>
         top = stack.<span class="fu">peek</span>();
         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;top element: &quot;</span> + top);
     }
