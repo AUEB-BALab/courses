@@ -1,291 +1,322 @@
 <img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
 # Προγραμματισμός ΙΙ
-## Εξαιρέσεις και Ισχυρισμοί
+# Νήματα
 
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
 * [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
 
 
-## Εξαιρέσεις
+# Νήματα (Threads)
 
-* Μία εξαίρεση είναι ένα γεγονός που παρακάμπτει την κανονική εκτέλεση ενός προγράμματος.
-* Δίνει την δυνατότητα να χειριστούμε γεγονότα όταν γίνει κάτι το ασυνήθιστο.
-* Αποφεύγουμε την δημιουργία περίπλοκου κώδικα στον χειρισμό πιθανού σφάλματος.
-* Δίνει δυναντότητα μετάδοσης σφάλματος στο ίχνος στοίβας (stack trace).
+* Νήματα είναι κομμάτια κώδικα που "ζούνε" μέσα σε μιά διεργασία.
+* Διεργασία είναι ένα πρόγραμμα που εκτελείτε είτε θα εκτελεστεί.
+* Όταν δημιουργείτε μια διεργασία δεσμεύετε κάποιος χώρος μνήμης.
+* Μια δεριγασία αποτελείται από τουλάχιστον ένα νήμα.
+* Χρησιμοποιούνται για συγχονισμό και παραλληλοποιήση. 
 
 
-## Παράδειγμα ψευδοκώδικα
+# Διεργασίες Παράδειγμα
 
-* Λάθη? 
+![](media/Processes_SnapShot.png)
 
+
+# Νήματα Παράδειγμα
+
+![](media/Threads_Snapshot.png)
+
+
+# Πρόβλημα Συγχρονισμού (1)
+
+* Ένα ζευγάρι έχει ένα κοινό λογαρισμό
+* Ταυτόχρονα προσθέτουν χρήματα από διαφορετικά ATMς
+
+![](media/Concurrency_Bank_Accounts_Example.png)
+
+
+# Πρόβλημα Συγχονισμού (2)
+
+* Σενάριο με κανονική ροή
 ```java
-readFile {
-    open the file;
-    determine its size;
-    allocate that much memory;
-    read the file into memory;
-    close the file;
-}
+get balance (balance = $50)
+add $100
+write back result (balance = $150)
+get balance (balance = $150)
+add $50 
+write back result (balance = $200)	
+```
+
+* Σενάριο με πρόβλημα συγχρονισμού
+```java
+get balance (balance = $50)
+get balance (balance = $50)
+add $100
+add $50
+write back result (balance = $150)
+write back result (balance = $100)
 ```
 
 
-## Χειρισμός ψευδοκώδικα
-
+# Παράδειγμα σε κώδικα (1)
 ```java
-errorCodeType readFile {
-    initialize errorCode = 0;
-    
-    open the file;
-    if (theFileIsOpen) {
-        determine the length of the file;
-        if (gotTheFileLength) {
-            allocate that much memory;
-            if (gotEnoughMemory) {
-                read the file into memory;
-                if (readFailed) {
-                    errorCode = -1;
-                }
-            } else {
-                errorCode = -2;
-            }
-        } else {
-            errorCode = -3;
-        }
-        close the file;
-        if (theFileDidntClose && errorCode == 0) {
-            errorCode = -4;
-        } else {
-            errorCode = errorCode and -4;
-        }
-    } else {
-        errorCode = -5;
-    }
-    return errorCode;
-}
-```
-
-
-## Σωστός χειρισμός ψευδοκώδικα
-
-```java
-readFile {
-    try {
-        open the file;
-        determine its size;
-        allocate that much memory;
-        read the file into memory;
-        close the file;
-    } catch (fileOpenFailed) {
-       doSomething;
-    } catch (sizeDeterminationFailed) {
-        doSomething;
-    } catch (memoryAllocationFailed) {
-        doSomething;
-    } catch (readFailed) {
-        doSomething;
-    } catch (fileCloseFailed) {
-        doSomething;
-    }
-```
-
-
-## Χειρισμός εξαιρέσεων 
-
-* Μπορεί να γίνει χρησιμοποιώντας το **try-catch**.
-
-```java
-try {
-    some code here
-} catch and finally blocks …
-```
-
-
-## throws
-
-* Μπορούμε να ορίσουμε την πιθανότητα να προκύψει μία εξαίρεση στην υπογραφή μίας μεθόδου. 
-
-```java
-public void writeList() throws IOException, IndexOutOfBoundsException {...}
-```
-
-
-## throw new
-
-* Μπορούμε να ορίσουμε την πιθανότητα δημιουργίας μίας εξαίρεσης  μέσο της **throw new** λέξης.
-* Επίσης, θα πρέπει να ορίσουμε στην υπογραφή της μεθόδου την λέξη **throws** με το όνομα της εξαίρεσης.
-
-```java
-
-public void checkAmout(int amount) throws NegativeAmoutException {
-	if (amount < 0) {
-   		throw new NegativeAmountException();
-	}
-}
-```
-
-
-## Τύποι εξαιρέσεων
-
-![](media/exceptions.png)
-
-
-## Παράδειγμα Checked Exception
-
-```java
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
-public  class testClass {
-
-	public static void main(String args[])  {		
-	      File file = new File("E://file.txt");
-	      try {
-			FileReader fr = new FileReader(file);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	   }
-}
-```
-
-
-## Παράδειγμα Unchecked Exception
-
-```java
-	import java.io.*;
+public class SynchronousProblem {
+	private static int balance = 50;
 	
-	public class ExcepTest {
-		public static void main(String[] args) {
-			int a[] = new int[2];
-			try {
-				System.out.println("Access elements three:" + a[3]);
-			} catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Exception thrown :" +e);
-			}
-			System.out.println("Out of the block");
-		}
+	public int getBalance() {
+		return this.balance;
+	}	
+
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
-```
-
-
-## Χρήση της finally
-
-```java
-public class ExcepTest {
-
-   public static void main(String args[]) {
-      int a[] = new int[2];
-      try {
-         System.out.println("Access element three :" + a[3]);
-      } catch(ArrayIndexOutOfBoundsException e) {
-         System.out.println("Exception thrown  :" + e);
-      } finally {
-         a[0] = 6;
-         System.out.println("First element value: " + a[0]);
-         System.out.println("The finally statement is executed");
-      }
-   }
 }
 ```
 
 
-## Ίχνη Στοίβας
-
-* Τα ίχνη στοίβας περιέχουν αποτελέσματα σφαλμάτων μίας εφαρμογής 
-όπου προσφέρουν στοιχεία για τα αίτια του σφάλματος. 
-* Η χρήση της μεθόδου **printStackTrace()** δίνει το δέντρο της 
-στοίβας αν κάποια μέθοδος έχει αποτύχει.
-
-
-## Παράδειγμα για Ίχνη Στοίβας
-
+# Παράδειγμα σε κώδικα (2)
 ```java
-Exception in thread "main" java.lang.NullPointerException: Fictitious NullPointerException
-at StackTraceExample.method111(StackTraceExample.java:15)
-at StackTraceExample.method11(StackTraceExample.java:11)
-at StackTraceExample.method1(StackTraceExample.java:7)
-at StackTraceExample.main(StackTraceExample.java:3)
+public class TestSynch {
+
+	public static void main(String[] args) {
+		SynchronousProblem commonAccount = new SynchronousProblem();
+		int wifesBalance = commonAccount.getBalance();
+		int husbandsBalance = commonAccount.getBalance(); 
+		commonAccount.setBalance(wifesBalance += 100);
+		commonAccount.setBalance(husbandsBalance += 50);
+		System.out.println("The current balance is $" 
+		+ commonAccount.getBalance());
+	}
+}
+
 ```
 
 
-## Δημιουργία εξαιρέσεων
-
-* Μπορούμε να δημιουργήσουμε τις δικές μας εξαιρέσεις επεκτείνοντας τις κλάσεις π.χ. **Exception**, **RuntimeException** 
-
-
-## Ισχυρισμοί (1)
-
-* Χρησιμοποιείται για εύρεση λαθών μέσα στον κώδικα.
-* Χρησιμοποιεί μια έκφραση boolean, αν αυτή επιστρέψει λάθος τότε προσδιορίζει την ένδειξη σφάλματος στο κώδικα 
-με την εκτύπωση κάποιου μηνύματος.
-* Για χρήση του assertion πρέπει να εκτελέσετε ώς έχει: java -ea|-enableassertion executable
-* Επιτρέπει την τεκμηρίωση του κώδικα και τον τρόπο λειτουργίας του.
+# Προσοχή!
+![](media/if_something_can_go_wrong.jpg)
 
 
-## Ισχυρισμοί (2)
 
-* Επιτρέπει την κατανόηση του προγράμματος μας από άλλα άτομα.
-* Βοηθούν στην εύκολη αποσφαλμάτωση του κώδικα.
-* Οι ισχυρισμοί δεν είναι για τους χρήστες ενός προγράμματος αλλά για του μηχανικούς λογισμικού.
-* Οταν εντοπιστεί σφάλμα ισχυρισμού συνήθως πρέπει να σταματά η λειτουργία ενός προγράμματος.
+# Πρόβλημα Παραλληλισμού (1)
 
-
-## Διαφορές Ισχυρισμών με Εξαιρέσεις
-
-* Με τους ισχυρισμούς ελέγχουμε περιπτώσεις που δεν πρέπει ποτέ να συμβούν ενώ με τις εξαιρέσεις 
-κάτι που μπορεί να συμβεί.
-* Ο ισχυρισμός σταματάει την εκτέλεση του προγράμματος ενώ η εξαίρεση επιτρέπει την συνέχεια αν μπορεί 
-να διορθωθεί το συγκεκριμένο σφάλμα.
+* Σενάριο με παραλληλισμό
+```java
+get balance(balance=$50)	get balance(balance=$50)
+add $100			add $50
+write result(balance=$150) 	write results(balace=$100)
+```
 
 
-## Παράδειγμα (1)
+# Εκτέλεση νημάτων (1)
+
+* Η Java υποστηρίζει δύο διαφορετικούς τρόπους για εκτέλεση νημάτων
+* Δήλωση κλάσης που να επεκτήνει την Thread
+* Υπερσκελίζει (Override) την run της κλάσης Thread
+
+
+# Εκτελεση νημάτων (2)
 
 ```java
-BankAccount acct = null;
+class FindCountOfEvenNumbers extends Thread { 
+      private int maxNumber;
+      private int count;
+      FindCountOfEvenNumbers(int maxNumber) {
+          this.maxNumber = maxNumber;
+          this.count = 0;        
+      }
+      @Override	
+      public void run() {
+          for (int i=0; i<this.maxNumber; ++i)
+          {
+              if (i % 2 == 0)
+                  ++count;        
+          }    
+      }
+  }
+```
 
-// ...
-// Get a BankAccount object
-// ...
 
-// Check to ensure we have one
-              assert acct != null : "Object Null";
+# Εκτέλεση νημάτων
+
+```java 
+public class TestThreads {
+
+	public static void main(String[] args) {
+
+		// Ένας τρόπος
+		FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumbers(1200);
+		findNumber.start();
+		
+		// Άλλος τρόπος
+		Thread t = new Thread(findNumber);
+		t.start();
+		
+		System.out.println(findNumber.count);
+	}
+}
+```
+
+
+# Εκτέλεση νημάτων 
+
+* Δήλωση κλάσης που να υλοποιεί την διεπαφή Runnable 
+* Αυτή η κλάση υλοποιεί την μέθοδο run της Runnable.
+
+```java
+class FindCountOfEvenNumbers implements Runnable {
+      private int maxNumber;
+      private int count;
+      FindCountOfEvenNumbers(int maxNumber) {
+          this.maxNumber = maxNumber;
+          this.count = 0;        
+      }
+
+      public void run() {
+          for (int i=0; i<this.maxNumber; ++i)
+          {
+              if (i % 2 == 0)
+                  ++count;        
+          }    
+      }
+  }
+```
+
+
+# Διαφορές μεταξύ Thread και Runnable
+
+* Αφού επεκτείνουμε την κλάση Thread δεν μπορούμε στο μέλλον να επεκτείνουμε άλλη κλάση.
+* Αν υλοποιήσουμε την Runnable μπορούμε στην συνέχεια να επεκτείνουμε κάποια άλλη κλάση.
+
+
+
+# Παράδειγμα Thread Vs Runnable (1)
+
+```java
+//Implementing Runnable Interface
+    class ImplementsRunnable implements Runnable {
+        private int counter = 0;
+        public void run() {
+            counter++;
+            System.out.println("ImplementsRunnable : Counter : "+ counter);
+        }
+    }
+
+    //Extending Thread class
+    class ExtendsThread extends Thread {
+        private int counter = 0;
+		@Override
+        public void run () {
+            counter++;
+            System.out.println("ExtendsThread : Counter : "+ counter);
+        }
+    }
 ``` 
 
 
-## Παράδειγμα (2)
+# Παράδειγμα Thread Vs Runnable (2)
 
 ```java
-import java.io.*;
+public class ThreadVsRunnable {
+        public static void main(String args[]) throws Exception {
+                // Multiple threads share the same object.
+                ImplementsRunnable rc = new ImplementsRunnable();
+                Thread t1 = new Thread(rc);
+                t1.start();
+                Thread.sleep(1000); 
+                Thread t2 = new Thread(rc);
+                t2.start();
+                Thread.sleep(1000); 
+                Thread t3 = new Thread(rc);
+                t3.start();
 
-public class AssertionTest3 {
+                ExtendsThread tc1 = new ExtendsThread();
+                tc1.start();
+                Thread.sleep(1000);
+                ExtendsThread tc2 = new ExtendsThread();
+                tc2.start();
+                Thread.sleep(1000); 
+                ExtendsThread tc3 = new ExtendsThread();
+                tc3.start();
+         }
+    }
+```
 
-   public static void main(String argv[]) throws IOException {
-      System.out.print("Enter your marital status: ");
-      int c = System.in.read();
-      switch ((char) c) {
-         case 's':
-         case 'S': System.out.println("Single"); break;
-         case 'm':
-         case 'M': System.out.println("Married"); break;
-         case 'd':
-         case 'D': System.out.println("Divorced"); break;
-         default: assert !true : "Invalid Option"; break;
-      }
 
-   }
+# Αποτέλεσμα εκλεσης  
+
+```java
+    ImplementsRunnable : Counter : 1
+    ImplementsRunnable : Counter : 2
+    ImplementsRunnable : Counter : 3
+
+    ExtendsThread : Counter : 1
+    ExtendsThread : Counter : 1
+    ExtendsThread : Counter : 1
+```
+
+
+# Thread join(1)
+
+* Μέθοδος που επιτρέπει σε ένα νήμα να περιμένει μέχρι να ολοκληρωθεί η εκτέλεση ένος άλλου.
+
+```java
+  Thread t = new Thread(findNumber);
+  t.start();
+  System.out.println("Now thread " + t.getName() + " is running");
+  t.join();
+```
+
+
+# Παράδειγμα με νήματα
+
+```java
+public class SimpleThreads {
+            static void threadMessage(String message) {
+                String threadName = Thread.currentThread().getName();
+                System.out.format("%s: %s%n",threadName, message);
+        }
+
+            private static class MessageLoop implements Runnable {
+            public void run() {
+                String importantInfo[] = {"Mares eat oats","Does eat oats","Little lambs eat ivy","A kid will eat ivy too"};
+                try {
+                for (int i = 0; i < importantInfo.length; i++) {
+                    Thread.sleep(4000);
+                    threadMessage(importantInfo[i]);
+                }
+                } catch (InterruptedException e) {threadMessage("I wasn't done!");
+                }
+            }
+        }
+
+public static void main(String args[])throws InterruptedException {
+        long patience = 1000 * 60 * 60;
+        // If command line argument
+        // present, gives patience
+        // in seconds.
+        if (args.length > 0) {
+            try {
+                patience = Long.parseLong(args[0]) * 1000;
+            } catch (NumberFormatException e) {
+                System.err.println("Argument must be an integer.");
+                System.exit(1);
+            }
+        }
+
+        threadMessage("Starting MessageLoop thread");
+        long startTime = System.currentTimeMillis();
+        Thread t = new Thread(new MessageLoop());
+        t.start();
+
+        threadMessage("Waiting for MessageLoop thread to finish");
+        while (t.isAlive()) {
+            threadMessage("Still waiting...");
+            t.join(1000);
+            if (((System.currentTimeMillis() - startTime) > patience)&& t.isAlive()) {
+                threadMessage("Tired of waiting!");
+                t.interrupt();
+                t.join();
+            }
+        }
+        threadMessage("Finally!");
+    }
 }
 ```
-
-
-## Παράδειγμα (3)
-
-```bash
-	[sgeorgiou@aiolos]$ java -ea AssertionTest3 
-	Enter your marital status: n
-	Exception in thread "main" java.lang.AssertionError: Invalid Option
-		at AssertionTest3.main(AssertionTest3.java:15)
-
-```
-

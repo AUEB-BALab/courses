@@ -18,18 +18,16 @@
 
 ## Φροντιστήριο 5
 * [Πολυμορφισμός](tutorials/tutorial_5_A.md)
-* [Εξαιρέσεις και Ισχυρισμοί](tutorials/tutorial_5_B.md)
+* [Νήματα](tutorials/tutorial_5_B.md)
 
 ## Φροντιστήριο 6
-* [Πλατφόρμα Eclipse](tutorials/tutorial_6_A.md)
+* [Εξαιρέσεις και Ισχυρισμοί](tutorials/tutorial_6_A.md)
+* [Συμβολοσειρές και Συλλογές](tutorials/tutorial_6_B.md)
+* [Πλατφόρμα Eclipse](tutorials/tutorial_6_C.md)
 
 ## Φροντιστήριο 7
 * [Debugging and BetterCodeHub](tutorials/tutorial_7_A.md)
+* [Διαχείρηση αρχείων](tutorials/tutorial_7_B.md)
 
 ## Φροντιστήριο 8
-* [Νήματα](tutorials/tutorial_8_A.md)
-* [Συμβολοσειρές και Συλλογές](tutorials/tutorial_8_B.md)
-
-## Φροντιστήριο 9
-* [Διαχείρηση αρχείων](tutorials/tutorial_9_A.md)
 * [Κανονικές εκφράσεις](tutorials/tutorial_9_B.md)
