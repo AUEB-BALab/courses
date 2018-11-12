@@ -95,8 +95,12 @@ readFile {
 
 ```java
 try {
-    some code here
-} catch and finally blocks …
+	some code here
+} catch () {
+	;
+} finally {
+  	;
+} …
 ```
 
 
@@ -115,7 +119,6 @@ public void writeList() throws IOException, IndexOutOfBoundsException {...}
 * Επίσης, θα πρέπει να ορίσουμε στην υπογραφή της μεθόδου την λέξη **throws** με το όνομα της εξαίρεσης.
 
 ```java
-
 public void checkAmout(int amount) throws NegativeAmoutException {
 	if (amount < 0) {
    		throw new NegativeAmountException();
@@ -143,7 +146,6 @@ public  class testClass {
 	      try {
 			FileReader fr = new FileReader(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	   }
@@ -226,7 +228,6 @@ at StackTraceExample.main(StackTraceExample.java:3)
 
 ## Ισχυρισμοί (2)
 
-* Επιτρέπει την κατανόηση του προγράμματος μας από άλλα άτομα.
 * Βοηθούν στην εύκολη αποσφαλμάτωση του κώδικα.
 * Οι ισχυρισμοί δεν είναι για τους χρήστες ενός προγράμματος αλλά για του μηχανικούς λογισμικού.
 * Οταν εντοπιστεί σφάλμα ισχυρισμού συνήθως πρέπει να σταματά η λειτουργία ενός προγράμματος.
@@ -257,7 +258,7 @@ BankAccount acct = null;
 ## Παράδειγμα (2)
 
 ```java
-import java.io.*;
+import java.io.IOException;
 
 public class AssertionTest3 {
 
