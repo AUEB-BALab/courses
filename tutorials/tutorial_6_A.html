@@ -111,7 +111,11 @@
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
     some code here
-} <span class="kw">catch</span> and <span class="kw">finally</span> blocks …</code></pre>
+} <span class="kw">catch</span> () {
+    ;
+} <span class="kw">finally</span> {
+    ;
+} …</code></pre>
 <h2 id="throws">throws</h2>
 <ul>
 <li>Μπορούμε να ορίσουμε την πιθανότητα να προκύψει μία εξαίρεση στην υπογραφή μίας μεθόδου.</li>
@@ -122,8 +126,7 @@
 <li>Μπορούμε να ορίσουμε την πιθανότητα δημιουργίας μίας εξαίρεσης μέσο της <strong>throw new</strong> λέξης.<br /></li>
 <li>Επίσης, θα πρέπει να ορίσουμε στην υπογραφή της μεθόδου την λέξη <strong>throws</strong> με το όνομα της εξαίρεσης.</li>
 </ul>
-<pre class="sourceCode java"><code class="sourceCode java">
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">checkAmout</span>(<span class="dt">int</span> amount) <span class="kw">throws</span> NegativeAmoutException {
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">checkAmout</span>(<span class="dt">int</span> amount) <span class="kw">throws</span> NegativeAmoutException {
     <span class="kw">if</span> (amount &lt; <span class="dv">0</span>) {
         <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NegativeAmountException</span>();
     }
@@ -142,7 +145,6 @@
           <span class="kw">try</span> {
             FileReader fr = <span class="kw">new</span> FileReader(file);
         } <span class="kw">catch</span> (FileNotFoundException e) {
-            <span class="co">// TODO Auto-generated catch block</span>
             e.<span class="fu">printStackTrace</span>();
         } 
        }
@@ -201,7 +203,6 @@ at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class=
 </ul>
 <h2 id="-2">Ισχυρισμοί (2)</h2>
 <ul>
-<li>Επιτρέπει την κατανόηση του προγράμματος μας από άλλα άτομα.<br /></li>
 <li>Βοηθούν στην εύκολη αποσφαλμάτωση του κώδικα.<br /></li>
 <li>Οι ισχυρισμοί δεν είναι για τους χρήστες ενός προγράμματος αλλά για του μηχανικούς λογισμικού.<br /></li>
 <li>Οταν εντοπιστεί σφάλμα ισχυρισμού συνήθως πρέπει να σταματά η λειτουργία ενός προγράμματος.</li>
@@ -221,7 +222,7 @@ at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class=
 <span class="co">// Check to ensure we have one</span>
               assert acct != <span class="kw">null</span> : <span class="st">&quot;Object Null&quot;</span>;</code></pre>
 <h2 id="-2">Παράδειγμα (2)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.IOException;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> AssertionTest3 {
 
