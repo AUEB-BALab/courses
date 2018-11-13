@@ -210,7 +210,7 @@ public class ExceptionTesting {
         }
         public static void method1() { method11(); }
         public static void method11() { method111(); }
-        public static void method111() throws NullPointerException {
+        public static void method111() {
                 int[] ar = new int[2];
                 System.out.println(ar[3]);
         }
