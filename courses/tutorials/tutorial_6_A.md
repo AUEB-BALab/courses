@@ -206,7 +206,11 @@ public class ExcepTest {
 public class ExceptionTesting {
 
         public static void main(String[] args) {
-                method1();
+		  try {
+                        method1();
+                } catch (NullPointerException e) {
+                        e.printStackTrace();
+                }
         }
         public static void method1() { method11(); }
         public static void method11() { method111(); }
