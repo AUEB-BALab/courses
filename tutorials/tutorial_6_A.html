@@ -188,7 +188,11 @@
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExceptionTesting {
 
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-                <span class="fu">method1</span>();
+          <span class="kw">try</span> {
+                        <span class="fu">method1</span>();
+                } <span class="kw">catch</span> (NullPointerException e) {
+                        e.<span class="fu">printStackTrace</span>();
+                }
         }
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method1</span>() { <span class="fu">method11</span>(); }
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method11</span>() { <span class="fu">method111</span>(); }
