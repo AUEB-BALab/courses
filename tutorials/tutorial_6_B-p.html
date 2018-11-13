@@ -252,12 +252,13 @@ with output
 ```
 
 
-## LinkedList -- Συνεδεμένη Λίστα
+## LinkedList -- Συνδεδεμένη Λίστα
 
 * Κάθε στοιχείο (**κόμβος**) της λίστας έχει δύο χαρακτηριστικά, τα δεδομένα και τον δείκτη 
 για τον επόμενο κόμβο.
 * Ο τελευταίος κόμβος πρέπει να αναφέρεται στο **null**.
 * Το πρώτο στοιχείο της λίστας ονομάζεται κεφάλι (**head**).
+* Στην Java η LinkedList είναι υλοποιημένη ως διπλά συνδεδεμένη λίστα.
 
 ```java
 // class declaration according to Oracle
@@ -276,18 +277,11 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 ## CircleList, a linked list example
 ```java
 class Circle {
-    /* Linked-list nodes should have a reference of their own
-    type showing the next element in the list */
     private Circle next;
 
     Circle(){ this.next = null; }
     public void setNext (Circle c) { this.next = c; }
     public Circle getNext () { return this.next; }
-
-    /*
-    * Here follows the code of the original Circle class 
-    * as presented in the Creating Classes session
-    */
 }
 
 public class CircleList {
@@ -309,6 +303,18 @@ public class CircleList {
 
 }
 ```
+
+
+## Σύγκριση ArrayList και LinkedList
+
+* Αναζήτηση
+        * Η ArrayList παρέχει αναζήτηση στοιχείου σε σταθερό χρόνο (ανεξαρτήτως του πλήθους των στοιχείων της λίστας) ενώ η αναζήτηση στην LinkedList εξαρτάται από τον αριθμό των στοιχείων της λίστας.
+
+* Λειτουργίες
+        * Η Linkedlist έχει πιο γρήγορες λειτουργίες εισαγωγής, προσθήκης και αφαίρεσης στοιχείων από την ArrayList.
+
+* Χρήση μνήμης
+        * Η Linkedlist καταναλώνει περισσότερη μνήμη από την ArrayList.
 
 
 ##  Stack -- Στοίβα

@@ -177,11 +177,12 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
     List contains 2? true
     List contains 0? false
     []</code></pre>
-<h2 id="linkedlist-----">LinkedList -- Συνεδεμένη Λίστα</h2>
+<h2 id="linkedlist-----">LinkedList -- Συνδεδεμένη Λίστα</h2>
 <ul>
 <li>Κάθε στοιχείο (<strong>κόμβος</strong>) της λίστας έχει δύο χαρακτηριστικά, τα δεδομένα και τον δείκτη<br />για τον επόμενο κόμβο.<br /></li>
 <li>Ο τελευταίος κόμβος πρέπει να αναφέρεται στο <strong>null</strong>.<br /></li>
-<li>Το πρώτο στοιχείο της λίστας ονομάζεται κεφάλι (<strong>head</strong>).</li>
+<li>Το πρώτο στοιχείο της λίστας ονομάζεται κεφάλι (<strong>head</strong>).<br /></li>
+<li>Στην Java η LinkedList είναι υλοποιημένη ως διπλά συνδεδεμένη λίστα.</li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// class declaration according to Oracle</span>
 <span class="kw">public</span> <span class="kw">class</span> LinkedList&lt;E&gt; <span class="kw">extends</span> AbstractSequentialList&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, Queue&lt;E&gt;, .<span class="kw">... </span>{
@@ -192,18 +193,11 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
 <h2 id="-linkedlist-2">Παράδειγμα LinkedList (2)</h2>
 <h2 id="circlelist-a-linked-list-example">CircleList, a linked list example</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
-    <span class="co">/* Linked-list nodes should have a reference of their own</span>
-<span class="co">    type showing the next element in the list */</span>
     <span class="kw">private</span> Circle next;
 
     <span class="fu">Circle</span>(){ <span class="kw">this</span>.<span class="fu">next</span> = <span class="kw">null</span>; }
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setNext</span> (Circle c) { <span class="kw">this</span>.<span class="fu">next</span> = c; }
     <span class="kw">public</span> Circle <span class="fu">getNext</span> () { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">next</span>; }
-
-    <span class="co">/*</span>
-<span class="co">    * Here follows the code of the original Circle class </span>
-<span class="co">    * as presented in the Creating Classes session</span>
-<span class="co">    */</span>
 }
 
 <span class="kw">public</span> <span class="kw">class</span> CircleList {
@@ -224,6 +218,12 @@ sb.<span class="fu">replace</span>(<span class="dv">3</span>, <span class="dv">8
     }
 
 }</code></pre>
+<h2 id="-arraylist--linkedlist">Σύγκριση ArrayList και LinkedList</h2>
+<ul>
+<li><p>Αναζήτηση<br /> * Η ArrayList παρέχει αναζήτηση στοιχείου σε σταθερό χρόνο (ανεξαρτήτως του πλήθους των στοιχείων της λίστας) ενώ η αναζήτηση στην LinkedList εξαρτάται από τον αριθμό των στοιχείων της λίστας.</p></li>
+<li><p>Λειτουργίες<br /> * Η Linkedlist έχει πιο γρήγορες λειτουργίες εισαγωγής, προσθήκης και αφαίρεσης στοιχείων από την ArrayList.</p></li>
+<li><p>Χρήση μνήμης<br /> * Η Linkedlist καταναλώνει περισσότερη μνήμη από την ArrayList.</p></li>
+</ul>
 <h2 id="stack----">Stack -- Στοίβα</h2>
 <ul>
 <li><p><strong>Stack</strong>: προσφέρει 2 βασικές λειτουργίες (μεθόδους)</p>
