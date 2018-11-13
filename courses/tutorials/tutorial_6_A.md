@@ -202,13 +202,31 @@ public class ExcepTest {
 
 
 ## Παράδειγμα για Ίχνη Στοίβας
-
 ```java
-Exception in thread "main" java.lang.NullPointerException: Fictitious NullPointerException
-at StackTraceExample.method111(StackTraceExample.java:15)
-at StackTraceExample.method11(StackTraceExample.java:11)
-at StackTraceExample.method1(StackTraceExample.java:7)
-at StackTraceExample.main(StackTraceExample.java:3)
+public class ExceptionTesting {
+
+        public static void main(String[] args) {
+                method1();
+        }
+        public static void method1() { method11(); }
+        public static void method11() { method111(); }
+        public static void method111() throws NullPointerException {
+                int[] ar = new int[2];
+                System.out.println(ar[3]);
+        }
+
+}
+```
+
+
+## Εκτύπωση στόιβας
+```java
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 3
+	at ExceptionTesting.method111(ExceptionTesting.java:11)
+	at ExceptionTesting.method11(ExceptionTesting.java:8)
+	at ExceptionTesting.method1(ExceptionTesting.java:7)
+	at ExceptionTesting.main(ExceptionTesting.java:4)
+
 ```
 
 
