@@ -185,11 +185,25 @@
 <li>Η χρήση της μεθόδου <strong>printStackTrace()</strong> δίνει το δέντρο της<br />στοίβας αν κάποια μέθοδος έχει αποτύχει.</li>
 </ul>
 <h2 id="---">Παράδειγμα για Ίχνη Στοίβας</h2>
-<pre class="sourceCode java"><code class="sourceCode java">Exception in thread <span class="st">&quot;main&quot;</span> java.<span class="fu">lang</span>.<span class="fu">NullPointerException</span>: Fictitious NullPointerException
-at StackTraceExample.<span class="fu">method111</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">15</span>)
-at StackTraceExample.<span class="fu">method11</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">11</span>)
-at StackTraceExample.<span class="fu">method1</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">7</span>)
-at StackTraceExample.<span class="fu">main</span>(StackTraceExample.<span class="fu">java</span>:<span class="dv">3</span>)</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExceptionTesting {
+
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+                <span class="fu">method1</span>();
+        }
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method1</span>() { <span class="fu">method11</span>(); }
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method11</span>() { <span class="fu">method111</span>(); }
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">method111</span>() <span class="kw">throws</span> NullPointerException {
+                <span class="dt">int</span>[] ar = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+                System.<span class="fu">out</span>.<span class="fu">println</span>(ar[<span class="dv">3</span>]);
+        }
+
+}</code></pre>
+<h2 id="-">Εκτύπωση στόιβας</h2>
+<pre class="sourceCode java"><code class="sourceCode java">Exception in thread <span class="st">&quot;main&quot;</span> java.<span class="fu">lang</span>.<span class="fu">ArrayIndexOutOfBoundsException</span>: <span class="dv">3</span>
+    at ExceptionTesting.<span class="fu">method111</span>(ExceptionTesting.<span class="fu">java</span>:<span class="dv">11</span>)
+    at ExceptionTesting.<span class="fu">method11</span>(ExceptionTesting.<span class="fu">java</span>:<span class="dv">8</span>)
+    at ExceptionTesting.<span class="fu">method1</span>(ExceptionTesting.<span class="fu">java</span>:<span class="dv">7</span>)
+    at ExceptionTesting.<span class="fu">main</span>(ExceptionTesting.<span class="fu">java</span>:<span class="dv">4</span>)</code></pre>
 <h2 id="-">Δημιουργία εξαιρέσεων</h2>
 <ul>
 <li>Μπορούμε να δημιουργήσουμε τις δικές μας εξαιρέσεις επεκτείνοντας τις κλάσεις π.χ. <strong>Exception</strong>, <strong>RuntimeException</strong></li>
