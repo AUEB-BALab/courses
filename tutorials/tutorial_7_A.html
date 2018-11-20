@@ -32,38 +32,38 @@
 <h1 id="--debugging-and-bettercodehub">Προγραμματισμός ΙΙ: Debugging and BetterCodeHub</h1>
 <p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
 <h1 id="-">Προγραμματισμός ΙΙ</h1>
-<h1 id="debugging-bettercodehub-and-junits">Debugging, BetterCodeHub, and JUnits</h1>
+<h1 id="debugging-bettercodehub-and-junit">Debugging, BetterCodeHub, and JUnit</h1>
 <ul>
 <li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
 <li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
 </ul>
 <h2>Αποσφαλμάτωση</h2>
 <ul>
-<li><p>Ο εντοπισμός σφαλμάτων (debugging) μας επιτρέπει να τρέχουμε ένα<br />πρόγραμμα και να παρατηρούμε τις τιμές που παίρνουν οι μεταβλητές<br />του προγράμματός μας καθώς εκτελείται ο κώδικας.</p></li>
-<li><p>Χρησιμοποιούμε breakpoints μέσα στο πρόγραμμά μας, όπου θέλουμε<br />να σταματήσει η εκτέλεση του κώδικα για να τσεκάρουμε τις τιμές<br />των αντίστοιχων μεταβλητών.</p></li>
+<li><p>Ο εντοπισμός σφαλμάτων (debugging) μας επιτρέπει να τρέχουμε ένα<br />πρόγραμμα και να παρατηρούμε την ροή του προγράμματος, τις τιμές που παίρνουν οι μεταβλητές<br />του προγράμματός μας καθώς εκτελείται ο κώδικας.</p></li>
+<li><p>Χρησιμοποιούμε breakpoints μέσα στο πρόγραμμά μας, όπου θέλουμε<br />να σταματήσει η εκτέλεση του κώδικα για να ελέγξουμε τις τιμές<br />των αντίστοιχων μεταβλητών.</p></li>
 </ul>
 <h2 id="--eclipse-1">Αποσφαλμάτωση στο Eclipse (1)</h2>
 <ul>
-<li>Προσθέτουμε τα breakpoints στο πρόγραμμα μας και στην συνέχεια<br />επιλέγουμε την κλάση που θέλουμε να ελέξουμε από το menu των Projects.</li>
+<li>Προσθέτουμε τα breakpoints στο πρόγραμμά μας και στην συνέχεια<br />επιλέγουμε την κλάση που θέλουμε να ελέγξουμε από το menu των Projects.</li>
 </ul>
 <p><img src="media/debugging_2.png" /><br /><img src="media/debugging_3.png" /></p>
-<h2 id="--eclipse-2">Αποσαλμάτωση στο Eclipse (2)</h2>
+<h2 id="--eclipse-2">Αποσφαλμάτωση στο Eclipse (2)</h2>
 <ul>
-<li>Πατάμε δεξί κλικ στην κλαση μας και επιλέγουμε <strong>Debug as -&gt; Java Application</strong></li>
+<li>Πατάμε δεξί κλικ στην κλάση μας και επιλέγουμε <strong>Debug as -&gt; Java Application</strong></li>
 </ul>
 <p><img src="media/debugging_1.png" /></p>
-<h2 id="--eclipse-2">Αποσφαλμάτωση στο Eclipse (2)</h2>
+<h2 id="--eclipse-2-1">Αποσφαλμάτωση στο Eclipse (2)</h2>
 <p><img src="media/Debugging_5.png" /></p>
 <h2 id="bettercodehub">BetterCodeHub</h2>
 <ul>
-<li>Βοηθά στην δημιουργεία συντηρίσημου κώδικα.<br /></li>
-<li>Συνδέεται με τον GitHub αποθετήριο.<br /></li>
+<li>Βοηθά στην δημιουργία συντηρήσιμου κώδικα.<br /></li>
+<li>Συνδέεται με το GitHub repository.<br /></li>
 <li>Δίνει μετρήσεις για την κατάσταση του κώδικα.</li>
 </ul>
 <p><a href="https://bettercodehub.com/">Σύνδεσμος</a></p>
 <h2 id="--github">Σύνδεση μέσω GitHub</h2>
 <p><img src="media/BetterCodeHub_1.png" /></p>
-<h2 id="-bettecodehub">Διεπαφή BetteCodeHub</h2>
+<h2 id="-bettercodehub">Διεπαφή BetterCodeHub</h2>
 <p><img src="media/BetterCodeHub_2.png" /></p>
 <h2>Ρυθμίσεις</h2>
 <p><img src="media/BetterCodeHub_3.png" /></p>
@@ -71,32 +71,26 @@
 <p><img src="media/BetterCode_Hub_4_resize.png" /></p>
 <h2 id="junit">JUnit</h2>
 <ul>
-<li>JUnit είναι ένα framework για να πραγματοποιήσουμε, να τεστάρουμε<br />μεθόδους ή λειτουργίες στην java.<br /></li>
+<li>Το JUnit είναι ένα framework που μας πραγματοποιούμε tests για τις<br />μεθόδους και τις λειτουργίες του κώδικά μας.<br /></li>
 <li>Προσπαθούμε να τεστάρουμε όσες περισσότερες μεθόδους μπορούμε. Το αν μία<br />μέθοδος είναι εύκολο να τεσταριστεί είναι χαρακτηριστικό ποιοτικού κώδικα.<br /></li>
-<li>Τεστάρουμε συνολικά τις κύριες λογικές λειτουργίες του προγραμματός μας σε<br />όσες περισοότερες διαφορετικές περιπτώσεις μπορούμε.<br /></li>
-<li>Βασικός λόγος που είναι σημαντικό να γίνουν τα παραπάνω είναι ότι σε κάθε<br />μεταβολή του κωδικά μας να εχουμε αντίληψη για το ποιά άλλα κομμάτια του κώδικα<br />έχουν επηρεαστεί.</li>
+<li>Τεστάρουμε συνολικά τις κύριες λογικές λειτουργίες του προγραμματός μας σε<br />όσες περισσότερες διαφορετικές περιπτώσεις μπορούμε.<br /></li>
+<li>Βασικός λόγος που είναι σημαντικό να γίνουν τα παραπάνω είναι ότι σε κάθε<br />μεταβολή του κώδικά μας, μπορούμε να εχουμε καλύτερη αντίληψη για το ποιά άλλα κομμάτια του κώδικα<br />μας έχουν επηρεαστεί.</li>
 </ul>
 <h1 id="junit--eclipse1">JUnit και Eclipse(1)</h1>
 <p><img src="media/junit1.png" /></p>
-<ul>
-<li><ol>
-<li>Επιλέγουμε την κλάση που θέλουμε να τεστάρουμε. Με δεξί κλικ επιλέγουμε New<br />από το menu και στη συνέχεια JUnit Test Case.<br /></li>
-</ol></li>
-<li><ol>
-<li>Στο νέο παράθυρο που εμφανίζεται αφήνουμε το όνομα του νέου αρχείου<br />ως έχει π.χ. PrinterTest (Εδώ μπορούμε να επιλέξουμε και σε ποιό package θέλουμε<br />να βαλουμε τα tests). Eπιλέγουμε Next και ΟΚ.</li>
-</ol></li>
-</ul>
 <h1 id="junit--eclipse2">JUnit και Eclipse(2)</h1>
-<p><img src="media/junit2.png" /></p>
 <ul>
-<li><ol>
-<li>Σβήνουμε την fail μέσα στην test μέθοδο και προσθέσουμε τους ελέγχους<br />μας στην κλάση PrinterTest. Στη συνέχεια, πατάμε δεξί κλικ στην κλάση PrinterTest<br />στον κατάλογο με τα προγράμματα (Projects) και επιλέγουμε<br />Run As -&gt; JUnit Test.<br /></li>
-</ol></li>
-<li><ol>
-<li>Αν θέλουμε να τρέξουμε μόνο ένα test, μπορούμε να κάνουμε δεξί κλικ πάνω<br />στο όνομα του και να επιλέξουμε πάλι<br />Run As -&gt; JUnit Test.</li>
-</ol></li>
+<li>Επιλέγουμε την κλάση που θέλουμε να τεστάρουμε. Με δεξί κλικ επιλέγουμε New<br />από το menu και στη συνέχεια JUnit Test Case.<br /></li>
+<li>Στο νέο παράθυρο που εμφανίζεται θέτουμε ως όνομα του νέου αρχείου<br />το όνομα της κλάσης που θέλουμε να ελέγξουμε προσθέτοντας την κατάληξη Test, π.χ. PrinterTest (Εδώ μπορούμε να επιλέξουμε και σε ποιό package θέλουμε<br />να βάλουμε τα tests). Eπιλέγουμε Next και ΟΚ.</li>
 </ul>
 <h1 id="junit--eclipse3">JUnit και Eclipse(3)</h1>
+<p><img src="media/junit2.png" /></p>
+<h1 id="junit--eclipse4">JUnit και Eclipse(4)</h1>
+<ul>
+<li>Σβήνουμε την fail μέσα στην test μέθοδο και προσθέτουμε τους ελέγχους<br />μας στην Test κλάση. Στη συνέχεια, πατάμε δεξί κλικ στην Test κλάση<br />στον κατάλογο με τα προγράμματα (Projects) και επιλέγουμε<br />Run As -&gt; JUnit Test.<br /></li>
+<li>Αν θέλουμε να τρέξουμε μόνο ένα test, μπορούμε να κάνουμε δεξί κλικ πάνω<br />στο όνομα του και να επιλέξουμε πάλι<br />Run As -&gt; JUnit Test.</li>
+</ul>
+<h1 id="junit--eclipse5">JUnit και Eclipse(5)</h1>
 <p><img src="media/junit3.png" /></p>
 
 <hr />

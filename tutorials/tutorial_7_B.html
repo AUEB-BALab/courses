@@ -47,7 +47,7 @@
 <p><img src="media/files_1.png" /><br /><img src="media/files_2.png" /></p>
 <h2 id="---1">Τρόποι διαχείρισης αρχείων (1)</h2>
 <div style="text-align: justify"> 
-**Byte Streams**: εισαγωή και εξαγωγή 8-bit ή 1 byte. Χρησιμοποιούνται για χαμηλού επιπέδου διαχείριση δεδομένων εισόδου και εξόδου. Η είσοδος και η έξοδος από ένα αρχείο βασίζεται σε bytes.
+**Byte Streams**: εισαγωγή και εξαγωγή 8-bit ή 1 byte. Χρησιμοποιούνται για χαμηλού επιπέδου διαχείριση δεδομένων εισόδου και εξόδου. Η είσοδος και η έξοδος από ένα αρχείο βασίζεται σε bytes.
 </div>
 
 
@@ -91,8 +91,7 @@ Mε FileInputStream: διαβάζει ροές από bytes (π.χ. image data) 
 <ul>
 <li>Εάν δε βρεθεί το αρχείο, πετάει την εξαίρεση: <strong>FileNotFoundException</strong>.<br /></li>
 <li>Με <strong>DataInputStream</strong>: διαβάζει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.<br /></li>
-<li>Γράφει ένα String σε ένα αρχείο με τη χρήση της writeUTF(String str).<br /></li>
-<li>Mπορεί να πετάξει IOException (προβλήματα εισόδου/εξόδου), γι’ αυτό πρέπει να χρησιμοποιούνται οι μέθοδοι .flush() για τις ροές (πετάει τα δεδομένα του buffer στο αρχείο).</li>
+<li>Γράφει ένα String σε ένα αρχείο με τη χρήση της writeUTF(String str).</li>
 </ul></li>
 </ul>
 <h2 id="--">Εγγραφή σε αρχείο</h2>
@@ -104,7 +103,8 @@ Mε FileInputStream: διαβάζει ροές από bytes (π.χ. image data) 
 <li><p>Μπορεί να γράψει μέχρι ένα συγκεκριμένο αριθμό δεδομένων με την χρήση της write(byte[] b).</p>
 <ul>
 <li>Εάν δε βρεθεί το αρχείο, πετάει την εξαίρεση: <strong>FileNotFoundException</strong>.<br /></li>
-<li>Με <strong>DataOutputStream</strong>: γράφει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.</li>
+<li>Με <strong>DataOutputStream</strong>: γράφει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.<br /></li>
+<li>Mπορεί να πετάξει IOException (προβλήματα εισόδου/εξόδου), γι’ αυτό πρέπει να χρησιμοποιούνται οι μέθοδοι .flush() για τις ροές (πετάει τα δεδομένα του buffer στο αρχείο).</li>
 </ul></li>
 </ul>
 
