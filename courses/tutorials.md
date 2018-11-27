@@ -30,4 +30,8 @@
 * [Διαχείρηση αρχείων](tutorials/tutorial_7_B.md)
 
 ## Φροντιστήριο 8
-* [Κανονικές εκφράσεις](tutorials/tutorial_8_A.md)
+* [Travis CI](tools/travis_ci_cv_template.md)
+* [Γραφικές Εφαρμογές](tutorials/tutorial_8_A.md)
+
+## Φροντιστήριο 9
+* [Κανονικές εκφράσεις](tutorials/tutorial_9_A.md)
