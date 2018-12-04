@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>XML και XSD</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--xml--xsd">Προγραμματισμός ΙΙ: XML και XSD</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h1 id="xml--xsd">XML και XSD</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
+<li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
+</ul>
+<h2 id="xml">XML</h2>
+<ul>
+<li>Η XML είναι μία γλώσσα επισημείωσης, όπως είναι και η HTML.<br /></li>
+<li>Είναι σχεδιασμένη ώστε να είναι αυτοπεριγραφική.<br /></li>
+<li>Η διαφορά από την HTML είναι πως φέρει δεδομένα ενώ η HTML παρουσιάζει δεδομένα.<br /></li>
+<li>Δεν χρησιμοποιεί προκαθορισμένες ετικέτες (tags) αλλά τις καθορίζει ο χρήστης.<br /></li>
+<li>Είναι επεκτάσιμη και μπορούν να προστεθούν, να διαφοροποιηθούν ή να τροποποιθούν στοιχεία στο αρχικό σχήμα ενός XML αρχείου.</li>
+</ul>
+<h2 id="-xml">Δομή XML</h2>
+<ul>
+<li>Τα αρχεία XML δομούνται ως δέντρα στοιχεία (element trees).<br /></li>
+<li>Ξεκινούν από την ρίζα (root element) και συνεχίζουν στα παιδιά (child elements).</li>
+</ul>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;root&gt;</span>
+  <span class="kw">&lt;child&gt;</span>
+    <span class="kw">&lt;subchild&gt;</span>.....<span class="kw">&lt;/subchild&gt;</span>
+  <span class="kw">&lt;/child&gt;</span>
+<span class="kw">&lt;/root&gt;</span></code></pre>
+<ul>
+<li>Τα στοιχεία (elements) της XML μπορούν να περιέχουν κείμενο, προσδιορισμούς (attributes), άλλα στοιχεία ή συνδυασμό όλων των παραπάνω.<br /></li>
+<li>Οι προσδιορισμοί είναι σχεδιασμένοι για να περιέχουν δεδομένα που σχετίζονται με ένα στοιχείο.</li>
+</ul>
+<h2 id="xsd">XSD</h2>
+<ul>
+<li>Η XSD είναι η γλώσσα περιγραφής του σχήματος XML<br /></li>
+<li><p>Ο σκοπός της XSD είναι ο καθορισμός:</p>
+<ul>
+<li>των στοιχείων και των προσδιορισμών ενός αρχείου<br /></li>
+<li>του αριθμού και της σειράς των στοιχείων-παιδιών<br /></li>
+<li>του τύπου δεδομένων των στοιχείων και των προσδιορισμών<br /></li>
+<li>των πιθανών τιμών των στοιχείων και των προσδιορισμών</li>
+</ul></li>
+</ul>
+<h2>Παράδειγμα</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;xsd:schema</span><span class="ot"> xmlns:xsd=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;shipOrder&quot;</span><span class="ot"> type=</span><span class="st">&quot;order&quot;</span><span class="kw">/&gt;</span>
+
+<span class="kw">&lt;xsd:complexType</span><span class="ot"> name=</span><span class="st">&quot;order&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;xsd:sequence&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;shipTo&quot;</span><span class="ot"> type=</span><span class="st">&quot;shipAddress&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;items&quot;</span><span class="ot"> type=</span><span class="st">&quot;cdItems&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/xsd:sequence&gt;</span>
+<span class="kw">&lt;/xsd:complexType&gt;</span>
+
+<span class="kw">&lt;xsd:complexType</span><span class="ot"> name=</span><span class="st">&quot;shipAddress&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;xsd:sequence&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;name&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;street&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;address&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;country&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/xsd:sequence&gt;</span>
+<span class="kw">&lt;/xsd:complexType&gt;</span>
+
+<span class="kw">&lt;xsd:complexType</span><span class="ot"> name=</span><span class="st">&quot;cdItems&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;xsd:sequence&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;item&quot;</span><span class="ot"> type=</span><span class="st">&quot;cdItem&quot;</span>
+<span class="ot">                maxOccurs=</span><span class="st">&quot;unbounded&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/xsd:sequence&gt;</span>
+<span class="kw">&lt;/xsd:complexType&gt;</span>
+
+<span class="kw">&lt;xsd:complexType</span><span class="ot"> name=</span><span class="st">&quot;cdItem&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;xsd:sequence&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;title&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;quantity&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:integer&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;price&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:decimal&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/xsd:sequence&gt;</span>
+<span class="kw">&lt;/xsd:complexType&gt;</span>
+
+<span class="kw">&lt;/xsd:schema&gt;</span></code></pre>
+<h2 id="-2">Παράδειγμα (2)</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;shipOrder</span><span class="ot"> xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2000/10/XMLSchema-instance&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;shipTo&gt;</span>
+    <span class="kw">&lt;name&gt;</span>Joe Doe<span class="kw">&lt;/name&gt;</span>
+    <span class="kw">&lt;street&gt;</span>There 2<span class="kw">&lt;/street&gt;</span>
+    <span class="kw">&lt;address&gt;</span>4000 RigthHere<span class="kw">&lt;/address&gt;</span>
+    <span class="kw">&lt;country&gt;</span>Wonderland<span class="kw">&lt;/country&gt;</span>
+  <span class="kw">&lt;/shipTo&gt;</span>
+  <span class="kw">&lt;items&gt;</span>
+    <span class="kw">&lt;item&gt;</span>
+      <span class="kw">&lt;title&gt;</span>Java Intro<span class="kw">&lt;/title&gt;</span>
+      <span class="kw">&lt;quantity&gt;</span>1<span class="kw">&lt;/quantity&gt;</span>
+      <span class="kw">&lt;price&gt;</span>10.90<span class="kw">&lt;/price&gt;</span>
+    <span class="kw">&lt;/item&gt;</span>
+    <span class="kw">&lt;item&gt;</span>
+      <span class="kw">&lt;title&gt;</span>Advanced Java<span class="kw">&lt;/title&gt;</span>
+      <span class="kw">&lt;quantity&gt;</span>1<span class="kw">&lt;/quantity&gt;</span>
+      <span class="kw">&lt;price&gt;</span>19.90<span class="kw">&lt;/price&gt;</span>
+    <span class="kw">&lt;/item&gt;</span>
+  <span class="kw">&lt;/items&gt;</span>
+
+<span class="kw">&lt;/shipOrder&gt;</span></code></pre>
+<h2 id="-3">Παράδειγμα 3</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;utf-8&quot; <span class="kw">?&gt;</span>
+<span class="kw">&lt;xsd:schema</span><span class="ot"> xmlns:xsd=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+<span class="ot">  xmlns=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;oblivial&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;xsd:complexType&gt;</span>
+      <span class="kw">&lt;xsd:sequence&gt;</span>
+        <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;chalcone&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+        <span class="kw">&lt;xsd:element</span><span class="ot"> name=</span><span class="st">&quot;casearia&quot;</span><span class="ot"> minOccurs=</span><span class="st">&quot;2&quot;</span><span class="ot"> maxOccurs=</span><span class="st">&quot;5&quot;</span><span class="kw">&gt;</span>
+            <span class="kw">&lt;xsd:complexType&gt;</span>
+              <span class="kw">&lt;xsd:simpleContent&gt;</span>
+                <span class="kw">&lt;xsd:extension</span><span class="ot"> base=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">&gt;</span>
+                  <span class="kw">&lt;xsd:attribute</span><span class="ot"> name=</span><span class="st">&quot;deplored&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span>
+<span class="ot">use=</span><span class="st">&quot;required&quot;</span><span class="kw">/&gt;</span>
+                  <span class="kw">&lt;xsd:attribute</span><span class="ot"> name=</span><span class="st">&quot;riccia&quot;</span><span class="ot"> type=</span><span class="st">&quot;xsd:string&quot;</span><span class="kw">/&gt;</span>
+                <span class="kw">&lt;/xsd:extension&gt;</span>
+              <span class="kw">&lt;/xsd:simpleContent&gt;</span>
+            <span class="kw">&lt;/xsd:complexType&gt;</span>
+        <span class="kw">&lt;/xsd:element&gt;</span>
+      <span class="kw">&lt;/xsd:sequence&gt;</span>
+    <span class="kw">&lt;/xsd:complexType&gt;</span>
+  <span class="kw">&lt;/xsd:element&gt;</span>
+<span class="kw">&lt;/xsd:schema&gt;</span></code></pre>
+<h2 id="-4">Παράδειγμα (4)</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;utf-8&quot; <span class="kw">?&gt;</span>
+<span class="kw">&lt;oblivial&gt;</span>
+    <span class="kw">&lt;chalcone&gt;</span>exeter<span class="kw">&lt;/chalcone&gt;</span>
+    <span class="kw">&lt;casearia</span><span class="ot"> deplored=</span><span class="st">&quot;ferfer&quot;</span><span class="ot"> riccia=</span><span class="st">&quot;fwfwfe&quot;</span><span class="kw">&gt;</span>emfer<span class="kw">&lt;/casearia&gt;</span>
+    <span class="kw">&lt;casearia</span><span class="ot"> deplored=</span><span class="st">&quot;grbr&quot;</span><span class="ot"> riccia=</span><span class="st">&quot;oemvokemv&quot;</span><span class="kw">&gt;</span>fergr<span class="kw">&lt;/casearia&gt;</span>
+<span class="kw">&lt;/oblivial&gt;</span></code></pre>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

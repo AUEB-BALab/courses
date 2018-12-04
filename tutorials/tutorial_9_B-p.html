@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>XML και XSD</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Προγραμματισμός ΙΙ
+
+## XML και XSD
+
+
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Προγραμματισμός ΙΙ
+# XML και XSD
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+* [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
+
+
+## XML
+
+* Η XML είναι μία γλώσσα επισημείωσης, όπως είναι και η HTML.
+* Είναι σχεδιασμένη ώστε να είναι αυτοπεριγραφική.
+* Η διαφορά από την HTML είναι πως φέρει δεδομένα ενώ η HTML παρουσιάζει δεδομένα.
+* Δεν χρησιμοποιεί προκαθορισμένες ετικέτες (tags) αλλά τις καθορίζει ο χρήστης.
+* Είναι επεκτάσιμη και μπορούν να προστεθούν, να διαφοροποιηθούν ή να τροποποιθούν στοιχεία στο αρχικό σχήμα ενός XML αρχείου.
+
+
+## Δομή XML
+
+* Τα αρχεία XML δομούνται ως δέντρα στοιχεία (element trees).
+* Ξεκινούν από την ρίζα (root element) και συνεχίζουν στα παιδιά (child elements).
+
+```xml
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+```
+
+* Τα στοιχεία (elements) της XML μπορούν να περιέχουν κείμενο, προσδιορισμούς (attributes), άλλα στοιχεία ή συνδυασμό όλων των παραπάνω.
+* Οι προσδιορισμοί είναι σχεδιασμένοι για να περιέχουν δεδομένα που σχετίζονται με ένα στοιχείο.
+
+
+## XSD
+
+* Η XSD είναι η γλώσσα περιγραφής του σχήματος XML
+* Ο σκοπός της XSD είναι ο καθορισμός:
+	* των στοιχείων και των προσδιορισμών ενός αρχείου
+	* του αριθμού και της σειράς των στοιχείων-παιδιών
+	* του τύπου δεδομένων των στοιχείων και των προσδιορισμών
+	* των πιθανών τιμών των στοιχείων και των προσδιορισμών
+
+
+## Παράδειγμα
+
+```xml
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="shipOrder" type="order"/>
+
+<xsd:complexType name="order">
+  <xsd:sequence>
+    <xsd:element name="shipTo" type="shipAddress"/>
+    <xsd:element name="items" type="cdItems"/>
+  </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="shipAddress">
+  <xsd:sequence>
+    <xsd:element name="name" type="xsd:string"/>
+    <xsd:element name="street" type="xsd:string"/>
+    <xsd:element name="address" type="xsd:string"/>
+    <xsd:element name="country" type="xsd:string"/>
+  </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="cdItems">
+  <xsd:sequence>
+    <xsd:element name="item" type="cdItem"
+                maxOccurs="unbounded"/>
+  </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="cdItem">
+  <xsd:sequence>
+    <xsd:element name="title" type="xsd:string"/>
+    <xsd:element name="quantity" type="xsd:integer"/>
+    <xsd:element name="price" type="xsd:decimal"/>
+  </xsd:sequence>
+</xsd:complexType>
+
+</xsd:schema>
+```
+
+
+## Παράδειγμα (2)
+
+```xml
+<shipOrder xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance">
+  <shipTo>
+    <name>Joe Doe</name>
+    <street>There 2</street>
+    <address>4000 RigthHere</address>
+    <country>Wonderland</country>
+  </shipTo>
+  <items>
+    <item>
+      <title>Java Intro</title>
+      <quantity>1</quantity>
+      <price>10.90</price>
+    </item>
+    <item>
+      <title>Advanced Java</title>
+      <quantity>1</quantity>
+      <price>19.90</price>
+    </item>
+  </items>
+
+</shipOrder>
+```
+
+
+## Παράδειγμα 3
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="oblivial">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="chalcone" type="xsd:string"/>
+        <xsd:element name="casearia" minOccurs="2" maxOccurs="5">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                  <xsd:attribute name="deplored" type="xsd:string"
+use="required"/>
+                  <xsd:attribute name="riccia" type="xsd:string"/>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
+```
+
+
+## Παράδειγμα (4)
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<oblivial>
+	<chalcone>exeter</chalcone>
+	<casearia deplored="ferfer" riccia="fwfwfe">emfer</casearia>
+	<casearia deplored="grbr" riccia="oemvokemv">fergr</casearia>
+</oblivial>
+```
+
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>
