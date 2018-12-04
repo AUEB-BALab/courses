@@ -35,3 +35,4 @@
 
 ## Φροντιστήριο 9
 * [Κανονικές εκφράσεις](tutorials/tutorial_9_A.md)
+* [XML και XSD](tutorials/tutorial_9_B.md)
