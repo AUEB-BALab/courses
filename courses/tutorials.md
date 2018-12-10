@@ -38,4 +38,5 @@
 * [XML και XSD](tutorials/tutorial_9_B.md)
 
 ## Φροντιστήριο 10
-* [Εκφράσεις Lamda και Ροές](tutorials/tutorial_10_A.md)
+* [Εκφράσεις Lamda](tutorials/tutorial_10_A.md)
+* [Ροές δεδομένων](tutorials/tutorial_10_B.md)
