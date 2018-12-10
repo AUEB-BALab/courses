@@ -36,3 +36,6 @@
 ## Φροντιστήριο 9
 * [Κανονικές εκφράσεις](tutorials/tutorial_9_A.md)
 * [XML και XSD](tutorials/tutorial_9_B.md)
+
+## Φροντιστήριο 10
+* [Εκφράσεις Lamda και Ροές](tutorials/tutorial_10_A.md)
