@@ -6,3 +6,100 @@
 * [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
 
 
+## Εκφράσεις Lambda
+
+* Τις χρησιμοποιούμε για συναρτησιακό προγραμματισμός.
+* Δεν είναι απαραίτητο να δημιουργήσουμε αντικείμενα για την κλήση τους.
+* Μπορούμε να τις περάσουμε ως ορίσματα σε μεθόδους.
+* Υποστηρίζονται από την Java 8 και μετά.
+* Ορίζονται ανώνυμα.
+
+
+## Παράδειγμα (1)
+
+```java
+	(Short a) -> return (short)(a / 35);
+	(a) -> return a * a + a / a - a;
+	(param) -> {
+		System.out.println("param: " + param);
+		return "return value";
+	}
+``` 
+
+
+## Συναρτήση accept
+
+* __void accept(T t)__ κατανάλωση της τιμής t
+
+```java
+import java.util.function.Consumer;
+
+public class Main {
+  public static void main(String[] args) {
+    Consumer<String> c = (x) -> System.out.println(x.toLowerCase());
+    c.accept("Java2s.com");
+  }
+}
+```
+
+
+## Παράδειγμα
+
+```java
+import java.util.function.Function;
+
+public class Decess {
+
+	public static Function<Integer,
+		Integer> multiplyThreeElements(int b, int c) {
+		return (a) -> a * b * c;
+	}
+
+	public static void main(String[] args) {
+         System.out.println(multiplyThreeElements(3,3).apply(2));
+ }
+}
+```
+
+
+## Συνάρτηση compose
+
+* __Function compose(Function g)__ εφαρμώζει μια συνάρτηση __f__ (αυτή που καλεί την compose) σε μια συνάρτηση __g__
+
+```java
+import java.util.function.Function;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Function<Integer,String> converter = (i)-> Integer.toString(i);
+    
+    Function<String, Integer> reverse = (s)-> Integer.parseInt(s);
+   
+    System.out.println(converter.apply(3).length());
+    System.out.println(converter.compose(reverse).apply("30").length());
+  }
+}
+```
+
+
+## Παράδειγμα (3)
+
+```java
+import java.util.function.Function;
+
+public class Decess {
+
+	public static Function<Integer,
+	Integer> multiplyThreeElements(int b, int c) {
+		return (a) -> a * b * c;
+	}
+
+	public static void main(String[] args) {
+		Function<Integer, Integer> multiplyAgain =
+				multiplyThreeElements(3, 3)
+				.compose(multiplyThreeElements(2, 2));
+		System.out.println(multiplyAgain.apply(2));
+	}
+}
+```
