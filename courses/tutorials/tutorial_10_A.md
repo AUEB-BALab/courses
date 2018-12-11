@@ -19,7 +19,7 @@
 
 ```java
 	(Short a) -> return (short)(a / 35);
-	(a) -> return a * a + a / a - a;
+	(a) -> return a * a / a + a - a;
 	(param) -> {
 		System.out.println("param: " + param);
 		return "return value";
