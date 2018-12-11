@@ -106,12 +106,15 @@ myList
             .<span class="fu">collect</span>(Collectors.<span class="fu">toSet</span>());</code></pre>
 <h2 id="---3">Τερματικές Λειτουργίες Ροών (3)</h2>
 <ul>
-<li><strong>collect</strong></li>
+<li><strong>reduce</strong></li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java">IntBinaryOperator binaryOpt = (s1,s2)-&gt; (s1+s2); 
         
 <span class="dt">int</span> sum = IntStream.<span class="fu">of</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>).<span class="fu">reduce</span>(<span class="dv">0</span>, binaryOpt);
-System.<span class="fu">out</span>.<span class="fu">println</span>(sum);</code></pre>
+System.<span class="fu">out</span>.<span class="fu">println</span>(sum);
+
+OptionalInt v = IntStream.<span class="fu">of</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>).<span class="fu">reduce</span>(binaryOpt);
+System.<span class="fu">out</span>.<span class="fu">println</span>(v.<span class="fu">getAsInt</span>());</code></pre>
 <h2 id="-">Επαναχρησιμοποίηση Ροών</h2>
 <ul>
 <li>Οι ροές δεν είναι επαναχρησιμοποιήσιμες.<br /></li>

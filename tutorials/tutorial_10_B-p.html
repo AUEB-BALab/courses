@@ -134,13 +134,16 @@ Set<String> stringSet = Stream.of("some", "one", "some", "one")
 
 ## Τερματικές Λειτουργίες Ροών (3)
 
-* __collect__
+* __reduce__
 
 ```java
 IntBinaryOperator binaryOpt = (s1,s2)-> (s1+s2); 
         
 int sum = IntStream.of(1, 2, 3, 4).reduce(0, binaryOpt);
 System.out.println(sum);
+
+OptionalInt v = IntStream.of(1, 2, 3, 4).reduce(binaryOpt);
+System.out.println(v.getAsInt());
 ```
 
 
