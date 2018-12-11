@@ -43,13 +43,12 @@ public class Main {
 ```
 
 
-## Παράδειγμα
+## Παράδειγμα (1)
 
 ```java
 import java.util.function.Function;
 
 public class Decess {
-
 	public static Function<Integer,
 		Integer> multiplyThreeElements(int b, int c) {
 		return (a) -> a * b * c;
@@ -58,6 +57,28 @@ public class Decess {
 	public static void main(String[] args) {
          System.out.println(multiplyThreeElements(3,3).apply(2));
  }
+}
+```
+
+
+## Παράδειγμα (2)
+
+```java
+import java.util.function.Function;
+
+public class Lambda {
+        public static Function<Long, Long> divideThem(Function<Long,
+                Long> divideWith) {
+                return (Long a) -> (long)(divideWith.apply(a / 15));
+        }
+
+        public static void main(String[] args) {
+
+                Function<Long, Long> divideWith =
+					(Long a) -> (long) (100 / a);
+                System.out.println(divideThem(divideWith)
+					.apply(new Long(30)));
+        }
 }
 ```
 
