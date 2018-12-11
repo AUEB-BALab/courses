@@ -64,11 +64,10 @@
     c.<span class="fu">accept</span>(<span class="st">&quot;Java2s.com&quot;</span>);
   }
 }</code></pre>
-<h2>Παράδειγμα</h2>
+<h2 id="-1-1">Παράδειγμα (1)</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.function.Function;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> Decess {
-
     <span class="kw">public</span> <span class="dt">static</span> Function&lt;Integer,
         Integer&gt; <span class="fu">multiplyThreeElements</span>(<span class="dt">int</span> b, <span class="dt">int</span> c) {
         <span class="kw">return</span> (a) -&gt; a * b * c;
@@ -77,6 +76,23 @@
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
          System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">multiplyThreeElements</span>(<span class="dv">3</span>,<span class="dv">3</span>).<span class="fu">apply</span>(<span class="dv">2</span>));
  }
+}</code></pre>
+<h2 id="-2">Παράδειγμα (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.function.Function;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Lambda {
+        <span class="kw">public</span> <span class="dt">static</span> Function&lt;Long, Long&gt; <span class="fu">divideThem</span>(Function&lt;Long,
+                Long&gt; divideWith) {
+                <span class="kw">return</span> (Long a) -&gt; (<span class="dt">long</span>)(divideWith.<span class="fu">apply</span>(a / <span class="dv">15</span>));
+        }
+
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+
+                Function&lt;Long, Long&gt; divideWith =
+                    (Long a) -&gt; (<span class="dt">long</span>) (<span class="dv">100</span> / a);
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="fu">divideThem</span>(divideWith)
+                    .<span class="fu">apply</span>(<span class="kw">new</span> Long(<span class="dv">30</span>)));
+        }
 }</code></pre>
 <h2 id="-compose">Συνάρτηση compose</h2>
 <ul>
