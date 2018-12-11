@@ -54,7 +54,7 @@
     }</code></pre>
 <h2 id="-accept">Συναρτήση accept</h2>
 <ul>
-<li><strong>void accept(T t)</strong> κατανάλωση της τιμής t</li>
+<li><strong>void accept(T t)</strong> κατανάλωση της τιμής <strong>t</strong></li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.function.Consumer;</span>
 
@@ -64,7 +64,10 @@
     c.<span class="fu">accept</span>(<span class="st">&quot;Java2s.com&quot;</span>);
   }
 }</code></pre>
-<h2 id="-1-1">Παράδειγμα (1)</h2>
+<h2 id="-apply">Συνάρτηση apply</h2>
+<ul>
+<li><strong>R apply(T t)</strong> δίνει στην συνάρτηση που την καλή την τιμή <strong>t</strong></li>
+</ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.function.Function;</span>
 
 <span class="kw">public</span> <span class="kw">class</span> Decess {
