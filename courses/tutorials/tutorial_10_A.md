@@ -29,7 +29,7 @@
 
 ## Συναρτήση accept
 
-* __void accept(T t)__ κατανάλωση της τιμής t
+* __void accept(T t)__ κατανάλωση της τιμής __t__
 
 ```java
 import java.util.function.Consumer;
@@ -43,7 +43,9 @@ public class Main {
 ```
 
 
-## Παράδειγμα (1)
+## Συνάρτηση apply
+
+* __R apply(T t)__ δίνει στην συνάρτηση που την καλή την τιμή __t__
 
 ```java
 import java.util.function.Function;
