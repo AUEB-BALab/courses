@@ -37,6 +37,92 @@
 <li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
 <li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
 </ul>
+<h2>Ροές</h2>
+<ul>
+<li>Οι ροές αναπαριστούν μία ακολουθία στοιχείων και υποστηρίζουν διάφορους τύπους λειτουργιών για την επεξεργασία των στοιχείων.<br /></li>
+<li>Δεν έχουν σχέση και δεν πρέπει να συγχέονται με τα I/O Streams (InputStream, OutputStream, etc).<br /></li>
+<li>Οι ροές δεν αποθηκεύουν δεδομένα, οπότε δεν είναι μία δομή δεδομένων. Επίσης, δεν τροποποιούν την υποκείμενη πηγή δεδομένων.<br /></li>
+<li>Υποστηρίζονται από την Java 8 και μετά.</li>
+</ul>
+<h2 id="-">Δημιουργία Ροών</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> <span class="dt">static</span> CoolGuys[] array = {
+    <span class="kw">new</span> <span class="fu">CoolGuy</span>(<span class="dv">1</span>, <span class="st">&quot;Diomidis Spinellis&quot;</span>, <span class="st">&quot;dds&quot;</span>), 
+    <span class="kw">new</span> <span class="fu">CoolGuy</span>(<span class="dv">2</span>, <span class="st">&quot;Stefanos Georgiou&quot;</span>, <span class="st">&quot;stefanos1316&quot;</span>), 
+    <span class="kw">new</span> <span class="fu">CoolGuy</span>(<span class="dv">3</span>, <span class="st">&quot;Konstantinos Kravvaritis&quot;</span>, <span class="st">&quot;kravvaritisk&quot;</span>)
+};
+
+Stream.<span class="fu">of</span>(array);
+
+<span class="kw">private</span> <span class="dt">static</span> List&lt;CoolGuy&gt; list = Arrays.<span class="fu">asList</span>(array);
+list.<span class="fu">stream</span>();</code></pre>
+<h2 id="--">Ενδιάμεσες Λειτουργίες Ροών</h2>
+<ul>
+<li><strong>filter</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">List&lt;String&gt; myList =
+    Arrays.<span class="fu">asList</span>(<span class="st">&quot;a1&quot;</span>, <span class="st">&quot;a2&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;c2&quot;</span>, <span class="st">&quot;c1&quot;</span>);
+
+myList
+    .<span class="fu">stream</span>()
+    .<span class="fu">filter</span>(s -&gt; s.<span class="fu">startsWith</span>(<span class="st">&quot;c&quot;</span>))
+    .<span class="fu">forEach</span>(System.<span class="fu">out</span>::println);
+
+myList
+    .<span class="fu">stream</span>()
+    .<span class="fu">filter</span>(s -&gt; <span class="fu">startsWithC</span>().<span class="fu">test</span>(s))
+    .<span class="fu">forEach</span>(System.<span class="fu">out</span>::println);
+
+<span class="kw">public</span> <span class="dt">static</span> Predicate&lt;String&gt; <span class="fu">startsWithC</span>() {
+        <span class="kw">return</span> s -&gt; s.<span class="fu">startsWith</span>(<span class="st">&quot;c&quot;</span>);
+    }</code></pre>
+<h2 id="---2">Ενδιάμεσες Λειτουργίες Ροών (2)</h2>
+<ul>
+<li><strong>map</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Arrays.<span class="fu">stream</span>(<span class="kw">new</span> <span class="dt">int</span>[] {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>})
+    .<span class="fu">map</span>(n -&gt; <span class="dv">2</span> * n + <span class="dv">1</span>)
+    .<span class="fu">forEach</span>(System.<span class="fu">out</span>::println);</code></pre>
+<h2 id="---3">Ενδιάμεσες Λειτουργίες Ροών (3)</h2>
+<ul>
+<li><strong>peek</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Stream.<span class="fu">of</span>(<span class="st">&quot;Department&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;Science&quot;</span>, <span class="st">&quot;and&quot;</span>, <span class="st">&quot;Technology&quot;</span>)
+            .<span class="fu">peek</span>(s -&gt; System.<span class="fu">out</span>.<span class="fu">println</span>(s))
+            .<span class="fu">map</span>(s -&gt; s.<span class="fu">toUpperCase</span>())
+            .<span class="fu">forEach</span>(System.<span class="fu">out</span>::println);</code></pre>
+<h2 id="--">Τερματικές Λειτουργίες Ροών</h2>
+<ul>
+<li><strong>findAny</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Optional&lt;String&gt; val = Stream.<span class="fu">of</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>).<span class="fu">findAny</span>();
+
+<span class="kw">if</span> (val.<span class="fu">isPresent</span>() == <span class="kw">true</span>)
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;There is some values&quot;</span>);</code></pre>
+<h2 id="---2">Τερματικές Λειτουργίες Ροών (2)</h2>
+<ul>
+<li><strong>collect</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Set&lt;String&gt; stringSet = Stream.<span class="fu">of</span>(<span class="st">&quot;some&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;some&quot;</span>, <span class="st">&quot;one&quot;</span>)
+            .<span class="fu">collect</span>(Collectors.<span class="fu">toSet</span>());</code></pre>
+<h2 id="---3">Τερματικές Λειτουργίες Ροών (3)</h2>
+<ul>
+<li><strong>collect</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">IntBinaryOperator binaryOpt = (s1,s2)-&gt; (s1+s2); 
+        
+<span class="dt">int</span> sum = IntStream.<span class="fu">of</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>).<span class="fu">reduce</span>(<span class="dv">0</span>, binaryOpt);
+System.<span class="fu">out</span>.<span class="fu">println</span>(sum);</code></pre>
+<h2 id="-">Επαναχρησιμοποίηση Ροών</h2>
+<ul>
+<li>Οι ροές δεν είναι επαναχρησιμοποιήσιμες.<br /></li>
+<li>Αν καλέσουμε σε μία ροή κάποια τερματική λειτουργία, η ροή θα κλείσει και δεν μπορούμε να την χρησιμοποιήσουμε πάλι.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Stream&lt;String&gt; stream =
+    Stream.<span class="fu">of</span>(<span class="st">&quot;d2&quot;</span>, <span class="st">&quot;a2&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;b3&quot;</span>, <span class="st">&quot;c&quot;</span>)
+        .<span class="fu">filter</span>(s -&gt; s.<span class="fu">startsWith</span>(<span class="st">&quot;a&quot;</span>));
+
+stream.<span class="fu">findFirst</span>();    <span class="co">// ok</span>
+stream.<span class="fu">findAny</span>();   <span class="co">// exception</span></code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
