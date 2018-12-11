@@ -27,7 +27,7 @@
 ``` 
 
 
-## Συναρτήση accept
+## Μέθοδος accept
 
 * __void accept(T t)__ κατανάλωση της τιμής __t__
 
@@ -43,7 +43,7 @@ public class Main {
 ```
 
 
-## Συνάρτηση apply
+## Μέθοδος apply
 
 * __R apply(T t)__ δίνει στην συνάρτηση που την καλή την τιμή __t__
 
@@ -85,7 +85,7 @@ public class Lambda {
 ```
 
 
-## Συνάρτηση compose
+## Μέθοδος compose
 
 * __Function compose(Function g)__ εφαρμώζει μια συνάρτηση __f__ (αυτή που καλεί την compose) σε μια συνάρτηση __g__
 
