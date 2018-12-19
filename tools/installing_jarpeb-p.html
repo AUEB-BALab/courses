@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Installing Jarpeb</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Προγραμματισμός ΙΙ
+
+## Installing Jarpeb
+
+
+<img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" />
+# Προγραμματισμός ΙΙ
+##  Οδηγός εγκατάστασεις του Jarpeb
+
+* [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
+* [Κωνσταντίνος Κραββαρίτης](https://www.balab.aueb.gr/konstantinos-kravvaritis.html)
+
+
+## Εισαγωγή στο Jarpeb
+
+<p align="justify">Για τις ασκήσεις του μαθήματος Προγραμματισμός ΙΙ θα χρειαστεί να
+χρησιμοποιήσετε το αρχείο __Exercise.jar__
+Το __Exercise.jar__ περιέχει τις ασκήσεις σας καθώς και τη γραφική διεπαφή που θα
+χρησιμοποιήσετε για την υποβολή των απαντήσεων και των αποτελεσμάτων σας.
+Για να χρησιμοποιήσετε το σύστημα θα πρέπει ο υπολογιστής σας να έχει εγκατεστημένo
+το Java SDK (τουλάχιστον την έκδοση SE 8).</p>
+
+<p align="justify">
+Παρακάτω, ακολουθούν οδηγίες σχετικά με την εκτέλεση του Exercise.jar και τη
+χρήση του jarpeb, για τον έλεγχο και την υποβολή των εργασιών σας. Για όλες τις
+ασκήσεις του μαθήματος θα χρησιμοποιήσετε το αρχείο Exercise.jar καθ’ όλη τη
+διάρκεια του εξαμήνου.<p>
+
+
+## Εκτέλεση του Exercise.jar από το εργαστήριο
+
+* Κατεβάστε από τον δύνδεσμο του μαθήματος το [__Exercise.jar__](https://www2.dmst.aueb.gr/dds/isdi/exercise/links.htm)
+* Για να εκτελέσετε το Jarpeb, ανοίξτε ένα τερματικό (start-> cmd) και εκτελέστη την εντολή:
+	* java -jar μονοπάτι όπου βρισκεται το Exercise.jar/Exercise.jar
+
+
+## Εκτέλεση του Exercise.jar από το σπιτι (1)
+
+<p align="justify">Εαν δουλεύετε από το σπίτι, σε Windows (7, 8, ή 10), θα πρέπει να εγκαταστήσετε
+πρώτα το JDK (οι οδηγίες βρίσκονται πιο κάτω): </p>
+* Κατεβάστε και εγκαταστήστε το JDK (Java Development Kit) για το λειτουργικό σύστημα που έχετε και την κατάλληλη αρχιτεκτονική (π.χ. Windows x86 ή x64) από τον ακόλουθω [σύνδεσμο](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+
+## Εκτέλεση του Exercise.jar από το σπιτι (2)
+
+* Στη συνέχεια πρέπει να δηλώσετε τη μεταβλητή συστήματος (environment variables) ακολουθώντας τα παρακάτω βήματα:
+	* δεξί-κλικ στον προσωπικό σας υπολογιστή (MyComputer) και επιλέξτε
+		ιδιότητες (properties) → Ρυθμίσεις συστήματος για προχωρημένους
+		(Advanced system settings) → Μεταβλητές περιβάλλοντος (Environment
+		Variables) → Πατήστε Δημιουργία (New) που βρίσκεται κάτω απο τις
+		Μεταβλητές συστήματος (System Variables) και συμπληρώστε με βάση το
+		βήμα ii.
+	* Όνομα μεταβλητής (Variable name): JAVA_HOME
+		Τιμή μεταβλητής (Variable value): εδώ πρέπει να βάλετε το απόλυτο
+		μονοπάτι που έχει εγκατασταθει το jdk (συνήθως είναι στο Program Files \
+		JAVA\jdk****\) ακολούθως κάντε αντιγραφή/επικόλληση (copy/paste) το
+		σχετικό μονοπάτι.
+
+
+## Εκτέλεση του Exercise.jar από το σπιτι (2)
+
+Στη συνέχεια, κάντε μια επαλήθευση ότι οι περιβαλλοντικές μεταβλητές λειτουργούν σωστά
+εκτελώντας την πιο κάτω εντολή μέσα στο τερματικό (cmd):
+	
+	$ java -version
+
+Αυτό θα πρέπει να σας εκτυπώσει κάποιο μήνυμα όπως
+	
+	$ openjdk version "1.8.0_181"
+	$ OpenJDK Runtime Environment (build 1.8.0_181-b15)
+	$ OpenJDK 64-Bit Server VM (build 25.181-b15, mixed mode)
+
+
+## Παράδειγμα 2
+
+![](media/Jarpeb_GUI.png)
+
+
+![](media/Jarpeb_Exercises.jpg)
+
+
+## Έλεγχος Υλοποιήσης
+
+![](media/Correct_Sumbission.png)
+
+
+## Έλεγχος Καταχώρησης
+
+![](media/Correctly_Submitted_Exercises.jpg)
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>

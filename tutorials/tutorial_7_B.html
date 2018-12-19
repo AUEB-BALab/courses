@@ -107,6 +107,98 @@ Mε FileInputStream: διαβάζει ροές από bytes (π.χ. image data) 
 <li>Mπορεί να πετάξει IOException (προβλήματα εισόδου/εξόδου), γι’ αυτό πρέπει να χρησιμοποιούνται οι μέθοδοι .flush() για τις ροές (πετάει τα δεδομένα του buffer στο αρχείο).</li>
 </ul></li>
 </ul>
+<h2 id="---">Παράδειγμα ανάγνωσης από αρχείο</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String [] args) {
+        String fileName = <span class="st">&quot;temp.txt&quot;</span>;
+        String line = <span class="kw">null</span>;
+
+        <span class="kw">try</span> {
+            <span class="co">// FileReader reads text files in the default encoding.</span>
+            FileReader fileReader = 
+                <span class="kw">new</span> FileReader(fileName);
+
+            BufferedReader bufferedReader = 
+                <span class="kw">new</span> BufferedReader(fileReader);
+
+            <span class="kw">while</span>((line = bufferedReader.<span class="fu">readLine</span>()) != <span class="kw">null</span>) {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(line);
+            }   
+            bufferedReader.<span class="fu">close</span>();         
+        }
+        <span class="kw">catch</span>(FileNotFoundException ex) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(
+                <span class="st">&quot;Unable to open file &#39;&quot;</span> + 
+                fileName + <span class="st">&quot;&#39;&quot;</span>);                
+        }
+        <span class="kw">catch</span>(IOException ex) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(
+                <span class="st">&quot;Error reading file &#39;&quot;</span> 
+                + fileName + <span class="st">&quot;&#39;&quot;</span>);                  
+        }
+    }
+}</code></pre>
+<h2 id="---">Παράδειγμα εγγραφής σε αρχείο</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String [] args) {
+        String fileName = <span class="st">&quot;temp.txt&quot;</span>;
+        <span class="kw">try</span> {
+            <span class="co">// Assume default encoding.</span>
+            FileWriter fileWriter =
+                <span class="kw">new</span> FileWriter(fileName);
+
+            BufferedWriter bufferedWriter =
+                <span class="kw">new</span> BufferedWriter(fileWriter);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot;Hello there,&quot;</span>);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot; here is some text.&quot;</span>);
+            bufferedWriter.<span class="fu">newLine</span>();
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot;We are writing&quot;</span>);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot; the text to the file.&quot;</span>);
+            bufferedWriter.<span class="fu">close</span>();
+        }
+        <span class="kw">catch</span>(IOException ex) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(
+                <span class="st">&quot;Error writing to file &#39;&quot;</span>
+                + fileName + <span class="st">&quot;&#39;&quot;</span>);
+        }
+    }
+}</code></pre>
+<h2 id="---o">Παράδειγμα επισύναψεις σε αρχείo</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Test {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String [] args) {
+        String fileName = <span class="st">&quot;temp.txt&quot;</span>;
+        <span class="kw">try</span> {
+            <span class="co">// Assume default encoding.</span>
+            FileWriter fileWriter =
+                <span class="kw">new</span> FileWriter(fileName);
+
+            BufferedWriter bufferedWriter =
+                <span class="kw">new</span> BufferedWriter(fileWriter);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot;Hello there,&quot;</span>);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot; here is some text.&quot;</span>);
+            bufferedWriter.<span class="fu">newLine</span>();
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot;We are writing&quot;</span>);
+            bufferedWriter.<span class="fu">write</span>(<span class="st">&quot; the text to the file.&quot;</span>);
+            bufferedWriter.<span class="fu">close</span>();
+        
+        BufferedWriter br =
+        <span class="kw">new</span> BufferedWriter(<span class="kw">new</span> FileWriter(<span class="st">&quot;output.txt&quot;</span>, <span class="kw">true</span>));
+        br.<span class="fu">write</span>(<span class="st">&quot;&quot;</span>);
+        br.<span class="fu">close</span>();
+        }
+        <span class="kw">catch</span>(IOException ex) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(
+                <span class="st">&quot;Error writing to file &#39;&quot;</span>
+                + fileName + <span class="st">&quot;&#39;&quot;</span>);
+        }
+    }
+}</code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Installing Jarpeb</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--installing-jarpeb">Προγραμματισμός ΙΙ: Installing Jarpeb</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="-">Προγραμματισμός ΙΙ</h1>
+<h2 id="---jarpeb">Οδηγός εγκατάστασεις του Jarpeb</h2>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a><br /></li>
+<li><a href="https://www.balab.aueb.gr/konstantinos-kravvaritis.html">Κωνσταντίνος Κραββαρίτης</a></li>
+</ul>
+<h2 id="--jarpeb">Εισαγωγή στο Jarpeb</h2>
+<p align="justify">Για τις ασκήσεις του μαθήματος Προγραμματισμός ΙΙ θα χρειαστεί να
+χρησιμοποιήσετε το αρχείο __Exercise.jar__
+Το __Exercise.jar__ περιέχει τις ασκήσεις σας καθώς και τη γραφική διεπαφή που θα
+χρησιμοποιήσετε για την υποβολή των απαντήσεων και των αποτελεσμάτων σας.
+Για να χρησιμοποιήσετε το σύστημα θα πρέπει ο υπολογιστής σας να έχει εγκατεστημένo
+το Java SDK (τουλάχιστον την έκδοση SE 8).</p>
+
+
+<p align="justify">
+
+<p>Παρακάτω, ακολουθούν οδηγίες σχετικά με την εκτέλεση του Exercise.jar και τη<br />χρήση του jarpeb, για τον έλεγχο και την υποβολή των εργασιών σας. Για όλες τις<br />ασκήσεις του μαθήματος θα χρησιμοποιήσετε το αρχείο Exercise.jar καθ’ όλη τη<br />διάρκεια του εξαμήνου.<p></p>
+<h2 id="--exercise.jar---">Εκτέλεση του Exercise.jar από το εργαστήριο</h2>
+<ul>
+<li>Κατεβάστε από τον δύνδεσμο του μαθήματος το <a href="https://www2.dmst.aueb.gr/dds/isdi/exercise/links.htm"><strong>Exercise.jar</strong></a><br /></li>
+<li><p>Για να εκτελέσετε το Jarpeb, ανοίξτε ένα τερματικό (start-&gt; cmd) και εκτελέστη την εντολή:</p>
+<ul>
+<li>java -jar μονοπάτι όπου βρισκεται το Exercise.jar/Exercise.jar</li>
+</ul></li>
+</ul>
+<h2 id="--exercise.jar----1">Εκτέλεση του Exercise.jar από το σπιτι (1)</h2>
+<p align="justify">Εαν δουλεύετε από το σπίτι, σε Windows (7, 8, ή 10), θα πρέπει να εγκαταστήσετε
+πρώτα το JDK (οι οδηγίες βρίσκονται πιο κάτω): </p>
+
+<ul>
+<li>Κατεβάστε και εγκαταστήστε το JDK (Java Development Kit) για το λειτουργικό σύστημα που έχετε και την κατάλληλη αρχιτεκτονική (π.χ. Windows x86 ή x64) από τον ακόλουθω <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">σύνδεσμο</a></li>
+</ul>
+<h2 id="--exercise.jar----2">Εκτέλεση του Exercise.jar από το σπιτι (2)</h2>
+<ul>
+<li><p>Στη συνέχεια πρέπει να δηλώσετε τη μεταβλητή συστήματος (environment variables) ακολουθώντας τα παρακάτω βήματα:</p>
+<ul>
+<li>δεξί-κλικ στον προσωπικό σας υπολογιστή (MyComputer) και επιλέξτε<br /> ιδιότητες (properties) → Ρυθμίσεις συστήματος για προχωρημένους<br /> (Advanced system settings) → Μεταβλητές περιβάλλοντος (Environment<br /> Variables) → Πατήστε Δημιουργία (New) που βρίσκεται κάτω απο τις<br /> Μεταβλητές συστήματος (System Variables) και συμπληρώστε με βάση το<br /> βήμα ii.<br /></li>
+<li>Όνομα μεταβλητής (Variable name): JAVA_HOME<br /> Τιμή μεταβλητής (Variable value): εδώ πρέπει να βάλετε το απόλυτο<br /> μονοπάτι που έχει εγκατασταθει το jdk (συνήθως είναι στο Program Files \<br /> JAVA\jdk****) ακολούθως κάντε αντιγραφή/επικόλληση (copy/paste) το<br /> σχετικό μονοπάτι.</li>
+</ul></li>
+</ul>
+<h2 id="--exercise.jar----2-1">Εκτέλεση του Exercise.jar από το σπιτι (2)</h2>
+<p>Στη συνέχεια, κάντε μια επαλήθευση ότι οι περιβαλλοντικές μεταβλητές λειτουργούν σωστά<br />εκτελώντας την πιο κάτω εντολή μέσα στο τερματικό (cmd):</p>
+<pre><code>$ java -version</code></pre>
+<p>Αυτό θα πρέπει να σας εκτυπώσει κάποιο μήνυμα όπως</p>
+<pre><code>$ openjdk version &quot;1.8.0_181&quot;
+$ OpenJDK Runtime Environment (build 1.8.0_181-b15)
+$ OpenJDK 64-Bit Server VM (build 25.181-b15, mixed mode)</code></pre>
+<h2 id="-2">Παράδειγμα 2</h2>
+<p><img src="media/Jarpeb_GUI.png" /></p>
+<p><img src="media/Jarpeb_Exercises.jpg" /></p>
+<h2 id="-">Έλεγχος Υλοποιήσης</h2>
+<p><img src="media/Correct_Sumbission.png" /></p>
+<h2 id="-">Έλεγχος Καταχώρησης</h2>
+<p><img src="media/Correctly_Submitted_Exercises.jpg" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
