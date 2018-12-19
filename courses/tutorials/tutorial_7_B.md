@@ -40,7 +40,7 @@ FileOutputStream in = new FileOutputStream("outfile.txt");
 
 ```java
 FileReader in = new FileReader("infile.txt"); 
-FileWriter in = new FileWriter("outfile.txt"); 
+FileWriter out = new FileWriter("outfile.txt"); 
 ```
 
 
