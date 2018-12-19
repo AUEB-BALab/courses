@@ -52,7 +52,7 @@
 
 
 <pre class="sourceCode java"><code class="sourceCode java">FileInputStream in = <span class="kw">new</span> FileInputStream(<span class="st">&quot;infile.txt&quot;</span>);
-FileOutputStream in = <span class="kw">new</span> FileOutputStream(<span class="st">&quot;outfile.txt&quot;</span>);</code></pre>
+FileOutputStream out = <span class="kw">new</span> FileOutputStream(<span class="st">&quot;outfile.txt&quot;</span>);</code></pre>
 <h2 id="---2">Τρόποι διαχείρισης αρχείων (2)</h2>
 <div style="text-align: justify"> 
 **Character Streams**: αποτελούν “wrappers” των byte streams. Χρησιμοποιούν byte streams για χειρισμό δεδομένων εισόδου και εξόδου σε χαμηλό επίπεδο (low-level I/O), καθώς τα character streams χειρίζονται τη μετάφραση των χαρακτήρων σε bytes. Η είσοδος και η έξοδος σε και από ένα αρχείο βασίζεται σε χαρακτήρες.
@@ -60,7 +60,7 @@ FileOutputStream in = <span class="kw">new</span> FileOutputStream(<span class="
 
 
 <pre class="sourceCode java"><code class="sourceCode java">FileReader in = <span class="kw">new</span> FileReader(<span class="st">&quot;infile.txt&quot;</span>); 
-FileWriter in = <span class="kw">new</span> FileWriter(<span class="st">&quot;outfile.txt&quot;</span>); </code></pre>
+FileWriter out = <span class="kw">new</span> FileWriter(<span class="st">&quot;outfile.txt&quot;</span>); </code></pre>
 <h2 id="---3">Τρόποι διαχείρισης αρχείων (3)</h2>
 <div style="text-align: justify"> 
 **Buffer Streams**: χρήσιμοποιούν _buffers_ στο διάβασμα (**read**) ή στο γράψιμο (**write**) αρχείων. Βοηθούν στην αποδοτικότητα των προγραμμάτων καθώς τα αιτήματα read/write δεν χειρίζονται κατευθείαν από το λειτουργικό σύστημα.
