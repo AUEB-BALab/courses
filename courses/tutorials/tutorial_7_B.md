@@ -29,7 +29,7 @@
 
 ```java
 FileInputStream in = new FileInputStream("infile.txt");
-FileOutputStream in = new FileOutputStream("outfile.txt");
+FileOutputStream out = new FileOutputStream("outfile.txt");
 ```
 
 
