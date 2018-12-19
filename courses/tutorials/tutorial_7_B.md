@@ -92,3 +92,112 @@ Mε FileInputStream: διαβάζει ροές από bytes (π.χ. image data) 
 	* Εάν δε βρεθεί το αρχείο, πετάει την εξαίρεση: **FileNotFoundException**.
 	* Με **DataOutputStream**: γράφει πρωταρχικούς τύπους δεδομένων (boolean, char, double, float, etc.) και String.
 	* Mπορεί να πετάξει IOException (προβλήματα εισόδου/εξόδου), γι’ αυτό πρέπει να χρησιμοποιούνται οι μέθοδοι .flush() για τις ροές (πετάει τα δεδομένα του buffer στο αρχείο).
+
+
+
+## Παράδειγμα ανάγνωσης από αρχείο
+
+```java
+import java.io.*;
+
+public class Test {
+    public static void main(String [] args) {
+        String fileName = "temp.txt";
+        String line = null;
+
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader = 
+                new FileReader(fileName);
+
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }   
+            bufferedReader.close();         
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "Unable to open file '" + 
+                fileName + "'");                
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error reading file '" 
+                + fileName + "'");                  
+        }
+    }
+}
+```
+
+
+## Παράδειγμα εγγραφής σε αρχείο
+
+```java
+import java.io.*;
+
+public class Test {
+    public static void main(String [] args) {
+        String fileName = "temp.txt";
+        try {
+            // Assume default encoding.
+            FileWriter fileWriter =
+                new FileWriter(fileName);
+
+            BufferedWriter bufferedWriter =
+                new BufferedWriter(fileWriter);
+            bufferedWriter.write("Hello there,");
+            bufferedWriter.write(" here is some text.");
+            bufferedWriter.newLine();
+            bufferedWriter.write("We are writing");
+            bufferedWriter.write(" the text to the file.");
+            bufferedWriter.close();
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error writing to file '"
+                + fileName + "'");
+        }
+    }
+}
+```
+
+
+## Παράδειγμα επισύναψεις σε αρχείo
+
+```java
+import java.io.*;
+
+public class Test {
+    public static void main(String [] args) {
+        String fileName = "temp.txt";
+        try {
+            // Assume default encoding.
+            FileWriter fileWriter =
+                new FileWriter(fileName);
+
+            BufferedWriter bufferedWriter =
+                new BufferedWriter(fileWriter);
+            bufferedWriter.write("Hello there,");
+            bufferedWriter.write(" here is some text.");
+            bufferedWriter.newLine();
+            bufferedWriter.write("We are writing");
+            bufferedWriter.write(" the text to the file.");
+            bufferedWriter.close();
+   		
+	    BufferedWriter br =
+		new BufferedWriter(new FileWriter("output.txt", true));
+	    br.write("");
+	    br.close();
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error writing to file '"
+                + fileName + "'");
+        }
+    }
+}
+```
+
