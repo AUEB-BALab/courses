@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CD and CI on GitLab</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--cd-and-ci-on-gitlab">Προγραμματισμός ΙΙ: CD and CI on GitLab</h1>
+<p><img src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-continuous-integration-and-deployment">Tools and practices: Continuous Integration and Deployment</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+</ul>
+<h1 id="agenda">Agenda</h1>
+<ul>
+<li>What is CI/CD?<br /></li>
+<li>AllCanCode Case<br /></li>
+<li>Without CI/CD<br /></li>
+<li>Recap<br /></li>
+<li>Stages<br /></li>
+<li>Optimizations<br /></li>
+<li>First CI pipeline<br /></li>
+<li>Point out drawbacks<br /></li>
+<li>Second Attemp<br /></li>
+<li>Outcome</li>
+</ul>
+<h1 id="what-is-cicd">What is CI/CD</h1>
+<ul>
+<li>CI = Continious Integration<br /></li>
+<li>CD = Continious Deployment<br /></li>
+<li>Reducing manual labor for deployment and lessens testing time of newly integrated code.</li>
+</ul>
+<h1 id="allcancode-platform">AllCanCode Platform</h1>
+<p><img src="media/acc_platform.png" /></p>
+<h1 id="acc-process">ACC Process</h1>
+<p><img src="media/acc_software_stack.svg" height="546" /></p>
+<h1 id="without-cicd">Without CI/CD</h1>
+<ul>
+<li>Running back-end tests (using mocha-chai)<br /></li>
+<li>Manually perform front-end test on the platfor<br /></li>
+<li><p>Depoy to Google's App Engine the platform</p>
+<ul>
+<li>Alpha<br /></li>
+<li>WWW<br /></li>
+<li>Next<br /></li>
+</ul></li>
+<li><p>Running cordova and singing and deploying</p>
+<ul>
+<li>APKs to Play Store<br /></li>
+<li>IPAs to App Store<br /></li>
+</ul></li>
+<li><p>Approximate time: 40 minutes</p></li>
+</ul>
+<p><img src="media/doggy_work.jpg" height="586" /></p>
+<h1 id="first-ci-pipeline">First CI pipeline</h1>
+<pre><code>cache:
+  untracked: true
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build [...]
+
+test_back_end:
+  stage: test [...]
+
+test_front_end:
+  stage: test [...]
+
+deploy:
+  stage: deploy [...]</code></pre>
+<h1 id="first-ci-build">First CI, build</h1>
+<pre><code>build:
+  stage: build
+  image: node:latest
+  before_script:
+    - apt-get update
+  script:
+    - npm i
+    - export ACC_VERSION=$(node -pe &quot;require(&#39;./package.json&#39;)[&#39;version&#39;]&quot;)
+    - export DEPLOY_URL=$(echo &quot;https://files.allcancode.com/builds/app-files/platform/${ACC_VERSION}/&quot;)
+    - echo ${ACC_VERSION}
+    - cd acc-front
+    - rm -rf node_modules/*
+    - npm i
+    - node_modules/@angular/cli/bin/ng build --prod --build-optimizer --preserve-symlinks --base-href / --deploy-url ${DEPLOY_URL}
+    - cd ..</code></pre>
+<h1 id="first-ci-test">First CI, test</h1>
+<pre><code>test_back_end:
+  stage: test
+  image: node:latest
+  before_script:
+    - export ACC_VERSION=$(node -pe &quot;require(&#39;./package.json&#39;)[&#39;version&#39;]&quot;)
+    - echo ${ACC_VERSION} &gt;&gt; ACC_VERSION
+    - apt-get update
+    - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common  
+    - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    - apt-key fingerprint 0EBFCD88
+    - add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable&quot;
+    - apt-get update
+    - apt-get install -y docker-ce
+    - service docker status || service docker start
+    - service docker status
+  script:
+    - docker run --name redis_instance -p 6379:6379 -d redis redis-server
+    - docker run --name mongo_instance --restart=always -d -p 27017:27017 mongo mongod
+    - sh test.sh
+  artifacts:
+    paths:
+    - ACC_VERSION</code></pre>
+<h1 id="first-ci-test-1">First CI, test</h1>
+<pre><code>test_front_end:
+  stage: test
+  image: node:latest
+  before_script:
+    - apt-get update
+    - apt-get install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+    - npm i --save-dev cypress
+  script:
+    - echo &#39;Testing DeliverBack front-end&#39;
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/deliver_back/input_validation.spec.js </code></pre>
+<h1 id="first-ci-deploy">First CI, deploy</h1>
+<pre><code>deploy:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  before_script:
+    - export ACC_VERSION=$(cat ACC_VERSION)
+    - export ACC_VERSION=$(echo ${ACC_VERSION} | awk &#39;{print $2}&#39;)
+    - echo ${ACC_VERSION}
+    - echo $SERVICE_ACCOUNT &gt; /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud config set project allcancode-platform
+  after_script:
+    - rm /tmp/$CI_PIPELINE_ID.json
+    - rm ACC_VERSION
+  script:
+    - export STORAGE_PATH=$( echo &quot;gs://allcancode-files/builds/app-files/platform/${ACC_VERSION}&quot;)
+    - gsutil -m cp -r -z html,css,js acc-front/dist ${STORAGE_PATH}
+    - gsutil -m setmeta -h &quot;Cache-Control:public, max-age=31536000&quot; ${STORAGE_PATH}/**/*
+    - gsutil -m acl ch -r -u AllUsers:R ${STORAGE_PATH}/*
+    - gcloud app deploy app-alpha.yaml --version=v${ACC_VERSION//\./\-} --quiet</code></pre>
+<h1 id="first-ci-outcome">First CI outcome</h1>
+<h1 id="outcome-of-cicd-pipeline">Outcome of CI/CD pipeline</h1>
+<p><img src="media/acc_ci_cd.svg" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
