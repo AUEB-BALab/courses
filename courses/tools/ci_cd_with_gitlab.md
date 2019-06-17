@@ -8,8 +8,8 @@
 * What is CI/CD?
 * AllCanCode Case
 * Without CI/CD
-* Recap
-* Stages
+* Build stages
+* Caching data
 * Optimizations
 * First CI pipeline
 * Point out drawbacks
@@ -18,8 +18,8 @@
 
 
 # What is CI/CD
-* CI = Continious Integration
-* CD = Continious Deployment
+* CI = Continuous Integration
+* CD = Continuous Deployment
 * Reducing manual labor for deployment and lessens testing time of newly integrated code.
 
 
@@ -45,6 +45,25 @@
 
 
 <img src="media/doggy_work.jpg" height="586" />
+
+
+# Build stages
+* To group jobs and run them sequencially or in parallel (e.g., testing different  environments)
+* Works as a pipeline among build stages
+* Can cache and pass data and modules among build stages
+* Suggested stages: build, test, deploy, and release
+
+
+# Multiple Evnironments
+![](media/multible_env.png)
+
+
+# Caching data
+* To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)
+* Uploads the cached data after the script phase but before after success or failure
+* Large files that are quick to install but slow to download do not benefit from caching
+![](media/uploading_cache.png)
+![](media/downloading_cache.png)
 
 
 # First CI pipeline
@@ -160,10 +179,15 @@ deploy:
 
 
 # First CI outcome
+![](media/first_ci_cd_outcome.png)
 
 
+<img src="media/but_why.jpg" height=555 />
 
 
 # Outcome of CI/CD pipeline
 
 ![](media/acc_ci_cd.svg)
+
+
+![](media/chuck_norris_approves.jpg)
