@@ -47,6 +47,21 @@
 <img src="media/doggy_work.jpg" height="586" />
 
 
+# Challenges
+* Automate front-end testing
+* Automate CI/CD
+* Automate mobile apps build and deployment
+
+
+# Automate front-end testing
+
+
+# Cypress example
+<video controls>
+    <source src="media/acc_front_end_testing_with_cypress.mp4" type="video/mp4">
+</video>
+
+
 # Enabling CI/CD on GitLab
 * Just create a .gitlab-ci.yml in your project's root directory
 	* Declare Stages
@@ -75,6 +90,13 @@ job:
 * Works as a pipeline among build stages
 * Can cache and pass data and modules among build stages
 * Suggested stages: build, test, deploy, and release
+```
+stages:
+  - build
+  - test
+  - deploy
+  - release
+```
 
 
 # Multiple Evnironments
@@ -85,6 +107,12 @@ job:
 * To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)
 * Uploads the cached data after the script phase but before after success or failure
 * Large files that are quick to install but slow to download do not benefit from caching
+```
+cache:
+  untracked: true
+  paths:
+    - node_modules/
+```
 
 
 # Caching data (2)
