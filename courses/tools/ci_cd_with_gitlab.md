@@ -149,13 +149,7 @@ test_back_end:
     - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
     - service redis-server start
   script:
-    - bash cli.sh remote &
-    - cd acc-front
-    - bash devrun.sh &
-    - cd ../
-    - bash checkRunning.sh
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js
+    - sh test.sh
 ```
 
 
@@ -169,8 +163,13 @@ test_front_end:
     - apt-get install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
     - npm i --save-dev cypress
   script:
-    - echo 'Testing DeliverBack front-end'
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/deliver_back/input_validation.spec.js 
+    - bash cli.sh remote &
+    - cd acc-front
+    - bash devrun.sh &
+    - cd ../
+    - bash checkRunning.sh
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js
 ```
 
 
