@@ -162,13 +162,7 @@ deploy:
     - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
     - service redis-server start
   script:
-    - bash cli.sh remote &amp;
-    - cd acc-front
-    - bash devrun.sh &amp;
-    - cd ../
-    - bash checkRunning.sh
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js</code></pre>
+    - sh test.sh</code></pre>
 <h1 id="first-ci-test-1">First CI, test</h1>
 <pre><code>test_front_end:
   stage: test
@@ -178,8 +172,13 @@ deploy:
     - apt-get install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
     - npm i --save-dev cypress
   script:
-    - echo &#39;Testing DeliverBack front-end&#39;
-    - node_modules/cypress/bin/cypress run --spec cypress/integration/deliver_back/input_validation.spec.js </code></pre>
+    - bash cli.sh remote &amp;
+    - cd acc-front
+    - bash devrun.sh &amp;
+    - cd ../
+    - bash checkRunning.sh
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js</code></pre>
 <h1 id="first-ci-deploy">First CI, deploy</h1>
 <pre><code>deploy:
   stage: deploy
