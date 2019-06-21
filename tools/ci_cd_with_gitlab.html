@@ -76,6 +76,20 @@
 <li><p>Approximate time: 40 minutes</p></li>
 </ul>
 <p><img src="media/doggy_work.jpg" height="586" /></p>
+<h1 id="challenges">Challenges</h1>
+<ul>
+<li>Automate front-end testing<br /></li>
+<li>Automate CI/CD<br /></li>
+<li>Automate mobile apps build and deployment</li>
+</ul>
+<h1 id="automate-front-end-testing">Automate front-end testing</h1>
+<h1 id="cypress-example">Cypress example</h1>
+<video controls>
+    <source src="media/acc_front_end_testing_with_cypress.mp4" type="video/mp4">
+</video>
+
+
+
 <h1 id="enabling-cicd-on-gitlab">Enabling CI/CD on GitLab</h1>
 <ul>
 <li><p>Just create a .gitlab-ci.yml in your project's root directory</p>
@@ -102,7 +116,11 @@ job:
 <li>To group jobs and run them sequencially or in parallel (e.g., testing different environments)<br /></li>
 <li>Works as a pipeline among build stages<br /></li>
 <li>Can cache and pass data and modules among build stages<br /></li>
-<li>Suggested stages: build, test, deploy, and release</li>
+<li>Suggested stages: build, test, deploy, and release<br />```<br />stages:<br /></li>
+<li>build<br /></li>
+<li>test<br /></li>
+<li>deploy<br /></li>
+<li>release<br />```</li>
 </ul>
 <h1 id="multiple-evnironments">Multiple Evnironments</h1>
 <p><img src="media/multible_env.png" /></p>
@@ -110,7 +128,11 @@ job:
 <ul>
 <li>To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)<br /></li>
 <li>Uploads the cached data after the script phase but before after success or failure<br /></li>
-<li>Large files that are quick to install but slow to download do not benefit from caching</li>
+<li><p>Large files that are quick to install but slow to download do not benefit from caching</p>
+<pre><code>cache:
+  untracked: true
+  paths:
+- node_modules/</code></pre></li>
 </ul>
 <h1 id="caching-data-2">Caching data (2)</h1>
 <p><img src="media/uploading_cache.png" /><br /><img src="media/downloading_cache.png" /></p>
