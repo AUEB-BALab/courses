@@ -33,18 +33,41 @@
 
 # Without CI/CD
 * Running back-end tests (using mocha-chai)
-* Manually perform front-end test on the platfor
+* Manually perform front-end test on the platform
 * Depoy to Google's App Engine the platform
 	* Alpha
 	* WWW
 	* Next
-* Running cordova and singing and deploying
+* Running cordova to build native code, singing, and deploying
 	* APKs to Play Store
 	* IPAs to App Store
 * Approximate time: 40 minutes
 
 
 <img src="media/doggy_work.jpg" height="586" />
+
+
+# Enabling CI/CD on GitLab
+* Just create a .gitlab-ci.yml in your project's root directory
+	* Declare Stages
+	* Cache data or modules
+	* Install dependencies on container or VM
+* On push the CI/CD pipeline will be executed
+* Upon success or failure you are being notified by an email
+
+
+# Simple YAML
+```
+image: node:latest
+job:
+  before_script:
+    - apt update
+    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+  script:
+    - cd js_apps
+    - npm i
+    - npm test
+```
 
 
 # Build stages
@@ -58,10 +81,13 @@
 ![](media/multible_env.png)
 
 
-# Caching data
+# Caching data (1)
 * To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)
 * Uploads the cached data after the script phase but before after success or failure
 * Large files that are quick to install but slow to download do not benefit from caching
+
+
+# Caching data (2)
 ![](media/uploading_cache.png)
 ![](media/downloading_cache.png)
 
@@ -118,24 +144,18 @@ test_back_end:
   stage: test
   image: node:latest
   before_script:
-    - export ACC_VERSION=$(node -pe "require('./package.json')['version']")
-    - echo ${ACC_VERSION} >> ACC_VERSION
     - apt-get update
-    - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common  
-    - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-    - apt-key fingerprint 0EBFCD88
-    - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-    - apt-get update
-    - apt-get install -y docker-ce
-    - service docker status || service docker start
-    - service docker status
+    - apt install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
+    - service redis-server start
   script:
-    - docker run --name redis_instance -p 6379:6379 -d redis redis-server
-    - docker run --name mongo_instance --restart=always -d -p 27017:27017 mongo mongod
-    - sh test.sh
-  artifacts:
-    paths:
-    - ACC_VERSION
+    - bash cli.sh remote &
+    - cd acc-front
+    - bash devrun.sh &
+    - cd ../
+    - bash checkRunning.sh
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js
 ```
 
 
@@ -183,6 +203,46 @@ deploy:
 
 
 <img src="media/but_why.jpg" height=555 />
+
+
+# Pointing out drawbacks
+* Necessary to cache all data between stages?
+* Do we need all these stages?
+* Should every branch execute all stages?
+
+
+# Optimizations on caching
+```
+build_acc_front:
+  stage: build
+  image: node:11.15.0
+  cache:
+    untracked: true
+    paths:
+      - acc-front/dist/*
+      - [...]
+```
+
+
+# Optimizations on stages
+```
+deploy_to_gcloud:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  only:
+    - master [...]
+
+test_front:
+  stage: test
+  image: node:11.15.0
+  except:
+    - master [...]
+```
+
+
+# Merging stages
+![](media/deploy.png)
+![](media/test.png)
 
 
 # Outcome of CI/CD pipeline
