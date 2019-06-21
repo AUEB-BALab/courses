@@ -61,14 +61,14 @@
 <h1 id="without-cicd">Without CI/CD</h1>
 <ul>
 <li>Running back-end tests (using mocha-chai)<br /></li>
-<li>Manually perform front-end test on the platfor<br /></li>
+<li>Manually perform front-end test on the platform<br /></li>
 <li><p>Depoy to Google's App Engine the platform</p>
 <ul>
 <li>Alpha<br /></li>
 <li>WWW<br /></li>
 <li>Next<br /></li>
 </ul></li>
-<li><p>Running cordova and singing and deploying</p>
+<li><p>Running cordova to build native code, singing, and deploying</p>
 <ul>
 <li>APKs to Play Store<br /></li>
 <li>IPAs to App Store<br /></li>
@@ -76,6 +76,27 @@
 <li><p>Approximate time: 40 minutes</p></li>
 </ul>
 <p><img src="media/doggy_work.jpg" height="586" /></p>
+<h1 id="enabling-cicd-on-gitlab">Enabling CI/CD on GitLab</h1>
+<ul>
+<li><p>Just create a .gitlab-ci.yml in your project's root directory</p>
+<ul>
+<li>Declare Stages<br /></li>
+<li>Cache data or modules<br /></li>
+<li>Install dependencies on container or VM<br /></li>
+</ul></li>
+<li>On push the CI/CD pipeline will be executed<br /></li>
+<li><p>Upon success or failure you are being notified by an email</p></li>
+</ul>
+<h1 id="simple-yaml">Simple YAML</h1>
+<pre><code>image: node:latest
+job:
+  before_script:
+    - apt update
+    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+  script:
+    - cd js_apps
+    - npm i
+    - npm test</code></pre>
 <h1 id="build-stages">Build stages</h1>
 <ul>
 <li>To group jobs and run them sequencially or in parallel (e.g., testing different environments)<br /></li>
@@ -85,12 +106,14 @@
 </ul>
 <h1 id="multiple-evnironments">Multiple Evnironments</h1>
 <p><img src="media/multible_env.png" /></p>
-<h1 id="caching-data">Caching data</h1>
+<h1 id="caching-data-1">Caching data (1)</h1>
 <ul>
 <li>To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)<br /></li>
 <li>Uploads the cached data after the script phase but before after success or failure<br /></li>
-<li>Large files that are quick to install but slow to download do not benefit from caching<br /><img src="media/uploading_cache.png" /><br /><img src="media/downloading_cache.png" /></li>
+<li>Large files that are quick to install but slow to download do not benefit from caching</li>
 </ul>
+<h1 id="caching-data-2">Caching data (2)</h1>
+<p><img src="media/uploading_cache.png" /><br /><img src="media/downloading_cache.png" /></p>
 <h1 id="first-ci-pipeline">First CI pipeline</h1>
 <pre><code>cache:
   untracked: true
@@ -134,24 +157,18 @@ deploy:
   stage: test
   image: node:latest
   before_script:
-    - export ACC_VERSION=$(node -pe &quot;require(&#39;./package.json&#39;)[&#39;version&#39;]&quot;)
-    - echo ${ACC_VERSION} &gt;&gt; ACC_VERSION
     - apt-get update
-    - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common  
-    - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-    - apt-key fingerprint 0EBFCD88
-    - add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable&quot;
-    - apt-get update
-    - apt-get install -y docker-ce
-    - service docker status || service docker start
-    - service docker status
+    - apt install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
+    - service redis-server start
   script:
-    - docker run --name redis_instance -p 6379:6379 -d redis redis-server
-    - docker run --name mongo_instance --restart=always -d -p 27017:27017 mongo mongod
-    - sh test.sh
-  artifacts:
-    paths:
-    - ACC_VERSION</code></pre>
+    - bash cli.sh remote &amp;
+    - cd acc-front
+    - bash devrun.sh &amp;
+    - cd ../
+    - bash checkRunning.sh
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/login.spec.js
+    - node_modules/cypress/bin/cypress run --spec cypress/integration/acc-front/projectPage.spec.js</code></pre>
 <h1 id="first-ci-test-1">First CI, test</h1>
 <pre><code>test_front_end:
   stage: test
@@ -186,6 +203,35 @@ deploy:
 <h1 id="first-ci-outcome">First CI outcome</h1>
 <p><img src="media/first_ci_cd_outcome.png" /></p>
 <p><img src="media/but_why.jpg" height=555 /></p>
+<h1 id="pointing-out-drawbacks">Pointing out drawbacks</h1>
+<ul>
+<li>Necessary to cache all data between stages?<br /></li>
+<li>Do we need all these stages?<br /></li>
+<li>Should every branch execute all stages?</li>
+</ul>
+<h1 id="optimizations-on-caching">Optimizations on caching</h1>
+<pre><code>build_acc_front:
+  stage: build
+  image: node:11.15.0
+  cache:
+    untracked: true
+    paths:
+      - acc-front/dist/*
+      - [...]</code></pre>
+<h1 id="optimizations-on-stages">Optimizations on stages</h1>
+<pre><code>deploy_to_gcloud:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  only:
+    - master [...]
+
+test_front:
+  stage: test
+  image: node:11.15.0
+  except:
+    - master [...]</code></pre>
+<h1 id="merging-stages">Merging stages</h1>
+<p><img src="media/deploy.png" /><br /><img src="media/test.png" /></p>
 <h1 id="outcome-of-cicd-pipeline">Outcome of CI/CD pipeline</h1>
 <p><img src="media/acc_ci_cd.svg" /></p>
 <p><img src="media/chuck_norris_approves.jpg" /></p>
