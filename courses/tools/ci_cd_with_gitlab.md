@@ -54,6 +54,23 @@
 
 
 # Automate front-end testing
+```
+describe('Testing platform components', function () {
+  beforeEach(() => {
+    cy.visit('http://localhost:4200/projects/32bf5c50050411e8826c116cafab203f/versions/53/components/c843e1b0284011e8ba31cd640de39f04')
+    cy.wait(5000); // Necessary to avoid slow starts of the webpage
+    cy.get('input[placeholder="E-mail"]').type('acc_test@allcancode.com{enter}');
+    cy.get('input[placeholder="Password"]').type('justatest{enter}');
+    cy.contains('span', 'LOG IN').click();
+  })
+
+  it('should login and create a project', () => {
+    cy.contains('span', 'Open Project');
+    cy.contains('mat-card-title', 'allcancode');
+    cy.contains('mat-card-subtitle', 'Allcancode Core Components');
+  });
+})
+```
 
 
 # Cypress example
@@ -126,7 +143,7 @@ cache:
   untracked: true
   paths:
     - node_modules/
-
+    - acc-front/dist/*
 stages:
   - build
   - test
@@ -168,15 +185,22 @@ build:
 
 # First CI, test
 ```
-test_back_end:
+test_back_nend:
   stage: test
   image: node:latest
   before_script:
     - apt-get update
-    - apt install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
-    - service redis-server start
-  script:
+    - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common       
+    - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    - apt-key fingerprint 0EBFCD88
+    - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+    - apt-get update
+    - apt-get install -y docker-ce
+    - service docker status || service docker start
+    - service docker status
+  script:      
+    - docker run --name redis_instance -p 6379:6379 -d redis redis-server
+    - docker run --name mongo_instance --restart=always -d -p 27017:27017 mongo mongod
     - sh test.sh
 ```
 
@@ -225,6 +249,52 @@ deploy:
 ```
 
 
+# Deploying to Gcloud
+```
+runtime: custom
+env: flex
+
+automatic_scaling:
+  min_num_instances: 3
+  max_num_instances: 16
+  cool_down_period_sec: 180
+  cpu_utilization:
+    target_utilization: 0.6
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+env_variables:
+  ACC_NODE: "node-P"
+  NODE_ENV: "production"
+
+liveness_check:
+  [...]
+
+readiness_check:
+  [...]
+```
+
+
+# App Engine Container File
+```
+FROM gcr.io/allcancode-platform/acc-server-image-3
+
+# COPY Application
+COPY . /app/
+
+RUN npm install --unsafe-perm || \
+    ((if [ -f npm-debug.log ]; then \
+    cat npm-debug.log; \
+    fi) && false)
+
+# Start the server
+CMD npm start
+```
+
+
 # First CI outcome
 ![](media/first_ci_cd_outcome.png)
 
@@ -236,7 +306,7 @@ deploy:
 * Necessary to cache all data between stages?
 * Do we need all these stages?
 * Should every branch execute all stages?
-
+* Do we need to install mongo and redis?
 
 # Optimizations on caching
 ```
