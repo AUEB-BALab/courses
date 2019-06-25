@@ -83,6 +83,21 @@
 <li>Automate mobile apps build and deployment</li>
 </ul>
 <h1 id="automate-front-end-testing">Automate front-end testing</h1>
+<pre><code>describe(&#39;Testing platform components&#39;, function () {
+  beforeEach(() =&gt; {
+    cy.visit(&#39;http://localhost:4200/projects/32bf5c50050411e8826c116cafab203f/versions/53/components/c843e1b0284011e8ba31cd640de39f04&#39;)
+    cy.wait(5000); // Necessary to avoid slow starts of the webpage
+    cy.get(&#39;input[placeholder=&quot;E-mail&quot;]&#39;).type(&#39;acc_test@allcancode.com{enter}&#39;);
+    cy.get(&#39;input[placeholder=&quot;Password&quot;]&#39;).type(&#39;justatest{enter}&#39;);
+    cy.contains(&#39;span&#39;, &#39;LOG IN&#39;).click();
+  })
+
+  it(&#39;should login and create a project&#39;, () =&gt; {
+    cy.contains(&#39;span&#39;, &#39;Open Project&#39;);
+    cy.contains(&#39;mat-card-title&#39;, &#39;allcancode&#39;);
+    cy.contains(&#39;mat-card-subtitle&#39;, &#39;Allcancode Core Components&#39;);
+  });
+})</code></pre>
 <h1 id="cypress-example">Cypress example</h1>
 <video controls>
     <source src="media/acc_front_end_testing_with_cypress.mp4" type="video/mp4">
@@ -141,7 +156,7 @@ job:
   untracked: true
   paths:
     - node_modules/
-
+    - acc-front/dist/*
 stages:
   - build
   - test
@@ -175,15 +190,22 @@ deploy:
     - node_modules/@angular/cli/bin/ng build --prod --build-optimizer --preserve-symlinks --base-href / --deploy-url ${DEPLOY_URL}
     - cd ..</code></pre>
 <h1 id="first-ci-test">First CI, test</h1>
-<pre><code>test_back_end:
+<pre><code>test_back_nend:
   stage: test
   image: node:latest
   before_script:
     - apt-get update
-    - apt install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-    - apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common redis-server
-    - service redis-server start
-  script:
+    - apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common       
+    - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    - apt-key fingerprint 0EBFCD88
+    - add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable&quot;
+    - apt-get update
+    - apt-get install -y docker-ce
+    - service docker status || service docker start
+    - service docker status
+  script:      
+    - docker run --name redis_instance -p 6379:6379 -d redis redis-server
+    - docker run --name mongo_instance --restart=always -d -p 27017:27017 mongo mongod
     - sh test.sh</code></pre>
 <h1 id="first-ci-test-1">First CI, test</h1>
 <pre><code>test_front_end:
@@ -221,6 +243,44 @@ deploy:
     - gsutil -m setmeta -h &quot;Cache-Control:public, max-age=31536000&quot; ${STORAGE_PATH}/**/*
     - gsutil -m acl ch -r -u AllUsers:R ${STORAGE_PATH}/*
     - gcloud app deploy app-alpha.yaml --version=v${ACC_VERSION//\./\-} --quiet</code></pre>
+<h1 id="deploying-to-gcloud">Deploying to Gcloud</h1>
+<pre><code>runtime: custom
+env: flex
+
+automatic_scaling:
+  min_num_instances: 3
+  max_num_instances: 16
+  cool_down_period_sec: 180
+  cpu_utilization:
+    target_utilization: 0.6
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+env_variables:
+  ACC_NODE: &quot;node-P&quot;
+  NODE_ENV: &quot;production&quot;
+
+liveness_check:
+  [...]
+
+readiness_check:
+  [...]</code></pre>
+<h1 id="app-engine-container-file">App Engine Container File</h1>
+<pre><code>FROM gcr.io/allcancode-platform/acc-server-image-3
+
+# COPY Application
+COPY . /app/
+
+RUN npm install --unsafe-perm || \
+    ((if [ -f npm-debug.log ]; then \
+    cat npm-debug.log; \
+    fi) &amp;&amp; false)
+
+# Start the server
+CMD npm start</code></pre>
 <h1 id="first-ci-outcome">First CI outcome</h1>
 <p><img src="media/first_ci_cd_outcome.png" /></p>
 <p><img src="media/but_why.jpg" height=555 /></p>
@@ -228,7 +288,8 @@ deploy:
 <ul>
 <li>Necessary to cache all data between stages?<br /></li>
 <li>Do we need all these stages?<br /></li>
-<li>Should every branch execute all stages?</li>
+<li>Should every branch execute all stages?<br /></li>
+<li>Do we need to install mongo and redis?</li>
 </ul>
 <h1 id="optimizations-on-caching">Optimizations on caching</h1>
 <pre><code>build_acc_front:
