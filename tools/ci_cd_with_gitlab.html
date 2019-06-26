@@ -286,9 +286,9 @@ CMD npm start</code></pre>
 <p><img src="media/but_why.jpg" height=555 /></p>
 <h1 id="pointing-out-drawbacks">Pointing out drawbacks</h1>
 <ul>
-<li>Necessary to cache all data between stages?<br /></li>
-<li>Do we need all these stages?<br /></li>
+<li>Is it necessary to cache all data between stages?<br /></li>
 <li>Should every branch execute all stages?<br /></li>
+<li>Do we need all these stages?<br /></li>
 <li>Do we need to install mongo and redis?</li>
 </ul>
 <h1 id="optimizations-on-caching">Optimizations on caching</h1>
@@ -313,10 +313,60 @@ test_front:
   except:
     - master [...]</code></pre>
 <h1 id="merging-stages">Merging stages</h1>
-<p><img src="media/deploy.png" /><br /><img src="media/test.png" /></p>
-<h1 id="outcome-of-cicd-pipeline">Outcome of CI/CD pipeline</h1>
-<p><img src="media/acc_ci_cd.svg" /></p>
+<p><img src="media/test.png" /><br /><img src="media/deploy.png" /></p>
 <p><img src="media/chuck_norris_approves.jpg" /></p>
+<h1 id="cicd-mobile-apps">CI/CD mobile apps</h1>
+<p>Before we used Adobe's Phonegap to export cordova projects.</p>
+<ul>
+<li>Unreliable software on updates<br /></li>
+<li>Failing without giving reason<br /></li>
+<li>Cordova project size limit 100MB</li>
+</ul>
+<h1 id="bitrise-cicd-for-mobile">Bitrise CI/CD for mobile</h1>
+<ul>
+<li>Customize branches workflows<br /></li>
+<li>Sign code<br /></li>
+<li>Publish to Play and App store<br /></li>
+<li>CLI for local testing<br /></li>
+<li>Integrate with chatting platforms</li>
+</ul>
+<h1 id="bitrise-yaml">Bitrise YAML</h1>
+<pre><code>format_version: &#39;7&#39;
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: cordova
+trigger_map:
+- push_branch: &quot;*&quot;
+  workflow: primary
+- pull_request_source_branch: &quot;*&quot;
+  workflow: primary
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key@4.0.3:
+        run_if: &#39;{{getenv &quot;SSH_RSA_PRIVATE_KEY&quot; | ne &quot;&quot;}}&#39;
+    - git-clone@4.0.14: {}
+    - npm@1.0.2:
+        inputs:
+        - command: install
+        - workdir: &quot;$CORDOVA_WORK_DIR&quot;
+    - cordova-archive@2.0.0:
+        inputs:
+        - workdir: &quot;$CORDOVA_WORK_DIR&quot;
+        - platform: &quot;$CORDOVA_PLATFORM&quot;
+        - target: device
+    - sign-apk@1.3.1:
+        inputs:
+        - keystore_alias: app
+        - keystore_url: file://app.jks
+        - keystore_password: ***
+    - deploy-to-bitrise-io@1.6.0: {}
+app:
+  envs:
+    [...]</code></pre>
+<h1 id="bitrise-gui">Bitrise GUI</h1>
+<p><img src="media/bitrise_gui.png" /></p>
+<h1 id="final-cicd-pipeline">Final CI/CD pipeline</h1>
+<p><img src="media/acc_ci_cd.svg" /></p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
