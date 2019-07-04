@@ -35,19 +35,6 @@
 <ul>
 <li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
 </ul>
-<h1 id="agenda">Agenda</h1>
-<ul>
-<li>What is CI/CD?<br /></li>
-<li>AllCanCode Case<br /></li>
-<li>Without CI/CD<br /></li>
-<li>Build stages<br /></li>
-<li>Caching data<br /></li>
-<li>Optimizations<br /></li>
-<li>First CI pipeline<br /></li>
-<li>Point out drawbacks<br /></li>
-<li>Second Attemp<br /></li>
-<li>Outcome</li>
-</ul>
 <h1 id="what-is-cicd">What is CI/CD</h1>
 <ul>
 <li>CI = Continuous Integration<br /></li>
@@ -82,6 +69,13 @@
 <li>Automate CI/CD<br /></li>
 <li>Automate mobile apps build and deployment</li>
 </ul>
+<p><img src="media/cypress.png" /></p>
+<ul>
+<li>CLI testing<br /></li>
+<li>Browser testing<br /></li>
+<li>Video recording<br /></li>
+<li>Mocha-chai like testing</li>
+</ul>
 <h1 id="automate-front-end-testing">Automate front-end testing</h1>
 <pre><code>describe(&#39;Testing platform components&#39;, function () {
   beforeEach(() =&gt; {
@@ -111,7 +105,6 @@
 <ul>
 <li>Declare Stages<br /></li>
 <li>Cache data or modules<br /></li>
-<li>Install dependencies on container or VM<br /></li>
 </ul></li>
 <li>On push the CI/CD pipeline will be executed<br /></li>
 <li><p>Upon success or failure you are being notified by an email</p></li>
@@ -137,8 +130,6 @@ job:
 <li>deploy<br /></li>
 <li>release<br />```</li>
 </ul>
-<h1 id="multiple-evnironments">Multiple Evnironments</h1>
-<p><img src="media/multible_env.png" /></p>
 <h1 id="caching-data-1">Caching data (1)</h1>
 <ul>
 <li>To store directories among builds, usually dependencies that take longer to compile or download (npm, pip, Maven)<br /></li>
@@ -190,7 +181,7 @@ deploy:
     - node_modules/@angular/cli/bin/ng build --prod --build-optimizer --preserve-symlinks --base-href / --deploy-url ${DEPLOY_URL}
     - cd ..</code></pre>
 <h1 id="first-ci-test">First CI, test</h1>
-<pre><code>test_back_nend:
+<pre><code>test_back_end:
   stage: test
   image: node:latest
   before_script:
@@ -228,15 +219,11 @@ deploy:
   stage: deploy
   image: google/cloud-sdk:latest
   before_script:
-    - export ACC_VERSION=$(cat ACC_VERSION)
-    - export ACC_VERSION=$(echo ${ACC_VERSION} | awk &#39;{print $2}&#39;)
-    - echo ${ACC_VERSION}
     - echo $SERVICE_ACCOUNT &gt; /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project allcancode-platform
   after_script:
     - rm /tmp/$CI_PIPELINE_ID.json
-    - rm ACC_VERSION
   script:
     - export STORAGE_PATH=$( echo &quot;gs://allcancode-files/builds/app-files/platform/${ACC_VERSION}&quot;)
     - gsutil -m cp -r -z html,css,js acc-front/dist ${STORAGE_PATH}
@@ -269,15 +256,9 @@ liveness_check:
 readiness_check:
   [...]</code></pre>
 <h1 id="app-engine-container-file">App Engine Container File</h1>
-<pre><code>FROM gcr.io/allcancode-platform/acc-server-image-3
+<pre><code>FROM gcr.io/allcancode-platform/acc-server-image-7
 
-# COPY Application
-COPY . /app/
-
-RUN npm install --unsafe-perm || \
-    ((if [ -f npm-debug.log ]; then \
-    cat npm-debug.log; \
-    fi) &amp;&amp; false)
+RUN npm install
 
 # Start the server
 CMD npm start</code></pre>
@@ -288,8 +269,7 @@ CMD npm start</code></pre>
 <ul>
 <li>Is it necessary to cache all data between stages?<br /></li>
 <li>Should every branch execute all stages?<br /></li>
-<li>Do we need all these stages?<br /></li>
-<li>Do we need to install mongo and redis?</li>
+<li>Do we need all these stages?</li>
 </ul>
 <h1 id="optimizations-on-caching">Optimizations on caching</h1>
 <pre><code>build_acc_front:
@@ -314,7 +294,6 @@ test_front:
     - master [...]</code></pre>
 <h1 id="merging-stages">Merging stages</h1>
 <p><img src="media/test.png" /><br /><img src="media/deploy.png" /></p>
-<p><img src="media/chuck_norris_approves.jpg" /></p>
 <iframe src="https://giphy.com/embed/PYoiPtqNfvc88" width="880" height="600" frameBorder="0" class="giphy-embed" allowFullScreen>
 </iframe>
 
@@ -327,7 +306,7 @@ test_front:
 <li>Failing without giving reason<br /></li>
 <li>Cordova project size limit 100MB</li>
 </ul>
-<h1 id="bitrise-cicd-for-mobile">Bitrise CI/CD for mobile</h1>
+<p><img src="media/bitris.png" /></p>
 <ul>
 <li>Customize branches workflows<br /></li>
 <li>Sign code<br /></li>
@@ -335,6 +314,8 @@ test_front:
 <li>CLI for local testing<br /></li>
 <li>Integrate with chatting platforms</li>
 </ul>
+<h1 id="bitrise-gui">Bitrise GUI</h1>
+<p><img src="media/bitrise_gui.png" /></p>
 <h1 id="bitrise-yaml">Bitrise YAML</h1>
 <pre><code>format_version: &#39;7&#39;
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
@@ -368,8 +349,6 @@ workflows:
 app:
   envs:
     [...]</code></pre>
-<h1 id="bitrise-gui">Bitrise GUI</h1>
-<p><img src="media/bitrise_gui.png" /></p>
 <h1 id="final-cicd-pipeline">Final CI/CD pipeline</h1>
 <p><img src="media/acc_ci_cd.svg" /></p>
 <h1 id="lessons-learned">Lessons learned</h1>
