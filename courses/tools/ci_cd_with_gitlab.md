@@ -346,6 +346,9 @@ test_front:
 ![](media/chuck_norris_approves.jpg)
 
 
+<iframe src="https://giphy.com/embed/PYoiPtqNfvc88" width="880" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+
 # CI/CD mobile apps
 Before we used  Adobe's Phonegap to export cordova projects.
 * Unreliable software on updates
@@ -404,3 +407,10 @@ app:
 
 # Final CI/CD pipeline
 ![](media/acc_ci_cd.svg)
+
+
+# Lessons learned
+* Local testing does not works as remote (paths for app engine)
+* Misused tooling support can negatively impact your development process
+* A lot of testing is required
+* Documentation is not straight forword
