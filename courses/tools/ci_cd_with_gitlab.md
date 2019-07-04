@@ -4,19 +4,6 @@
 * [Στέφανος Γεωργίου](https://www.balab.aueb.gr/stefanos-georgiou.html)
 
 
-# Agenda
-* What is CI/CD?
-* AllCanCode Case
-* Without CI/CD
-* Build stages
-* Caching data
-* Optimizations
-* First CI pipeline
-* Point out drawbacks
-* Second Attemp
-* Outcome
-
-
 # What is CI/CD
 * CI = Continuous Integration
 * CD = Continuous Deployment
@@ -53,6 +40,13 @@
 * Automate mobile apps build and deployment
 
 
+![](media/cypress.png)
+* CLI testing
+* Browser testing
+* Video recording
+* Mocha-chai like testing
+
+
 # Automate front-end testing
 ```
 describe('Testing platform components', function () {
@@ -83,7 +77,6 @@ describe('Testing platform components', function () {
 * Just create a .gitlab-ci.yml in your project's root directory
 	* Declare Stages
 	* Cache data or modules
-	* Install dependencies on container or VM
 * On push the CI/CD pipeline will be executed
 * Upon success or failure you are being notified by an email
 
@@ -114,10 +107,6 @@ stages:
   - deploy
   - release
 ```
-
-
-# Multiple Evnironments
-![](media/multible_env.png)
 
 
 # Caching data (1)
@@ -185,7 +174,7 @@ build:
 
 # First CI, test
 ```
-test_back_nend:
+test_back_end:
   stage: test
   image: node:latest
   before_script:
@@ -231,15 +220,11 @@ deploy:
   stage: deploy
   image: google/cloud-sdk:latest
   before_script:
-    - export ACC_VERSION=$(cat ACC_VERSION)
-    - export ACC_VERSION=$(echo ${ACC_VERSION} | awk '{print $2}')
-    - echo ${ACC_VERSION}
     - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud config set project allcancode-platform
   after_script:
     - rm /tmp/$CI_PIPELINE_ID.json
-    - rm ACC_VERSION
   script:
     - export STORAGE_PATH=$( echo "gs://allcancode-files/builds/app-files/platform/${ACC_VERSION}")
     - gsutil -m cp -r -z html,css,js acc-front/dist ${STORAGE_PATH}
@@ -280,15 +265,9 @@ readiness_check:
 
 # App Engine Container File
 ```
-FROM gcr.io/allcancode-platform/acc-server-image-3
+FROM gcr.io/allcancode-platform/acc-server-image-7
 
-# COPY Application
-COPY . /app/
-
-RUN npm install --unsafe-perm || \
-    ((if [ -f npm-debug.log ]; then \
-    cat npm-debug.log; \
-    fi) && false)
+RUN npm install
 
 # Start the server
 CMD npm start
@@ -306,7 +285,6 @@ CMD npm start
 * Is it necessary to cache all data between stages?
 * Should every branch execute all stages?
 * Do we need all these stages?
-* Do we need to install mongo and redis?
 
 
 # Optimizations on caching
@@ -343,9 +321,6 @@ test_front:
 ![](media/deploy.png)
 
 
-![](media/chuck_norris_approves.jpg)
-
-
 <iframe src="https://giphy.com/embed/PYoiPtqNfvc88" width="880" height="600" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 
@@ -356,12 +331,16 @@ Before we used  Adobe's Phonegap to export cordova projects.
 * Cordova project size limit 100MB
 
 
-# Bitrise CI/CD for mobile
+![](media/bitris.png)
 * Customize branches workflows
 * Sign code
 * Publish to Play and App store
 * CLI for local testing
 * Integrate with chatting platforms
+
+
+# Bitrise GUI
+![](media/bitrise_gui.png)
 
 
 # Bitrise YAML
@@ -399,10 +378,6 @@ app:
   envs:
     [...]
 ```
-
-
-# Bitrise GUI
-![](media/bitrise_gui.png)
 
 
 # Final CI/CD pipeline
