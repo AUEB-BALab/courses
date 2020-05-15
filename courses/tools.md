@@ -6,3 +6,4 @@
 * [Hardware Energy Monitoring Tools](tools/measuring_energy_consumption_direct_approach.md)
 * [Validate your links](tools/validate_links.md)
 * [Installing Jarpeb](tools/installing_jarpeb.md)
+* [RPi Thermo-Humidity Meter](tools/rpi_thermo_meter.md)
