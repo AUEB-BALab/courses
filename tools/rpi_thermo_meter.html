@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>RPi Thermo-Humidity Meter</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="--rpi-thermo-humidity-meter">Προγραμματισμός ΙΙ: RPi Thermo-Humidity Meter</h1>
+<p><omg src="media/AUEB_logo.jpg" width="425" /> <img src="media/BA_Lab.png" width="425" /></p>
+<h1 id="tools-and-practices-rpi-thermo-and-humidity-meter">Tools and practices: RPi Thermo and humidity meter</h1>
+<ul>
+<li><a href="https://www.balab.aueb.gr/stefanos-georgiou.html">Στέφανος Γεωργίου</a></li>
+</ul>
+<h1 id="problem">Problem</h1>
+<ul>
+<li>Want to measure temperature rooms in a cool way?<br /></li>
+<li>Want to automate this process too?<br /></li>
+<li>Want to get measurements remotely?</li>
+</ul>
+<h1 id="tools-and-equipments">Tools and Equipments</h1>
+<ul>
+<li>Raspberry Pi (I am using 3B model)<br /></li>
+<li>Waveshare DHT11 temperature-humidity sensor (3.4 eu)</li>
+</ul>
+<h1 id="set-up-a-static-ip-on-rpi">Set up a Static IP on RPi</h1>
+<ul>
+<li><p>Open a terminal and inside /etc/dhcpcd.conf write the following lines:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">interface</span> [wlan0||eth0]
+<span class="dt">static</span> ip_address=<span class="fl">192.168.1.2</span>/<span class="dv">24</span>
+<span class="dt">static</span> routers=<span class="fl">192.168.1.1</span>
+<span class="dt">static</span> domain_name_servers=<span class="fl">192.168.1.1</span></code></pre></li>
+<li><p>Reboot RPi and check IP ($ ifconfig)</p></li>
+</ul>
+<h1 id="rpi-gpio">RPi GPIO</h1>
+<p><img src="media/rpi_gpio.svg" height="546" /></p>
+<h1 id="add-pins-to-rpi-gpio">Add pins to RPi GPIO</h1>
+<ul>
+<li>DHT-11 VCC pin to RPi (Top left 3.3VPWR number 1 pin)<br /></li>
+<li>DHT-11 GND pin to RPi (Top right GND number 6 pin)<br /></li>
+<li>DHT-11 DOUT pin to RPI (Top left GPIO 17 number 11 pin)</li>
+</ul>
+<h1 id="clone-python-utility">Clone Python utility</h1>
+<ul>
+<li>git clone <a href="https://github.com/szazo/DHT11_Python.git">https://github.com/szazo/DHT11_Python.git</a><br /></li>
+<li>Modify example.py instance = dht11.DHT11(pin=14) to instance = dht11.DHT11(pin=17)<br /></li>
+<li>Execute tool using: $ python3 example.py</li>
+</ul>
+<h1 id="to-get-reading-remotely">To get reading remotely</h1>
+<ul>
+<li>Modify example script to avoid infinite loop by removing the while true<br /></li>
+<li>Establish password-less ssh using the following tutorial: <a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/</a><br /></li>
+<li>Test using the following: $ ssh <script type="text/javascript">
+<!--
+h='&#x31;&#x39;&#50;&#46;&#x31;&#54;&#56;&#46;&#x31;&#46;&#50;';a='&#64;';n='&#112;&#x69;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#112;&#x69;&#32;&#x61;&#116;&#32;&#x31;&#x39;&#50;&#32;&#100;&#x6f;&#116;&#32;&#x31;&#54;&#56;&#32;&#100;&#x6f;&#116;&#32;&#x31;&#32;&#100;&#x6f;&#116;&#32;&#50;</noscript> &quot;python3 DHT11_Python/example.py&quot;</li>
+</ul>
+<h1 id="add-in-unix-system-resource-binaries">Add in Unix System Resource binaries</h1>
+<ul>
+<li>Create a small BASH script with the following code:</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">cat &lt;&lt; EOF &gt; getRoomTemperature 
+#!/bin/bash
+ssh pi<span class="fu">@192</span><span class="fl">.168.1.2</span> <span class="st">&quot;python3 DHT11_Python/example.py&quot;</span>
+EOF</code></pre>
+<ul>
+<li>chmod +x getRoomTemperature<br /></li>
+<li>Copy to usr binaries: $ cp getRoomTemperature /usr/bin/<br /></li>
+<li>Execute: $ getRoomTemperature</li>
+</ul>
+<h1 id="thank-you-for-your-attention">Thank you for your attention</h1>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
